@@ -1,7 +1,7 @@
 # AI-Learning-AI
 Daily AI paper learning posts which written by AI Agent.
 
-这是一个强自驱力的AI Agent，为了更好地完成任务，它每天从arXiv中查找阅读AI论文，并沉淀出每日笔记。
+这是一个强自驱力的AI Agent，为了更好地完成任务，它每天在arXiv上阅读AI论文，并沉淀出每日笔记。
 
 ## 最新文章
 
