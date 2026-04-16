@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从 P(y|x) 到 P(y)：中科院自动化所提出双空间强化学习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            border-bottom: 3px solid #07c160;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #07c160;
+            margin: 30px 0 15px 0;
+            padding-left: 12px;
+            border-left: 4px solid #07c160;
+        }
+        
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 12px 0;
+        }
+        
+        .abstract {
+            background: linear-gradient(135deg, #f0f9f4 0%, #e6f7ed 100%);
+            border-left: 4px solid #07c160;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .abstract-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #07c160;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .abstract-title::before {
+            content: "📌";
+            margin-right: 8px;
+        }
+        
+        .abstract-item {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #444;
+        }
+        
+        .abstract-item strong {
+            color: #07c160;
+            font-weight: 600;
+        }
+        
+        p {
+            margin: 15px 0;
+            text-align: justify;
+            font-size: 15px;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .highlight {
+            background: #fff8e6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #d48806;
+        }
+        
+        .formula {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 13px;
+            overflow-x: auto;
+            display: block;
+        }
+        
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        tr:hover {
+            background: #f0f9f4;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border: 2px solid #07c160;
+        }
+        
+        .conclusion-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #07c160;
+            margin-bottom: 12px;
+        }
+        
+        .references {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .references h3 {
+            color: #07c160;
+            margin-bottom: 15px;
+        }
+        
+        .references a {
+            color: #07c160;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        .references a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #999;
+            font-size: 13px;
+        }
+        
+        .footer-signature {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .key-finding {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .key-finding-title {
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+        
+        blockquote {
+            background: #f0f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+            color: #444;
+            font-style: italic;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #07c160, #52c41a, #07c160);
+            margin: 30px 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>从 P(y|x) 到 P(y)：中科院自动化所提出双空间强化学习，预训练空间剪枝让推理能力突破基模型限制</h1>
+        
+        <div class="abstract">
+            <div class="abstract-title">核心摘要</div>
+            <div class="abstract-item"><strong>论文标题：</strong>From P(y|x) to P(y): Investigating Reinforcement Learning in Pre-train Space</div>
+            <div class="abstract-item"><strong>研究团队：</strong>中国科学院自动化研究所、新加坡国立大学、腾讯 AI Lab</div>
+            <div class="abstract-item"><strong>核心贡献：</strong>提出 PreRL（预训练空间强化学习）和 DSRL（双空间强化学习）框架，通过在预训练空间直接优化边际分布 P(y)，结合负样本强化（NSR）机制，有效剪枝错误推理路径并激发模型内源性推理能力。实验表明，DSRL 在多个数学推理基准上持续超越 GRPO、PPO 等强基线，AIME24 上提升达 4.69 个百分点，且在跨领域任务上展现优异的泛化能力。</div>
+            <div class="abstract-item"><strong>关键发现：</strong>负样本强化在预训练空间可使转移思维和反思思维分别提升 14.89 倍和 6.54 倍，仅用标准 RL 1/3 的训练步数即可达到相当精度。</div>
+        </div>
+        
+        <h2>一、研究背景与动机</h2>
+        
+        <h3>1.1 RLVR 的成功与局限</h3>
+        <p>近年来，<span class="highlight">带可验证奖励的强化学习（RLVR）</span>已成为提升大语言模型复杂推理能力的关键驱动力。DeepSeek-R1 的成功更是巩固了 RLVR 作为后训练范式的地位，在多个领域展现出强大的能力增强效果。</p>
+        
+        <p>然而，现有研究表明，RLVR 的潜力<span class="highlight">从根本上受限于基模型已有的输出分布</span>。incentivized 的推理路径已经存在于基模型的输出分布中，这意味着 RLVR 训练模型的推理能力可能被基模型的能力所束缚。</p>
+        
+        <h3>1.2 预训练空间优化的价值</h3>
+        <p><strong>预训练空间优化</strong>通过直接针对边际分布 P(y) 来加强这一基础，其核心价值在于：</p>
+        <ul>
+            <li><strong>深度广泛的知识内化</strong>：将推理能力直接编码到模型参数中</li>
+            <li><strong>保留广泛的探索能力</strong>：为后续 P(y|x) 优化提供更强的初始化</li>
+            <li><strong>问题无关的推理内部化</strong>：促进广泛的任务迁移和增强的通用能力</li>
+        </ul>
+        
+        <h3>1.3 核心挑战</h3>
+        <p>传统预训练依赖<strong>静态语料库进行被动学习</strong>，导致预训练知识与后训练期间遇到的任务分布之间出现明显的分布偏移，阻碍了有针对性的推理增强。</p>
+        
+        <p>相比之下，RL 方法通过在线优化将输出分布转向更高奖励的轨迹，从而提高了采样效率。这引发了一个自然的问题：<strong>能否将 RL 引入预训练空间，协同知识内化与奖励驱动的优化？</strong></p>
+        
+        <hr class="section-divider">
+        
+        <h2>二、核心方法</h2>
+        
+        <h3>2.1 从后训练空间到预训练空间</h3>
+        <p>研究团队首先形式化定义了 LLM 的优化空间：</p>
+        <p><strong>后训练空间优化</strong>：优化条件策略 πθ(y|x)，学习目标严格条件于特定输入查询 x。</p>
+        <p><strong>预训练空间优化</strong>：优化边际策略 πθ(y)，直接优化推理轨迹的内在分布。</p>
+        
+        <h3>2.2 PreRL：预训练空间强化学习</h3>
+        <p>研究团队提出 <span class="highlight">PreRL（Pre-train Space RL）</span>，直接在预训练空间应用奖励驱动的在线更新：</p>
+        <div class="formula">∇θJ_PreRL(πθ) = E_x∼X[E_y∼πθ(·|x)[Σ_t=1^|y| ∇θlogπθ(y_t|y_<t)·R(y)]]</t></div>
+        
+        <p><strong>关键理论发现</strong>：通过泰勒展开分析，研究团队证明了当边际和条件目标的梯度对齐时，优化 log πθ(y) 可以改善 log πθ(y|x)。</p>
+        
+        <h3>2.3 梯度对齐的实证验证</h3>
+        <p>研究团队在 Qwen3-4B 上使用 AMC23 数据集的 400 个 rollouts 进行了详细分析：</p>
+        
+        <div class="key-finding">
+            <div class="key-finding-title">🔍 观察 1：梯度内积始终为非负</div>
+            <p>• 经验分布 100% 满足非负条件<br>• 平均内积为 +9.2<br>• 余弦相似度分布强烈为正</p>
+        </div>
+        
+        <div class="key-finding">
+            <div class="key-finding-title">🔍 观察 2：分布高度对齐</div>
+            <p>• log πθ(y|x) 和 log πθ(y) 的分布强烈重叠<br>• 验证了 log πθ(y) 作为 log πθ(y|x) 的可靠代理</p>
+        </div>
+        
+        <h3>2.4 负样本强化（NSR）的关键机制</h3>
+        <p>研究团队深入分析了 PreRL 的动态，发现正负样本强化存在显著的不对称性：</p>
+        
+        <p><strong>PSR-PreRL 的崩溃</strong>：正样本强化在预训练空间无法有效从自生成的在策略轨迹中学习，最终导致性能下降。</p>
+        
+        <blockquote>
+            <strong>NSR-PreRL 的惊人效果：</strong><br>
+            • 快速剪枝预训练空间中的错误轨迹<br>
+            • 在后训练空间促进增强的探索<br>
+            • <strong>激发模型内源性推理能力</strong>：转移思维提升 14.89 倍，反思思维提升 6.54 倍<br>
+            • 仅用 20 步即可达到 86% 的准确率，比标准 RL 少用 3 倍训练步数
+        </blockquote>
+        
+        <h3>2.5 DSRL：双空间强化学习</h3>
+        <p>基于上述发现，研究团队采用<strong>策略轮回（Policy Reincarnation）策略</strong>，提出 <span class="highlight">DSRL（Dual Space RL）</span>：</p>
+        <ol>
+            <li><strong>NSR-PreRL 初始化阶段</strong>：扩展推理视野，激发内在推理能力</li>
+            <li><strong>标准 RL 微调阶段</strong>：进行细粒度的策略优化</li>
+        </ol>
+        
+        <hr class="section-divider">
+        
+        <h2>三、实验结果</h2>
+        
+        <h3>3.1 主实验结果</h3>
+        <p>研究团队在 Qwen3-4B 和 Qwen3-8B 上进行了广泛实验，评估基准包括 MATH500、AMC23、AIME24、AIME25、Minerva 和 OlympiadBench。</p>
+        
+        <p><strong>Qwen3-4B 结果：</strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>AMC</th>
+                    <th>MATH500</th>
+                    <th>AIME24</th>
+                    <th>AIME25</th>
+                    <th>Minerva</th>
+                    <th>OlympiadBench</th>
+                    <th>平均</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Vanilla</td>
+                    <td>68.28</td>
+                    <td>80.17</td>
+                    <td>23.13</td>
+                    <td>20.00</td>
+                    <td>23.62</td>
+                    <td>32.33</td>
+                    <td>41.26</td>
+                </tr>
+                <tr>
+                    <td>GRPO</td>
+                    <td>87.81</td>
+                    <td>89.17</td>
+                    <td>46.46</td>
+                    <td>40.94</td>
+                    <td>30.06</td>
+                    <td>40.29</td>
+                    <td>55.79</td>
+                </tr>
+                <tr>
+                    <td>Dr.GRPO</td>
+                    <td>87.58</td>
+                    <td>89.22</td>
+                    <td>51.04</td>
+                    <td>42.60</td>
+                    <td>31.05</td>
+                    <td>40.75</td>
+                    <td>57.04</td>
+                </tr>
+                <tr style="background: #e6f7ed; font-weight: 600;">
+                    <td>DSRL (Ours)</td>
+                    <td>89.22</td>
+                    <td>89.68</td>
+                    <td>51.15</td>
+                    <td>43.44</td>
+                    <td>30.48</td>
+                    <td>41.26</td>
+                    <td>57.54</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p><strong>Qwen3-8B 结果：</strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>AMC</th>
+                    <th>MATH500</th>
+                    <th>AIME24</th>
+                    <th>AIME25</th>
+                    <th>Minerva</th>
+                    <th>OlympiadBench</th>
+                    <th>平均</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Vanilla</td>
+                    <td>69.53</td>
+                    <td>80.24</td>
+                    <td>25.73</td>
+                    <td>19.27</td>
+                    <td>22.33</td>
+                    <td>32.61</td>
+                    <td>41.62</td>
+                </tr>
+                <tr>
+                    <td>GRPO</td>
+                    <td>88.05</td>
+                    <td>89.91</td>
+                    <td>54.06</td>
+                    <td>39.37</td>
+                    <td>29.65</td>
+                    <td>40.97</td>
+                    <td>57.00</td>
+                </tr>
+                <tr style="background: #e6f7ed; font-weight: 600;">
+                    <td>DSRL (Ours)</td>
+                    <td>90.00</td>
+                    <td>90.31</td>
+                    <td>56.15</td>
+                    <td>42.19</td>
+                    <td>30.32</td>
+                    <td>41.82</td>
+                    <td>58.47</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>3.2 Pass@K 性能</h3>
+        <p>DSRL 在整个 K 值范围内持续超越 GRPO 基线：</p>
+        <ul>
+            <li>在 Qwen3-8B 上，DSRL 在所有 K 值上均取得优异结果</li>
+            <li>在 AIME24 和 AIME25 等挑战性基准上，随着 K 增加保持明显领先</li>
+            <li>表明 DSRL 不仅提升 Pass@1，还多样化了高质量解空间</li>
+        </ul>
+        
+        <h3>3.3 跨领域泛化能力</h3>
+        <p>研究团队在四个分布外（OOD）基准上测试了泛化能力：</p>
+        
+        <p><strong>Qwen3-4B OOD 结果：</strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>GPQA-Diamond</th>
+                    <th>MMLU-Pro</th>
+                    <th>BBH</th>
+                    <th>HumanEval</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Vanilla</td>
+                    <td>42.12</td>
+                    <td>58.61</td>
+                    <td>75.55</td>
+                    <td>78.66</td>
+                </tr>
+                <tr>
+                    <td>GRPO</td>
+                    <td>39.39</td>
+                    <td>61.12</td>
+                    <td>80.37</td>
+                    <td>81.10</td>
+                </tr>
+                <tr style="background: #e6f7ed; font-weight: 600;">
+                    <td>DSRL (Ours)</td>
+                    <td>43.18</td>
+                    <td>66.49</td>
+                    <td>82.41</td>
+                    <td>81.10</td>
+                </tr>
+                <tr style="background: #fff3cd; font-weight: 600;">
+                    <td>Δ vs. GRPO</td>
+                    <td>+3.79</td>
+                    <td>+5.37</td>
+                    <td>+2.04</td>
+                    <td>+0.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>3.4 训练效率分析</h3>
+        <p>DSRL 展现出卓越的训练动态：</p>
+        <ul>
+            <li><strong>性能领先</strong>：平均准确率 61.6 vs. GRPO 的 57.7</li>
+            <li><strong>效率卓越</strong>：以 2.5 倍和 1.6 倍更少的步数分别达到 45.0% 和 58.0% 的准确率</li>
+            <li><strong>推理行为演化</strong>：DSRL 驱动快速、持续的增长，在所有模式上实现显著更高的频率上限</li>
+        </ul>
+        
+        <h3>3.5 消融研究</h3>
+        <p><strong>预热步数影响：</strong></p>
+        <ul>
+            <li>最优范围：10 到 25 步</li>
+            <li>步数过少：刺激不足</li>
+            <li>步数过多：导致过度探索性生成，阻碍后续细粒度优化</li>
+        </ul>
+        
+        <p><strong>预训练空间 vs. 后训练空间预热：</strong></p>
+        <ul>
+            <li>NSR-RL 预热平均得分 54.38（甚至低于 GRPO 的 55.79）</li>
+            <li>NSR-PreRL 预热（DSRL）达到最高分 57.54</li>
+            <li>第 20 步时，NSR-PreRL 在 AMC23、AIME24、AIME25 上平均领先 NSR-RL 6.6 分</li>
+        </ul>
+        
+        <hr class="section-divider">
+        
+        <h2>四、技术启示与发展方向</h2>
+        
+        <h3>4.1 核心技术创新</h3>
+        <ol>
+            <li><strong>预训练空间 RL 范式</strong>：首次将奖励驱动的强化学习直接引入预训练空间，将知识内化从被动数据驱动过程转变为主动奖励引导过程。</li>
+            <li><strong>负样本强化机制</strong>：发现 NSR 在预训练空间是异常有效的驱动机制，通过选择性剪枝错误推理路径并激发内源性推理能力。</li>
+            <li><strong>双空间协同优化</strong>：通过策略轮回策略协同 NSR-PreRL 与标准 RL，实现从预训练空间到后训练空间的无缝学习。</li>
+        </ol>
+        
+        <h3>4.2 实践启示</h3>
+        <p><strong>对于模型训练者：</strong></p>
+        <ul>
+            <li>预训练空间优化可以有效扩展推理视野，为后续微调奠定更坚实基础</li>
+            <li>负样本在预训练空间具有独特的教学价值，应充分利用</li>
+            <li>预热步数需要精心选择，10-25 步为最优范围</li>
+        </ul>
+        
+        <p><strong>对于应用开发者：</strong></p>
+        <ul>
+            <li>DSRL 框架可显著提升模型的推理能力和泛化性能</li>
+            <li>在数学推理、科学问答、代码生成等任务上均有优异表现</li>
+            <li>跨领域泛化能力强，适合多任务场景</li>
+        </ul>
+        
+        <h3>4.3 未来研究方向</h3>
+        <ul>
+            <li><strong>更高效的预训练空间优化算法</strong>：探索除 GRPO 外的其他优化算法在预训练空间的表现</li>
+            <li><strong>自动化转换阈值选择</strong>：研究如何动态确定从预训练空间到后训练空间的最佳转换点</li>
+            <li><strong>多模态扩展</strong>：将 DSRL 框架扩展到多模态模型，探索视觉 - 语言推理的预训练空间优化</li>
+            <li><strong>大规模验证</strong>：在更大规模模型（如 70B+）上验证 DSRL 的有效性和可扩展性</li>
+            <li><strong>理论分析深化</strong>：进一步研究梯度对齐的理论边界和条件，为预训练空间 RL 提供更坚实的理论基础</li>
+        </ul>
+        
+        <hr class="section-divider">
+        
+        <h2>五、总结</h2>
+        
+        <div class="conclusion">
+            <div class="conclusion-title">📝 核心结论</div>
+            <p>本研究提出了 <strong>PreRL（预训练空间强化学习）</strong>，将奖励驱动的强化学习整合到预训练空间中。通过理论和实证分析，研究团队证明了条件目标 log P(y|x) 与边际目标 log P(y) 之间存在强烈的梯度对齐。</p>
+            <p>深入分析 PreRL 后，研究团队揭示<strong>负样本强化（NSR）</strong>作为异常有效的驱动机制，通过选择性剪枝错误推理路径并激发内源性推理能力。</p>
+            <p>基于此，研究团队提出 <strong>DSRL（双空间强化学习）</strong>，使用策略轮回策略协同 NSR-PreRL 与标准 RL。通过在 NSR-PreRL 阶段消除基本错误并扩展探索视野进行初始化，DSRL 在广泛基准上持续超越强基线。</p>
+            <p style="margin-top: 15px; font-weight: 600; color: #07c160;">最终结论：预训练空间优化本质上建立了更强大的推理基础，从而实现更优异的最终性能。这一发现为突破基模型限制、实现推理能力的持续提升开辟了新的技术路径。</p>
+        </div>
+        
+        <h2>参考资料</h2>
+        
+        <div class="references">
+            <h3>📚 论文与资源</h3>
+            <p>1. <strong>论文链接</strong>：<a href="https://arxiv.org/abs/2604.14142" target="_blank">https://arxiv.org/abs/2604.14142</a></p>
+            <p>2. <strong>代码仓库</strong>：<a href="https://github.com/Trae1ounG/Pretrain_Space_RLVR" target="_blank">https://github.com/Trae1ounG/Pretrain_Space_RLVR</a></p>
+            <p>3. <strong>HTML 版本</strong>：<a href="https://arxiv.org/html/2604.14142v1" target="_blank">https://arxiv.org/html/2604.14142v1</a></p>
+            <p>4. <strong>PDF 下载</strong>：<a href="https://arxiv.org/pdf/2604.14142" target="_blank">https://arxiv.org/pdf/2604.14142</a></p>
+            
+            <h3 style="margin-top: 20px;">🔗 相关研究</h3>
+            <p>• DeepSeek-R1: <a href="https://arxiv.org/abs/2501.12948" target="_blank">https://arxiv.org/abs/2501.12948</a></p>
+            <p>• GRPO: <a href="https://arxiv.org/abs/2402.03300" target="_blank">https://arxiv.org/abs/2402.03300</a></p>
+            <p>• Policy Reincarnation: <a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/ba1c5356d9164bb64c446a4b690226b0-Abstract-Conference.html" target="_blank">NeurIPS 2022</a></p>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-signature">小织 🧵 | 2026 年 4 月 16 日</div>
+            <p style="margin-top: 15px; font-size: 12px;">本文基于 arXiv 论文解读，仅供学术交流使用</p>
+        </div>
+    </div>
+</body>
+</html>
