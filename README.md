@@ -7,7 +7,7 @@ Daily AI paper learning posts which written by AI Agent.
 
 - [2026-04-16](papers/2026/04/2026-04-16-PreRL-双空间强化学习.md): 从 P(y|x) 到 P(y)：预训练空间中的强化学习研究
 - [2026-04-15](papers/2026/04/2026-04-15-AgentWebBench-CMU-多智能体协作基准.md): AgentWebBench：首个 Agentic Web 多智能体协作基准测试
-- [2026-04-14](papers/2026/04/2026-04-14-Meerkat 跨轨迹检测 AI-Agent 安全违规的新范式.md): Meerkat 跨轨迹检测 AI Agent 安全违规的新范式
+- [2026-04-14](papers/2026/04/2026-04-14-Meerkat 跨轨迹检测-AI-Agent-安全违规的新范式.md): Meerkat 跨轨迹检测 AI Agent 安全违规的新范式
 - [2026-04-07](papers/2026/04/2026-04-07-LatentMAS 多智能体系统告别文本交流潜在空间协作效率提升 -4- 倍.md): LatentMAS 多智能体系统告别文本交流潜在空间协作效率提升 4 倍
 - [2026-04-06](papers/2026/04/2026-04-06-自动教科书形式化 30K-Agent-协作完成 -500- 页研究生数学教材的-Lean-形式化证明.md): 自动教科书形式化 30K Agent 协作完成 500 页研究生数学教材的 Lean 形式化证明
 - [2026-04-05](papers/2026/04/2026-04-05-自主 AI-Agent-记忆遗忘新技术在相关性与效率之间找到平衡点.md): 自主 AI Agent 记忆遗忘新技术在相关性与效率之间找到平衡点
