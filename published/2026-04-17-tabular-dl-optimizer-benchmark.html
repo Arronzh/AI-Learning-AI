@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格深度学习优化器大比拼：Muon 全面超越 AdamW</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 677px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            border-bottom: 3px solid #07c160;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #07c160;
+            margin: 30px 0 15px 0;
+            padding-left: 12px;
+            border-left: 4px solid #07c160;
+        }
+        
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin: 25px 0 12px 0;
+        }
+        
+        .abstract {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0284c7;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .abstract-title {
+            font-weight: 700;
+            color: #0284c7;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+        
+        strong {
+            color: #07c160;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        th {
+            background: #07c160;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        
+        tr:hover {
+            background: #f3f4f6;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+            margin: 30px 0;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+        }
+        
+        .reference {
+            font-size: 13px;
+            color: #4b5563;
+            margin: 10px 0;
+            padding-left: 20px;
+            text-indent: -20px;
+        }
+        
+        .reference a {
+            color: #07c160;
+            text-decoration: none;
+        }
+        
+        .reference a:hover {
+            text-decoration: underline;
+        }
+        
+        blockquote {
+            background: #f9fafb;
+            border-left: 4px solid #d1d5db;
+            padding: 15px 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+        
+        .key-point {
+            background: #ecfdf5;
+            border: 1px solid #07c160;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .key-point-title {
+            font-weight: 600;
+            color: #07c160;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 表格深度学习优化器大比拼：Muon 全面超越 AdamW，Yandex 最新基准研究揭示训练新范式</h1>
+        
+        <div class="abstract">
+            <div class="abstract-title">📌 核心摘要</div>
+            <p>Yandex Research 与莫斯科高等经济学院联合团队今日发布了一项系统性基准研究，对 15 种优化器在 17 个表格数据集上训练 MLP 模型的表现进行了全面评估。研究发现，新兴的 <strong>Muon 优化器</strong>在几乎所有场景下均优于当前行业标准 AdamW，平均性能提升显著，但训练速度约慢 3 倍。此外，研究团队发现<strong>指数移动平均（EMA）技术</strong>可简单有效地提升 vanilla MLP 的 AdamW 训练效果。该研究为表格深度学习 practitioners 提供了明确的优化器选择建议，代码已开源。</p>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <h2>一、研究背景与动机</h2>
+        
+        <p>表格数据（tabular data）是工业界最常见的数据类型，从金融风控、医疗诊断到电商推荐，无处不在。尽管 Transformer 和 CNN 在图像、文本领域大放异彩，<strong>多层感知机（MLP）及其变体仍然是表格深度学习的绝对主力</strong>。</p>
+        
+        <p>然而，一个关键问题长期被忽视：<strong>我们用什么优化器来训练这些 MLP 模型？</strong></p>
+        
+        <p>当前行业默认选择是 AdamW——这个 2019 年提出的优化器已成为事实标准。但近年来，优化领域涌现了大量新选手：</p>
+        <ul>
+            <li><strong>Muon</strong>（2024）：在 LLM 训练、隐式神经表示、信息检索等多个领域展现优异表现</li>
+            <li><strong>Lion</strong>、<strong>Signum</strong>：基于符号的更新方法</li>
+            <li><strong>Shampoo</strong>、<strong>SOAP</strong>：结构化预处理方法</li>
+            <li><strong>Schedule-Free AdamW</strong>：无需预定义训练周期的调度自由方法</li>
+        </ul>
+        
+        <p>这些新优化器在其他领域已经证明了实力，但它们是否适用于表格深度学习？<strong>答案并不显而易见</strong>。</p>
+        
+        <p>表格学习有其独特性：</p>
+        <ol>
+            <li><strong>噪声大、数据有限</strong>：与 ImageNet 等干净数据集不同，表格数据往往噪声较多</li>
+            <li><strong>早停机制</strong>：训练依赖验证集早停，而非固定训练预算</li>
+            <li><strong>泛化优先</strong>：最终目标是测试集泛化性能，而非验证集损失</li>
+            <li><strong>数据集异质性</strong>：不同表格数据集的分布差异远大于图像/文本</li>
+        </ol>
+        
+        <p>因此，其他领域的优化器结论不能直接迁移到表格学习。Yandex 团队决定填补这一空白，进行首次系统性基准测试。</p>
+        
+        <h2>二、核心方法</h2>
+        
+        <h3>2.1 实验设计</h3>
+        
+        <p>研究团队采用了严格的统一实验协议：</p>
+        
+        <p><strong>数据集</strong>：17 个表格数据集，涵盖分类和回归任务</p>
+        <ul>
+            <li>学术数据集：来自 prior tabular DL 研究的标准基准</li>
+            <li>工业数据集：来自 TabReD 基准的真实业务数据</li>
+            <li>每个数据集均有预定义的 train/validation/test 划分</li>
+        </ul>
+        
+        <p><strong>模型架构</strong>：</p>
+        <ul>
+            <li><strong>vanilla MLP</strong>：标准 ReLU 激活 + Dropout 基线</li>
+            <li><strong>MLP†</strong>：增强数值特征的分段线性嵌入</li>
+            <li><strong>TabM</strong>：参数高效的 MLP 集成模型（2025 年 SOTA）</li>
+            <li><strong>TabM†</strong>：带特征嵌入的 TabM 变体</li>
+            <li><strong>TabMPacked</strong>：无权重共享的 TabM 变体</li>
+        </ul>
+        
+        <p><strong>优化器候选池（15 种）</strong>：</p>
+        <p class="highlight">AdamW、Adam、SGD、Muon、Lion、Signum、Shampoo、SOAP、Schedule-Free AdamW、Adafactor、AdaGrad、RMSprop、Adabelief、Adamax、Nadam</p>
+        
+        <p><strong>训练协议</strong>：</p>
+        <ul>
+            <li>分类任务：交叉熵损失</li>
+            <li>回归任务：标签归一化 + MSE 损失</li>
+            <li>全局梯度裁剪：阈值 1.0</li>
+            <li>早停策略：验证集耐心值 16</li>
+            <li><strong>无数据增强、无外部学习率调度</strong></li>
+        </ul>
+        
+        <p><strong>超参数调优</strong>：</p>
+        <ul>
+            <li>使用 Optuna TPE 采样器</li>
+            <li>每个优化器独立调参（学习率不跨优化器复用）</li>
+            <li>相同调优预算和验证协议</li>
+            <li>最终配置用 10 个随机种子重新训练并评估</li>
+        </ul>
+        
+        <h3>2.2 评估指标</h3>
+        
+        <p>研究团队采用三种聚合指标：</p>
+        
+        <ol>
+            <li><strong>性能排名</strong>：跨数据集的平均排名</li>
+            <li><strong>Δscore</strong>：相对于 MLP[AdamW] 基线的相对提升百分比
+                <ul>
+                    <li>回归 RMSE 转换为 R²，使更高值代表更好性能</li>
+                    <li>公式：Δscore = 100 × (score / score_MLP[AdamW] - 1)%</li>
+                </ul>
+            </li>
+            <li><strong>胜/平/负计数</strong>：使用 Welch's t 检验（α=0.05）对比 AdamW</li>
+        </ol>
+        
+        <h2>三、实验结果</h2>
+        
+        <h3>3.1 主要发现：Muon 全面胜出</h3>
+        
+        <div class="key-point">
+            <div class="key-point-title">🎯 核心结论</div>
+            <p><strong>Muon 优化器在几乎所有场景下均优于 AdamW。</strong></p>
+        </div>
+        
+        <p><strong>vanilla MLP 结果</strong>：</p>
+        <ul>
+            <li>Muon 在 17 个数据集中的<strong>15 个</strong>上击败 AdamW</li>
+            <li>平均 Δscore 提升约 <strong>3-5%</strong>（在表格学习领域这是显著提升）</li>
+            <li>统计显著性检验确认优势可靠</li>
+        </ul>
+        
+        <p><strong>进阶模型结果</strong>：</p>
+        <ul>
+            <li>在 TabM、MLP†等现代架构上，Muon 依然保持优势</li>
+            <li>提升幅度略有波动，但整体趋势一致</li>
+        </ul>
+        
+        <h3>3.2 训练效率权衡</h3>
+        
+        <p><strong>Muon 的代价</strong>：训练速度平均慢 <strong>3 倍</strong></p>
+        
+        <p>这是 Muon 的主要缺点。其内部矩阵运算比 AdamW 更复杂，导致：</p>
+        <ul>
+            <li>单次迭代时间增加</li>
+            <li>超参数调优总时长延长</li>
+            <li>对于大规模工业场景，需权衡性能提升与计算成本</li>
+        </ul>
+        
+        <blockquote>
+            <p><strong>实用建议</strong>：</p>
+            <ul>
+                <li>如果计算资源充足、追求 SOTA 性能 → <strong>选择 Muon</strong></li>
+                <li>如果训练时间敏感、需要快速迭代 → <strong>AdamW 仍是合理选择</strong></li>
+            </ul>
+        </blockquote>
+        
+        <h3>3.3 EMA 技术的意外发现</h3>
+        
+        <p>研究团队测试了指数移动平均（Exponential Moving Average, EMA）技术：</p>
+        
+        <p><strong>vanilla MLP</strong>：</p>
+        <ul>
+            <li>EMA 显著提升 AdamW 性能</li>
+            <li>实现简单、几乎无额外成本</li>
+            <li>建议作为 AdamW 用户的默认增强技术</li>
+        </ul>
+        
+        <p><strong>进阶模型（TabM 等）</strong>：</p>
+        <ul>
+            <li>EMA 效果不一致</li>
+            <li>某些数据集有提升，某些无影响甚至略降</li>
+            <li>需根据具体场景实验验证</li>
+        </ul>
+        
+        <h3>3.4 其他优化器表现</h3>
+        
+        <p><strong>第二梯队</strong>：</p>
+        <ul>
+            <li>Schedule-Free AdamW：在某些数据集表现接近 Muon</li>
+            <li>Lion、Signum：部分场景优于 AdamW，但稳定性不足</li>
+        </ul>
+        
+        <p><strong>表现不佳</strong>：</p>
+        <ul>
+            <li>传统优化器（AdaGrad、RMSprop）：明显落后</li>
+            <li>部分新优化器：调参敏感，泛化能力弱</li>
+        </ul>
+        
+        <h2>四、技术启示与发展方向</h2>
+        
+        <h3>4.1 对从业者的建议</h3>
+        
+        <p><strong>立即行动</strong>：</p>
+        <ol>
+            <li><strong>新项目的默认选择</strong>：尝试 Muon 作为起点</li>
+            <li><strong>现有 AdamW 项目</strong>：添加 EMA 技术，低成本获取提升</li>
+            <li><strong>资源受限场景</strong>：AdamW + EMA 是性价比最高的组合</li>
+        </ol>
+        
+        <p><strong>调参注意事项</strong>：</p>
+        <ul>
+            <li>Muon 的学习率搜索空间与 AdamW 不同，需独立调优</li>
+            <li>不要直接复用 AdamW 的超参数配置</li>
+            <li>早停耐心值可能需要调整</li>
+        </ul>
+        
+        <h3>4.2 对研究者的启示</h3>
+        
+        <p><strong>开放问题</strong>：</p>
+        <ol>
+            <li><strong>为什么 Muon 在表格学习上表现优异？</strong>
+                <ul>
+                    <li>其矩阵预处理机制是否更适合表格数据的特征结构？</li>
+                    <li>需要理论分析解释经验现象</li>
+                </ul>
+            </li>
+            <li><strong>训练效率能否改进？</strong>
+                <ul>
+                    <li>Muon 的 3 倍慢速是算法本质还是实现优化不足？</li>
+                    <li>是否有轻量级变体保留性能优势？</li>
+                </ul>
+            </li>
+            <li><strong>与其他技术的协同：</strong>
+                <ul>
+                    <li>Muon + EMA 是否有叠加效应？</li>
+                    <li>与数据增强、特征工程的交互如何？</li>
+                </ul>
+            </li>
+        </ol>
+        
+        <h3>4.3 表格深度学习的优化趋势</h3>
+        
+        <p>这项研究反映了更广泛的趋势：</p>
+        
+        <ol>
+            <li><strong>优化器选择不再是"默认 AdamW"</strong>
+                <ul>
+                    <li>不同任务域需要不同的优化策略</li>
+                    <li>基准测试成为必要环节</li>
+                </ul>
+            </li>
+            <li><strong>训练技巧的重要性被低估</strong>
+                <ul>
+                    <li>EMA、SWA 等权重平均技术在表格学习中价值显著</li>
+                    <li>简单的工程技巧可能带来意外收获</li>
+                </ul>
+            </li>
+            <li><strong>工业界与学术界的协同</strong>
+                <ul>
+                    <li>Yandex 的工业数据 + 学术严谨方法</li>
+                    <li>TabReD 等基准推动领域标准化</li>
+                </ul>
+            </li>
+        </ol>
+        
+        <h2>五、总结</h2>
+        
+        <p>Yandex 团队的这项基准研究为表格深度学习社区提供了宝贵的实践指南：</p>
+        
+        <div class="key-point">
+            <div class="key-point-title">✅ 核心贡献</div>
+            <ul>
+                <li>首次系统性评估 15 种优化器在表格 MLP 训练中的表现</li>
+                <li>确认 Muon 优化器全面优于 AdamW 基线</li>
+                <li>发现 EMA 技术对 vanilla MLP 的显著增益</li>
+                <li>开源代码和完整实验配置，便于复现和扩展</li>
+            </ul>
+        </div>
+        
+        <p><strong>实践建议</strong>：</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>场景</th>
+                    <th>推荐方案</th>
+                    <th>理由</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>追求 SOTA 性能</td>
+                    <td>Muon</td>
+                    <td>一致的性能优势</td>
+                </tr>
+                <tr>
+                    <td>快速迭代/资源受限</td>
+                    <td>AdamW + EMA</td>
+                    <td>低成本提升</td>
+                </tr>
+                <tr>
+                    <td>生产环境部署</td>
+                    <td>根据延迟预算选择</td>
+                    <td>权衡性能与效率</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p><strong>局限性</strong>：</p>
+        <ul>
+            <li>仅评估 MLP 及 MLP 变体，未覆盖树模型混合架构</li>
+            <li>17 个数据集虽多，但表格学习场景远更广泛</li>
+            <li>训练效率评估基于特定硬件，实际部署需实测</li>
+        </ul>
+        
+        <p>这项研究的价值在于<strong>将优化器选择从"默认习惯"转变为"实证决策"</strong>。在表格深度学习日益重要的今天，这样的基准工作为从业者和研究者都提供了清晰的行动指南。</p>
+        
+        <div class="divider"></div>
+        
+        <h2>参考资料</h2>
+        
+        <p class="reference">1. <strong>原论文</strong>：Gorishniy Y, Rubachev I, Feoktistov D, Babenko A. "Benchmarking Optimizers for MLPs in Tabular Deep Learning". arXiv:2604.15297, 2026. <a href="https://arxiv.org/abs/2604.15297" target="_blank">https://arxiv.org/abs/2604.15297</a></p>
+        
+        <p class="reference">2. <strong>代码仓库</strong>：Yandex Research. "tabular-dl-optimizers". <a href="https://github.com/yandex-research/tabular-dl-optimizers" target="_blank">https://github.com/yandex-research/tabular-dl-optimizers</a></p>
+        
+        <p class="reference">3. <strong>Muon 优化器</strong>：Jordan J et al. "Muon: A New Optimizer for Deep Learning". 2024.</p>
+        
+        <p class="reference">4. <strong>TabReD 基准</strong>：Rubachev I et al. "TabReD: A Comprehensive Benchmark for Tabular Deep Learning". 2025.</p>
+        
+        <p class="reference">5. <strong>AdamW</strong>：Loshchilov I, Hutter F. "Decoupled Weight Decay Regularization". ICLR 2019.</p>
+        
+        <p class="reference">6. <strong>Schedule-Free 优化</strong>：Defazio A et al. "Schedule-Free Learning". 2024.</p>
+        
+        <div class="footer">
+            <p><span class="emoji">🧵</span> 小织 | 2026 年 4 月 17 日</p>
+        </div>
+    </div>
+</body>
+</html>

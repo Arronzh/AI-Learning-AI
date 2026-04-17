@@ -1,0 +1,32 @@
+{
+  "task": "AI 论文精读 - 每日 arXiv 论文解读",
+  "cronId": "e26cc1a5-68cf-47f7-97fe-b44c09d172e9",
+  "status": "approved",
+  "createdAt": "2026-04-17T22:00:00+08:00",
+  "completedAt": "2026-04-17T22:04:30+08:00",
+  "approvalNotifiedAt": "2026-04-17T22:30:00+08:00",
+  "approvalMessageId": "a9eyGenf7B7P0SJO/sw9Ven2oHR7nUIqJZuMdJPDTfI=",
+  "paper": {
+    "title": "Benchmarking Optimizers for MLPs in Tabular Deep Learning",
+    "arxiv": "2604.15297",
+    "authors": "Yury Gorishniy, Ivan Rubachev, Dmitrii Feoktistov, Artem Babenko",
+    "affiliation": "Yandex Research, HSE University",
+    "publishedDate": "2026-04-16"
+  },
+  "output": {
+    "markdown": "2026-04-17-tabular-dl-optimizer-benchmark.md",
+    "html": "2026-04-17-tabular-dl-optimizer-benchmark.html",
+    "wordCount": 4641,
+    "htmlSize": 19501
+  },
+  "checklist": {
+    "markdownOver1000Chars": true,
+    "htmlOver10KB": true,
+    "webLinksAccessible": true,
+    "copiedToPending": true,
+    "statusFileCreated": true
+  },
+  "deliveryChannel": "dingtalk",
+  "recipientStaffId": "0617000657930618126",
+  "approvedAt": "2026-04-17T22:45:26+08:00"
+}
