@@ -1,0 +1,31 @@
+{
+  "task": "AI 论文精读 - 每日 arXiv 论文解读",
+  "paper": "Detecting and Suppressing Reward Hacking with Gradient Fingerprints",
+  "arxiv": "2604.16242",
+  "status": "approved",
+  "completedAt": "2026-04-20T22:06:00+08:00",
+  "approvalRequestedAt": "2026-04-20T22:30:00+08:00",
+  "approvedAt": "2026-04-20T22:45:00+08:00",
+  "approvedBy": "Arron",
+  "files": {
+    "markdown": "2026-04-20-GRIFT-gradient-fingerprint-reward-hacking.md",
+    "html": "2026-04-20-GRIFT-gradient-fingerprint-reward-hacking.html"
+  },
+  "checks": {
+    "markdownLength": 10124,
+    "markdownMinRequired": 1000,
+    "markdownPassed": true,
+    "htmlSize": 20992,
+    "htmlMinRequired": 10240,
+    "htmlPassed": true,
+    "linksAccessible": true,
+    "pendingCopied": true,
+    "statusFileCreated": true
+  },
+  "delivery": {
+    "channel": "dingtalk",
+    "recipient": "Arron",
+    "senderStaffId": "0617000657930618126",
+    "deliveredAt": "2026-04-20T22:07:00+08:00"
+  }
+}
