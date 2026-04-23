@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcae：用控制理论驯服循环Transformer，770M 参数追平 1.3B 模型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 677px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            line-height: 1.4;
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #07c160;
+        }
+        
+        .abstract {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0284c7;
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .abstract-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0284c7;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .abstract-title::before {
+            content: "📌";
+            margin-right: 8px;
+        }
+        
+        .abstract p {
+            font-size: 15px;
+            color: #374151;
+            text-align: justify;
+        }
+        
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 32px 0 16px 0;
+            padding-left: 12px;
+            border-left: 4px solid #07c160;
+        }
+        
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+            margin: 24px 0 12px 0;
+        }
+        
+        p {
+            margin: 16px 0;
+            font-size: 15px;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #92400e;
+        }
+        
+        .code-block {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: "Fira Code", "Consolas", monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .quote {
+            background: #f9fafb;
+            border-left: 4px solid #9ca3af;
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #4b5563;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 14px;
+        }
+        
+        th {
+            background: #07c160;
+            color: #fff;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        
+        tr:hover {
+            background: #f3f4f6;
+        }
+        
+        ul, ol {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+        
+        li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+            margin: 32px 0;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+        
+        .footer-signature {
+            margin-top: 12px;
+            color: #07c160;
+            font-weight: 500;
+        }
+        
+        .reference {
+            font-size: 13px;
+            color: #6b7280;
+            margin: 8px 0;
+            padding-left: 20px;
+            text-indent: -20px;
+        }
+        
+        .reference a {
+            color: #07c160;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        .reference a:hover {
+            text-decoration: underline;
+        }
+        
+        .key-point {
+            background: #ecfdf5;
+            border: 1px solid #07c160;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 20px 0;
+        }
+        
+        .key-point-title {
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px 16px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            h2 {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Parcae：用控制理论驯服循环Transformer，770M 参数追平 1.3B 模型</h1>
+        
+        <div class="abstract">
+            <div class="abstract-title">核心摘要</div>
+            <p>加州大学圣地亚哥分校（UCSD）与 Together AI 联合团队于 2026 年 4 月在 arXiv 发布论文《Parcae: Scaling Laws For Stable Looped Language Models》（arXiv:2604.12946）。研究团队从动力系统理论出发，首次揭示了循环架构训练不稳定的根本原因——注入参数的谱范数过大，并提出 Parcae 架构，通过约束谱范数实现稳定训练。实验表明，770M 参数的 Parcae 模型在固定参数量和数据预算下，相比强 Transformer 基线在 CORE 和 Core-Extended 基准上分别提升 2.99 和 1.18 分，达到同等规模 Transformer 两倍大小的相对质量（87.5%）。这一工作为"不堆参数、堆循环"的高效 AI 架构开辟了新路径。</p>
+        </div>
+        
+        <h2>一、研究背景与动机</h2>
+        
+        <p><span class="highlight">大模型的"军备竞赛"正在撞上天花板。</span></p>
+        
+        <p>过去两年，AI 行业的发展遵循一条铁律：谁参数多谁厉害。GPT-3 的 1750 亿参数、GPT-4 据传的 1.8 万亿参数，各家厂商疯狂堆料。但这条路走到现在，越来越不对劲——训练一个前沿模型动辄数千万美元起步，参数堆上去了，效果提升却越来越不明显。更要命的是推理成本：用户每问一句话，模型得跑完整整几十层甚至上百层，延迟根本降不下来。</p>
+        
+        <p><span class="highlight">但仔细想想，人脑真不是这么干活的。</span></p>
+        
+        <p>我们遇到复杂问题时，往往是翻来覆去地琢磨，不是一条道走到黑。既然人脑是"迭代式"思考，凭什么模型非得"线性递进"？</p>
+        
+        <p>早在 Transformer 刚崛起那几年，就有人提出过一个优雅的想法：<span class="highlight">不用加参数，只是让激活值在同一组层里循环多次，不就能增加计算量吗？</span>这个想法叫 looped transformer（循环架构），或称 Recurrent Depth Model（RDM）。理论上很完美：推理时可以弹性调整循环次数，内存占用固定，天然支持 test-time scaling。</p>
+        
+        <div class="quote">
+            然而现实很骨感。在此之前，已有研究者尝试过这种循环架构，但训练过程极不稳定——模型时常崩溃，损失值突然飙升，就像那口反复翻炒的锅突然烧穿了底一样。残差爆炸（residual explosion）、loss spike、超参选择极其敏感……没有人能清楚地说明，究竟是什么原因让这口锅如此脆弱。
+        </div>
+        
+        <p>正是这个尚未解答的问题，驱使 UCSD 和 Together AI 的团队展开了这项研究。</p>
+        
+        <div class="section-divider"></div>
+        
+        <h2>二、核心方法</h2>
+        
+        <h3>2.1 不稳定性的根源：动力系统视角</h3>
+        
+        <p>要修好一口反复翻炒会烧穿的锅，首先得弄清楚它为什么会烧穿。</p>
+        
+        <p>研究团队采用了一个来自工程控制领域的经典工具——<span class="highlight">线性时不变系统（LTI 系统）</span>的分析框架。把 AI 模型内部的信息流动，看成一条随时间演化的"水流"，然后分析这条水流在反复循环过程中会不会越流越大、直到决堤。</p>
+        
+        <p>具体来说，当信息在循环层中不断流动时，每一次循环都可以用一个简化的数学公式来描述：</p>
+        
+        <div class="code-block">h_{t+1} = Āh_t + Bē + R̄(h_t, e)</div>
+        
+        <p>其中：</p>
+        <ul>
+            <li><code>h_t</code> 是第 t 次循环的隐层状态</li>
+            <li><code>e</code> 是前置模块输出的输入嵌入</li>
+            <li><code>Ā</code> 是状态转移矩阵，控制上一步隐层状态的传递</li>
+            <li><code>B̄</code> 是输入注入矩阵，控制输入 e 对当前状态的影响</li>
+            <li><code>R̄</code> 是 Transformer 模块（注意力+MLP）的非线性部分</li>
+        </ul>
+        
+        <p><span class="highlight">最关键的，是矩阵 Ā。</span></p>
+        
+        <p>研究团队打了一个形象的比方：这个循环的过程，就像滚雪球。隐层状态 h 是你手里的雪球，每一次循环就是雪球在雪地里滚一圈，矩阵 Ā 就是雪球每滚一圈的放大系数。</p>
+        
+        <p>如果 Ā 的放大系数大于 1，会发生什么？雪球每滚一圈就变大一点，第一圈从拳头大变成碗大，第二圈变成脸盆大，滚个十几圈，直接变成小山一样大，最后直接"炸了"——数值溢出，模型直接发散。</p>
+        
+        <div class="key-point">
+            <div class="key-point-title">💡 控制理论的答案</div>
+            <p>对于这种循环的线性系统，想要系统稳定，就必须保证矩阵 Ā 的谱半径ρ(Ā)&lt;1。谱半径可以理解为这个矩阵的最大特征值的绝对值。只要这个值小于 1，雪球每滚一圈最多只会保持原来的大小，甚至会缩小，永远不会越滚越大。</p>
+        </div>
+        
+        <p>研究团队回头分析之前的循环架构，问题一下就暴露了：用加法做输入注入的模型，Ā 直接是单位矩阵 I，谱半径等于 1，属于"边际稳定"——稍微有点风吹草动，就容易炸。</p>
+        
+        <h3>2.2 Parcae：稳定循环架构的设计</h3>
+        
+        <p>基于上述分析，研究团队提出了 <span class="highlight">Parcae</span>（名字来自罗马神话中掌控命运线的三位命运女神），一个全新的稳定循环架构。</p>
+        
+        <p><strong>Parcae 的核心创新在于：通过负对角参数化的离散化，约束注入参数的谱范数。</strong></p>
+        
+        <p>具体来说，Parcae 采用了一种特殊的参数化方式，确保状态转移矩阵的谱半径始终小于 1。这种方法借鉴了控制理论中的稳定性保证技术，将连续时间的稳定系统离散化为离散时间的稳定系统。</p>
+        
+        <p>此外，Parcae 还引入了以下关键设计：</p>
+        
+        <ol>
+            <li><strong>LTI 稳定循环注入</strong>：让每一轮循环都不发散，保证训练过程的数值稳定性</li>
+            <li><strong>自适应计算时间</strong>：实现逐位置的动态停机机制，让模型可以根据输入复杂度自动调整循环次数</li>
+            <li><strong>深度级 LoRA 适配器</strong>：使每次迭代具备独立调整能力，增强模型的表达能力</li>
+        </ol>
+        
+        <h3>2.3 训练与测试时的 Scaling Laws</h3>
+        
+        <p>利用稳定的循环架构，研究团队系统性地研究了 looping 作为增加 FLOPs 手段的 scaling 特性。</p>
+        
+        <p><strong>训练时：</strong>团队推导出了可预测的幂律关系，用于在固定参数量的情况下 scaling FLOPs。初步的 scaling laws 表明，在给定固定 FLOP 预算下，looping 次数和数据量应该同步增加。</p>
+        
+        <p><strong>测试时：</strong>Parcae 可以使用 looping 来 scaling 计算量，遵循可预测的饱和指数衰减规律。这意味着在推理阶段，可以通过增加循环次数来提升模型性能，而无需重新训练。</p>
+        
+        <div class="section-divider"></div>
+        
+        <h2>三、实验结果</h2>
+        
+        <p>研究团队在多个基准上对 Parcae 进行了全面评估，实验结果令人印象深刻。</p>
+        
+        <h3>3.1 验证困惑度对比</h3>
+        
+        <p>在相同训练 FLOPs 预算下，Parcae 相比之前的大规模循环模型，<span class="highlight">验证困惑度降低了高达 6.3%</span>。这一提升直接证明了 Parcae 架构在训练稳定性方面的优势。</p>
+        
+        <h3>3.2 与 Transformer 基线的对比</h3>
+        
+        <p>当扩展到 1.3B 参数规模时，Parcae 在固定参数和数据预算下展现出显著优势：</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>模型</th>
+                    <th>参数量</th>
+                    <th>CORE 得分</th>
+                    <th>Core-Extended 得分</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>标准 Transformer</td>
+                    <td>1.3B</td>
+                    <td>基线</td>
+                    <td>基线</td>
+                </tr>
+                <tr>
+                    <td>Parcae</td>
+                    <td>770M</td>
+                    <td>+2.99</td>
+                    <td>+1.18</td>
+                </tr>
+                <tr>
+                    <td>Parcae（相对质量）</td>
+                    <td>770M</td>
+                    <td colspan="2">87.5%（vs 2.6B Transformer）</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p class="highlight" style="text-align: center; margin-top: 16px;">770M 参数的 Parcae，追平了 1.3B 参数的标准 Transformer。参数量少了近一半，效果一样。</p>
+        
+        <h3>3.3 推理时的计算 Scaling</h3>
+        
+        <p>研究团队还测试了 Parcae 在推理阶段通过增加循环次数来提升性能的能力。实验表明，随着循环次数的增加，模型性能遵循可预测的饱和指数衰减曲线，这为 test-time compute scaling 提供了理论基础。</p>
+        
+        <h3>3.4 系统性泛化与深度外推</h3>
+        
+        <p>引用俄亥俄州立大学的后续研究，循环Transformer 架构在两个关键实验中表现出色：</p>
+        
+        <ul>
+            <li><strong>系统性泛化</strong>：训练时从没见过的知识组合，推理时循环Transformer 照样能答对，标准 Transformer 直接失败。这证明循环不是重复计算，是真正的"更深层思考"。</li>
+            <li><strong>深度外推</strong>：训练时只教了 20 跳推理链，测试时直接给 30 跳。循环Transformer 的应对方式就是在推理时多加几轮循环，标准 Transformer 直接崩溃。</li>
+        </ul>
+        
+        <div class="section-divider"></div>
+        
+        <h2>四、技术启示与发展方向</h2>
+        
+        <h3>4.1 从"堆参数"到"堆循环"的范式转变</h3>
+        
+        <p>Parcae 的工作揭示了一个重要趋势：<span class="highlight">Scaling 的主流可能从"训练更大的模型"转向"让现有模型在推理时多想几遍"</span>。</p>
+        
+        <p>这一转变的意义在于：</p>
+        <ul>
+            <li><strong>降低训练成本</strong>：无需训练超大参数模型，用较小模型通过循环达到同等效果</li>
+            <li><strong>降低推理显存</strong>：循环架构的 KV 缓存可压缩 10-20 倍，使消费级硬件运行大模型成为可能</li>
+            <li><strong>弹性计算</strong>：推理时可根据任务复杂度动态调整循环次数，简单问题少循环，复杂问题多循环</li>
+        </ul>
+        
+        <h3>4.2 与 OpenMythos 的关联</h3>
+        
+        <p>有趣的是，22 岁的创业者 Kye Gomez（Swarms 智能体框架创始人）基于类似思路开源了 OpenMythos 项目，试图复现 Anthropic 的 Claude Mythos 架构。OpenMythos 的核心正是循环深度 Transformer（RDT），并借鉴了 Parcae 的稳定性机制。</p>
+        
+        <p>OpenMythos 的三段式架构设计：</p>
+        <ul>
+            <li><strong>Prelude（序曲）</strong>：标准 Transformer 层，只跑一次，负责编码输入</li>
+            <li><strong>Recurrent Block（循环核心）</strong>：最多循环 16 次，每次激活不同的 MoE 专家</li>
+            <li><strong>Coda（终章）</strong>：标准 Transformer 层，只跑一次，负责解码输出</li>
+        </ul>
+        
+        <p>这种设计让"同一组权重反复跑 16 遍"不再是重复计算，而是真正的迭代推理。</p>
+        
+        <h3>4.3 与 Chain-of-Thought 的本质区别</h3>
+        
+        <p>Parcae 和 RDT 的循环推理与 Chain-of-Thought（CoT）有本质不同：</p>
+        
+        <ul>
+            <li><strong>CoT</strong>："想一步，写一步，再想一步，再写一步"，中间 token 全部暴露给人类阅读</li>
+            <li><strong>RDT</strong>："想完 16 遍才说一句话"，推理过程完全内化在 hidden state 向量中</li>
+        </ul>
+        
+        <p>这种"连续潜在空间推理"的优势在于：</p>
+        <ul>
+            <li>推理过程更紧凑，无需生成冗余的中间 token</li>
+            <li>避免 CoT 中可能出现的错误累积</li>
+            <li>更适合需要多步推理但不需要展示思考过程的场景</li>
+        </ul>
+        
+        <h3>4.4 待解决的挑战</h3>
+        
+        <p>尽管 Parcae 展现了巨大潜力，但仍有一些挑战需要解决：</p>
+        
+        <ol>
+            <li><strong>训练稳定性</strong>：虽然 Parcae 解决了谱范数问题，但超参选择仍然敏感</li>
+            <li><strong>推理延迟</strong>：循环多次可能增加单次推理的延迟，需要硬件层面的优化</li>
+            <li><strong>生产环境验证</strong>：目前主要是学术研究，需要更多工业界的落地验证</li>
+            <li><strong>理论理解</strong>：对循环架构为何能提升系统性泛化能力的理论解释还不够完善</li>
+        </ol>
+        
+        <div class="section-divider"></div>
+        
+        <h2>五、总结</h2>
+        
+        <p>Parcae 的工作为循环Transformer 架构奠定了坚实的理论基础。通过从控制理论的角度分析不稳定性根源，并提出谱范数约束的解决方案，研究团队首次实现了稳定的大规模循环语言模型训练。</p>
+        
+        <div class="key-point">
+            <div class="key-point-title">📋 核心贡献</div>
+            <ol>
+                <li>首次用动力系统理论解释循环架构的不稳定性来源</li>
+                <li>提出 Parcae 架构，通过谱范数约束实现稳定训练</li>
+                <li>推导了训练和测试时的 scaling laws</li>
+                <li>实验证明 770M 参数可追平 1.3B Transformer，相对质量达 2.6B 模型的 87.5%</li>
+            </ol>
+        </div>
+        
+        <div class="key-point">
+            <div class="key-point-title">🌍 行业影响</div>
+            <p>这一工作可能预示着 AI 架构设计的新方向——从单纯堆参数转向更聪明的计算利用。对于资源有限的研究团队和创业公司，这意味着可以用更少的算力训练出更有竞争力的模型。对于已经部署大模型的企业，这意味着可以通过推理时的计算 scaling 来提升性能，而无需重新训练。</p>
+        </div>
+        
+        <div class="quote">
+            正如研究团队所说："让 AI 反复'咀嚼'同一块内容，每次都能基于上一轮的理解再深入一层。这就像一个厨师在同一口锅里反复翻炒，而不是用更多的锅同时操作。"
+        </div>
+        
+        <p style="text-align: center; margin-top: 24px; font-weight: 600; color: #07c160;">或许，AI 的下一步突破，不在于更大的厨房，而在于更聪明的翻炒。</p>
+        
+        <div class="section-divider"></div>
+        
+        <h2>参考资料</h2>
+        
+        <div class="reference">
+            [1] Parcae: Scaling Laws For Stable Looped Language Models. arXiv:2604.12946, 2026. <a href="https://arxiv.org/abs/2604.12946" target="_blank">https://arxiv.org/abs/2604.12946</a>
+        </div>
+        
+        <div class="reference">
+            [2] Kye Gomez. OpenMythos: Recreating Anthropic's Mythos Architecture. GitHub, 2026. <a href="https://github.com/kyegomez/OpenMythos" target="_blank">https://github.com/kyegomez/OpenMythos</a>
+        </div>
+        
+        <div class="reference">
+            [3] 量子位。Mythos 架构被 22 岁小伙"逆推"开源了！2026. <a href="https://new.qq.com/rain/a/20260420A069X200" target="_blank">https://new.qq.com/rain/a/20260420A069X200</a>
+        </div>
+        
+        <div class="reference">
+            [4] 机器之心。循环Transformer 的 Scaling Laws. 2026.
+        </div>
+        
+        <div class="reference">
+            [5] Together AI Blog. Parcae: Stable Looped Language Models. 2026.
+        </div>
+        
+        <div class="footer">
+            <div class="footer-signature">小悟 🧵 | 2026 年 4 月 23 日</div>
+        </div>
+    </div>
+</body>
+</html>
