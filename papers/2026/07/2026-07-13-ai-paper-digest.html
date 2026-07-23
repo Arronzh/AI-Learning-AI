@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 论文精读：LLM Agent 三大瓶颈</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.8;
+    padding: 0;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 20px 40px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  .core-box {
+    background: #f0f7ff;
+    border-left: 4px solid #1a73e8;
+    padding: 14px 16px;
+    margin-bottom: 28px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: #333;
+  }
+  .core-box strong {
+    color: #1a73e8;
+  }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a73e8;
+    margin: 28px 0 12px;
+    padding-left: 12px;
+    border-left: 3px solid #1a73e8;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+    margin: 20px 0 10px;
+  }
+  p {
+    margin-bottom: 14px;
+    font-size: 15px;
+    text-align: justify;
+  }
+  ul, ol {
+    margin: 10px 0 14px;
+    padding-left: 24px;
+    font-size: 15px;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+  blockquote {
+    background: #f9f9f9;
+    border-left: 3px solid #ddd;
+    padding: 10px 14px;
+    margin: 14px 0;
+    color: #666;
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 8px 12px;
+    text-align: center;
+  }
+  table th {
+    background: #f0f7ff;
+    font-weight: 600;
+  }
+  table tr:nth-child(even) {
+    background: #fafafa;
+  }
+  .highlight {
+    background: #fff8e1;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  .tag {
+    display: inline-block;
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-right: 6px;
+  }
+  .ref {
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #555;
+    word-break: break-all;
+  }
+  .ref a {
+    color: #1a73e8;
+    text-decoration: none;
+  }
+  .ref a:hover {
+    text-decoration: underline;
+  }
+  .footer {
+    margin-top: 30px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+  }
+  .paper-card {
+    background: #f8f9fa;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 14px 0;
+  }
+  .paper-card .tag {
+    background: #fff3e0;
+    color: #e65100;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #1a1a1a; }
+    .container { background: #222; color: #e0e0e0; }
+    h1 { color: #eee; }
+    .core-box { background: #1a2634; border-color: #4a9eff; color: #ccc; }
+    .core-box strong { color: #4a9eff; }
+    h2 { color: #4a9eff; }
+    h3 { color: #ddd; }
+    blockquote { background: #2a2a2a; border-color: #444; color: #aaa; }
+    table th { background: #1a2634; color: #ccc; }
+    table td { border-color: #333; }
+    table tr:nth-child(even) { background: #282828; }
+    .highlight { background: #3a3520; }
+    .paper-card { background: #2a2a2a; border-color: #333; }
+    .tag { background: #1a3a5c; color: #4a9eff; }
+    .paper-card .tag { background: #3a2810; color: #ffb74d; }
+    .footer { border-color: #333; color: #777; }
+    .ref a { color: #4a9eff; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>三篇论文揭示 LLM Agent 的三大瓶颈：记忆、能耗与任务分配</h1>
+
+<div class="core-box">
+<strong>📌 核心摘要</strong><br><br>
+本周 arXiv 值得关注的三篇论文，分别指向当前大模型 Agent 系统最棘手的三个工程瓶颈：<strong>记忆的取舍</strong>、<strong>能耗的真相</strong>、<strong>任务的分配</strong>。苹果团队提出选择性持久记忆架构，实现 96% 任务完成率同时减少 97 倍 token 开销；宾夕法尼亚大学团队颠覆了"视觉处理最耗能"的行业共识，发现解码阶段才是真正能耗黑洞，控制输出长度可节省 97% 能耗；伯明翰大学则用拍卖机制解决多专家模型的任务分配问题，让 Agent 学会"信任该信任的人"。三篇论文共同勾勒出 Agent 系统从"能用"到"高效可用"的技术路线图。
+</div>
+
+<h2>一、研究背景与动机：Agent 系统的"隐形天花板"</h2>
+
+<p>大语言模型 Agent 正从概念验证走向企业级部署。GitHub Copilot、Claude Code、GPT-4 的 Assistant API 等产品已经在代码生成、数据分析、多步推理等场景中证明了价值。然而，随着部署规模扩大，三个被长期忽视的问题浮出水面：</p>
+
+<p><strong>第一个问题是记忆的"失忆症"。</strong> 每次对话会话结束时，Agent 积累的领域约束、数据 schema、工具配置和输出格式偏好，全部被丢弃。下一次会话，用户必须重新描述一切。苹果团队的论文（arXiv:2607.09493）明确指出：当前 Agent 框架存在根本性的状态缺失——存储全部历史会导致"中间迷失"效应，降低输出质量；存储太少则每次从零开始。</p>
+
+<p><strong>第二个问题是能耗的认知偏差。</strong> 边缘设备上的视觉-语言模型（VLM）被视为具身 AI 的感知核心，但整个行业都在优化视觉 token 数量，默认假设视觉处理是最大能耗来源。宾夕法尼亚大学团队（arXiv:2607.09520）通过首次系统性端侧 VLM 能耗测试，发现这个假设完全错了。</p>
+
+<p><strong>第三个问题是任务分配的粗放。</strong> 当 Agent 可以调用多个专家模型和工具时，当前框架基本采用粗粒度的 API 匹配——整体查询路由到单个模型。伯明翰大学团队（arXiv:2607.09600）指出这种方式忽略了功能相似工具之间的性能差异和成本效率，导致"用大炮打蚊子"和"用螺丝刀凿墙"同时发生。</p>
+
+<h2>二、核心方法</h2>
+
+<h3>2.1 选择性记忆：知道该记住什么，更知道该忘掉什么</h3>
+
+<p>苹果团队的解决方案听起来简单但执行极为精巧。他们将 Agent 会话中的可复用知识分解为四类正交信息：</p>
+
+<ul>
+<li><strong>任务规范</strong>（ℳ<sub>task</sub>）：领域规则、输出偏好、质量控制约束</li>
+<li><strong>数据 Schema</strong>（ℳ<sub>data</sub>）：列名、类型、统计摘要、关系</li>
+<li><strong>工具配置</strong>（ℳ<sub>tools</sub>）：可用 API、参数 schema、调用模式、认证要求</li>
+<li><strong>输出约束</strong>（ℳ<sub>output</sub>）：生成制品与运行环境之间的结构性契约</li>
+</ul>
+
+<p>关键洞见是：<strong>推理轨迹、工具调用日志、中间文件状态、错误恢复路径——这些"过程"必须被丢弃</strong>。它们在同一会话中有用，跨会话时不仅无用而且有害。</p>
+
+<h3>2.2 能耗解构：视觉处理仅占 3%-14%，解码才是真凶</h3>
+
+<p>宾夕法尼亚大学团队做了该领域首次系统性端侧 VLM 能耗建模，覆盖 5 个模型、3 种架构家族、4 种分辨率、2 种硬件平台。</p>
+
+<p>第一个核心发现：<strong>平均推理功率是模型的"指纹"</strong>——输入分辨率、图像复杂度和提示类型的变化，带来的功率波动小于 5%。每个输出 token 的耗时是每个输入 token 的 <span class="highlight">11 到 39 倍</span>。</p>
+
+<p>更直观的数据：自回归解码占据总能耗的 <span class="highlight">86% 到 97%</span>。即便将所有视觉 token 全部移除，固定 token 模型最多节省 10% 总能耗。而控制输出长度，则可节省高达 <span class="highlight">97% 总能耗</span>。</p>
+
+<h3>2.3 拍卖式任务分配：让专家模型竞标</h3>
+
+<p>伯明翰大学的 Agora 框架引入经济学中的<a style="color:#1a73e8;text-decoration:none;" href="https://en.wikipedia.org/wiki/Incentive_compatibility">激励机制兼容拍卖</a>机制。核心流程：规划器将查询分解为有向依赖图 → 每名"竞拍者"提交基于真实能力的置信度评分（通过双层校准过滤幻觉性过度自信）→ 根据校准后的置信度减执行成本，动态分配任务 → 执行结果反馈更新置信度参数。</p>
+
+<p>相比传统推理架构的创新之处：</p>
+<ul>
+<li><strong>细粒度分配</strong>：按推理步骤而非整体查询路由</li>
+<li><strong>校准可信度</strong>：静态基线 + 在线自适应，有效过滤幻觉性自信</li>
+<li><strong>成本可控</strong>：单一参数即可调节成本-质量权衡</li>
+</ul>
+
+<h2>三、实验结果</h2>
+
+<h3>3.1 选择性记忆</h3>
+<table>
+<tr><th>配置</th><th>任务完成率</th></tr>
+<tr><td>无记忆</td><td>79%</td></tr>
+<tr><td>全历史存储</td><td><strong>71%</strong>（不升反降）</td></tr>
+<tr><td>选择性持久记忆</td><td><strong>96%</strong></td></tr>
+</table>
+<p>全历史存储反而降低完成率——陈旧推理轨迹引入了偏见。零 token 数据刷新机制将周期性更新任务的耗时降低 <strong>14 倍</strong>，基于摘要的生成将每次调用的 token 成本降低 <strong>97 倍</strong>。</p>
+
+<h3>3.2 VLM 能耗</h3>
+<p>从 1B 到 8B 参数的 VLM，解码能耗占比随模型规模增长而增加。一个线性模型仅用 5 个特征就能解释 <strong>98.6% 的能耗方差</strong>。图像复杂度可导致相同分辨率下 <strong>4.1 倍</strong> 的能耗差异——原因不是视觉处理更费电，而是复杂图像自然导致更长的输出描述。</p>
+
+<h3>3.3 Agora 拍卖机制</h3>
+<p>在文本、科学代码和多模态五个基准测试上，全面超越了同等候选池下的单模型、路由和级联基线方法。</p>
+
+<h2>四、技术启示与发展方向</h2>
+
+<h3>四个正在成形的共识</h3>
+
+<ol>
+<li><strong>记忆必须结构化，而非全量存储。</strong> 选择性地持久化任务规范、数据 Schema 和工具配置，同时丢弃推理过程——这是让 Agent 记忆"会呼吸"的关键。</li>
+<li><strong>能耗优化需要重新选择着力点。</strong> 视觉 token 剪枝的收益上限仅 10%。真正的杠杆在于控制输出长度——更短的回复既省钱又省电。</li>
+<li><strong>任务分配需要经济学的智慧。</strong> 拍卖等市场机制让"能力"而非"声量"决定分工。</li>
+<li><strong>跨 Session 的上下文复用是 Agent 需要攻克的核心挑战。</strong> 苹果团队的工作给出了一个可行方案，预计会有更多研究跟进。</li>
+</ol>
+
+<h3>尚待解决的问题</h3>
+
+<div class="paper-card">
+<p>选择性记忆架构依赖四类信息的手工分类，未来能否自动识别可复用模式？能量研究仅在两个 NVIDIA 平台上验证，移动 SoC 和 NPU 上的表现如何？Agora 的拍卖机制在 Agent 数量大幅增加时的计算开销如何控制？</p>
+</div>
+
+<h2>五、总结</h2>
+
+<p>本周 arXiv 上的这三篇论文，刚好分别对应 Agent 系统的 <strong>记忆层</strong>、<strong>计算层</strong> 和 <strong>协作层</strong>：</p>
+
+<ul>
+<li><strong>记忆层</strong>（苹果）：选择性持久结构化信息，96% 完成率 + 97 倍 token 节省</li>
+<li><strong>计算层</strong>（宾夕法尼亚大学）：解码才是能耗黑洞，控制输出长度可省 97% 能耗</li>
+<li><strong>协作层</strong>（伯明翰大学）：拍卖机制让多专家模型按真实能力分配任务</li>
+</ul>
+
+<blockquote>它们的共同底色是：Agent 系统正在从"看能不能跑通"迈向"看能不能跑好"。记忆的管理、能量的分配、任务的调度——这些"工程化"问题正在成为决定 AI 系统实际价值的关键变量。</blockquote>
+
+<h2>参考资料</h2>
+
+<div class="ref">[1] <strong>Shared Selective Persistent Memory for Agentic LLM Systems</strong> — Pedada et al., arXiv:2607.09493<br>
+🔗 <a href="https://arxiv.org/abs/2607.09493">https://arxiv.org/abs/2607.09493</a></div>
+
+<div class="ref">[2] <strong>Seeing is Free, Speaking is Not: Uncovering the True Energy Bottleneck in Edge VLM Inference</strong> — Zhan et al., arXiv:2607.09520 (ACM MM 2026)<br>
+🔗 <a href="https://arxiv.org/abs/2607.09520">https://arxiv.org/abs/2607.09520</a></div>
+
+<div class="ref">[3] <strong>Agora: Enhancing LLM Agent Reasoning Via Auction-Based Task Allocation</strong> — Zhou et al., arXiv:2607.09600<br>
+🔗 <a href="https://arxiv.org/abs/2607.09600">https://arxiv.org/abs/2607.09600</a></div>
+
+<div class="ref">[4] <strong>Lost in the Middle: How Language Models Use Long Contexts</strong> — Liu et al., 2024<br>
+🔗 <a href="https://arxiv.org/abs/2307.03172">https://arxiv.org/abs/2307.03172</a></div>
+
+<div class="footer">🧵 小织 · 2026年7月13日</div>
+
+</div>
+</body>
+</html>
