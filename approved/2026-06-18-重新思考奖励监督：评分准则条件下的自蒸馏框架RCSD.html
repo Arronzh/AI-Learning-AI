@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>重新思考奖励监督：评分准则条件下的自蒸馏框架RCSD</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+    background: #f7f7f7;
+    color: #333;
+    line-height: 1.8;
+    font-size: 16px;
+    padding: 0;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 20px 40px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+  .summary-card {
+    background: #f0f5ff;
+    border-left: 4px solid #4a90d9;
+    padding: 16px 18px;
+    margin-bottom: 28px;
+    border-radius: 4px;
+    font-size: 14.5px;
+    color: #444;
+    line-height: 1.7;
+  }
+  .summary-card strong { color: #2c3e50; }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 30px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #4a90d9;
+    position: relative;
+  }
+  .section-title .num {
+    display: inline-block;
+    background: #4a90d9;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 13px;
+    margin-right: 8px;
+  }
+  p { margin-bottom: 14px; text-align: justify; }
+  .highlight { color: #d9534f; font-weight: 600; }
+  .blue { color: #4a90d9; font-weight: 600; }
+  blockquote {
+    border-left: 3px solid #4a90d9;
+    margin: 16px 0;
+    padding: 10px 16px;
+    background: #f8f9fa;
+    color: #555;
+    font-style: normal;
+    font-size: 14.5px;
+  }
+  .paper-meta {
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+    color: #666;
+    line-height: 1.6;
+  }
+  .paper-meta a { color: #4a90d9; text-decoration: none; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14px;
+  }
+  th {
+    background: #4a90d9;
+    color: #fff;
+    padding: 10px 8px;
+    font-weight: 600;
+    text-align: center;
+  }
+  td {
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+  }
+  tr:nth-child(even) { background: #f8f9fa; }
+  .tag {
+    display: inline-block;
+    background: #e8f0fe;
+    color: #4a90d9;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-right: 6px;
+  }
+  .divider {
+    text-align: center;
+    color: #ccc;
+    margin: 30px 0 10px;
+    font-size: 13px;
+  }
+  .footer {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+  .footer .emoji { font-size: 18px; }
+  ul { margin: 12px 0 14px 20px; }
+  ul li { margin-bottom: 6px; font-size: 15px; }
+  .sub-title { font-size: 17px; font-weight: 600; margin: 22px 0 10px; color: #2c3e50; }
+  @media (max-width: 480px) {
+    .container { padding: 20px 15px; }
+    h1 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>重新思考奖励监督：评分准则条件下的自蒸馏，让推理模型获得比 GRPO 更精细的反馈信号</h1>
+
+<div class="paper-meta">
+📄 <strong>论文：</strong>Rethinking Reward Supervision: Rubric-Conditioned Self-Distillation<br>
+🏛️ <strong>机构：</strong>耶鲁大学<br>
+📅 <strong>时间：</strong>2026 年 6 月 17 日<br>
+🔗 <a href="https://arxiv.org/abs/2606.19327" target="_blank">arXiv:2606.19327</a> &nbsp;|&nbsp; <a href="https://github.com/carriegu0818/RCSD" target="_blank">GitHub</a>
+</div>
+
+<div class="summary-card">
+<strong>📌 核心摘要</strong><br>
+耶鲁大学团队提出 <strong>Rubric-Conditioned Self-Distillation（RCSD）</strong>，一种将评分准则（rubric）作为结构化、细粒度监督信号，用于推理语言模型后训练的新框架。RCSD 通过两阶段管道（先学习生成任务专属评分准则，再训练准则指导的推理器），在多样化的科学推理基准上平均超越 <span class="blue">GRPO 1.0 分</span>、超越 <span class="blue">OPSD 0.9 分</span>。代码已开源。
+</div>
+
+<div class="section-title"><span class="num">一</span>研究背景与动机</div>
+
+<p>当前推理语言模型（如 DeepSeek-R1、Qwen 等）的后训练主要依赖两条技术路线：<strong>监督蒸馏</strong> 和 <strong>基于可验证奖励的强化学习</strong>。</p>
+
+<p><strong>蒸馏路线</strong> 的问题在于依赖昂贵且可能有噪声的思维链（Chain-of-Thought）标注。即使最终答案正确，中间推理步骤也可能不完美，而模型仍然要被迫模仿一条固定的推理轨迹。</p>
+
+<p><strong>强化学习路线</strong>（以 GRPO 为代表）将评估反馈压缩为一个标量信号——无论模型做了 100 步推理还是 5 步推理，最终只得到一个"对"或"错"的分数。这种粗粒度的反馈掩盖了回答中哪些方面可以改进、哪些步骤是正确的，形成 <span class="highlight">信用分配瓶颈</span>。</p>
+
+<blockquote>"GRPO 在可验证领域（如数学、代码）效果显著，但在需要更丰富评判的非可验证领域，标量奖励提供的信息极其有限。"</blockquote>
+
+<p>针对这一困境，一种自然的改进思路是引入 <strong>评分准则（rubric）</strong>——将回答质量分解为多个显式标准，而非整体打分。然而，现有工作通常只是将 rubric 评分聚合为一个标量后送入 RL，这一做法实质上丢弃了 rubric 中蕴含的丰富文本反馈。</p>
+
+<div class="section-title"><span class="num">二</span>核心方法</div>
+
+<div class="sub-title">何为 RCSD？</div>
+<p>RCSD（Rubric-Conditioned Self-Distillation）的核心洞察是：<span class="highlight">评分准则不应只在生成后用于打分，而应直接塑造优化过程中的 Token 级学习信号。</span></p>
+
+<div class="sub-title">两阶段管道</div>
+
+<p><strong>阶段 I：学习评分准则生成器（Rubric Generator）</strong></p>
+<ul>
+  <li><strong>学生策略：</strong>仅根据问题生成 rubric</li>
+  <li><strong>教师策略：</strong>同时访问问题和参考答案，生成更高质量的 rubric</li>
+  <li>通过 <strong>在策略自蒸馏（on-policy self-distillation）</strong> 让学生匹配教师在学生自己采样轨迹上的 Token 分布</li>
+</ul>
+
+<p><strong>阶段 II：评分准则指导的推理（Rubric-Conditioned Reasoning）</strong></p>
+<ul>
+  <li><strong>学生策略：</strong>仅根据问题生成推理轨迹</li>
+  <li><strong>教师策略：</strong>同时访问问题和阶段 I 生成的 rubric，提供密度更高的 Token 级引导</li>
+  <li>优化目标：最小化教师与学生沿学生自身轨迹的 KL 散度</li>
+</ul>
+
+<div class="sub-title">与现有方法的本质区别</div>
+
+<table>
+  <tr><th>方法</th><th>监督信号</th><th>反馈粒度</th><th>推理路径约束</th></tr>
+  <tr><td>RL (GRPO)</td><td>标量奖励</td><td>序列级（稀疏）</td><td>无显式约束</td></tr>
+  <tr><td>OPSD</td><td>参考答案轨迹</td><td>Token 级（密集但路径特异）</td><td>强制靠近单一路径</td></tr>
+  <tr><td><strong>RCSD</strong></td><td><strong>评分准则</strong></td><td><strong>Token 级 + 准则感知</strong></td><td><strong>允许多条有效路径</strong></td></tr>
+</table>
+
+<p>关键差异在于：OPSD 迫使模型模仿一条"标准答案"的路径，而 RCSD 则告诉模型"一个好的回答应该满足什么标准"，保留了多种有效推理路径的可能性。</p>
+
+<blockquote>"Rubric 不是评分员，而是结构化监督接口。"——论文核心主张</blockquote>
+
+<div class="section-title"><span class="num">三</span>实验结果</div>
+
+<div class="sub-title">主实验结果</div>
+<p>RCSD 在 <strong>Qwen3-8B</strong> 骨干模型上表现亮眼：</p>
+<ul>
+  <li><span class="blue">总体平均分 70.6</span>，超越 GRPO 1.4 分、OPSD 0.9 分</li>
+  <li><strong>RubricHub</strong> 上提升最大，较基座模型提升 4.9 分</li>
+  <li><strong>ResearchQA</strong> 提升 8.2 分</li>
+  <li><strong>SciBench</strong> 达到 70.8，展现科学推理任务上的显著优势</li>
+</ul>
+<p>值得注意的是，RCSD 仅用 <span class="highlight">100 步训练</span> 就达到了这些结果，而 GRPO 需要 500 步。</p>
+
+<div class="sub-title">跨领域泛化</div>
+<p>在医学领域基准（MedMCQA、PubMedQA）上，RCSD 虽然主要在科学推理数据上训练，但仍保持了竞争性能，没有出现灾难性遗忘。</p>
+
+<div class="sub-title">Rubric 质量的影响</div>
+<p>实验还显示，<strong>学习到的 rubric 可以接近人工参考 rubric 的效果</strong>，这意味着该框架在实践中具有可扩展性——无需为每个问题人工设计评分准则。</p>
+
+<div class="sub-title">定性分析</div>
+<p>作者观察到，OPSD 训练出的模型常常产生冗长推理链——反复重新计算已得出的中间量、在没有新信息的情况下修改之前的步骤。RCSD 则更加高效，因为准则级反馈让模型知道"哪一步出错了"，而非"整个都需要重来"。</p>
+
+<div class="section-title"><span class="num">四</span>技术启示与发展方向</div>
+
+<p><strong>1. 从"标量奖励"到"结构化反馈"的范式转变</strong></p>
+<p>RCSD 标志着后训练优化方式的一个重要方向：不再将评估信息压缩为标量，而是保留其结构。这对于数学验证以外的广泛领域（如科学推理、开放式问答、创意写作）尤为关键。</p>
+
+<p><strong>2. On-Policy 与 Criterion-Aware 的结合</strong></p>
+<p>它兼具两个优势：通过在策略蒸馏解决了 Off-Policy 的分布不匹配问题；通过准则感知解决了标量奖励的信息瓶颈问题。</p>
+
+<p><strong>3. 现实意义：数据效率与扩展性</strong></p>
+<p>RCSD 仅需约 10k 样本训练 rubric 生成器、30k 样本训练推理器——远小于许多大规模强化学习管道的需求。对于预算有限的学术团队而言，这是一个非常有吸引力的选择。</p>
+
+<p><strong>4. 未来方向</strong></p>
+<ul>
+  <li>扩展到连续概率场景（如 Giry monad 的神经表示）</li>
+  <li>探索更复杂的准则结构（如分层准则、交互式准则）</li>
+  <li>与推理时计算缩放（Inference-Time Compute Scaling）结合</li>
+</ul>
+
+<div class="section-title"><span class="num">五</span>总结</div>
+
+<p>RCSD 提出了一种全新的视角：<span class="highlight">评分准则不应被浪费</span>。它将原本用于评估的准则转化为训练中的结构化监督信号，在 GRPO 和 OPSD 之间找到了更优的平衡点——既有 OPSD 的 Token 级密度，又有比标量奖励更丰富的信用分配能力。</p>
+
+<blockquote>这项工作来自耶鲁大学，由 Siyi Gu、Jialin Chen、Sophia Zhou、Arman Cohan 和 Rex Ying 共同完成。</blockquote>
+
+<div class="section-title"><span class="num"></span>参考资料</div>
+<ul>
+  <li><a href="https://arxiv.org/abs/2606.19327" target="_blank">arXiv:2606.19327</a> — Rethinking Reward Supervision: Rubric-Conditioned Self-Distillation</li>
+  <li><a href="https://github.com/carriegu0818/RCSD" target="_blank">GitHub: carriegu0818/RCSD</a></li>
+  <li>Shao et al., 2024 — GRPO: Group Relative Policy Optimization</li>
+  <li>Zhao et al., 2026 — On-Policy Self-Distillation</li>
+  <li>Gunjal et al., 2025 — RaR-Science: Rubric-based Evaluation</li>
+</ul>
+
+<div class="divider">· END ·</div>
+<div class="footer">
+  <span class="emoji">🧵</span> 小织 &nbsp;|&nbsp; 2026 年 6 月 18 日
+</div>
+
+</div>
+</body>
+</html>

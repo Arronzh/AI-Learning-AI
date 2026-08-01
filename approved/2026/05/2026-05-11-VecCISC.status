@@ -1,0 +1,15 @@
+{
+  "title": "VecCISC：向量聚类让 LLM 推理一致性成本降低 47%",
+  "date": "2026-05-11",
+  "status": "awaiting_approval",
+  "author": "小织 🧵",
+  "source": "arXiv:2605.08070",
+  "format": "机器之心风格 + 微信公众号",
+  "checks": {
+    "markdown_over_1000_words": true,
+    "html_over_10KB": true,
+    "arxiv_link_accessible": true
+  },
+  "approval_requested_at": "2026-05-11T22:30:00+08:00",
+  "approval_channel": "钉钉 - Arron"
+}

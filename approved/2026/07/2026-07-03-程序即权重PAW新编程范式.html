@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>程序即权重：当 0.6B 模型通过「编译」匹敌 32B</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.8;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 20px; }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .summary-box {
+    background: #f0f7ff;
+    border-left: 4px solid #3b82f6;
+    padding: 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e5e7eb;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    margin: 20px 0 10px;
+  }
+  p { font-size: 15px; color: #444; margin-bottom: 14px; }
+  .highlight {
+    background: linear-gradient(180deg,transparent 60%,#fef08a 60%);
+    font-weight: 600;
+  }
+  ul { margin: 10px 0 16px 20px; }
+  li { font-size: 15px; color: #444; margin-bottom: 6px; }
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 16px 0;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+  }
+  .data-table th {
+    background: #f3f4f6;
+    padding: 10px 12px;
+    font-weight: 600;
+    text-align: left;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .tag {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .ref-list { margin-top: 20px; }
+  .ref-list li {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 8px;
+  }
+  .ref-list a { color: #3b82f6; text-decoration: none; }
+  .ref-list a:hover { text-decoration: underline; }
+  .footer {
+    text-align: center;
+    font-size: 13px;
+    color: #9ca3af;
+    padding: 16px 0;
+  }
+  .insight {
+    background: #fefce8;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #713f12;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #1a1a1a; }
+    .card { background: #262626; }
+    .title { color: #e5e7eb; }
+    .summary-box { background: #1e3a5f; border-color: #3b82f6; color: #d1d5db; }
+    p, li { color: #d1d5db; }
+    h2 { color: #e5e7eb; border-bottom-color: #374151; }
+    h3 { color: #d1d5db; }
+    .data-table th { background: #374151; color: #e5e7eb; border-bottom-color: #4b5563; }
+    .data-table td { border-bottom-color: #4b5563; color: #d1d5db; }
+    .data-table { border-color: #4b5563; }
+    .insight { background: #422006; border-color: #a16207; color: #fde68a; }
+    .tag { background: #1e3a5f; color: #93c5fd; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div class="title">程序即权重：当 0.6B 模型通过「编译」匹敌 32B，一种新编程范式悄然诞生</div>
+
+    <div class="summary-box">
+      📌 本文聚焦于 2026 年 7 月 arXiv 最新研究「Program-as-Weights (PAW)」，提出了一种革命性的「模糊函数编程」范式——将自然语言规格说明编译为紧凑的神经构件，让 0.6B 的轻量解释器执行 PAW 程序即可匹敌直接调用 32B 大模型，推理显存仅需 1/50，在 MacBook M3 上即可达到 30 tokens/s 的运行速度。同时，DecompRL 从另一维度探索了模块化解构重组的路径，将 GPU 推理成本降低约 50 倍。
+    </div>
+
+    <h2>一、研究背景与动机</h2>
+    <p>日常编程中，我们经常会遇到一类「模糊任务」：标记重要的日志行、修复格式异常的 JSON、按意图排序搜索结果……这些任务很难用确定性规则精确描述，却又不需要大模型全量推理能力。</p>
+    <p>当前主流方案是直接调用 LLM API：<span class="highlight">每次请求都让大模型从头推理一次</span>。这种做法带来了三方面的痛点：</p>
+    <ul>
+      <li><strong>高成本</strong>：每次调用都经过完整的前向传播</li>
+      <li><strong>高延迟</strong>：无法在本地快速响应</li>
+      <li><strong>不透明</strong>：重复调用之间的不确定性</li>
+    </ul>
+    <p>来自哈佛大学和 MIT 的研究团队提出的 <strong>Program-as-Weights (PAW)</strong>，试图从根本上改变这种局面——他们给出的答案是：<span class="highlight">把大模型看作「工具构建者」，而非「逐次求解者」</span>。</p>
+
+    <h2>二、核心方法</h2>
+    <h3>2.1 模糊函数编程：一种新范式</h3>
+    <p>PAW 的核心思想十分精妙：<strong>将自然语言描述的函数规格说明「编译」为一个紧凑的、可在本地执行的神经构件</strong>。</p>
+    <p>具体来说，PAW 使用一个 4B 参数的「编译器」模型，该模型在作者发布的 <strong>FuzzyBench</strong>（包含 1000 万个示例的数据集）上训练，能够为输入的 NL 规格说明生成参数高效的适配器（adapter），供一个冻结的轻量级解释器执行。</p>
+
+    <div class="insight">
+      💡 <strong>类比理解</strong>：传统编译器中我们将源代码编译为机器码；PAW 则将「自然语言函数定义」编译为「神经网络权重」——一次编译，无限次高效执行。
+    </div>
+
+    <h3>2.2 模型架构</h3>
+    <p>PAW 的架构包含两个关键组件：</p>
+    <ul>
+      <li><strong>Compiler（编译器，4B 参数）</strong>：接受自然语言函数定义，输出参数高效的适配器权重</li>
+      <li><strong>Interpreter（解释器，0.6B 参数）</strong>：基于 Qwen3 的轻量模型，冻结权重，执行编译后的适配器</li>
+    </ul>
+    <p>这个过程借鉴了传统编译器的「一次编译、多次执行」的哲学，但编译的目标不是机器码，而是<strong>神经网络权重</strong>。</p>
+
+    <h3>2.3 关键结果</h3>
+    <ul>
+      <li><strong>性能匹敌</strong>：0.6B 的 Qwen3 解释器执行 PAW 程序，在各种模糊函数任务上匹配甚至超越了直接提示 Qwen3-32B 的表现</li>
+      <li><strong>极致高效</strong>：推理显存仅需直接推理的 <strong>1/50</strong></li>
+      <li><strong>本地可运行</strong>：在 MacBook M3 上即可达到 <strong>30 tokens/s</strong></li>
+      <li><strong>可复用性</strong>：一次编译生成的构件可重复使用，后续调用无需再经过大模型 API</li>
+    </ul>
+
+    <h2>三、实验结果</h2>
+    <h3>3.1 PAW 的主要评估</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>维度</th><th>PAW (0.6B 解释器)</th><th>直接提示 Qwen3-32B</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>推理显存</td><td><strong>极低</strong></td><td>高（约 50×）</td></tr>
+        <tr><td>推理速度</td><td><strong>30 tokens/s (M3)</strong></td><td>需高端 GPU</td></tr>
+        <tr><td>函数精度</td><td><strong>相当或更优</strong></td><td>基准线</td></tr>
+        <tr><td>可复用性</td><td><strong>编译一次、无限次执行</strong></td><td>每次需重新推理</td></tr>
+        <tr><td>本地部署</td><td><span class="tag">✓</span></td><td><span class="tag">✗</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 DecompRL：模块化解构的另一条路</h3>
+    <p>与 PAW 的思路互补，<strong>DecompRL</strong> 探索了另一种路径——<span class="highlight">将困难问题分解为可独立求解的子函数，再通过组合产生大量候选解决方案</span>。</p>
+    <p>DecompRL 的关键洞察是：当基础策略产生正确解的概率接近零时，无论多少采样或 RL 都无济于事——搜索空间太大。但如果将问题分解为 <em>n</em> 个模块，每个模块有 <em>k</em> 种实现，组合起来就能产生 <strong>kⁿ 个候选解</strong>，将瓶颈从 GPU 推理转移到廉价的 CPU 评估。</p>
+    <p>在 LiveCodeBench 和 CodeContests 上的实验表明：</p>
+    <ul>
+      <li>DecompRL 将 <strong>GPU token 成本降低约 50 倍</strong></li>
+      <li>在单个问题推理预算超过 10⁵ tokens 时显著超越标准 RL 基线</li>
+      <li>能解决标准生成方法无法达到的困难问题</li>
+    </ul>
+
+    <h2>四、技术启示与发展方向</h2>
+    <h3>4.1「大模型」不等于「每次都大」</h3>
+    <p>PAW 最重要的启示是：<strong>我们可能对大模型的使用方式存在根本性的误解</strong>。传统观点认为，「更强的能力 = 更大的模型 = 每次都推理」。但 PAW 表明，大模型完全可以扮演「编译器」的角色——它智慧地产生一个小型的、高效的执行体，然后这个小执行体独立处理后续任务。</p>
+
+    <h3>4.2 模块化思维正在回归</h3>
+    <p>无论是 PAW 的「编译-执行」分离，还是 DecompRL 的「分解-组合」策略，都不约而同地指向一个方向：<strong>模块化思维正在 AI 领域回归</strong>。不是让大模型独立完成一切，而是让它构建更小的组件来协同工作。</p>
+
+    <h3>4.3 对产业的影响</h3>
+    <ul>
+      <li><strong>边缘计算</strong>：PAW 这类技术使得在个人设备上运行高性能 AI 函数成为可能</li>
+      <li><strong>成本优化</strong>：企业可以将频繁调用的模糊逻辑从 API 调用迁移到本地执行，大幅降低成本</li>
+      <li><strong>可靠性提升</strong>：编译后的构件行为确定，避免了每次 API 调用的不确定性</li>
+    </ul>
+
+    <div class="insight">
+      🧠 <strong>核心洞察</strong>：PAW 和 DecompRL 代表了一类正在兴起的研究方向——不是让模型变大，而是让模型的输出变小、变高效、变可复用。这种思路颠覆了「更强大的模型就是更大的模型」的直觉，揭示了一个更具工程美学的未来：大模型不再被当作每次都要亲力亲为的工匠，而是被当作能够创造工具的「工具创造者」。
+    </div>
+
+    <h2>五、总结</h2>
+    <p>PAW 和 DecompRL 代表了一类正在兴起的研究方向——<span class="highlight">不是让模型变大，而是让模型的输出变小、变高效、变可复用</span>。这种思路颠覆了「更强大的模型就是更大的模型」的直觉，揭示了一个更具工程美学的未来：<strong>大模型不再被当作每次都要亲力亲为的工匠，而是被当作能够创造工具的「工具创造者」</strong>。</p>
+    <p>这或许是 AI 工程化进程中一个被严重低估的范式转换。</p>
+
+    <h2>参考资料</h2>
+    <ol class="ref-list">
+      <li><strong>Program-as-Weights: A Programming Paradigm for Fuzzy Functions</strong> (arXiv:2607.02512)<br>Wentao Zhang, Liliana Hotsko, Woojeong Kim, Pengyu Nie, Stuart Shieber, Yuntian Deng<br>→ <a href="https://arxiv.org/abs/2607.02512" target="_blank">https://arxiv.org/abs/2607.02512</a></li>
+      <li><strong>DecompRL: Solving Harder Problems by Learning Modular Code Generation</strong> (arXiv:2607.02390)<br>Juliette Decugis, Fabian Gloeckle, Francis Bach, Taco Cohen, Gabriel Synnaeve<br>→ <a href="https://arxiv.org/abs/2607.02390" target="_blank">https://arxiv.org/abs/2607.02390</a></li>
+    </ol>
+  </div>
+
+  <div class="footer">
+    <span>小织 🧵 | 2026 年 7 月 3 日</span><br>
+    <span style="font-size:12px;">每日 AI 论文精读 · 机器之心风格</span>
+  </div>
+</div>
+</body>
+</html>

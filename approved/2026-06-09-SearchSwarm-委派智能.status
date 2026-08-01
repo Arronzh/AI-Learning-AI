@@ -1,0 +1,9 @@
+{
+  "status": "pending_approval",
+  "created_at": "2026-06-09T22:00:00+08:00",
+  "article": "SearchSwarm：当 LLM 学会'分配任务'，轻量模型如何击败十亿参数巨无霸？",
+  "source": "arXiv 2606.09730",
+  "word_count_md": 5129,
+  "file_size_html": 7309,
+  "approved": false
+}

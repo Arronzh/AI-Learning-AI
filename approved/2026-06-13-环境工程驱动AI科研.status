@@ -1,0 +1,15 @@
+{
+  "status": "pending_approval",
+  "title": "环境工程驱动AI科研：清华与智谱AI提出EurekAgent，11美元跑出顶级科研成绩",
+  "date": "2026-06-13",
+  "paper_ids": ["2606.13662", "2606.13610"],
+  "word_count": 4527,
+  "html_size_bytes": 10063,
+  "checklist": {
+    "markdown_over_1000_words": true,
+    "html_over_10KB": true,
+    "web_links_accessible": true,
+    "pending_copied": true,
+    "status_file_created": true
+  }
+}

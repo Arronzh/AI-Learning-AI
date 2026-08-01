@@ -1,0 +1,14 @@
+{
+  "title": "香农定理跨界 LLM：字节跳动 Seed 提出香农 Scaling Law",
+  "date": "2026-05-25",
+  "status": "pending_approval",
+  "type": "arxiv_daily",
+  "wordCount": 1900,
+  "htmlSizeKB": 11.2,
+  "linksVerified": true,
+  "papers": [
+    "arXiv:2605.23901 - Shannon Scaling Law (ICML 2026)",
+    "arXiv:2605.23857 - Distillation in LLM Pretraining",
+    "arXiv:2605.23872 - Training-Free Looped Transformers"
+  ]
+}

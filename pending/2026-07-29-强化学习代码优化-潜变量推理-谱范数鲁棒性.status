@@ -1,0 +1,12 @@
+{
+  "status": "pending_review",
+  "created_at": "2026-07-29T22:00:00+08:00",
+  "type": "arxiv_digest",
+  "word_count_md": 2164,
+  "html_bytes": 13262,
+  "papers": [
+    "arXiv:2607.25970 - Reinforcement Learning for Code Optimization",
+    "arXiv:2607.25915 - Penelope: Localized Latent Recurrence for Efficient Structured Reasoning",
+    "arXiv:2607.26001 - Sharpness-Aware Minimization and Muon: Robustness under the Spectral Norm"
+  ]
+}

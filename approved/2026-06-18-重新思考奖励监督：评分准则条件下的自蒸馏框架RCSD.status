@@ -1,0 +1,15 @@
+{
+  "status": "pending_approval",
+  "title": "重新思考奖励监督：评分准则条件下的自蒸馏框架RCSD",
+  "arxiv_id": "2606.19327",
+  "created_at": "2026-06-18T22:00:00+08:00",
+  "md_file": "2026-06-18-重新思考奖励监督：评分准则条件下的自蒸馏框架RCSD.md",
+  "html_file": "2026-06-18-重新思考奖励监督：评分准则条件下的自蒸馏框架RCSD.html",
+  "checklist": {
+    "markdown_gt_1000_chars": true,
+    "html_gt_10KB": true,
+    "web_links_accessible": true,
+    "pending_dir_copied": true,
+    "status_file_created": true
+  }
+}

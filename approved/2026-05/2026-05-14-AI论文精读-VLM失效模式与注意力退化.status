@@ -1,0 +1,13 @@
+{
+  "status": "approved",
+  "task": "arxiv-digest",
+  "created_at": "2026-05-14T22:00:00+08:00",
+  "approved_at": "2026-05-14T22:13:00+08:00",
+  "filename": "2026-05-14-AI论文精读-VLM失效模式与注意力退化",
+  "title": "当大模型的'短板'被系统性地暴露：VLM 安全漏洞、多轮对话注意力退化与高效推理数据筛选",
+  "papers": [
+    "arXiv:2605.12674 - REVELIO",
+    "arXiv:2605.12922 - When Attention Closes",
+    "arXiv:2605.13130 - GRACE"
+  ]
+}

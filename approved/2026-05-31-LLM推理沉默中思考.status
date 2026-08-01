@@ -1,0 +1,14 @@
+{
+  "status": "completed",
+  "type": "paper-reading",
+  "paper_titles": [
+    "Self-Trained Verification for Training- and Test-Time Self-Improvement (arXiv:2605.30290)",
+    "Unlocking the Working Memory of Large Language Models for Latent Reasoning (arXiv:2605.30343)"
+  ],
+  "target_file_md": "2026-05-31-LLM推理沉默中思考.md",
+  "target_file_html": "2026-05-31-LLM推理沉默中思考.html",
+  "md_chars": 6717,
+  "html_bytes": 11855,
+  "created_at": "2026-05-31T22:00:00+08:00",
+  "notes": "Combined deep-dive: STV (self-trained verification from CMU) + RiM (reasoning in memory from Hochreiter's group), machine heart style WeChat article covering both test-time and architecture innovations"
+}

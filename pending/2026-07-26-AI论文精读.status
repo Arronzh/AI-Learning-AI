@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-26",
+  "title": "AI论文精读",
+  "status": "pending_review",
+  "paper_ids": [
+    "2607.20557",
+    "2607.20512",
+    "2607.20537"
+  ],
+  "word_count_md": 544,
+  "char_count_md": 4998,
+  "html_bytes": 11556,
+  "checklist": {
+    "markdown_over_1000chars": true,
+    "html_over_10KB": true,
+    "web_links_accessible": true,
+    "pending_dir_copied": true,
+    "status_file_created": true
+  },
+  "created_at": "2026-07-26T22:00:00+08:00",
+  "message_id": ""
+}

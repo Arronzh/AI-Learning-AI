@@ -1,0 +1,26 @@
+{
+  "task": "AI 论文精读",
+  "paper": {
+    "title": "LBLLM: Lightweight Binarization of Large Language Models via Three-Stage Distillation",
+    "arxiv": "2604.19167",
+    "authors": "Siqing Song, Chuang Wang, Yong Lang, Yi Yang, Xu-Yao Zhang",
+    "institutions": "中科院自动化所、华为中央媒体技术研究院",
+    "date": "2026-04-21"
+  },
+  "status": "waiting_for_approval",
+  "created_at": "2026-04-22T22:00:00+08:00",
+  "approval_notification_sent": "2026-04-22T22:30:00+08:00",
+  "notification_message_id": "mQOISA82j/a7i+Fk1KoQtG2M0gw5ZEY80QzIOOwSH/0=",
+  "files": {
+    "markdown": "2026-04-22-LBLLM-三阶段蒸馏实现大语言模型轻量级二值化.md",
+    "html": "2026-04-22-LBLLM-三阶段蒸馏实现大语言模型轻量级二值化.html"
+  },
+  "checks": {
+    "markdown_words": 2800,
+    "html_size_kb": 27,
+    "links_valid": true,
+    "copied_to_pending": true
+  },
+  "style": "机器之心 + 微信公众号",
+  "next_action": "等待用户审批后发送"
+}

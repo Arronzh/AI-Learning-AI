@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LBLLM：三阶段蒸馏实现大语言模型轻量级二值化</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 677px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            line-height: 1.4;
+            border-left: 4px solid #07c160;
+            padding-left: 12px;
+        }
+        
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 28px 0 14px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin: 22px 0 10px 0;
+        }
+        
+        .abstract {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0284c7;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .abstract-title {
+            font-weight: 600;
+            color: #0369a1;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .abstract-content {
+            color: #334155;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        
+        .paper-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .paper-info strong {
+            color: #07c160;
+        }
+        
+        .highlight-box {
+            background-color: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .highlight-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+        
+        ul, ol {
+            margin: 12px 0 12px 24px;
+            color: #444;
+        }
+        
+        li {
+            margin: 6px 0;
+            line-height: 1.7;
+        }
+        
+        p {
+            margin: 14px 0;
+            text-align: justify;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+            overflow-x: auto;
+            display: block;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #07c160 0%, #059669 100%);
+            color: white;
+            padding: 10px 8px;
+            font-weight: 600;
+            border: 1px solid #047857;
+        }
+        
+        td {
+            padding: 8px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        tr:hover {
+            background-color: #f0fdf4;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+        
+        .key-finding {
+            background-color: #ecfdf5;
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 18px 0;
+        }
+        
+        .key-finding-title {
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        .contribution-list {
+            background-color: #f0f9ff;
+            border-radius: 8px;
+            padding: 16px 20px 16px 36px;
+            margin: 18px 0;
+            list-style: none;
+        }
+        
+        .contribution-list li {
+            position: relative;
+            margin: 10px 0;
+            padding-left: 8px;
+        }
+        
+        .contribution-list li:before {
+            content: "✓";
+            position: absolute;
+            left: -20px;
+            color: #07c160;
+            font-weight: 700;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eaeaea;
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .footer-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #07c160, #10b981);
+            margin: 16px auto;
+            border-radius: 2px;
+        }
+        
+        a {
+            color: #07c160;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .section-number {
+            color: #07c160;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .emoji {
+            margin-right: 6px;
+        }
+        
+        code {
+            background-color: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 13px;
+            color: #c7254e;
+        }
+        
+        .method-diagram {
+            background-color: #fafafa;
+            border: 1px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .stage-box {
+            display: inline-block;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border: 2px solid #0284c7;
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin: 8px;
+            font-weight: 600;
+            color: #0369a1;
+        }
+        
+        .arrow {
+            color: #07c160;
+            font-size: 20px;
+            margin: 0 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 LBLLM：三阶段蒸馏实现大语言模型轻量级二值化，单 GPU 即可训练</h1>
+        
+        <div class="abstract">
+            <div class="abstract-title">📌 核心摘要</div>
+            <div class="abstract-content">
+                中科院自动化所与华为联合提出 <strong>LBLLM</strong>，一种轻量级大语言模型二值化框架。该方法通过新颖的三阶段量化策略，实现了高效的 <strong>W(1+1)A4 量化</strong>（权重 2 比特 + 激活 4 比特）。仅需 <strong>0.016B token</strong> 训练数据和单张 GPU，LBLLM 在语言建模、常识问答和语言理解任务上超越现有 SOTA 二值化方法，且无需引入额外高精度通道或旋转矩阵。这项研究为资源受限环境下的高效 LLM 部署提供了可行路径。
+            </div>
+        </div>
+        
+        <div class="paper-info">
+            <div><strong>📄 标题：</strong>LBLLM: Lightweight Binarization of Large Language Models via Three-Stage Distillation</div>
+            <div style="margin-top:8px;"><strong>🏛️ 机构：</strong>中科院自动化所、华为中央媒体技术研究院</div>
+            <div style="margin-top:8px;"><strong>🔗 arXiv：</strong><a href="https://arxiv.org/abs/2604.19167" target="_blank">2604.19167</a></div>
+            <div style="margin-top:8px;"><strong>📅 发布日期：</strong>2026 年 4 月 21 日</div>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid #eaeaea; margin: 24px 0;">
+        
+        <h2><span class="section-number">一、</span>研究背景与动机</h2>
+        
+        <p>大语言模型（LLM）在长上下文推理任务中表现出色，但其巨大的计算和内存需求严重阻碍了在资源受限环境中的部署。量化技术通过将高精度参数映射到低比特表示，能够有效压缩权重和激活并加速推理。然而，现有方法大多仍停留在较高比特宽度（通常≥4 比特），在极端压缩场景下潜力有限。</p>
+        
+        <div class="highlight-box">
+            <div class="highlight-title">🎯 核心挑战</div>
+            <ul>
+                <li><strong>激活异常值问题：</strong>在联合权重 - 激活量化中，具有极端幅值和长尾分布的异常激活值（outlier activations）是保持精度的主要障碍</li>
+                <li><strong>超低比特设置：</strong>亚 4 比特量化极少被探索，因为表示能力受到严重限制</li>
+                <li><strong>现有方案的局限：</strong>
+                    <ul>
+                        <li><em>辅助通道方法：</em>保留高精度通道以稳定量化，但额外比特降低了压缩效率，混合精度执行阻碍推理速度</li>
+                        <li><em>旋转矩阵方法：</em>通过矩阵变换重新分布异常值，在 W4A4 精度下有效，但在更低比特下性能急剧下降，且引入额外计算和内存开销</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <h3>二值化的困境</h3>
+        
+        <p>二值化能将比特宽度降至最低，但会加剧量化误差，导致严重性能下降。现有二值化工作通常只量化权重，激活保持全精度（FP16）。根据参数优化策略分为两类：</p>
+        
+        <ul>
+            <li><strong>量化感知训练（QAT）方法：</strong>通过大量训练恢复表示能力，但需要大量计算资源（数十张 80GB GPU、数千 GPU 小时、超过 100 亿 token 数据集）</li>
+            <li><strong>后训练量化（PTQ）方法：</strong>从预训练检查点快速生成二值化模型，但相比全精度模型经常出现较大精度下降（Wiki2 上超过 15 个困惑度点）</li>
+        </ul>
+        
+        <div class="highlight-box" style="background-color: #f0fdf4; border-left-color: #10b981;">
+            <div class="highlight-title" style="color: #059669;">❓ 研究问题</div>
+            <p style="margin:0;">能否在保持高效压缩的同时，实现高质量的二值化量化，且训练成本可控？</p>
+        </div>
+        
+        <h2><span class="section-number">二、</span>核心方法</h2>
+        
+        <p>LBLLM 的核心思想是<strong>结合 PTQ 和轻量级 QAT 的优势</strong>，通过三阶段量化策略实现高效的 W(1+1)A4 量化。</p>
+        
+        <h3>2.1 三阶段量化策略</h3>
+        
+        <div class="method-diagram">
+            <div class="stage-box">阶段 1<br><small>PTQ 初始化</small></div>
+            <span class="arrow">→</span>
+            <div class="stage-box">阶段 2<br><small>权重感知训练 (WAT)</small></div>
+            <span class="arrow">→</span>
+            <div class="stage-box">阶段 3<br><small>激活感知精炼 (AAR)</small></div>
+        </div>
+        
+        <p><strong>阶段 1：PTQ 初始化</strong></p>
+        <p>采用基于二值化的 PTQ 方法获取初始量化模型。具体使用细粒度 bitmap 分组结构，并通过 Hessian 加权 EM 算法优化量化参数，以最小化单个权重矩阵的量化误差。关键改进是<strong>丢弃混合精度配置</strong>以实现更高压缩效率。</p>
+        
+        <p><strong>阶段 2：权重感知训练（WAT）</strong></p>
+        <p>对 Transformer 架构中所有线性层的权重进行二值化（包括 Attention 和 MLP 模块），此阶段激活保持全精度（FP16）。训练采用逐层蒸馏策略，使用直通估计器（STE）联合更新量化参数和原始权重矩阵。</p>
+        
+        <p><strong>阶段 3：激活感知精炼（AAR）</strong></p>
+        <p>在动态量化激活的同时微调模型。针对 LLM 激活的显著长尾分布特性，提出<strong>可微分的分布感知量化器</strong>：</p>
+        <ul>
+            <li>使用可学习的"膝点"（knee points）自适应划分核心密集区域和稀疏异常值区域</li>
+            <li>为每个区域分配不同的量化步长</li>
+            <li>采用可学习的截断因子减轻极端异常值的影响</li>
+        </ul>
+        
+        <h3>2.2 关键技术创新</h3>
+        
+        <ul class="contribution-list">
+            <li><strong>解耦设计：</strong>将 QAT 过程解耦为两个独立阶段，有效缓解了权重和激活量化误差的相互干扰</li>
+            <li><strong>分层蒸馏策略：</strong>逐层进行蒸馏优化，使下游层能够感知并补偿累积的量化误差</li>
+            <li><strong>可学习的分组 bitmap：</strong>通过正则化项和退火因子控制二值化过程</li>
+            <li><strong>温度缩放软掩码机制：</strong>实现膝点位置的梯度下降优化，同时保持前向传播的量化效率</li>
+        </ul>
+        
+        <div class="table-container">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>LBLLM</th>
+                        <th>传统 PTQ 方法</th>
+                        <th>传统 QAT 方法</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>量化精度</td>
+                        <td><strong>W(1+1)A4</strong></td>
+                        <td>W(1+1)A16</td>
+                        <td>W4A4 或更高</td>
+                    </tr>
+                    <tr>
+                        <td>辅助通道</td>
+                        <td>❌ 无需</td>
+                        <td>✅ 需要</td>
+                        <td>❌ 无需</td>
+                    </tr>
+                    <tr>
+                        <td>旋转矩阵</td>
+                        <td>❌ 无需</td>
+                        <td>❌ 无需</td>
+                        <td>✅ 常用</td>
+                    </tr>
+                    <tr>
+                        <td>训练数据</td>
+                        <td><strong>0.016B token</strong></td>
+                        <td>无需训练</td>
+                        <td>&gt;10B token</td>
+                    </tr>
+                    <tr>
+                        <td>GPU 需求</td>
+                        <td><strong>单 GPU</strong></td>
+                        <td>无需训练</td>
+                        <td>数十张 80GB GPU</td>
+                    </tr>
+                    <tr>
+                        <td>训练时间</td>
+                        <td><strong>数十 GPU 小时</strong></td>
+                        <td>N/A</td>
+                        <td>数千 GPU 小时</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h2><span class="section-number">三、</span>实验结果</h2>
+        
+        <h3>3.1 实验设置</h3>
+        
+        <ul>
+            <li><strong>模型：</strong>LLaMA-1-7B、LLaMA-2-7B、LLaMA-3-8B</li>
+            <li><strong>训练数据：</strong>从 RedPajama 语料库随机采样 8,192 个序列（约 0.016B token）</li>
+            <li><strong>评估任务：</strong>语言生成（困惑度）、常识 QA（零样本准确率）、语言理解（MMLU）</li>
+        </ul>
+        
+        <h3>3.2 主要结果</h3>
+        
+        <p><strong>LLaMA-2-7B 量化结果对比：</strong></p>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>量化设置</th>
+                        <th>Wiki↓</th>
+                        <th>PTB↓</th>
+                        <th>C4↓</th>
+                        <th>PIQA↑</th>
+                        <th>ARC-e↑</th>
+                        <th>ARC-c↑</th>
+                        <th>BoolQ↑</th>
+                        <th>Hella.↑</th>
+                        <th>Wino.↑</th>
+                        <th>平均↑</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FP16</td>
+                        <td>-</td>
+                        <td>5.47</td>
+                        <td>22.51</td>
+                        <td>6.97</td>
+                        <td>76.93</td>
+                        <td>53.58</td>
+                        <td>40.53</td>
+                        <td>71.07</td>
+                        <td>72.96</td>
+                        <td>67.17</td>
+                        <td>63.71</td>
+                    </tr>
+                    <tr>
+                        <td>CBQ</td>
+                        <td>W4A4</td>
+                        <td>11.32</td>
+                        <td>-</td>
+                        <td>12.56</td>
+                        <td>68.25</td>
+                        <td>46.23</td>
+                        <td>31.56</td>
+                        <td>-</td>
+                        <td>57.34</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>BiLLM</td>
+                        <td>W(1+1)A4</td>
+                        <td>32.48</td>
+                        <td>3877.38</td>
+                        <td>40.52</td>
+                        <td>50.05</td>
+                        <td>25.38</td>
+                        <td>26.54</td>
+                        <td>49.63</td>
+                        <td>26.05</td>
+                        <td>49.49</td>
+                        <td>37.86</td>
+                    </tr>
+                    <tr>
+                        <td>ARB-LLM</td>
+                        <td>W(1+1)A4</td>
+                        <td>19.14</td>
+                        <td>165.46</td>
+                        <td>20.88</td>
+                        <td>63.82</td>
+                        <td>39.31</td>
+                        <td>27.05</td>
+                        <td>60.21</td>
+                        <td>44.94</td>
+                        <td>54.54</td>
+                        <td>48.31</td>
+                    </tr>
+                    <tr>
+                        <td>BWA</td>
+                        <td>W(1+1)A4</td>
+                        <td>8.89</td>
+                        <td>69.46</td>
+                        <td>12.74</td>
+                        <td>68.72</td>
+                        <td>46.13</td>
+                        <td>30.55</td>
+                        <td>66.12</td>
+                        <td>55.76</td>
+                        <td>58.01</td>
+                        <td>54.22</td>
+                    </tr>
+                    <tr style="background-color: #f0fdf4; font-weight: 600;">
+                        <td style="color: #059669;">LBLLM</td>
+                        <td style="color: #059669;">W(1+1)A4</td>
+                        <td style="color: #059669;">9.18</td>
+                        <td style="color: #059669;">36.79</td>
+                        <td style="color: #059669;">10.91</td>
+                        <td style="color: #059669;">70.97</td>
+                        <td style="color: #059669;">44.65</td>
+                        <td style="color: #059669;">32.51</td>
+                        <td style="color: #059669;">64.50</td>
+                        <td style="color: #059669;">58.54</td>
+                        <td style="color: #059669;">58.27</td>
+                        <td style="color: #059669;">54.91</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="key-finding">
+            <div class="key-finding-title">💡 关键发现</div>
+            <ul style="margin:0;">
+                <li>LBLLM 在 W(1+1)A4 设置下超越所有基线方法，包括使用更高比特（W4A4）的 CBQ</li>
+                <li>相比 BWA 方法，LBLLM 在 PTB 上困惑度降低 47%（69.46→36.79），表明更好的泛化能力</li>
+                <li>BWA 移除辅助通道后性能崩溃（Wiki 困惑度 243.73），而 LBLLM 无需辅助通道仍保持高性能</li>
+            </ul>
+        </div>
+        
+        <h3>3.3 消融实验</h3>
+        
+        <p><strong>训练策略消融：</strong></p>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>WAT</th>
+                        <th>AAR</th>
+                        <th>联合训练</th>
+                        <th>Wiki↓</th>
+                        <th>PTB↓</th>
+                        <th>C4↓</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>✗</td>
+                        <td>✗</td>
+                        <td>✗</td>
+                        <td>243.73</td>
+                        <td>5439.27</td>
+                        <td>433.00</td>
+                    </tr>
+                    <tr>
+                        <td>✗</td>
+                        <td>✗</td>
+                        <td>✓</td>
+                        <td>NAN</td>
+                        <td>NAN</td>
+                        <td>NAN</td>
+                    </tr>
+                    <tr>
+                        <td>✓</td>
+                        <td>✗</td>
+                        <td>✗</td>
+                        <td>9.40</td>
+                        <td>42.86</td>
+                        <td>11.08</td>
+                    </tr>
+                    <tr style="background-color: #f0fdf4; font-weight: 600;">
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✗</td>
+                        <td style="color: #059669;">9.18</td>
+                        <td style="color: #059669;">36.79</td>
+                        <td style="color: #059669;">10.91</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p>直接联合量化权重和激活导致训练发散（NAN），解耦的三阶段策略显著提升性能。</p>
+        
+        <h2><span class="section-number">四、</span>技术启示与发展方向</h2>
+        
+        <h3>4.1 核心启示</h3>
+        
+        <ul class="contribution-list">
+            <li><strong>解耦优于联合：</strong>在超低比特量化场景中，将量化过程分解为独立阶段，先优化权重再优化激活，能够显著提升训练稳定性和最终性能</li>
+            <li><strong>初始化决定上限：</strong>在轻量级训练框架中，初始化的质量直接决定最终性能上限</li>
+            <li><strong>数据效率可大幅提升：</strong>传统 QAT 方法需要超过 100 亿 token，LBLLM 仅需 0.016B token（约 1/600）即可达到相当甚至更好的性能</li>
+            <li><strong>无需架构修改：</strong>不依赖旋转矩阵或辅助通道，仅通过训练策略优化实现高性能，更具通用性和硬件友好性</li>
+        </ul>
+        
+        <h3>4.2 局限性与未来方向</h3>
+        
+        <p><strong>当前局限：</strong></p>
+        <ul>
+            <li>细粒度分组依赖：W(1+1) 配置仍严重依赖 PTQ 先验进行初始化</li>
+            <li>推理加速有限：当前推理效率提升主要来自软件层面</li>
+            <li>硬件支持缺失：真正的计算突破需要专用硬件支持</li>
+        </ul>
+        
+        <p><strong>未来方向：</strong></p>
+        <ul>
+            <li>探索不依赖 PTQ 先验的初始化方法</li>
+            <li>与硬件团队合作开发支持 W(1+1)A4 量化的专用加速器</li>
+            <li>验证方法在 Vision Transformer、多模态模型等架构上的有效性</li>
+            <li>根据输入特性动态调整量化参数</li>
+        </ul>
+        
+        <h3>4.3 产业应用前景</h3>
+        
+        <ul>
+            <li><strong>📱 边缘设备部署：</strong>使 LLM 在手机、IoT 设备等资源受限环境中的部署成为可能</li>
+            <li><strong>☁️ 推理成本优化：</strong>显著降低内存带宽和计算成本，提升推理吞吐量</li>
+            <li><strong>🔒 隐私保护场景：</strong>本地化部署可减少数据上传需求，适用于医疗、金融等敏感场景</li>
+        </ul>
+        
+        <h2><span class="section-number">五、</span>总结</h2>
+        
+        <p>LBLLM 提出了一种轻量级大语言模型二值化框架，通过三阶段量化策略实现了高效的 W(1+1)A4 量化。核心贡献包括：</p>
+        
+        <ul class="contribution-list">
+            <li>三阶段量化策略：结合 PTQ 初始化和轻量级 QAT，解耦权重和激活量化过程</li>
+            <li>分层蒸馏架构：逐层蒸馏优化，使下游层能够补偿累积量化误差</li>
+            <li>分布感知量化器：使用可学习膝点和截断因子处理激活长尾分布</li>
+            <li>卓越性能：在仅使用 0.016B token 和单 GPU 的条件下，超越现有 SOTA 方法</li>
+        </ul>
+        
+        <p>这项研究证明了极端低比特量化 LLM 的可行性和有效性，为资源受限环境下的高效 LLM 部署开辟了新路径。</p>
+        
+        <h2><span class="section-number">六、</span>参考资料</h2>
+        
+        <ul>
+            <li><strong>论文原文：</strong><a href="https://arxiv.org/abs/2604.19167" target="_blank">LBLLM: Lightweight Binarization of Large Language Models via Three-Stage Distillation</a></li>
+            <li><strong>代码仓库：</strong><a href="https://github.com/JimmyCrave/LBLLM" target="_blank">https://github.com/JimmyCrave/LBLLM</a>（待内部审批后公开）</li>
+            <li><strong>相关研究：</strong>
+                <ul>
+                    <li>BiLLM: Pushing the Limit of Post-Training Quantization for LLMs (ICML 2024)</li>
+                    <li>BitNet: Scaling 1-bit Transformers for Large Language Models (arXiv 2023)</li>
+                    <li>QuaRot: Outlier-Free 4-bit Inference in Rotated LLMs (NeurIPS 2024)</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <div class="footer">
+            <div class="footer-divider"></div>
+            <p>小织 🧵 | 2026 年 4 月 22 日</p>
+            <p style="margin-top:10px; font-size:12px; color:#aaa;">AI 论文精读 · 每日 arXiv 论文解读</p>
+        </div>
+    </div>
+</body>
+</html>

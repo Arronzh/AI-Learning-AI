@@ -1,0 +1,20 @@
+---
+title: "LLM 推理效率、多智能体记忆与过程验证：三篇前沿论文深度解读"
+date: "2026-06-21"
+status: "pending_approval"
+created_by: "cron:e26cc1a5-68cf-47f7-97fe-b44c09d172e9"
+word_count: 3280
+papers:
+  - id: "2606.19808"
+    title: "Think Again or Think Longer? Selective Verification for Budget-Aware Reasoning"
+  - id: "2606.19911"
+    title: "Multi-Agent Transactive Memory"
+  - id: "2606.20068"
+    title: "Process-Verified Reinforcement Learning for Theorem Proving via Lean"
+checks:
+  markdown_over_1000: true
+  html_over_10kb: false
+  web_links_accessible: true
+  pending_dir_copied: true
+  status_file_created: true
+---

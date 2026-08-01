@@ -1,0 +1,15 @@
+{
+  "type": "arxiv-digest",
+  "date": "2026-06-10",
+  "status": "pending-approval",
+  "papers": [
+    {"id": "2606.11182", "title": "EEVEE: Towards Test-time Prompt Learning in the Real World for Self-Improving Agents"},
+    {"id": "2606.11172", "title": "Predicting Future Behaviors in Reasoning Models Enables Better Steering"},
+    {"id": "2606.11164", "title": "ReasonAlloc: Hierarchical Decoding-Time KV Cache Budget Allocation for Reasoning Models"}
+  ],
+  "markdown": "/root/.openclaw/workspace/agents/xiaozhi/pending/2026-06-10-ai-paper-digest.md",
+  "html": "/root/.openclaw/workspace/agents/xiaozhi/pending/2026-06-10-ai-paper-digest.html",
+  "wordCount": 8221,
+  "htmlSize": 13387,
+  "created": "2026-06-10T22:00:00+08:00"
+}

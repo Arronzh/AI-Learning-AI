@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日 arXiv 论文精读 | 2026年7月10日</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    background: #f7f8fa;
+    color: #1a1a2e;
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 20px 16px; }
+  .article {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    color: #1a1a2e;
+  }
+  .subtitle {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    background: #f0f4ff;
+    border-radius: 10px;
+    border-left: 4px solid #4a7cf7;
+  }
+  .summary-table {
+    margin: 20px 0 28px;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+  }
+  .summary-table th, .summary-table td {
+    padding: 10px 12px;
+    border: 1px solid #e8ecf2;
+    text-align: left;
+  }
+  .summary-table th {
+    background: #f0f4ff;
+    font-weight: 600;
+    color: #4a7cf7;
+  }
+  .summary-table td:first-child { font-weight: 600; white-space: nowrap; }
+  .section {
+    margin: 32px 0;
+    padding-top: 8px;
+  }
+  .section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-left: 12px;
+    border-left: 4px solid #4a7cf7;
+    color: #1a1a2e;
+  }
+  .section h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: #2d3748;
+  }
+  .section p {
+    margin: 10px 0;
+    text-align: justify;
+  }
+  .highlight-box {
+    background: #f8faff;
+    border: 1px solid #e0e8f5;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 16px 0;
+  }
+  .highlight-box strong { color: #4a7cf7; }
+  table.data-table {
+    margin: 14px 0;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+  }
+  table.data-table th, table.data-table td {
+    padding: 8px 10px;
+    border: 1px solid #e0e4ea;
+    text-align: center;
+  }
+  table.data-table th { background: #f0f4ff; font-weight: 600; color: #4a7cf7; }
+  ul, ol { margin: 10px 0; padding-left: 22px; }
+  li { margin: 6px 0; }
+  .insight-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .insight-card {
+    background: linear-gradient(135deg, #f8faff, #f0f4ff);
+    border-radius: 10px;
+    padding: 14px 18px;
+    border-left: 3px solid #4a7cf7;
+  }
+  .insight-card .card-title { font-weight: 700; color: #4a7cf7; margin-bottom: 4px; font-size: 15px; }
+  .insight-card .card-body { font-size: 14px; color: #444; }
+  .refs {
+    margin: 24px 0 12px;
+    padding: 16px 18px;
+    background: #f8f9fb;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  .refs a { color: #4a7cf7; text-decoration: none; word-break: break-all; }
+  .refs a:hover { text-decoration: underline; }
+  .footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e8ecf2;
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .tag-blue { background: #e8f0fe; color: #4a7cf7; }
+  .tag-green { background: #e6f7ed; color: #2e8b57; }
+  .tag-orange { background: #fff4e6; color: #d9822b; }
+  @media (max-width: 480px) {
+    .article { padding: 24px 16px; }
+    h1 { font-size: 22px; }
+    .summary-table { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="article">
+
+<h1>📖 每日 arXiv 论文精读<br><span style="font-size:18px;color:#666;font-weight:400;">2026年7月10日 · 第13期</span></h1>
+
+<div class="subtitle">
+<strong>当语言模型学会了"人格"：</strong>66条心理测试语句如何防御越狱攻击；连续微调不遗忘——谱感知递归低秩适配器；没有教师，智能体也能自我进化。
+</div>
+
+<h3 style="font-size:15px;font-weight:600;color:#4a7cf7;margin-bottom:8px;">📌 本期速览</h3>
+<table class="summary-table">
+<thead><tr><th>论文</th><th>方向</th><th>亮点</th></tr></thead>
+<tbody>
+<tr><td>Latent Personality Alignment 🛡️</td><td>LLM 安全对齐</td><td>仅用66条人格语句，零越狱成功率</td></tr>
+<tr><td>ReCoLoRA 🔄</td><td>持续学习</td><td>谱感知递归合并，6任务连续微调最优</td></tr>
+<tr><td>DeepSearch-Evolve 🤖</td><td>AI Agent</td><td>420K验证任务自蒸馏，BrowseComp 31.2%</td></tr>
+</tbody>
+</table>
+
+<!-- LPA -->
+<div class="section">
+<h2>一、🛡️ 66条语句守住 LLM 的底线</h2>
+<h3 style="font-size:22px;font-weight:700;color:#4a7cf7;margin:4px 0 12px;">Latent Personality Alignment</h3>
+
+<h3>研究背景与动机</h3>
+<p>当前大语言模型的安全对齐主要依赖两类方法：<strong>RLHF</strong>（基于人类反馈的强化学习）和<strong>对抗训练</strong>（在有害样本上训练模型拒绝回答）。然而，RLHF 需要大规模人工标注，而对抗训练（如 LAT, Latent Adversarial Training）虽然防御效果不错，也存在三个痛点：</p>
+<ol>
+<li>需要收集大量有害提示数据集——规模通常成千上万条</li>
+<li>训练过程可能降低模型在常规基准上的性能（utility degradation）</li>
+<li>泛化到新型越狱攻击的能力有限</li>
+</ol>
+<p>来自 Yale 的研究团队提出一个全新的思路：<strong>能否不直接对抗"有害内容"，而是通过稳定模型的人格特征来间接防御越狱攻击？</strong></p>
+
+<h3>核心方法</h3>
+<p><strong>Latent Personality Alignment (LPA)</strong> 的核心洞察在于：模型在潜空间中对人格特质的表征（如"友善"、"尽责"、"情绪稳定"）与对有害内容的规避共享某种潜在结构。如果能对抗性地稳定这些人格表征，就可以间接约束越狱攻击所利用的潜空间子空间。</p>
+<p>具体方法分三步：</p>
+<ol>
+<li><strong>人格锚点选取</strong>：从心理测量学人格文献中精选 <strong>66 条</strong>与有害内容无关的陈述句</li>
+<li><strong>对抗训练</strong>：对这66条语句进行潜空间对抗训练</li>
+<li><strong>零有害数据接触</strong>：训练时完全不接触有害数据</li>
+</ol>
+
+<h3>实验结果</h3>
+<div class="highlight-box">
+<strong>关键结果：</strong>在 HarmBench 上，LPA 在直接请求和五种越狱攻击方法下均达到 <strong>接近零的攻击成功率（ASR）</strong>。
+</div>
+
+<table class="data-table">
+<thead><tr><th>方法</th><th>训练数据量</th><th>单GPU训练时间</th><th>HarmBench ASR</th></tr></thead>
+<tbody>
+<tr><td>LAT（标准）</td><td>~5,000条</td><td>数小时</td><td>较低</td></tr>
+<tr><td><strong>LPA（本文）</strong></td><td><strong>66条</strong></td><td><strong>数分钟</strong></td><td><strong>≈0%</strong></td></tr>
+<tr><td>基线模型</td><td>-</td><td>-</td><td>&gt;80%</td></tr>
+</tbody>
+</table>
+
+<p><strong>核心优势：</strong></p>
+<ul>
+<li>📊 <strong>数据效率</strong>：仅标准 LAT 的 <strong>1/75</strong></li>
+<li>✅ <strong>零效用损失</strong>：标准基准测试性能完全不受影响</li>
+<li>🔄 <strong>泛化能力</strong>：对未见过的越狱方法也有效</li>
+<li>⚡ <strong>轻量级</strong>：单GPU几分钟即可完成</li>
+</ul>
+<p>该论文已被 <span class="tag tag-blue">COLM 2026</span> 接收。</p>
+</div>
+
+<!-- ReCoLoRA -->
+<div class="section">
+<h2>二、🔄 连续微调不"学新忘旧"</h2>
+<h3 style="font-size:22px;font-weight:700;color:#4a7cf7;margin:4px 0 12px;">ReCoLoRA: 谱感知递归低秩适配器</h3>
+
+<h3>研究背景与动机</h3>
+<p>LoRA 是当前最流行的参数高效微调方法之一。但当需要<strong>在一个模型上连续微调多个任务</strong>时，问题出现了：每次 LoRA 适配器都是叠加在同一个冻结权重上的低秩更新，新任务往往会<strong>覆盖（overwrite）</strong>旧任务学到的知识。这就是持续学习中经典的"灾难性遗忘"在 LoRA 场景下的体现。</p>
+
+<h3>核心方法</h3>
+<p><strong>ReCoLoRA</strong>（Recursive Consolidation of Low-Rank Adapters）设计了三项核心技术：</p>
+<ol>
+<li><strong>谱感知初始化</strong>：对预训练权重进行随机化 SVD 分解，通过"肘部准则"自动选择每层有效秩。</li>
+<li><strong>递归合并</strong>：每个新任务前，对当前有效权重重新进行谱分解，拆分为冻结残差 + 慢更新主成分 + 新适配器。</li>
+<li><strong>任务连续性</strong>：新任务从已吸收所有前驱知识的模型开始训练。</li>
+</ol>
+
+<h3>实验结果</h3>
+<p>在 <strong>6 任务连续 GLUE 序列</strong>上，使用 <strong>4 种 7B-8B 骨干模型</strong>：</p>
+<table class="data-table">
+<thead><tr><th>方法</th><th>平均分排名</th><th>训练参数量</th></tr></thead>
+<tbody>
+<tr><td><strong>ReCoLoRA</strong></td><td><strong>最优（3/4骨干）</strong></td><td><strong>更少</strong></td></tr>
+<tr><td>LoRA (rank-swept)</td><td>基准</td><td>更多</td></tr>
+<tr><td>PiSSA</td><td>次优</td><td>更多</td></tr>
+<tr><td>AdaLoRA</td><td>中等</td><td>中等</td></tr>
+<tr><td>DoRA</td><td>中等</td><td>更多</td></tr>
+</tbody>
+</table>
+<p>训练参数更少、平均分更高。</p>
+</div>
+
+<!-- DeepSearch-Evolve -->
+<div class="section">
+<h2>三、🤖 没有教师的自我进化</h2>
+<h3 style="font-size:22px;font-weight:700;color:#4a7cf7;margin:4px 0 12px;">DeepSearch-Evolve: 自蒸馏 Web Agent</h3>
+
+<h3>研究背景与动机</h3>
+<p>训练能够在开放网页上完成多跳搜索的 AI Agent 极具挑战性。当前方法中，SFT 依赖更强的教师模型（如 GPT-4）蒸馏轨迹数据，RL 在长程交互中奖励稀疏。核心矛盾：<strong>没有更强模型做教师，Agent 能否仅从自身探索中持续改进？</strong></p>
+
+<h3>核心方法</h3>
+<p><strong>DeepSearch-World</strong>：确定性、可验证的搜索环境，包含 <strong>420K 多跳 QA 任务</strong>，支持进度验证、基于事实的反思、失败恢复。</p>
+<p><strong>DeepSearch-Evolve</strong>：自蒸馏循环，迭代执行：</p>
+<ol>
+<li>轨迹生成 → ② 过滤筛选 → ③ 数据混合 → ④ 微调</li>
+</ol>
+<p>全程<strong>不需要外部教师模型</strong>。</p>
+
+<h3>实验结果</h3>
+<table class="data-table">
+<thead><tr><th>基准</th><th>得分</th><th>意义</th></tr></thead>
+<tbody>
+<tr><td><strong>BrowseComp</strong></td><td><strong>31.2%</strong></td><td>复杂网页搜索</td></tr>
+<tr><td><strong>GAIA</strong></td><td><strong>61.5%</strong></td><td>通用 Agent 能力</td></tr>
+<tr><td><strong>HotpotQA</strong></td><td><strong>93.4%</strong></td><td>多跳推理问答</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- Insights -->
+<div class="section">
+<h2>四、技术启示与发展方向</h2>
+
+<div class="insight-cards">
+<div class="insight-card">
+<div class="card-title">1️⃣ "因小见大"——小数据撬动大效果</div>
+<div class="card-body">LPA 用66条人格语句实现安全对齐，ReCoLoRA 用更少适配参数获得更好性能，DeepSearch-Evolve 无需强教师模型。算法设计的智慧可以超越数据规模的堆砌。</div>
+</div>
+<div class="insight-card">
+<div class="card-title">2️⃣ 结构理解 > 暴力计算</div>
+<div class="card-body">ReCoLoRA 的谱感知分解和 LPA 的人格潜空间假设，都是对模型内部结构深度理解驱动的方法创新。未来 AI 研究可能越来越依赖对表征空间和谱结构的理论理解。</div>
+</div>
+<div class="insight-card">
+<div class="card-title">3️⃣ 自我进化的范式突破</div>
+<div class="card-body">DeepSearch-Evolve 展示了"可验证环境 + 自蒸馏"的潜力——Agent 可以在没有外部教师的情况下持续提升。这对自主学习和持续改进型 AI 系统意义重大。</div>
+</div>
+</div>
+</div>
+
+<!-- Summary -->
+<div class="section">
+<h2>五、总结</h2>
+<table class="data-table">
+<thead><tr><th>论文</th><th>核心价值</th><th>一句话评价</th></tr></thead>
+<tbody>
+<tr><td>LPA</td><td>66条人格语句防御越狱</td><td>"人格即防火墙"——安全对齐的极简路径</td></tr>
+<tr><td>ReCoLoRA</td><td>谱感知递归合并实现连续微调</td><td>"学新不忘旧"——LoRA 的持续学习进化</td></tr>
+<tr><td>DeepSearch-Evolve</td><td>420K验证任务自蒸馏训练</td><td>"自学成才"——Agent 自我进化的里程碑</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- References -->
+<div class="refs">
+<h3 style="font-size:15px;margin-bottom:8px;color:#333;">📚 参考资料</h3>
+<ol style="padding-left:18px;">
+<li>Latent Personality Alignment — Oberman et al., COLM 2026<br><a href="https://arxiv.org/abs/2607.07918">https://arxiv.org/abs/2607.07918</a></li>
+<li>ReCoLoRA — Lu et al.<br><a href="https://arxiv.org/abs/2607.07719">https://arxiv.org/abs/2607.07719</a></li>
+<li>DeepSearch-Evolve — Geng et al.<br><a href="https://arxiv.org/abs/2607.07820">https://arxiv.org/abs/2607.07820</a></li>
+</ol>
+</div>
+
+<div class="footer">
+小织 🧵 · 2026年7月10日<br>
+<span style="font-size:11px;color:#bbb;">基于 arXiv cs.AI / cs.LG / cs.CL 每日新论文编制</span>
+</div>
+
+</div>
+</div>
+</body>
+</html>

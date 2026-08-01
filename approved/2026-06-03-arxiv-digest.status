@@ -1,0 +1,21 @@
+{
+  "task": "arxiv-digest",
+  "date": "2026-06-03",
+  "status": "pending_approval",
+  "generated_at": "2026-06-03T22:00:00+08:00",
+  "papers": [
+    "2606.03979 - Language Models Need Sleep",
+    "2606.03980 - Unifying Heterogeneous Evaluation Criteria via Agent Skill",
+    "2606.03928 - Value-Aware Stochastic KV Cache Eviction for Reasoning Models",
+    "2606.03938 - q0: Primitives for Hyper-Epoch Pretraining",
+    "2606.03904 - MAdam: Metric-Aware Multi-Objective Adam",
+    "2606.03927 - FFR: Forward-Forward Learning for Regression"
+  ],
+  "checklist": {
+    "markdown_over_1000_chars": true,
+    "html_over_10KB": true,
+    "web_links_accessible": true,
+    "pending_dir_copied": true,
+    "status_file_created": true
+  }
+}

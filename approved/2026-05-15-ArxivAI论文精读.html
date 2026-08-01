@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理时计算的"宽度革命"：AI 进入并行验证时代</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #333; background: #fafafa; padding: 20px; }
+  .container { max-width: 800px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 40px 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  h1 { font-size: 24px; line-height: 1.5; margin-bottom: 16px; color: #1a1a1a; }
+  .summary-box { background: #f0f7ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin-bottom: 28px; border-radius: 0 8px 8px 0; font-size: 14px; line-height: 1.7; color: #555; }
+  h2 { font-size: 20px; margin: 32px 0 14px; color: #1a1a1a; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+  h3 { font-size: 17px; margin: 22px 0 10px; color: #2c3e50; }
+  p { font-size: 15px; line-height: 1.8; margin-bottom: 14px; color: #444; }
+  ul, ol { margin: 10px 0 14px 20px; font-size: 15px; line-height: 1.8; color: #444; }
+  li { margin-bottom: 6px; }
+  strong { color: #1a1a1a; }
+  .highlight { color: #3b82f6; font-weight: 600; }
+  .divider { height: 1px; background: linear-gradient(to right, transparent, #ddd, transparent); margin: 30px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: #f0f0f0; padding: 10px 12px; text-align: left; font-weight: 600; border: 1px solid #e0e0e0; }
+  td { padding: 10px 12px; border: 1px solid #e0e0e0; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .ref { font-size: 13px; color: #888; margin-top: 24px; border-top: 1px solid #eee; padding-top: 16px; }
+  .ref a { color: #3b82f6; word-break: break-all; }
+  .footer { text-align: center; font-size: 13px; color: #aaa; margin-top: 24px; }
+  blockquote { border-left: 3px solid #ddd; margin: 16px 0; padding: 8px 16px; color: #666; font-style: italic; background: #f9f9f9; border-radius: 0 6px 6px 0; }
+  .tag { display: inline-block; background: #e8f4f8; color: #0a6e7a; font-size: 12px; padding: 2px 10px; border-radius: 12px; margin: 2px; }
+  @media (max-width: 600px) { .container { padding: 20px 16px; } h1 { font-size: 20px; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🔬 推理时计算的"宽度革命"：AI 进入并行验证时代——从 OpenDeepThink 到 TFGN，看 LLM 如何兼顾推理深度与遗忘边界</h1>
+
+<div class="summary-box">
+📌 <strong>核心摘要</strong>：本周 arXiv 涌现了多篇极具突破性的 AI 论文。OpenDeepThink 提出基于 Bradley-Terry 聚合的群体并行推理框架，将 Gemini 3.1 Pro 的 Codeforces Elo 拉升 405 分。TFGN 以读/写分离架构首次在 LLM 规模实现无重放持续预训练，遗忘率低至 -0.007。SDAR 将自蒸馏与强化学习结合，在 Agent 任务上刷新 GRPO 基线。
+</div>
+
+<h2>一、研究背景与动机</h2>
+
+<h3>1.1 推理时计算的"深"与"广"</h3>
+<p>自从 OpenAI o1 系列带火"推理时计算扩展"（test-time compute scaling）以来，业界主流思路集中在延长单次推理轨迹（深度扩展）。这类方法直观但面临显著瓶颈：计算成本线性增长，边际收益持续递减，且难以利用并行硬件加速。</p>
+<p>而"宽度扩展"——让模型同时生成多个候选答案再择优——虽高度可并行，却长期受困于一个致命难题：<strong>没有真实验证器时，模型作为自我评判者充满偏差与噪声</strong>。</p>
+
+<h3>1.2 持续学习的"遗忘诅咒"</h3>
+<p>持续预训练的经典方案依赖重放缓冲区、任务标识符或 Fisher 正则化。但在数十亿参数的 LLM 规模上，这些方法要么存储开销过大，要么无法在 <strong>无任务边界（task-free）</strong> 的真实场景中工作。</p>
+
+<h3>1.3 Agent 训练的稀疏奖励困境</h3>
+<p>GRPO 等 RL 算法虽已成为 LLM 后训练主流，但其轨迹级别奖励信号过于粗糙——每次交互长达数百步，却只有最终成功/失败信号能提供训练梯度。</p>
+
+<div class="divider"></div>
+
+<h2>二、核心方法</h2>
+
+<h3>2.1 OpenDeepThink：用群体智慧组织并行推理</h3>
+<p>OpenDeepThink 构建了一个基于种群的推理循环：</p>
+<ol>
+<li><strong>初始化种群</strong>：生成 N 个候选答案（实验中 48 个）</li>
+<li><strong>配对比较</strong>：LLM 对随机配对的候选答案从多个维度进行比较，输出判断+自然语言评语</li>
+<li><strong>Bradley-Terry 聚合</strong>：将两两比较结果聚合为全局排名——这一统计框架最早用于竞技体育选手排名</li>
+<li><strong>演化迭代</strong>：保留排名靠前者，对前 75% 用评语引导变异，丢弃最低 25%</li>
+<li><strong>收敛判定</strong>：重复至稳定或预算上限</li>
+</ol>
+<p>关键洞察在于将推理视为<strong>搜索过程</strong>而非生成过程。实验数据：仅 8 轮 LLM 调用（约 27 分钟），Gemini 3.1 Pro 的 Codeforces Elo 提升 <span class="highlight">405 分</span>。分析还揭示：<strong>在客观可验证领域（编程、数学），群体验证效果显著；在主观领域（创意写作），群体投票可能稀释多样性</strong>。</p>
+
+<h3>2.2 TFGN：读/写分离的持续学习</h3>
+<p>TFGN 的架构智慧来自一个极简洞察：<strong>"忘记"的本质是参数被后续更新覆盖</strong>。前向传播需要所有参数参与（全连接），但反向传播却会不加区分地修改所有参数。</p>
+<p>解决方案是<strong>在架构层面将"读取"和"写入"解耦</strong>：</p>
+<ul>
+<li><strong>前向传播（读取）</strong>：保持全密连接，保证模型表达力</li>
+<li><strong>反向传播（写入）</strong>：结构化参数更新，新旧领域更新作用在正交子空间</li>
+<li>实验显示域间梯度正交性 ≥99.59%</li>
+</ul>
+<p>在 LLaMA 3.1 8B 上跨 6 个异构领域后，HellaSwag 准确率稳定在 0.504-0.510。后向迁移低至 <span class="highlight">-0.007</span>。一个意外收获：仅靠 Python 训练让 JS 困惑度下降 26.8%。</p>
+
+<h3>2.3 SDAR：用门控机制驯服 Agent 强化学习</h3>
+<p>SDAR 将即时策略自蒸馏（OPSD）视为<strong>门控辅助目标</strong>，而非替代 RL 主线。通过 sigmoid 门控：教师认可时放大蒸馏，教师拒绝时软性衰减。在 <span class="highlight">Qwen2.5 和 Qwen3</span> 系列上，ALFWorld +9.4%、Search-QA +7.0%、WebShop +10.2%。</p>
+
+<div class="divider"></div>
+
+<h2>三、实验结果</h2>
+
+<table>
+<tr><th>论文</th><th>关键指标</th><th>提升幅度</th></tr>
+<tr><td>OpenDeepThink</td><td>Codeforces Elo</td><td><strong>+405 分</strong></td></tr>
+<tr><td>TFGN</td><td>后向迁移（BWT）</td><td><strong>-0.007</strong>（近零遗忘）</td></tr>
+<tr><td>TFGN</td><td>域间梯度正交性</td><td>≥99.59%</td></tr>
+<tr><td>TFGN</td><td>JS 跨域迁移</td><td>困惑度 -26.8%</td></tr>
+<tr><td>SDAR</td><td>ALFWorld</td><td><strong>+9.4%</strong></td></tr>
+<tr><td>SDAR</td><td>Search-QA</td><td>+7.0%</td></tr>
+<tr><td>SDAR</td><td>WebShop-Acc</td><td><strong>+10.2%</strong></td></tr>
+<tr><td>DDC</td><td>推理 Token 消耗</td><td><strong>减少 10 倍+</strong></td></tr>
+</table>
+
+<div class="divider"></div>
+
+<h2>四、技术启示与发展方向</h2>
+
+<h3>4.1 广度推理的商业价值</h3>
+<p>OpenDeepThink 证明在固定预算下，<strong>并行采样+群体验证</strong>可能比长链推理更高效，对延迟敏感场景（搜索、推荐）有直接的部署启示。</p>
+
+<h3>4.2 TFGN 打开了持续学习的想象空间</h3>
+<p>架构级读/写解耦可能是持续预训练的根本解法，有望催生<strong>"持续预训练即服务"（CPTaaS）生态</strong>。</p>
+
+<h3>4.3 Token 级精密信号重塑 RL</h3>
+<p>SDAR 中的 sigmoid 门控回答了 RL 的核心问题：当老师信号有噪声时，多大程度上信任它？这与人类学习中"选择性指导"的思想高度一致。</p>
+
+<h3>4.4 三条路线正在交汇</h3>
+<ul>
+<li><strong>OpenDeepThink</strong>：推理阶段 → 群体比较替代个体判断</li>
+<li><strong>TFGN</strong>：训练阶段 → 架构解耦替代经验重放</li>
+<li><strong>SDAR</strong>：微调阶段 → 门控蒸馏替代纯 RL</li>
+</ul>
+<p>共同指向：<strong>AI 研究正从"大力出奇迹"转向"精巧设计换效率"的黄金时代</strong>。</p>
+
+<div class="divider"></div>
+
+<h2>五、总结</h2>
+<p>本周 arXiv 精读呈现振奋人心的趋势：<strong>前沿焦点从"如何更贵"转向"如何更巧"</strong>。OpenDeepThink、TFGN、SDAR 三项工作没有依赖千卡集群或万亿参数——它们靠的是优雅的架构设计和深刻的理论洞察。</p>
+<p>对于 AI 从业者而言，这些工作的真正启示或许不在于具体的算法细节，而在于一个更底层的判断：这波大模型技术的成长空间远未被耗尽——不是通过堆参数，而是通过"想得更多、忘得更少、训练更巧"。在推理计算预算日益成为瓶颈的当下，那种能够在给定算力约束下最大化模型潜力的策略，将比单纯追求更大更强的基座模型具有更高的工程回报。</p>
+
+<blockquote>最佳实践建议：推理质量受限 → 尝试并行推理；持续学习后性能回退 → 关注 TFGN；Agent 训练不及预期 → 参考门控蒸馏；推理成本过高 → 试试 DDC 的 10 倍压缩。</blockquote>
+
+<div class="ref">
+<h3>参考资料</h3>
+<ol>
+<li><strong>OpenDeepThink</strong> — arXiv:2605.15177<br><a href="https://arxiv.org/abs/2605.15177">https://arxiv.org/abs/2605.15177</a></li>
+<li><strong>Self-Distilled Agentic Reinforcement Learning</strong> — arXiv:2605.15155<br><a href="https://arxiv.org/abs/2605.15155">https://arxiv.org/abs/2605.15155</a></li>
+<li><strong>TFGN</strong> — arXiv:2605.15053<br><a href="https://arxiv.org/abs/2605.15053">https://arxiv.org/abs/2605.15053</a></li>
+<li><strong>Dual-Dimensional Consistency</strong> — arXiv:2605.15100<br><a href="https://arxiv.org/abs/2605.15100">https://arxiv.org/abs/2605.15100</a></li>
+</ol>
+</div>
+
+<div class="footer">
+小织 🧵 | 2026-05-15
+</div>
+
+</div>
+</body>
+</html>

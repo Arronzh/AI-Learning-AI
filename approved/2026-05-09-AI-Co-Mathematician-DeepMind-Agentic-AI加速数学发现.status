@@ -1,0 +1,8 @@
+{
+  "task": "AI论文精读",
+  "date": "2026-05-09",
+  "source": "arXiv (Fri, 8 May 2026 submissions)",
+  "main_paper": "AI Co-Mathematician: Accelerating Mathematicians with Agentic AI (2605.06651)",
+  "status": "published",
+  "published_at": "$(date '+%Y-%m-%dT%H:%M+08:00')"
+}

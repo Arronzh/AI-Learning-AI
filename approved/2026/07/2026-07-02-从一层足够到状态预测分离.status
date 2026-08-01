@@ -1,0 +1,20 @@
+{
+  "date": "2026-07-02",
+  "title": "从「一层足够」到「状态预测分离」：今日arXiv五篇重磅论文揭示LLM训练的底层逻辑革命",
+  "status": "pending_review",
+  "created_at": "2026-07-02T22:00:00+08:00",
+  "checks": {
+    "markdown_over_1000": true,
+    "html_over_10kb": true,
+    "links_accessible": true,
+    "pending_copied": true,
+    "status_file_created": true
+  },
+  "articles": [
+    "arXiv:2607.01232 - Is One Layer Enough?",
+    "arXiv:2607.01218 - State-Prediction Separation Hypothesis",
+    "arXiv:2607.01181 - Right in the Right Way",
+    "arXiv:2607.01152 - AGC-Bench",
+    "arXiv:2607.01208 - Distill to Detect"
+  ]
+}

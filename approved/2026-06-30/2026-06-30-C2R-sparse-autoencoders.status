@@ -1,0 +1,16 @@
+{
+  "title": "AI 可解释性新突破：C²R 正则化方法让稀疏自编码器告别特征分裂与特征吸收",
+  "date": "2026-06-30",
+  "status": "pending",
+  "model": "deepseek/deepseek-v4-flash",
+  "arxiv_papers": [
+    "2606.30609",
+    "2606.30627",
+    "2606.30410",
+    "2606.30388"
+  ],
+  "main_paper": "C²R: Cross-sample Consistency Regularization Mitigates Feature Splitting and Absorption in Sparse Autoencoders",
+  "md_size_bytes": 8850,
+  "html_size_bytes": 10905,
+  "created_at": "2026-06-30T22:00:00+08:00"
+}

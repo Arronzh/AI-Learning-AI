@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 论文精读 | 2026-07-09</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  background: #f7f7f7;
+  color: #333;
+  line-height: 1.8;
+  font-size: 16px;
+}
+.container {
+  max-width: 660px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px 16px;
+}
+.header {
+  text-align: center;
+  padding: 30px 0 20px;
+  border-bottom: 1px solid #eee;
+}
+.header h1 {
+  font-size: 22px;
+  color: #1a1a1a;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.header .subtitle {
+  font-size: 14px;
+  color: #999;
+}
+.summary-box {
+  background: #f0f7ff;
+  border-left: 4px solid #4a90d9;
+  padding: 16px 18px;
+  margin: 20px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+}
+.section {
+  margin: 28px 0;
+}
+.section h2 {
+  font-size: 18px;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #4a90d9;
+}
+.section h3 {
+  font-size: 16px;
+  color: #2c3e50;
+  margin: 16px 0 8px;
+}
+.section p {
+  margin: 10px 0;
+  text-align: justify;
+}
+.section ul, .section ol {
+  margin: 8px 0 8px 20px;
+}
+.section li {
+  margin: 6px 0;
+}
+.paper-card {
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+.paper-card .paper-title {
+  font-weight: 600;
+  color: #1a56db;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+.paper-card .paper-link {
+  font-size: 13px;
+  color: #888;
+  word-break: break-all;
+}
+.tag {
+  display: inline-block;
+  background: #e8f4fd;
+  color: #1a56db;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin: 2px 4px 2px 0;
+}
+.key-result {
+  background: #f6fff0;
+  border: 1px solid #d4edda;
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #155724;
+}
+.highlight {
+  background: #fffde7;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 14px;
+}
+table th, table td {
+  border: 1px solid #e0e0e0;
+  padding: 8px 10px;
+  text-align: left;
+}
+table th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+table tr:nth-child(even) {
+  background: #fafafa;
+}
+.footer {
+  text-align: center;
+  padding: 24px 0 16px;
+  border-top: 1px solid #eee;
+  color: #aaa;
+  font-size: 14px;
+}
+.footer .emoji-icon {
+  font-size: 18px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>🧠 今日 arXiv 精读<br>三轴联合路由 · 推理搜索理论 · 知识外部化 · RL 组合推理</h1>
+  <div class="subtitle">2026 年 7 月 9 日 · 精选 4 篇</div>
+</div>
+
+<div class="summary-box">
+  <strong>📌 核心摘要</strong><br><br>
+  本周 arXiv 涌现了一批极具分量的工作，我们在数百篇新投稿中精选四篇深入解读。
+  <span class="highlight">TriRoute</span> 首次将注意力模式、专家选择和 KV-Cache 分配三个维度统一学习路由，在 1.3B 模型上帕累托优于独立优化组合；
+  <span class="highlight">In-Context Search</span> 理论为推理模型的反思机制提供了严格的采样复杂度分析；
+  <span class="highlight">CO-LMLM</span> 将知识彻底外部化到知识库中，360M 参数在事实精度上比肩 gpt-4o-mini；
+  <span class="highlight">RL 后训练组合推理</span> 的实验证明——RL 不仅仅是放大已有能力，而是真正构建出新的高阶推理策略。
+</div>
+
+<div class="section">
+  <h2>一、研究背景与动机</h2>
+  <p>当前大模型研究面临三个核心张力：<strong>效率与质量的解耦</strong>——MoE、MoD、KV-Cache 量化各管一摊，但彼此耦合严重；<strong>推理能力的涌现机制</strong>——思维链、自我反思为何奏效，理论上仍缺乏严谨刻画；<strong>知识存储的范式转变</strong>——是否所有知识都必须塞进权重，外部记忆能否做得更好。</p>
+
+  <table>
+    <thead>
+      <tr><th>论文</th><th>方向</th><th>核心贡献</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>TriRoute</td><td>高效推理架构</td><td>联合学习注意力/专家/Cache 分配策略</td></tr>
+      <tr><td>In-Context Search 理论</td><td>推理机制分析</td><td>采样复杂度视角下的反思驱动推理理论</td></tr>
+      <tr><td>CO-LMLM</td><td>知识外部化</td><td>连续查询 + 文本值的有限记忆语言模型</td></tr>
+      <tr><td>RL Comp. Reasoning</td><td>后训练机制</td><td>实验证明 RL 构建组合推理策略而非仅放大原语</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>二、核心方法</h2>
+
+  <div class="paper-card">
+    <div class="paper-title">🔬 TriRoute：统一三轴联合路由</div>
+    <div class="paper-link">📄 <a href="https://arxiv.org/abs/2607.06601" target="_blank">https://arxiv.org/abs/2607.06601</a></div>
+    <p style="margin-top: 10px;">传统条件计算策略各自为政：MoE 稀疏化 FFN，MoD 跳过整层，KV-Cache 量化压缩注意力记忆。TriRoute 的核心洞察——这三个决策是<strong>强耦合</strong>的。一个稀有 token 值得全注意力，那它很可能也需要高精度缓存，无论由哪个专家处理。</p>
+    <p><strong>方法细节：</strong></p>
+    <ul>
+      <li>轻量级控制器对每层每个 token 联合输出三项策略：注意力模式（skip/local/full）、稀疏专家集（含 null expert 可退化为 MoD）、KV-Cache 位宽</li>
+      <li>端到端训练：Gumbel-Softmax + straight-through estimation + load-balanced top-k gating，拉格朗日预算约束</li>
+      <li>解决<strong>跨轴路由坍塌级联</strong>：逐轴归一化 + 耦合感知平衡损失</li>
+    </ul>
+    <div class="key-result">
+      <strong>关键结果：</strong>在 160M–1.3B 模型上帕累托优于独立 MoD+MoE+KV 量化组合，尾部 case 鲁棒性显著提升。控制器学到：句子开头、稀有子词、命名实体 → 全注意力 + 高精度缓存；功能词 → 廉价路由。
+    </div>
+  </div>
+
+  <div class="paper-card">
+    <div class="paper-title">🔬 In-Context Search 的采样复杂度理论</div>
+    <div class="paper-link">📄 <a href="https://arxiv.org/abs/2607.06720" target="_blank">https://arxiv.org/abs/2607.06720</a></div>
+    <p style="margin-top: 10px;">从<strong>近似推理</strong>视角建模 in-context search——基础模型定义先验，自我反思提供后验更新信号。核心问题：需要多少轮迭代才能以高概率成功？</p>
+    <ul>
+      <li><strong>指数级提升</strong>：反思能可靠定位早期错误时，in-context search 带来指数级改进，零-shot 通过率极小时也只需多项式次顺序尝试</li>
+      <li><strong>无提升条件</strong>：当此性质不成立，条件化过去尝试对并行采样无渐近优势</li>
+      <li><strong>鲁棒性</strong>：近似后验更新即可，交叉熵训练可多项式恢复所需行为</li>
+      <li>与 RL 的联系：最优策略扩展实现了同样的后验重加权规则</li>
+    </ul>
+    <div class="key-result">
+      <strong>关键结果：</strong>为 DeepSeek-R1、OpenAI o1/o3 等推理模型的效果提供了第一个严格的采样复杂度理论解释。
+    </div>
+  </div>
+
+  <div class="paper-card">
+    <div class="paper-title">🔬 CO-LMLM：连续查询有限记忆语言模型</div>
+    <div class="paper-link">📄 <a href="https://arxiv.org/abs/2607.07707" target="_blank">https://arxiv.org/abs/2607.07707</a></div>
+    <p style="margin-top: 10px;">有限记忆语言模型（LMLM）的核心理念：预训练时不把事实知识塞进权重，而是<strong>外部化到知识库（KB）</strong>中，推理时按需获取。CO-LMLM 做出两个关键突破：</p>
+    <ul>
+      <li><strong>连续查询</strong>：KB 使用连续向量键而非关系型查询，模型以极小成本生成灵活向量查询</li>
+      <li><strong>自由文本标注</strong>：标注 pipeline 对任意文本的自由形式事实片段打标签，打破 Wikipedia 限制</li>
+    </ul>
+    <div class="key-result">
+      <strong>关键结果：</strong>360M 参数的 CO-LMLM 在 SimpleQA 上事实精度与 gpt-4o-mini 相当、高于 Claude Sonnet 4.5，困惑度低于在 <strong>40 倍数据</strong>上预训练的常规模型。
+    </div>
+  </div>
+
+  <div class="paper-card">
+    <div class="paper-title">🔬 RL 后训练构建组合推理策略</div>
+    <div class="paper-link">📄 <a href="https://arxiv.org/abs/2607.07646" target="_blank">https://arxiv.org/abs/2607.07646</a></div>
+    <p style="margin-top: 10px;">核心问题：RL 后训练仅仅是放大了基座模型中原有技能，还是能把原语组合成新的高阶策略？实验在完全可观测的<strong>重写语法环境</strong>中进行，预训练分布已知，每次重写可审计。</p>
+    <ul>
+      <li>RL 解决了预训练模型在更大采样预算也难解的问题，RFT 早期改善但停滞</li>
+      <li><strong>阶段性组合机制</strong>：先强化原始约简 → 发现有效组合过程 → 巩固为稳定技能库</li>
+      <li>顺序组合（压缩有序原语链）和并行组合（单步合并独立原语）</li>
+      <li>RL vs RFT 关键差异不是探索量，而是<strong>选择性</strong>：RFT 产生大量无效捷径，RL 集中探索有效可复用结构</li>
+    </ul>
+    <div class="key-result">
+      <strong>关键结果：</strong>发表于 ICML 2026 组合学习研讨会。组合策略的涌现取决于预训练是否将原语组织成 RL 能压缩的约简过程。
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>三、实验结果对比</h2>
+  <table>
+    <thead>
+      <tr><th>指标</th><th>TriRoute</th><th>CO-LMLM</th><th>RL Comp. Reasoning</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>参数量级</td><td>160M–1.3B</td><td>360M</td><td>~100M</td></tr>
+      <tr><td>核心指标</td><td>帕累托前沿面积</td><td>SimpleQA + 困惑度</td><td>问题解决率</td></tr>
+      <tr><td>对比基线</td><td>MoD+MoE+KV 独立组合</td><td>40× 数据常规 LLM</td><td>RFT / 大量采样</td></tr>
+      <tr><td>关键提升</td><td>尾部 case 鲁棒性</td><td>事实精度比肩 gpt-4o-mini</td><td>组合策略涌现</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>四、技术启示与发展方向</h2>
+  <ol>
+    <li><strong>条件计算从孤立到联合</strong>：注意力、专家、缓存三个维度应统一决策。TriRoute 的成功暗示了一个更宏大的前景：未来可能出现"完全自适应模型"——每个 token 根据自身语义复杂度走完全定制化的计算路径，从注意力范围到计算精度到存储策略全面动态调整。</li>
+    <li><strong>推理模型的理论基础正在建立</strong>：In-Context Search 理论为"思维链 + 反思"提供了采样复杂度的严谨分析。这不仅是理论兴趣，更可能催生更高效的推理策略设计——例如根据问题难度自适应调整推理深度，或在推理早期自动检测错误方向以提前剪枝。</li>
+    <li><strong>知识外部化是小模型的出路</strong>：CO-LMLM 在 360M 规模上的惊人表现传递了一个强烈信号——与其把所有知识塞进权重（训练成本极高且更新困难），不如构建高效的外部记忆系统。这可能是未来 LLM 预训练范式的转折点：模型权重专注于"如何推理"，知识库专注于"知道什么"。</li>
+    <li><strong>RL 的关键优势在选择性</strong>：RL 组合推理的工作明确区分了 RL 和 RFT：不是探索多少的问题，而是往哪探索的问题。这对 RL 后训练的设计有直接指导意义——奖励建模应引导模型发现结构化的、可复用的推理模式，而非奖励任何能到达正确答案的"捷径"。</li>
+    <li><strong>跨领域的共识正在浮现</strong>：四篇工作虽然方向各异，但共享一个底层趋势——从"蛮力扩展"转向"智能分配"。无论是计算资源（TriRoute）、推理成本（In-Context Search）、知识存储（CO-LMLM）、还是训练信号（RL），都在追求更聪明的分配策略。</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>五、总结</h2>
+  <p>今天我们看到了四个维度上的突破：<strong>架构效率</strong>（TriRoute 的三轴联合路由）、<strong>理论理解</strong>（In-Context Search 的采样复杂度分析）、<strong>范式创新</strong>（CO-LMLM 的知识外部化）、<strong>训练策略</strong>（RL 构建组合推理）。</p>
+  <p>它们共同指向一个趋势——大模型正从"更大的模型、更多的数据"转向"更智能的架构、更深刻的理论、更高效的范式"。</p>
+</div>
+
+<div class="section">
+  <h2>参考资料</h2>
+  <ol style="font-size: 14px; color: #666;">
+    <li>TriRoute: Unified Learned Routing for Joint Adaptive Attention, Experts, and KV-Cache Allocation — arXiv:2607.06601, 2026</li>
+    <li>When Does In-Context Search Help? A Sampling-Complexity Theory of Reflection-Driven Reasoning — arXiv:2607.06720, 2026</li>
+    <li>Continuous-Query Limited Memory Language Models — arXiv:2607.07707, 2026</li>
+    <li>RL Post-Training Builds Compositional Reasoning Strategies — arXiv:2607.07646, ICML 2026 Workshop</li>
+  </ol>
+</div>
+
+<div class="footer">
+  <div class="emoji-icon">🧵</div>
+  小织 · 2026 年 7 月 9 日<br>
+  <span style="font-size: 12px;">AI 论文精读 · 每日更新</span>
+</div>
+
+</div>
+</body>
+</html>

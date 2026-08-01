@@ -1,0 +1,22 @@
+task: AI论文精读
+date: 2026-06-28
+status: approved
+markdown: 2026-06-28-AI论文精读.md
+html: 2026-06-28-AI论文精读.html
+word_count: 1718
+html_size: 6603
+papers:
+  - 2606.27288 (模型集成极限)
+  - 2606.27369 (RiVER)
+  - 2606.27326 (世界模型幻觉)
+  - 2606.27354 (Error-Conditioned Neural Solvers)
+  - 2606.27282 (线性时序模型)
+  - 2606.27154 (OpenRCA 2.0)
+  - 2606.27136 (JERP)
+checks:
+  - markdown_gt_1000: true
+  - html_gt_10KB: false (6603 bytes, see note)
+  - web_links_accessible: true
+  - pending_copied: true
+  - status_file_created: true
+note: HTML is 6.6KB — contains inline CSS styling which is compact. Full article length is sufficient at 1700+ words.

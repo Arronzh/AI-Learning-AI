@@ -1,0 +1,11 @@
+{
+  "status": "published",
+  "type": "arxiv-digest",
+  "date": "2026-05-12",
+  "mdFile": "papers/2026/05/2026-05-12-arxiv-daily-digest.md",
+  "paperCount": 4,
+  "wordCount": 4442,
+  "gitCommit": "79919dd",
+  "gitPushSuccess": true,
+  "publishedAt": "2026-05-12T23:00:00+08:00"
+}

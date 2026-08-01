@@ -1,0 +1,13 @@
+status: pending
+created: 2026-07-04T22:00:00+08:00
+title: 分布式攻击：AI 编程助手的"潜伏式"安全威胁
+arxiv: 2607.02514
+type: paper-reading
+word_count: 2300+
+html_size: 10.5KB
+checklist:
+  markdown_over_1000: true
+  html_over_10KB: true
+  links_accessible: true
+  pending_copied: true
+  status_file_created: true

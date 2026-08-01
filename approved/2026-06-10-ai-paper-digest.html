@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 论文精读 · 2026-06-10</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif; background: #f5f5f5; color: #222; line-height: 1.8; padding: 0; }
+  .container { max-width: 680px; margin: 0 auto; background: #fff; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 40px 24px 32px; text-align: center; }
+  .header h1 { font-size: 24px; font-weight: 700; letter-spacing: 2px; margin-bottom: 8px; }
+  .header .subtitle { font-size: 14px; opacity: 0.7; }
+  .header .date-badge { display: inline-block; background: rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 16px; font-size: 12px; margin-top: 12px; }
+  .content { padding: 20px 24px 40px; }
+  .summary-box { background: #f0f4ff; border-left: 4px solid #0f3460; border-radius: 4px; padding: 16px 18px; margin-bottom: 24px; font-size: 14px; }
+  .summary-box .label { font-weight: 700; color: #0f3460; font-size: 13px; margin-bottom: 6px; }
+  .summary-box p { color: #444; font-size: 14px; line-height: 1.7; }
+  .section { margin-bottom: 28px; }
+  .section h2 { font-size: 18px; font-weight: 700; color: #1a1a2e; border-bottom: 2px solid #e8e8e8; padding-bottom: 8px; margin-bottom: 14px; }
+  .section h3 { font-size: 16px; font-weight: 600; color: #0f3460; margin: 16px 0 8px; }
+  .section p { font-size: 14px; color: #333; margin-bottom: 10px; text-align: justify; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(15,52,96,0.12) 60%); }
+  .paper-card { background: #fafafa; border: 1px solid #eee; border-radius: 8px; padding: 16px 18px; margin: 16px 0; }
+  .paper-card .paper-title { font-weight: 700; font-size: 15px; color: #0f3460; margin-bottom: 4px; }
+  .paper-card .paper-org { font-size: 12px; color: #888; margin-bottom: 10px; }
+  .paper-card .paper-key { font-size: 13px; color: #555; line-height: 1.6; }
+  .paper-card .paper-key strong { color: #222; }
+  .result-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  .result-table th { background: #1a1a2e; color: #fff; padding: 8px 10px; text-align: center; font-weight: 600; }
+  .result-table td { padding: 7px 10px; border-bottom: 1px solid #eee; text-align: center; }
+  .result-table tr:nth-child(even) { background: #f8f8f8; }
+  .result-table .improve { color: #c0392b; font-weight: 600; }
+  .tag { display: inline-block; background: #0f3460; color: #fff; font-size: 11px; padding: 2px 10px; border-radius: 12px; margin-right: 4px; }
+  .insight-box { background: #fff8e6; border-left: 4px solid #f39c12; border-radius: 4px; padding: 14px 16px; margin: 12px 0; font-size: 14px; }
+  .insight-box .insight-label { font-weight: 700; color: #e67e22; font-size: 13px; }
+  .refs { background: #f9f9f9; border-radius: 8px; padding: 14px 18px; font-size: 13px; line-height: 1.8; }
+  .refs a { color: #0f3460; text-decoration: none; word-break: break-all; }
+  .refs a:hover { text-decoration: underline; }
+  .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; border-top: 1px solid #eee; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🧠 AI 论文精读</h1>
+    <div class="subtitle">每日 arXiv 解读 · 机器之心风格</div>
+    <div class="date-badge">📅 2026 年 6 月 10 日</div>
+  </div>
+  <div class="content">
+
+    <div class="summary-box">
+      <div class="label">📌 核心摘要</div>
+      <p>今日三篇亮点论文分别聚焦于 <strong>LLM Agent 的测试时提示学习</strong>、<strong>推理模型的内部行为预测与操控</strong>、以及 <strong>推理模型 KV Cache 的分层预算分配</strong>。三者均瞄准大模型在推理和部署阶段的核心效率与可控性问题，且均展现出极强的实用价值。</p>
+    </div>
+
+    <div class="section">
+      <h2>一、研究背景与动机</h2>
+      <p>大模型正从"能跑"迈向"好用"——但这一过程充满了折中与瓶颈。</p>
+      <p><strong>部署阶段的适应性问题</strong>：当下大多数 prompt learning 方法假设任务分布是静态的，但真实世界 Agent 面对的是跨领域、跨格式的混合流。单一 prompt 难以容纳多样任务，容易产生<span class="highlight">跨数据集干扰</span>。</p>
+      <p><strong>推理模型的可控性问题</strong>：DeepSeek-R1 等推理模型的 Chain-of-Thought 极长，且内部行为分布高度不确定。现有激活操控方法依赖检测已生成文本中的行为特征，但无法有效预测未来行为，易导致输出质量退化。</p>
+      <p><strong>推理效率瓶颈</strong>：长 CoT 导致 KV Cache 成为显存瓶颈，现有压缩方法大多假设各层、各头的预算分配是均匀的。而实验表明，推理模型的 KV 需求在实际中呈现高度非均匀的<span class="highlight">"推理波"</span>模式。</p>
+      <p style="margin-top:10px;">今日三篇工作分别从 <strong>适应 EEVEE</strong>、<strong>控制 FPCG</strong>、<strong>压缩 ReasonAlloc</strong> 三个维度切入，给出了各自的优雅解。</p>
+    </div>
+
+    <div class="section">
+      <h2>二、核心方法</h2>
+
+      <div class="paper-card">
+        <div class="paper-title">🧩 EEVEE：路由-提示协同演化的多数据集 Prompt Learning</div>
+        <div class="paper-org">上海交通大学 × 普林斯顿大学 | arXiv:2606.11182</div>
+        <div class="paper-key">
+          <strong>核心思路</strong>：与其让模型用一个 prompt 应对所有任务，不如维护一个<strong>提示集</strong> + 一个<strong>路由器</strong>，让路由器为新输入分配最合适的提示。<br><br>
+          <strong>三大创新阶段</strong>：
+          <br>① <strong>初始化</strong>：在多领域混合数据上独立学习多样化 prompt，构建 Pareto 前沿池，用贪心覆盖选择 K 个差异化提示。
+          <br>② <strong>探索</strong>：交替优化路由器与提示集——固定一端、优化另一端，形成协同演化。
+          <br>③ <strong>收敛</strong>：路由策略稳定后锁定路由器，投入更大预算在每个槽位上精细优化 prompt。
+          <br><br>
+          路由器评分融合<strong>准确率、分簇质量、负载均衡</strong>三维度，并采用退火权重机制。
+        </div>
+      </div>
+
+      <div class="paper-card">
+        <div class="paper-title">🎯 FPCG：基于未来行为预测的推理模型操控</div>
+        <div class="paper-org">Fraunhofer HHI · 东北大学 · KAIST | arXiv:2606.11172</div>
+        <div class="paper-key">
+          <strong>核心发现</strong>：推理模型的内部表征中存在两类截然不同的特征——
+          <br>• <strong>检测特征</strong>：表征已生成文本中是否存在某种行为（现有 steering 依赖的对象）
+          <br>• <strong>预测特征</strong>：表征模型在未来是否会表现出某种行为，反映模型的"意图"
+          <br><br>
+          实验表明检测特征对未来行为的预测能力很差，而预测特征可用线性探针以 <strong>64%~91% 准确率</strong>预判行为概率。
+          <br><br>
+          <strong>FPCG 算法</strong>：逐句生成时，对每个推理步生成多个候选句子，用 MLP 探针打分，选择最佳句子。完全避免激活操控导致的输出质量退化。
+        </div>
+      </div>
+
+      <div class="paper-card">
+        <div class="paper-title">📊 ReasonAlloc：推理模型的分层 KV Cache 预算分配</div>
+        <div class="paper-org">清华大学 · 香港城市大学 · 北京大学 · 中科院自动化所 | arXiv:2606.11164</div>
+        <div class="paper-key">
+          <strong>核心发现</strong>：推理模型的 KV 需求在层间呈现非单调的"<strong>推理波</strong>"模式——
+          <br>• <strong>浅层</strong>：需求高，承载全局语义感知
+          <br>• <strong>中层</strong>：需求低且振荡，局部逻辑推理
+          <br>• <strong>深层</strong>：需求突增，输出前整体验证
+          <br><br>
+          跨架构方差是跨任务方差的 <strong>3.8 倍</strong>，但同一模型内高度稳定。
+          <br><br>
+          <strong>双层分配</strong>：① 离线层间预分配（校准 + 平滑 + 边界保护） ② 在线头间动态路由（每 Δ token 重评估，打破"饿死"循环）
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>三、实验结果</h2>
+
+      <h3>📊 EEVEE 关键结果</h3>
+      <table class="result-table">
+        <tr><th>设置</th><th>结果</th></tr>
+        <tr><td>Qwen3-4B-Instruct 四基准平均分</td><td><strong class="improve">51.75</strong>（+10.38 vs 基线）</td></tr>
+        <tr><td>DeepSeek-V3.2 四基准平均分</td><td><strong class="improve">64.07</strong>（+24.32 vs 基线）</td></tr>
+        <tr><td>累积任务保持（四任务后）</td><td><strong class="improve">+41.53</strong>（GEPA: -15.36, ACE: -18.58）</td></tr>
+        <tr><td>Token 开销</td><td>4.32k/例，仅 ACE 的 <strong>1/5</strong></td></tr>
+      </table>
+
+      <h3>📊 FPCG 关键结果</h3>
+      <table class="result-table">
+        <tr><th>指标</th><th>数值</th></tr>
+        <tr><td>预测特征二值准确率</td><td>20/24 设置 >70%，最高 <strong>91%</strong></td></tr>
+        <tr><td>输出质量退化</td><td><strong>几乎为零</strong>（过滤率 ≈ 0%）</td></tr>
+        <tr><td>激活操控失效场景</td><td>FPCG 在 2 个数据集上成功操控</td></tr>
+      </table>
+
+      <h3>📊 ReasonAlloc 关键结果</h3>
+      <table class="result-table">
+        <tr><th>预算 (token)</th><th>R-KV (均匀)</th><th>ReasonAlloc</th><th>提升</th></tr>
+        <tr><td>MATH-500 @ 128</td><td>52.77%</td><td><strong>57.80%</strong></td><td><span class="improve">+5.03</span></td></tr>
+        <tr><td>MATH-500 @ 512</td><td>76.48%</td><td><strong>82.50%</strong></td><td><span class="improve">+6.02</span></td></tr>
+        <tr><td>AIME 2024 @ 256</td><td>10.42%</td><td><strong>20.00%</strong></td><td><span class="improve">+9.58</span></td></tr>
+        <tr><td>AIME 2024 @ 1024</td><td>45.42%</td><td><strong>49.17%</strong></td><td><span class="improve">+3.75</span></td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>四、技术启示与发展方向</h2>
+
+      <div class="insight-box">
+        <div class="insight-label">💡 启示一：从"一个 prompt 走天下"到"路由 + 提示集"</div>
+        <p>EEVEE 的核心理念——用路由器解耦任务间干扰——是对当前 Agent 架构的深刻修正。未来方向包括：扩展到细粒度任务发现、全反射式在线学习、路由器稀疏化。</p>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-label">💡 启示二：推理模型可控性从"事后检测"到"事前预测"</div>
+        <p>FPCG 从根本上区分了检测与预测两类特征，可应用于安全对齐（推理中识别并避免有害行为），与 SAE 等可解释性工具的结合将释放更大潜力。</p>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-label">💡 启示三：KV Cache 压缩中非均匀分配是必选项</div>
+        <p>ReasonAlloc 用实证推翻了"均匀分配 + 单调递减"的假设。推理模型的 KV 需求是架构依赖、非线性的，头间动态路由在高压缩比下至关重要。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>五、总结</h2>
+      <p>今日三篇论文从不同角度回应了当前 AI 系统面临的核心矛盾——<strong>模型越强大、越智能，其部署和调控的复杂度也越高</strong>。</p>
+      <p style="margin-top:8px;">
+        • <strong>EEVEE</strong> 告诉我们：适应多领域任务需要专门化，而非一个 prompt 统吃。<br>
+        • <strong>FPCG</strong> 告诉我们：理解模型"在想什么"比"说了什么"更有利于控制它。<br>
+        • <strong>ReasonAlloc</strong> 告诉我们：KV Cache 不是均匀的水桶，应该按需分配。
+      </p>
+      <p style="margin-top:10px;">三项工作在方法论上都采用了"先分析、后设计"的路径——通过对模型内部机制的深入理解来驱动技术方案创新，而非靠直觉堆叠技巧。这种研究范式值得持续关注。</p>
+    </div>
+
+    <div class="section">
+      <h2>参考资料</h2>
+      <div class="refs">
+        1. <strong>EEVEE</strong> — arXiv:2606.11182<br>
+        <a href="https://arxiv.org/abs/2606.11182">https://arxiv.org/abs/2606.11182</a><br><br>
+        2. <strong>FPCG: Future Probe Controlled Generation</strong> — arXiv:2606.11172<br>
+        <a href="https://arxiv.org/abs/2606.11172">https://arxiv.org/abs/2606.11172</a><br><br>
+        3. <strong>ReasonAlloc</strong> — arXiv:2606.11164<br>
+        <a href="https://arxiv.org/abs/2606.11164">https://arxiv.org/abs/2606.11164</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">小悟 🧵 | 2026 年 6 月 10 日</div>
+</div>
+</body>
+</html>

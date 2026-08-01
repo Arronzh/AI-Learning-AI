@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 论文精读 | 2026-07-26</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.8;
+}
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px 20px;
+}
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  border-left: 4px solid #07c160;
+  padding-left: 12px;
+}
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #07c160;
+  margin: 30px 0 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e8e8e8;
+}
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #444;
+  margin: 20px 0 10px;
+}
+.summary-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: #333;
+}
+.summary-box strong {
+  color: #15803d;
+}
+p {
+  font-size: 15px;
+  margin-bottom: 12px;
+  text-align: justify;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 14px;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px 10px;
+  text-align: left;
+}
+th {
+  background: #f0fdf4;
+  font-weight: 600;
+  color: #15803d;
+}
+td {
+  background: #fff;
+}
+ul, ol {
+  margin: 10px 0 15px 25px;
+  font-size: 15px;
+}
+li {
+  margin-bottom: 6px;
+}
+.refs {
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 13px;
+  color: #666;
+  margin-top: 5px;
+}
+.refs a {
+  color: #07c160;
+  text-decoration: none;
+  word-break: break-all;
+}
+.footer {
+  text-align: center;
+  padding: 25px 0 10px;
+  font-size: 13px;
+  color: #999;
+}
+.highlight {
+  color: #c2410c;
+  font-weight: 600;
+}
+.tag {
+  display: inline-block;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+.section-meta {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>猴王金箍棒：一个统一六大科学领域的多模态基础模型；Muon 优化器的关键成分被锁定；GRPO 在 SFT 充足时收益为零</h1>
+
+<div class="section-meta">📅 2026 年 7 月 26 日 · 精选 3 篇 arXiv 论文</div>
+
+<div class="summary-box">
+<strong>📌 核心摘要</strong><br><br>
+本期精读三篇最新 arXiv 论文。<br><br>
+<strong>1️⃣ Monkey King Bang (MKB)</strong>：上海 AI for Science 团队提出统一科学多模态基础模型，覆盖 DNA、RNA、蛋白质、小分子、地球科学和医学图像六大领域，仅 11B 参数在 17/20 项生物学任务上超越万亿参数 Intern-S1-Pro。<br><br>
+<strong>2️⃣ The Active Ingredient in Muon's Grokking</strong>：通过系统消融实验锁定 <span class="highlight">正交化（Newton-Schulz 迭代）</span>是 Muon 优化器加速"顿悟"的关键，谱缩放可安全移除。<br><br>
+<strong>3️⃣ ReliableTableQA</strong>：GRPO 仅在 SFT 欠训练时提供可测量收益——一旦 SFT 达到 200 样本以上，<span class="highlight">RL 微调不再带来提升</span>。
+</div>
+
+<h2>一、研究背景与动机</h2>
+
+<h3>MKB：为什么需要统一科学多模态模型</h3>
+<p>科学研究正从单一学科走向跨域推理。理解基因组变异如何导致疾病，需要整合遗传学、转录组学、蛋白质生物学和分子药理学等多维度证据。然而现有 AI 系统要么是特化专家模型（如 ESM、GNN），要么主要通过文本序列化统一科学数据（如 Intern-S1-Pro）。前者无法跨域组合，后者受限于文本中心机制——对于稠密大气场、高分辨率医学图像这类"模态原生"输出，文本序列化本身就是有损的。</p>
+
+<h3>Muon Grokking：一个"顿悟"优化器的黑盒之谜</h3>
+<p>Muon 优化器因在模运算任务上比 AdamW 更快达到"顿悟"而备受关注。但先前工作将其加速归因于"谱范数约束 + 正交化动量"两个成分的组合，并未分离各自的贡献。更关键的是，"更快"本身可能是个误导——如果只用首次达到精度阈值的时间来衡量，会忽略优化器在阈值附近的震荡行为。</p>
+
+<h3>ReliableTableQA：到底需要多少监督？</h3>
+<p>企业数据分析中，一条语法正确的 SQL 可能返回基于 3 行样本算出的平均值、经多重比较后不再显著的排序、或因空值静默排除 15% 行的聚合结果。现有系统对所有这些情况自信作答。ReliableTableQA 提出了一个正交问题：如何让 LLM 标注统计可靠性，以及——做这件事到底需要多少标注？</p>
+
+<h2>二、核心方法</h2>
+
+<h3>MKB：共享骨干 + 模态适配的三段式架构</h3>
+<p>MKB 基于 Qwen3-VL-8B 共享 Transformer 骨干，通过模态定制编码器 + 适配器 + 解码器覆盖六大领域：</p>
+<ul>
+<li><strong>生物序列（DNA/RNA/蛋白质）</strong>：Perceiver-style 重采样器 + 模态投影器，将变长序列压缩为固定长度潜在 token</li>
+<li><strong>小分子</strong>：分子图编码 + 图神经网络处理几何结构</li>
+<li><strong>地球系统数据</strong>：保留密集经纬度 token 网格，直接处理物理场的空间结构</li>
+<li><strong>医学图像</strong>：视觉编码器适配 + 分割解码器</li>
+</ul>
+<p>训练采用 <strong>二阶段"模态优先-语言微调"课程</strong>：Stage 1 冻结骨干冻结，对齐各模态组件；Stage 2 联合巩固模态组件与语言骨干，同时限制通用能力退化。</p>
+
+<h3>Muon Grokking 消融：锁定"有效成分"</h3>
+<p>研究团队设计了 2×2 消融实验：</p>
+<table>
+<tr><th>变体</th><th>正交化</th><th>谱缩放</th><th>vs AdamW</th></tr>
+<tr><td>M0（完整 Muon）</td><td>✅</td><td>✅</td><td>显著更快</td></tr>
+<tr><td><strong>M1（仅正交化）</strong></td><td>✅</td><td>❌</td><td><span class="highlight">匹配 M0</span></td></tr>
+<tr><td>M2（仅谱缩放）</td><td>❌</td><td>✅</td><td>不显著</td></tr>
+<tr><td>M3（AdamW）</td><td>❌</td><td>❌</td><td>基线</td></tr>
+</table>
+<p>关键结论：<span class="highlight">正交化是唯一有效成分</span>，谱缩放可安全移除。机制分析还发现，正交化优化器在顿悟时达到的谱范数约为 AdamW 的 <strong>1/3</strong>，控制嵌入更新量后仍成立——说明 Muon 找到了真正不同的低范数解。</p>
+
+<h3>ReliableTableQA：一个数据效率问题的严谨解剖</h3>
+<p>框架贡献三大组件：</p>
+<ol>
+<li><strong>R1-R10 可靠性分类体系</strong>：涵盖小样本聚合、置信区间过宽、多重比较膨胀、缺失数据偏倚、Simpson 悖论等十大统计陷阱</li>
+<li><strong>程序优先数据管道</strong>：用上下文无关文法生成 SQL → 确定性标注 → 3B LLM 生成自然语言问题</li>
+<li><strong>系统控制实验</strong>：在 5 个数据集上变化 SFT 样本量（50~1000），每级比较 SFT 与 SFT+GRPO</li>
+</ol>
+
+<h2>三、实验结果</h2>
+
+<h3>MKB：11B 超越万亿参数</h3>
+<table>
+<tr><th>评估维度</th><th>关键结果</th></tr>
+<tr><td>生物学理解</td><td>20 项中 <strong>17 项 Top-2</strong>，超 Intern-S1-Pro（16/20）</td></tr>
+<tr><td>分子基准</td><td>部分任务超越特化专家模型</td></tr>
+<tr><td>地球系统预报</td><td>中期预报优于 <strong>HRES 运营系统</strong></td></tr>
+<tr><td>医学图像分割</td><td>整体 Dice 所有模态最佳</td></tr>
+<tr><td>通用能力保持</td><td>基本保持 Qwen3-VL 骨干原有能力</td></tr>
+</table>
+<p>值得注意的是，MKB 的 11B 参数与 Intern-S1-Pro 的约 1T 参数之间相差 <strong>两个数量级</strong>。</p>
+
+<h3>Muon Grokking：速度-稳定性前沿</h3>
+<ul>
+<li>单次 Newton-Schulz 迭代（ns=1）最快但 <strong>6/8 种子瞬态坍缩</strong>（精度降至 0.23-0.38）</li>
+<li>五次迭代（ns=5）在所有学习率下鲁棒</li>
+<li><strong>Lean-Muon</strong>：移除谱缩放 + 5 次迭代 = 计算量减少且无性能损失</li>
+<li>关键方法论贡献：首次区分"首次达到"和"稳定保持"，发现两者可<strong>反转</strong>优化器排名</li>
+</ul>
+
+<h3>ReliableTableQA：严格的零结果</h3>
+<table>
+<tr><th>评估指标</th><th>零样本</th><th>200 样本 SFT</th><th>GRPO 增量</th></tr>
+<tr><td>Rel-F1</td><td>0.61</td><td><strong>0.98</strong></td><td>0</td></tr>
+<tr><td>SQL 解析率</td><td>0.52</td><td><strong>1.00</strong></td><td>0</td></tr>
+<tr><td>UCAR</td><td>5.5%</td><td><strong>0.000</strong></td><td>0</td></tr>
+<tr><td>域外泛化</td><td>—</td><td><strong>0.997</strong></td><td>0</td></tr>
+</table>
+<p><span class="highlight">GRPO 仅在 SFT 仅 100 例时提供 +0.06~0.16 提升；一旦 SFT 达到 200+ 例，GRPO 增量严格为零</span>——该零结果在三个维度上稳健成立。</p>
+
+<h2>四、技术启示与发展方向</h2>
+
+<h3>科学 AI 的范式转换</h3>
+<p>MKB 的成功验证了"共享骨干 + 模态适配组件"足以覆盖异质科学领域。未来科学 AI 可能不再需要"为每个领域造一个专用大模型"，而是在通用骨干上挂载新模态适配器。MKB 在中期气象预报上超越 HRES——一个自 2016 年运行的黄金标准系统——是特别引人注目的信号。</p>
+
+<h3>优化器研究的正确评估方式</h3>
+<p>Muon 消融研究的方法学贡献可能比直接优化加速更有价值：首次达到阈值与稳定保持的排名可能反转。这一洞见适用于其它优化器、学习率调度、正则化方法的比较——如果你的"更快"只是"碰巧更快但旋即崩溃"，那它就是测量伪影。</p>
+
+<h3>GRPO 什么时候值得用？</h3>
+<p>ReliableTableQA 给出一个被干净验证的零结果：当 SFT 数据充足时，GRPO 不带来额外收益。结合此前 Anthropic（预训练质量 > RLHF 量）、Google（SFT+推理计算 > RL 微调）等发现，RL 在 LLM 训练管线中的 <strong>真实贡献正在被更精确地界定</strong>。</p>
+
+<h2>五、总结</h2>
+<table>
+<tr><th>论文</th><th>核心贡献</th><th>一句话</th></tr>
+<tr><td>Monkey King Bang</td><td>首个覆盖六大科学领域、支持模态原生生成的多模态基础模型</td><td>11B 超越 1T，科学 AI 的"瑞士军刀"</td></tr>
+<tr><td>Muon's Active Ingredient</td><td>锁定正交化为 Muon 加速 grokking 的关键成分</td><td>谱缩放可扔，Newton-Schulz 是魂</td></tr>
+<tr><td>ReliableTableQA</td><td>200 样本 SFT 足以实现高精度可靠性标注，GRPO 收益为零</td><td>数据效率先于 RL</td></tr>
+</table>
+
+<div class="refs">
+<h3>📚 参考资料</h3>
+<ol>
+<li>Chen H, Su X, Yang X, et al. <em>Monkey King Bang: A Unified Scientific Multimodal Foundation Model</em>. arXiv:2607.20557, 2026.<br><a href="https://arxiv.org/abs/2607.20557">https://arxiv.org/abs/2607.20557</a></li>
+<li>Wang Y, et al. <em>The Active Ingredient in Muon's Grokking</em>. arXiv:2607.20512, 2026.<br><a href="https://arxiv.org/abs/2607.20512">https://arxiv.org/abs/2607.20512</a></li>
+<li>Hu H C, Wu H T, Kobayashi K. <em>ReliableTableQA: How Much Supervision Does Reliability Annotation Need?</em> arXiv:2607.20537, 2026.<br><a href="https://arxiv.org/abs/2607.20537">https://arxiv.org/abs/2607.20537</a></li>
+</ol>
+</div>
+
+<div class="footer">
+小织 🧵 | 2026 年 7 月 26 日<br>
+封面图由 DALL·E 生成
+</div>
+
+</div>
+</body>
+</html>

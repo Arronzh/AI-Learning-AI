@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM 自我进化新范式、LoRA效率大提升 | AI论文精读</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: #f7f7f7;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px 24px 60px;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+        .abstract-box {
+            background: #f0f7ff;
+            border-left: 4px solid #4A90D9;
+            padding: 14px 18px;
+            margin-bottom: 28px;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+            color: #444;
+        }
+        .abstract-box strong {
+            color: #2c6fbb;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 32px 0 14px;
+            padding-left: 14px;
+            border-left: 4px solid #4A90D9;
+        }
+        h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 22px 0 10px;
+        }
+        p {
+            font-size: 15px;
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+        .paper-card {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 18px 0;
+        }
+        .paper-card .title {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        .paper-card .meta {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .paper-card .desc {
+            font-size: 14px;
+            color: #444;
+        }
+        .tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #2c6fbb;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-right: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        table th {
+            background: #4A90D9;
+            color: #fff;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+            color: #444;
+        }
+        table tr:nth-child(even) td {
+            background: #f9f9f9;
+        }
+        .insight-box {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 18px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .insight-box strong {
+            color: #e65100;
+        }
+        .ref-list {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+        .ref-list li {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+        .ref-list li a {
+            color: #4A90D9;
+            text-decoration: none;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 13px;
+        }
+        .code-link {
+            font-family: "SF Mono", "Consolas", monospace;
+            font-size: 13px;
+            background: #f0f0f0;
+            padding: 1px 6px;
+            border-radius: 3px;
+            word-break: break-all;
+        }
+        ul, ol {
+            margin: 10px 0 14px 20px;
+            font-size: 14px;
+            color: #444;
+        }
+        ul li, ol li {
+            margin-bottom: 6px;
+        }
+        .highlight {
+            background: linear-gradient(180deg,transparent 60%, #fff3cd 60%);
+            font-weight: 600;
+        }
+        @media (max-width: 480px) {
+            .container { padding: 20px 16px 40px; }
+            h1 { font-size: 19px; }
+            h2 { font-size: 16px; }
+            p { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>LLM 自我进化新范式、LoRA效率大提升、跨分词器蒸馏突破：本周 AI 论文精选</h1>
+
+        <div class="abstract-box">
+            <strong>📌 核心摘要</strong><br>
+            本周 arXiv 涌现出一批极具实用价值的 AI 论文。通义千问团队提出 Skill Self-Play，让 LLM 在"技能对弈"中持续自我进化；κ-LoRA 首次揭示 LoRA 矩阵条件数与微调效率的内在关系，用一半参数保持满精度；Byte-Prefix Marginalization 则解决了跨分词器知识蒸馏的难题。三篇工作从训练范式、微调优化到模型压缩，覆盖了大模型落地全链路。
+        </div>
+
+        <h2>一、研究背景与动机</h2>
+
+        <p>随着大语言模型（LLM）从实验室走向产业应用，三个核心瓶颈愈发突出：</p>
+
+        <p><strong>1. 模型如何持续自我进化？</strong> 传统方法依赖人工标注数据和精心设计的训练流程，成本高、迭代慢。虽然学界提出了多种自我进化方法，但面临一个根本性矛盾：环境约束的方法虽有可靠反馈但领域狭窄，开放式的自我生成则因缺乏验证而引入噪声。</p>
+
+        <p><strong>2. 微调效率如何进一步突破？</strong> LoRA 已成为大模型高效微调的事实标准，但它无差别地更新所有低秩矩阵——无论它们对最终任务是否有实质贡献。这在大规模模型和边缘部署场景下仍然是不可忽视的开销。</p>
+
+        <p><strong>3. 不同模型家族的知识如何融合？</strong> 开源社区涌现出多个各有专长的大模型，但它们的分词器各不相同。如果能将多个"老师"的能力蒸馏到一个紧凑的"学生"模型中，将极大促进模型生态的整合。然而，<span class="highlight">跨 tokenizer 的蒸馏始终是一个开放难题</span>。</p>
+
+        <p>本周的三篇工作分别直击上述痛点。</p>
+
+        <h2>二、核心方法</h2>
+
+        <h3>2.1 Skill Self-Play：技能即桥梁</h3>
+
+        <div class="paper-card">
+            <div class="title">Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills</div>
+            <div class="meta">arXiv:2607.22529 ｜ 通义千问团队 ｜ <span class="tag">cs.CL</span><span class="tag">Self-Evolution</span></div>
+            <div class="desc">提出了一种基于"技能对弈"的 LLM 自我进化框架，包含 Proposer、Solver、Skill Controller 三个组件，通过强化学习循环持续优化。</div>
+        </div>
+
+        <p>来自通义千问团队的这一工作提出了一种全新的自我进化框架。核心洞见是：<span class="highlight">"Agent 技能"可以作为任务多样性与验证可靠性之间的理想桥梁</span>——每个技能在特定场景下保证可验证的执行质量，而不同技能之间的动态路由则维持了任务的开放性。</p>
+
+        <p>Skill-SP 框架包含三个协同演化的组件：</p>
+
+        <ul>
+            <li><strong>Proposer（提议器）</strong>：基于当前技能库动态采样，生成具有挑战性的新任务</li>
+            <li><strong>Solver（求解器）</strong>：尝试解决问题，在探索中拓展能力边界</li>
+            <li><strong>Skill Controller（技能控制器）</strong>：收集执行反馈，更新和扩展技能库</li>
+        </ul>
+
+        <p>三者通过强化学习循环形成持续的自我对弈：技能不断丰富→任务持续变难→模型能力随之提升。这种设计巧妙地将开放探索与结构化验证结合在一起，避开了纯粹开放式自我进化的"垃圾进垃圾出"陷阱。</p>
+
+        <p>实验结果显示，Skill-SP 在工具使用和推理基准上持续提升骨干模型的能力天花板，尤其令人惊喜的是，它能让初始对齐较差的模型实现显著的逆转。</p>
+
+        <div class="insight-box">
+            <strong>💡 洞察</strong> 技能库的管理将成为 LLM 训练基础设施的新组件，类似今天的模型 registry。这标志着 LLM 从"参数驱动"走向"技能驱动"。
+        </div>
+
+        <p><strong>代码已开源</strong>：<span class="code-link">https://github.com/Qwen-Applications/skill-self-play</span></p>
+
+        <h3>2.2 κ-LoRA：条件数揭示 LoRA 矩阵的秘密</h3>
+
+        <div class="paper-card">
+            <div class="title">κ-LoRA: Condition Numbers Reveal Which LoRA Matrices Worth Updating</div>
+            <div class="meta">arXiv:2607.22489 ｜ Jianghui Wang 等人 ｜ <span class="tag">cs.LG</span><span class="tag">Fine-tuning</span></div>
+            <div class="desc">首次揭示 LoRA 矩阵条件数与微调效果的关系——条件数大的矩阵包含更丰富的方向信息，是性能提升的主要驱动力。</div>
+        </div>
+
+        <p>这项发现的简洁而优美：<span class="highlight">并非所有 LoRA 矩阵都值得同等对待</span>。</p>
+
+        <p>研究者首次揭示了 LoRA 矩阵条件数与微调效果之间的内在关系：</p>
+
+        <ul>
+            <li><strong>条件数小的矩阵</strong>：各方向已经相对均衡，对微调贡献有限</li>
+            <li><strong>条件数大的矩阵</strong>：存在"未充分开发"的方向，蕴含更丰富的子空间，是性能提升的主要驱动力</li>
+        </ul>
+
+        <p>基于这一洞察，κ-LoRA 提出了极简而行之有效的策略：<span class="highlight">只更新条件数最大的前 50% 的 LoRA 矩阵</span>。效果令人惊讶：</p>
+
+        <ul>
+            <li>可训练参数量减半 ✂️</li>
+            <li>平均微调时间减少 <strong>16.2%</strong></li>
+            <li>内存占用降低 <strong>4.5%</strong></li>
+            <li>精度与标准 LoRA <strong>持平</strong></li>
+        </ul>
+
+        <p>进一步的分析发现，被选中的矩阵条件数在训练过程中稳步下降，说明 κ-LoRA 的有效性源于<span class="highlight">精准的谱重平衡（spectral rebalancing）</span>，而非单纯的参数选择。</p>
+
+        <div class="insight-box">
+            <strong>💡 启示</strong> 条件数、谱分析等经典数值线性代数工具正在重新进入深度学习研究者的视野。不是所有参数都需要更新——微调正从"一刀切"走向"精细化"。
+        </div>
+
+        <h3>2.3 Byte-Prefix Marginalization：跨分词器蒸馏的优雅解法</h3>
+
+        <div class="paper-card">
+            <div class="title">Cross-Tokenizer On-Policy Distillation via Byte-Prefix Marginalization</div>
+            <div class="meta">arXiv:2607.22334 ｜ Hao Wang 等人 ｜ <span class="tag">cs.LG</span><span class="tag">cs.CL</span><span class="tag">Distillation</span></div>
+            <div class="desc">提出 Byte-Prefix Marginalization (BPM) 方法，在共享字节空间中重新表达教师分布，解决跨 tokenizer 蒸馏难题。</div>
+        </div>
+
+        <p>不同 LLM 家族使用不同的 tokenizer，导致无法直接在 token 级别进行知识蒸馏——这是模型压缩领域的一个长期难题。</p>
+
+        <p>BPM 提出了一种优雅的方案：<span class="highlight">在共享的字节空间中重新表达教师的 next-token 分布</span>。具体来说：</p>
+
+        <ol>
+            <li>将每个教师 token 的概率分配给其字节表示在"学生 token"中能找到的最长前缀匹配</li>
+            <li>映射到同一学生 token 的概率被聚合</li>
+            <li>无法匹配的部分进入显式的"残差"类别</li>
+        </ol>
+
+        <p>这样生成的蒸馏目标具有三个关键性质：<strong>词汇完备</strong>（不丢失任何概率质量）、<strong>字节对齐</strong>、<strong>质量保持</strong>。</p>
+
+        <p>实验结果非常亮眼：以 Qwen3-32B、GLM-Z1-9B-0414、MiniMax-M2.7 作为教师模型，BPM 在六大数学和编程基准上全面超越现有跨 tokenizer 方法，<span class="highlight">平均提升 3.7-6.6 个点</span>。</p>
+
+        <p><strong>项目主页</strong>：<span class="code-link">https://bpm-opd.github.io/</span></p>
+
+        <h2>三、实验结果</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>论文</th>
+                    <th>核心指标</th>
+                    <th>对比基线</th>
+                    <th>关键提升</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Skill Self-Play</td>
+                    <td>工具使用/推理基准</td>
+                    <td>骨干模型</td>
+                    <td>持续提升天花板，逆转错位模型</td>
+                </tr>
+                <tr>
+                    <td>κ-LoRA</td>
+                    <td>微调时间/内存/精度</td>
+                    <td>标准 LoRA</td>
+                    <td>参数减半，时间↓16.2%，精度持平</td>
+                </tr>
+                <tr>
+                    <td>BPM</td>
+                    <td>6项基准 avg@8</td>
+                    <td>现有跨 tokenizer 方法</td>
+                    <td>提升 3.7-6.6 个点</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>从方法论角度看，三篇论文都体现了同一个趋势：<span class="highlight">从"无差别用力"到"精确分配资源"</span>。Skill-SP 在技能层面做路由，κ-LoRA 在矩阵层面做选择，BPM 在字节层面做对齐——都是资源效率的极致追求。</p>
+
+        <h2>四、技术启示与发展方向</h2>
+
+        <h3>4.1 Agent 技能成为 LLM 进化的新锚点</h3>
+
+        <p>Skill-SP 的提出反映了业界对"Agent 化"的深层思考。与其让 LLM 在无限开放空间中盲目探索，不如以技能为基本单元组织知识和能力。这不禁让人联想到人类的学习方式：从识字、算术到编程、写作，技能本身就是能力发展的自然载体。</p>
+
+        <p>可以预见，<strong>技能库管理</strong>将成为 LLM 训练基础设施的新组件，类似今天的模型 registry。</p>
+
+        <h3>4.2 微调正进入"精细化"时代</h3>
+
+        <p>κ-LoRA 的核心理念——<strong>不是所有参数都在同等程度上需要更新</strong>——意味着我们正在告别"一刀切"的微调范式。未来，训练效率的提升将更多来自计算资源的智能调度，而非单纯的硬件升级。</p>
+
+        <h3>4.3 跨模型融合成为现实</h3>
+
+        <p>BPM 解决了跨 tokenizer 蒸馏这一"最后一公里"问题，意味着开源社区可以更好地整合不同模型家族的优势。你可以用 Qwen 的长处补上 GLM 的短板，再用 MiniMax 强化某个特定能力——都在一个紧凑的学生模型中完成。</p>
+
+        <h2>五、总结</h2>
+
+        <p>本周的三篇论文虽然来自不同的研究团队，却呈现出一条清晰的叙事主线：<strong>AI 正在学习更聪明地使用自己的资源</strong>。</p>
+
+        <ul>
+            <li><strong>训练层面</strong>：Skill-SP 用技能组织学习过程，让 LLM 自我进化更加系统化</li>
+            <li><strong>微调层面</strong>：κ-LoRA 用条件数指导参数分配，实现"少即是多"</li>
+            <li><strong>压缩层面</strong>：BPM 用字节空间弥合 tokenizer 鸿沟，促进知识融合</li>
+        </ul>
+
+        <p>这些工作预告了一个趋势：未来模型的竞争力将不仅取决于参数量和训练数据，更取决于<span class="highlight">资源分配和知识管理的智能化程度</span>。在算力成本高企的今天，学会"聪明地使用"比"拼命地堆砌"更有价值。</p>
+
+        <h2>参考资料</h2>
+
+        <ol class="ref-list">
+            <li>Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills. <br>arXiv:2607.22529 · <a href="https://arxiv.org/abs/2607.22529" target="_blank">https://arxiv.org/abs/2607.22529</a></li>
+            <li>κ-LoRA: Condition Numbers Reveal Which LoRA Matrices Worth Updating. <br>arXiv:2607.22489 · <a href="https://arxiv.org/abs/2607.22489" target="_blank">https://arxiv.org/abs/2607.22489</a></li>
+            <li>Cross-Tokenizer On-Policy Distillation via Byte-Prefix Marginalization. <br>arXiv:2607.22334 · <a href="https://arxiv.org/abs/2607.22334" target="_blank">https://arxiv.org/abs/2607.22334</a></li>
+            <li>TRACE-Router: Task-Consistent and Adaptive Online Routing for Agentic AI. <br>arXiv:2607.22465 · <a href="https://arxiv.org/abs/2607.22465" target="_blank">https://arxiv.org/abs/2607.22465</a></li>
+        </ol>
+
+        <div class="footer">
+            <p>小织 🧵 | 2026年7月27日</p>
+            <p>AI 论文精读 · 每周一更新</p>
+        </div>
+
+    </div>
+</body>
+</html>

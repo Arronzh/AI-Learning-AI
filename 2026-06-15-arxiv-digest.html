@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 代理能力两年来跃升 46%？100 秒看完 6 月 15 日 arXiv 精华</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.8;
+  font-size: 16px;
+}
+.article {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0;
+}
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 48px 24px 36px;
+  text-align: center;
+  color: #fff;
+}
+.header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.header .subhead {
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+.content {
+  background: #fff;
+  padding: 24px 20px;
+}
+.abstract-box {
+  background: #f0f4ff;
+  border-left: 4px solid #667eea;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.7;
+}
+.section {
+  margin-bottom: 28px;
+}
+.section h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #667eea;
+}
+.section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  margin: 16px 0 10px;
+}
+.section p {
+  font-size: 15px;
+  margin-bottom: 12px;
+  text-align: justify;
+}
+.paper-block {
+  background: #fafbfc;
+  border: 1px solid #e8ecf1;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 14px 0;
+}
+.paper-block .paper-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+.paper-block .paper-meta {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 8px;
+}
+.paper-block .paper-desc {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.7;
+}
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 14px;
+}
+.result-table th {
+  background: #667eea;
+  color: #fff;
+  padding: 8px 12px;
+  text-align: center;
+  font-weight: 600;
+}
+.result-table td {
+  padding: 8px 12px;
+  text-align: center;
+  border-bottom: 1px solid #e8ecf1;
+}
+.result-table tr:nth-child(even) { background: #f8f9ff; }
+.key-findings {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 14px 0;
+  font-size: 14px;
+}
+.key-findings li {
+  margin-bottom: 6px;
+  list-style: none;
+  padding-left: 16px;
+  position: relative;
+}
+.key-findings li::before {
+  content: "●";
+  position: absolute;
+  left: 0;
+  color: #f57c00;
+}
+.insight-box {
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 14px 0;
+  font-size: 14px;
+}
+.refs {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+.refs h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.refs li {
+  font-size: 13px;
+  margin-bottom: 8px;
+  padding-left: 4px;
+  list-style: disc;
+  margin-left: 18px;
+  word-break: break-all;
+}
+.refs a {
+  color: #667eea;
+  text-decoration: none;
+}
+.footer {
+  background: #fff;
+  padding: 20px;
+  margin: 0;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+.footer .brand {
+  font-size: 13px;
+  color: #999;
+}
+.footer .signature {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+.cta {
+  color: #666;
+  font-size: 13px;
+  margin-top: 12px;
+}
+.tag {
+  display: inline-block;
+  background: #667eea;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-right: 4px;
+}
+.tag.green { background: #4caf50; }
+.tag.orange { background: #ff9800; }
+</style>
+</head>
+<body>
+<div class="article">
+  <div class="header">
+    <h1>AI 代理能力两年来跃升 46%？<br>100 秒看完 6 月 15 日 arXiv 精华</h1>
+    <div class="subhead">LLM 裁判竟有 13.6% 概率抛硬币判胜负；WorkBench 代理两年间从 43% 到 89%；GitOfThoughts 让推理可回放，却揭示"记忆不解决新问题"</div>
+  </div>
+  <div class="content">
+    <div class="abstract-box">
+      <strong>📌 核心摘要</strong><br>
+      本周一 arXiv 新论文中，AI 代理的评估与进化成为主线。WorkBench 基准两年回顾显示，Claude Opus 4.8 完成任务率从 2024 年 GPT-4 的 43% 跃升至 89%，有害动作率从 26% 降至 2.5%。但"LLM-as-a-Judge"评估范式本身备受质疑——研究发现重复评估中偏好翻转率达 13.6%，意味着单次判决的可靠性接近抛硬币。GitOfThoughts 将推理树存为 Git 仓库，却意外发现记忆对全新问题毫无帮助。此外，代理群体面临新型"声誉洗钱"攻击，条件信任路由存在固有安全风险。
+    </div>
+
+    <div class="section">
+      <h2>一、研究背景与动机</h2>
+      <p>2026 年中段的 AI 领域，一个核心矛盾日益凸显：AI 代理系统在快速实用化的同时，如何可靠地评估其能力？</p>
+      <p>一方面，以 WorkBench 为代表的代理基准测试显示，前沿模型的能力在过去两年取得了巨大进步——任务完成率翻了一倍多，出错率下降了一个数量级。另一方面，这些进步究竟有几分可信？当评估工具本身（LLM-as-a-Judge）的可靠性开始受到质疑时，整个评估体系的可信度面临着根本性挑战。</p>
+      <p>更深层的问题是：代理系统究竟如何真正"学习"？记忆能帮它们解决新问题吗？在一个多个代理协作的环境中，信任机制又该如何设计——尤其是当代理的技能专长差异很大时？</p>
+      <p>本周一的四篇论文正好从不同角度回应了这些问题，构成了一幅关于 AI 代理评估与进化的完整图景。</p>
+    </div>
+
+    <div class="section">
+      <h2>二、核心方法</h2>
+
+      <div class="paper-block">
+        <div class="paper-title">1️⃣ WorkBench 两年回访：能力与安全的协同进化</div>
+        <div class="paper-meta">arXiv:2606.13715 | WorkBench 团队 | 2026.06</div>
+        <div class="paper-desc">
+          <p>这项研究回顾了同一基准测试从 2024 年 3 月到 2026 年 6 月的发展历程。基准测试模拟真实工作场景，要求 AI 代理完成诸如发送邮件、操作电子表格、管理日历等任务，同时避免造成意外伤害。</p>
+          <p>2024 年 3 月的最佳模型 GPT-4 仅完成 <strong>43%</strong> 的任务，且在 <strong>26%</strong> 的任务中采取了意外有害动作（如发错邮件）。到 2026 年 6 月，最佳模型 Claude Opus 4.8 完成了 <strong>89%</strong> 的任务，有害动作率降至 <strong>2.5%</strong>。</p>
+          <div class="key-findings">
+            <strong>三个关键发现：</strong>
+            <li><strong>能力与安全正相关</strong>：完成最多任务的模型也是造成最少意外伤害的模型，二者并非此消彼长</li>
+            <li><strong>基本错误仍未根除</strong>：前沿模型仍会在某些情况下犯下低级错误，例如将邮件发送给错误的收件人</li>
+            <li><strong>开源模型成本骤降</strong>：过去两年，开源模型大幅拉低了达到特定性能水平的成本，而前沿模型成本保持稳定</li>
+          </div>
+        </div>
+      </div>
+
+      <div class="paper-block">
+        <div class="paper-title">2️⃣ "抛硬币的裁判"：LLM 评判者的可靠性危机</div>
+        <div class="paper-meta">arXiv:2606.13685 | The Coin Flip Judge? | 2026.06</div>
+        <div class="paper-desc">
+          <p>该团队在 29 个任务、10 个类别上，使用 GPT-4o-mini 和 GPT-4.1-mini 作为评判模型，进行了大量的重复评估实验（每个问题 50 次两两比较 + 50 次点评估）。</p>
+          <div class="key-findings">
+            <strong>核心发现：</strong>
+            <li>两两比较中，偏好翻转率平均达 <strong>13.6%</strong>，28% 的问题翻转率超过 20%，最高达 56%</li>
+            <li>GPT-4o-mini 存在显著的 <strong>首位位置偏差</strong>（72% 选择 A 为胜者）</li>
+            <li>两两判断与点评估之间存在不一致：评判模型经常选出胜者，但点评估分数却显示两者并无显著差异</li>
+            <li>跨评判模型一致性仅为 76%（κ = 0.51）</li>
+            <li>语义等价但措辞不同的 prompt，在 25% 的情况下改变评判结果</li>
+          </div>
+          <p><strong>关键结论</strong>：在实践中，至少需要 <strong>11 次重复评估</strong>才能以 95% 的概率恢复"真实"结论，高方差问题则需要 15 次。</p>
+        </div>
+      </div>
+
+      <div class="paper-block">
+        <div class="paper-title">3️⃣ GitOfThoughts：可回放、可合并的推理，以及一个无用的记忆发现</div>
+        <div class="paper-meta">arXiv:2606.14470 | 2026.06</div>
+        <div class="paper-desc">
+          <p>GitOfThoughts 提出一个极具创意的思路：将 LLM 的推理树存储为 Git 仓库——每个评分过的思考是一个 commit，分数是注解，输出是 tag，检索则是 <code>git log</code>。这使得推理过程可以<strong>回放、审查、合并</strong>，几乎零工程成本。</p>
+          <p>但更引人注目的是该研究的<strong>第二个发现</strong>：系统性地测试了五种记忆基质（无记忆、Markdown、向量、图、Git），结论令人意外——<strong>在解决全新问题时，没有任何一种记忆格式能可靠地提升准确率</strong>。</p>
+          <div class="insight-box">
+            <strong>💡 记忆只在"可复制性阈值"之上才产生价值：</strong>当检索到的案例与当前问题相似度 >0.8 时，准确率会显著提升；低于这个阈值，一切努力都是徒劳。而且这种增益是<strong>答案检索</strong>性质的，而非方法迁移——即便使用 4.5 倍更大的模型，也无法从示例中提取出可迁移的方法论。
+          </div>
+        </div>
+      </div>
+
+      <div class="paper-block">
+        <div class="paper-title">4️⃣ 代理信任的条件性：当"声誉洗钱"成为可能</div>
+        <div class="paper-meta">arXiv:2606.14200 | 2026.06</div>
+        <div class="paper-desc">
+          <p>该研究提出了一个在开放平台场景下的关键问题：当任务需要在多个异构 LLM 代理间路由时，该如何量化对每个代理的信任？传统方法使用全局信任分数，但将所有任务都派给全局最可信的代理又无法利用<strong>专业化分工</strong>的价值。</p>
+          <p>研究提出了技能条件信任 R(i|k)：对代理 i 在需要技能 k 的任务上的信任值。</p>
+          <div class="key-findings">
+            <strong>关键发现：</strong>
+            <li>条件信任只在特定相图区域有效：高代理异质性 + 稀疏技能证据 + 技能相关性</li>
+            <li>这个区域恰好是现实中多代理池所处的区域</li>
+            <li>但同一机制也是双刃剑——<strong>跨技能证据借用在提升数据效率的同时，也创造了声誉洗钱的通道</strong></li>
+            <li>攻击者可以在 A 技能上积累廉价证据，然后利用相关性窃取 B 技能的路由</li>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>三、实验结果</h2>
+
+      <h3>WorkBench 两年对比</h3>
+      <table class="result-table">
+        <tr><th>指标</th><th>GPT-4 (2024.03)</th><th>Claude Opus 4.8 (2026.06)</th></tr>
+        <tr><td>任务完成率</td><td>43%</td><td><strong>89%</strong></td></tr>
+        <tr><td>意外有害动作率</td><td>26%</td><td><strong>2.5%</strong></td></tr>
+        <tr><td>开源等效性能成本</td><td>仅限 API</td><td>降低至几分之一</td></tr>
+      </table>
+
+      <h3>LLM-as-a-Judge 可靠性</h3>
+      <p>13.6% 的偏好翻转率意味着每 7-8 次评估就会出现一次不一致。11 次重复投票才能以 95% 概率还原"真实"结果。</p>
+
+      <h3>GitOfThoughts 记忆研究</h3>
+      <p>五种记忆基质在全新问题上无正向效果；相似度 >0.8 的近重复案例检索带来准确率翻倍提升。</p>
+
+      <h3>条件信任安全分析</h3>
+      <p>实际多代理池中条件信任确有微弱但真实的优势。CIVT 测试将攻击风险识别为潜在漏洞。零证据门控能限制但不能消除攻击。</p>
+    </div>
+
+    <div class="section">
+      <h2>四、技术启示与发展方向</h2>
+      <p>这四篇论文共同揭示了一个重要趋势：<strong>AI 代理正从"能不能做"进入"能不能可靠评估"的新阶段</strong>。</p>
+      <div class="key-findings">
+        <li><strong>评估本身需要被评估</strong>。LLM-as-a-Judge 的 13.6% 翻转率表明，依赖单次 LLM 评判生成排行榜排名可能产生误导性结论。未来需要发展多轮聚合、位置随机化和不确定性报告标准。</li>
+        <li><strong>记忆不是万能药</strong>。GitOfThoughts 的发现虽令人失望但意义深远：当前架构下的"记忆"更像是一个检索缓存，而非真正的学习器。</li>
+        <li><strong>多代理系统的信任基础设施需要重新设计</strong>。条件信任路由虽能捕捉专业化价值，但声誉洗钱攻击表明信任机制本身需要反脆弱设计。</li>
+        <li><strong>能力与安全的协同进化</strong>是 WorkBench 研究中最令人鼓舞的结论。追求更强大的 AI 能力与确保其安全可靠并不冲突。</li>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>五、总结</h2>
+      <p>本周一的 arXiv 为 AI 代理社区绘制了一份"体检报告"：好消息是代理能力在过去两年取得了实质性的飞跃；坏消息是评估代理的"体检设备"本身还在校准阶段。从 LLM 裁判的可靠性危机，到记忆的有条件有效性，再到多代理系统的信任脆弱性——这些研究不是宣告失败，而是在为下一代更可靠的 AI 系统建立工程标准。</p>
+    </div>
+
+    <div class="refs">
+      <h3>📚 参考资料</h3>
+      <li><strong>WorkBench Revisited</strong> — Styles et al., arXiv:2606.13715, Jun 2026<br><a href="https://arxiv.org/abs/2606.13715">https://arxiv.org/abs/2606.13715</a></li>
+      <li><strong>The Coin Flip Judge?</strong> — arXiv:2606.13685, Jun 2026<br><a href="https://arxiv.org/abs/2606.13685">https://arxiv.org/abs/2606.13685</a></li>
+      <li><strong>GitOfThoughts</strong> — arXiv:2606.14470, Jun 2026<br><a href="https://arxiv.org/abs/2606.14470">https://arxiv.org/abs/2606.14470</a></li>
+      <li><strong>When Should Agent Trust Be Conditional?</strong> — arXiv:2606.14200, Jun 2026<br><a href="https://arxiv.org/abs/2606.14200">https://arxiv.org/abs/2606.14200</a></li>
+    </div>
+
+    <div class="refs">
+      <h3>🔍 其他值得一看的新论文</h3>
+      <li>Orchestra-o1: Omnimodal Agent Orchestration — <a href="https://arxiv.org/abs/2606.13707">arXiv:2606.13707</a></li>
+      <li>Hybrid Open-Ended Tri-Evolution Makes Better Deep Researcher — <a href="https://arxiv.org/abs/2606.13710">arXiv:2606.13710</a></li>
+      <li>Small LLMs: Pruning vs. Training from Scratch — <a href="https://arxiv.org/abs/2606.14150">arXiv:2606.14150</a></li>
+      <li>On-Policy Co-Distillation for Mutual LLM Improvement — <a href="https://arxiv.org/abs/2606.14368">arXiv:2606.14368</a></li>
+      <li>Parallel-Synthesis for LLM-Agent Workflows — <a href="https://arxiv.org/abs/2606.14672">arXiv:2606.14672</a></li>
+    </div>
+
+    <div class="footer">
+      <div class="signature">
+        📝 本文由小织 AI 自动撰写 · 机器之心风格<br>
+        🧵 <strong>小织</strong> · 每日 arXiv 论文精读<br>
+        2026 年 6 月 15 日
+      </div>
+      <div class="cta">
+        📢 工作日更新 · 欢迎关注
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

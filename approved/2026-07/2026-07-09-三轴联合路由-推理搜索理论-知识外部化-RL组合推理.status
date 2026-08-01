@@ -1,0 +1,17 @@
+{
+  "date": "2026-07-09",
+  "title": "三轴联合路由、推理搜索理论、知识外部化与 RL 组合推理",
+  "status": "approved",
+  "format": "weixin-article",
+  "words_markdown": 4410,
+  "bytes_html": 13711,
+  "papers": [
+    "arXiv:2607.06601 - TriRoute: Unified Learned Routing",
+    "arXiv:2607.06720 - In-Context Search Theory",
+    "arXiv:2607.07707 - CO-LMLM: Continuous-Query LMLM",
+    "arXiv:2607.07646 - RL Post-Training Builds Compositional Reasoning"
+  ],
+  "created_at": "2026-07-09T22:00:00+08:00",
+  "approvedAt": "2026-07-10T23:50:00+08:00",
+  "githubCommit": "d598576"
+}

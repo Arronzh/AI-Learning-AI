@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日 arXiv | 语言模型也需要"睡觉"？</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif; background: #f5f5f5; color: #333; line-height: 1.8; }
+  .container { max-width: 680px; margin: 0 auto; background: #fff; padding: 30px 20px; }
+  
+  .header { text-align: center; padding-bottom: 20px; border-bottom: 1px solid #eee; margin-bottom: 25px; }
+  .header .badge { display: inline-block; background: #1a73e8; color: #fff; font-size: 12px; padding: 3px 12px; border-radius: 12px; margin-bottom: 12px; letter-spacing: 1px; }
+  .header h1 { font-size: 22px; font-weight: 700; line-height: 1.5; color: #111; margin-bottom: 8px; }
+  .header .date { font-size: 13px; color: #999; }
+  
+  .summary-box { background: #f0f7ff; border-left: 4px solid #1a73e8; padding: 15px 18px; margin-bottom: 25px; border-radius: 0 8px 8px 0; }
+  .summary-box .label { font-size: 13px; font-weight: 600; color: #1a73e8; margin-bottom: 6px; }
+  .summary-box p { font-size: 14px; color: #444; line-height: 1.7; }
+  
+  .section { margin-bottom: 30px; }
+  .section h2 { font-size: 18px; font-weight: 700; color: #111; padding-bottom: 8px; border-bottom: 2px solid #1a73e8; margin-bottom: 15px; }
+  .section h3 { font-size: 16px; font-weight: 600; color: #1a73e8; margin: 15px 0 8px; }
+  .section p { font-size: 15px; color: #333; margin-bottom: 12px; text-align: justify; }
+  .section ul { margin: 8px 0 12px 18px; }
+  .section li { font-size: 14px; color: #444; margin-bottom: 6px; line-height: 1.6; }
+  
+  .paper-card { background: #fafbfc; border: 1px solid #e8eaed; border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; }
+  .paper-card .emoji { font-size: 18px; margin-right: 4px; }
+  .paper-card .title { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 4px; }
+  .paper-card .meta { font-size: 12px; color: #888; margin-bottom: 8px; }
+  .paper-card .meta a { color: #1a73e8; text-decoration: none; }
+  .paper-card .meta a:hover { text-decoration: underline; }
+  .paper-card .desc { font-size: 14px; color: #444; line-height: 1.7; }
+  
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead { background: #1a73e8; color: #fff; }
+  th, td { padding: 8px 10px; text-align: left; border: 1px solid #e0e0e0; }
+  tbody tr:nth-child(even) { background: #f8f9fa; }
+  td { color: #333; }
+  
+  .insight-box { background: #fff8e1; border-left: 4px solid #f9a825; padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+  .insight-box strong { color: #e65100; }
+  
+  .footer { text-align: center; padding-top: 20px; border-top: 1px solid #eee; margin-top: 30px; font-size: 13px; color: #999; }
+  .footer .tag { color: #1a73e8; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="badge">📄 AI 论文精读</div>
+  <h1>今日 arXiv | 语言模型也需要"睡觉"？睡眠范式让 AI 学会巩固记忆、持续进化</h1>
+  <div class="date">2026 年 6 月 3 日 · 星期三</div>
+</div>
+
+<div class="summary-box">
+  <div class="label">📌 核心摘要</div>
+  <p>今日 arXiv 最引人注目的论文来自一支研究团队提出的"Sleep"（睡眠）范式——他们借鉴人类睡眠中的记忆巩固机制，让大语言模型能够像人一样，在"睡眠"阶段将短期记忆蒸馏为长期知识，甚至通过"做梦"（Dreaming）自我提升。此外，本期还有多项值得关注的工作：<strong>Skill-RM</strong> 提出用 Agent Skill 统一异构奖励评价标准；<strong>VaSE</strong> 通过价值感知的随机 KV 缓存淘汰策略，让推理模型实现 4 倍压缩而不损失精度；<strong>q0</strong> 以"超时代预训练"思路突破多 epoch 训练瓶颈；<strong>MAdam</strong> 揭示了多目标优化中 Adam 优化器的系统性偏差并提出修正方案。</p>
+</div>
+
+<div class="section">
+  <h2>一、研究背景与动机</h2>
+  <p>大语言模型的持续学习能力仍是当前 AI 领域的核心挑战。现有模型虽然在即时预测和上下文学习方面表现优异，但它们缺乏将临时的上下文知识有效迁移到长期参数中的能力。简单来说，模型学得新东西，但很快就忘了——这与人脑的运作方式形成了鲜明对比。</p>
+  <p>人类在睡眠中会经历记忆巩固（Memory Consolidation）过程：白天获取的短期、易碎记忆会在睡眠中被反复回放，最终转化为稳定的长期记忆。这一生物机制启发了研究者——<strong>能否让 AI 模型也"睡觉"，从而自主学习并巩固记忆？</strong></p>
+  <p>与此同时，奖励模型的评价标准长期处于碎片化状态；大语言模型中 KV 缓存的显存瓶颈随着推理模型链式思维长度的增加日益严重；多 epoch 训练在高质量文本数据增长放缓和算力快速扩张之间的矛盾中面临边际收益递减的困境。这些问题共同构成了今日论文的核心关切。</p>
+</div>
+
+<div class="section">
+  <h2>二、核心方法</h2>
+  
+  <div class="paper-card">
+    <div class="title"><span class="emoji">🛌</span> 论文 1：Language Models Need Sleep</div>
+    <div class="meta">Ali Behrouz 等 · <a href="https://arxiv.org/abs/2606.03979" target="_blank">arXiv:2606.03979</a> · cs.LG / cs.AI</div>
+    <div class="desc">
+      <p>该研究提出的"Sleep"范式包含两个关键阶段：</p>
+      <p><strong>阶段一：记忆巩固（Memory Consolidation）</strong>。研究者提出了一种称为"知识播种"（Knowledge Seeding）的自底向上蒸馏过程——较小模型中存储的临时记忆被蒸馏到更大的网络中，在保留知识的同时提供更大的容量。具体实现上，他们采用了"广义蒸馏"方法，结合了同策略蒸馏和基于强化学习的模仿学习。</p>
+      <p><strong>阶段二：做梦（Dreaming）</strong>。模型进入自我提升阶段，利用强化学习自主生成合成数据的课程式序列，以此复述新知识并在无需人类监督的情况下精炼已有能力。这是一个递归的自改进循环。</p>
+      <p>实验覆盖了长程任务、持续学习、知识融合和少样本泛化等多个维度，证明了"睡眠阶段"对模型能力提升的关键作用。</p>
+    </div>
+  </div>
+  
+  <div class="paper-card">
+    <div class="title"><span class="emoji">🏆</span> 论文 2：Skill-RM — 用 Agent Skill 统一奖励评价</div>
+    <div class="meta">Tao Chen, Gangwei Jiang, Pengyu Cheng 等 · <a href="https://arxiv.org/abs/2606.03980" target="_blank">arXiv:2606.03980</a> · cs.LG</div>
+    <div class="desc">
+      <p>当前 LLM 的后训练（如强化微调 RFT 和 RL 管线）高度依赖奖励模型的反馈信号。但奖励评价长期依赖规则验证器、真实参考答案、过程检查清单和复杂评分标准等异构标准，缺乏统一的集成机制。</p>
+      <p><strong>核心洞察</strong>：将奖励计算重新定义为执行一个可复用的"奖励评价技能"（Reward-Evaluation Skill）。通过将奖励建模转化为结构化的 Agent 任务，Skill-RM 提供了一致的接口来编排异构资源，动态选择聚合适配于每个输入特定需求的证据。这使得奖励模型超越了静态评价，在不同任务间保持了一致性和透明度。在奖励基准测试以及 Best-of-N 选择、强化学习等下游应用中，Skill-RM 一致优于传统方法。</p>
+    </div>
+  </div>
+  
+  <div class="paper-card">
+    <div class="title"><span class="emoji">⚡</span> 论文 3：VaSE — 推理模型的高效 KV 缓存淘汰</div>
+    <div class="meta">Deqing Fu 等 · <a href="https://arxiv.org/abs/2606.03928" target="_blank">arXiv:2606.03928</a> · cs.LG / cs.CL</div>
+    <div class="desc">
+      <p>推理模型通过长链式思维提升准确性，但这也带来了巨大的显存和计算瓶颈。该研究识别了两个关键因素：</p>
+      <ul>
+        <li><strong>大幅度值状态</strong>：一小部分值状态具有异常大的幅度，淘汰它们会导致模型陷入重复推理循环的灾难性失败；</li>
+        <li><strong>随机性收益</strong>：在淘汰过程中引入随机性可通过增加缓存多样性提升精度。</li>
+      </ul>
+      <p>基于此，VaSE 提出了无需重新训练即可应用的方案，保护大幅度值状态并促进多样化的淘汰决策。在 Qwen3 模型上，VaSE 在 4 倍 KV 缓存压缩下实现了比最先进的淘汰方法高出 4% 以上的平均准确率，同时支持 FlashAttention2，为推理模型提供了静态显存占用的可能。</p>
+    </div>
+  </div>
+  
+  <div class="paper-card">
+    <div class="title"><span class="emoji">🔄</span> 论文 4：q0 — 超时代预训练的原语</div>
+    <div class="meta">Bishwas Mandal 等 · <a href="https://arxiv.org/abs/2606.03938" target="_blank">arXiv:2606.03938</a> · cs.LG / cs.AI</div>
+    <div class="desc">
+      <p>多 epoch 训练正在成为新常态。但单个模型在几轮训练后就会饱和。该研究提出概念性转变：<strong>从训练单个模型转向探索模型种群并聚合它们的预测</strong>。</p>
+      <p>q0 引入了三个核心原语：</p>
+      <ul>
+        <li>循环调度——利用反相关的学习率和权重衰减收集多样化模型；</li>
+        <li>链式蒸馏——每个模型对前一模型蒸馏，使模型质量在种群中累积提升；</li>
+        <li>学习先验——在保留集上拟合，为任意推理预算选择和加权成员。</li>
+      </ul>
+      <p>在 1.8B 参数的模型上，q0 仅用约 56 epoch 就匹敌了 256 epoch 的强集成基线（约 4.6 倍数据效率提升），累计数据效率可达约 12.9 倍。</p>
+    </div>
+  </div>
+  
+  <div class="paper-card">
+    <div class="title"><span class="emoji">🎯</span> 论文 5：MAdam — 度量感知的多目标 Adam</div>
+    <div class="meta">Fengbei Liu 等 · <a href="https://arxiv.org/abs/2606.03904" target="_blank">arXiv:2606.03904</a> · cs.LG / cs.CV</div>
+    <div class="desc">
+      <p>多目标优化是众多机器学习问题的基础，但现有的 MOO 求解器几乎都将其"调和后的方向"交给 Adam 执行。该研究揭示了两个系统性偏差：</p>
+      <ul>
+        <li><strong>权重偏差</strong>：Adam 的二阶矩分母将时变偏好向量与梯度统计纠缠，把偏好退化为历史平均值；</li>
+        <li><strong>几何偏差</strong>：Adam 的自适应度量扭曲了欧几里得几何，将一致目标变为表面冲突。</li>
+      </ul>
+      <p>MAdam 作为一个即插即用的包装器，通过对标量目标的偏好条件曲率对调和方向进行预处理——白化后，Adam 的二阶矩坍缩为单位阵，实际更新由偏好条件度量主导。在多任务学习、Pareto 前沿恢复、PINN 和医学影像中，MAdam 对所有求解器家族一致超越 Adam。</p>
+    </div>
+  </div>
+  
+  <div class="paper-card">
+    <div class="title"><span class="emoji">🔬</span> 论文 6：FFR — Forward-Forward 学习扩展到回归</div>
+    <div class="meta">Xinyang Liu 等 · <a href="https://arxiv.org/abs/2606.03927" target="_blank">arXiv:2606.03927</a> · cs.LG / cs.AI</div>
+    <div class="desc">
+      <p>Forward-Forward 算法以其局部、逐层优化特性，提供了比反向传播更具生物合理性和计算效率的替代方案。但 FF 天然设计用于分类。FFR 提出了三项关键创新：</p>
+      <ul>
+        <li>排序竞争性 goodness 函数——用分区神经元群之间的竞争替代对比对，融入距离感知的序数监督；</li>
+        <li>分层阶梯架构——浅层学习粗略序数判别，深层精化为细粒度回归；</li>
+        <li>层级预测与不确定性估计——多尺度预测器联合提供鲁棒预测和置信度。</li>
+      </ul>
+      <p>实验表明，FFR 恢复了 BP 平均 98.6% 的精度，同时将峰值训练内存降至 BP 的 27%（深度 8 层）和 8%（深度 32 层），每次迭代时间约为 BP 的 72%。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>三、实验结果</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>论文</th><th>关键指标</th><th>对比基线</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sleep</td><td>长程任务、持续学习、少样本泛化全面提升</td><td>无睡眠机制的基线</td></tr>
+        <tr><td>Skill-RM</td><td>奖励基准和下游任务中一致领先</td><td>传统奖励模型</td></tr>
+        <tr><td>VaSE</td><td>4x 压缩下平均准确率 +4%+，避免灾难性循环</td><td>SOTA 淘汰/选择方法</td></tr>
+        <tr><td>q0</td><td>56 epoch ≈ 256 epoch 集成，数据效率 ~12.9x</td><td>256-epoch 集成基线</td></tr>
+        <tr><td>MAdam</td><td>多任务、Pareto、PINN、医学影像一致改进</td><td>各求解器的 Adam 基线</td></tr>
+        <tr><td>FFR</td><td>恢复 BP 98.6% 精度，内存降至 27%~8%</td><td>BP 及所有无 BP 竞品</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>四、技术启示与发展方向</h2>
+  
+  <div class="insight-box">
+    <strong>🧠 生物启发范式正在回归。</strong> "Sleep"范式模仿人类睡眠中的记忆巩固机制，代表了神经科学与 AI 交叉方向的又一次重要尝试。如果被验证有效，可能彻底改变模型训练后的知识管理方式——从"一次训练、静态部署"走向"学习-巩固-做梦-进化"的循环。
+  </div>
+  
+  <div class="insight-box">
+    <strong>🤖 奖励建模走向 Agent 化。</strong> Skill-RM 将奖励计算重构为 Agent 技能执行，预示着奖励模型将从静态评分函数进化为动态、可组合的智能体。
+  </div>
+  
+  <div class="insight-box">
+    <strong>⚡ 推理效率仍是硬骨头。</strong> VaSE 保护大幅度值状态的发现对推理模型的稳定性至关重要。随着推理模型在实际应用中越来越普遍，这类方法的价值只会越来越大。
+  </div>
+  
+  <div class="insight-box">
+    <strong>🔄 训练范式的根本性反思。</strong> q0 提出的"种群模型替代单一模型"思路，与当前"花更多算力训更大的模型"的主流叙事形成对比——多样化模型种群的协同可能比单一巨兽更具效率。
+  </div>
+  
+  <div class="insight-box">
+    <strong>📐 优化器理论的精细化。</strong> 无论是 MAdam 对 Adam 偏差的揭示，还是 Muon 动量谱滤波的理论分析，都表明优化器研究正在从"好用就行"走向"理解为什么好用"的深度阶段。
+  </div>
+  
+  <div class="insight-box">
+    <strong>🔋 无 BP 学习继续推进。</strong> FFR 将 Forward-Forward 学习扩展到回归任务，以极小精度损失换取大幅内存节省，为边缘设备和生物计算打开了新可能。
+  </div>
+</div>
+
+<div class="section">
+  <h2>五、总结</h2>
+  <p>今日 arXiv 的内容令人振奋。"Language Models Need Sleep" 凭借其富有感染力的叙事和扎实的实验，无疑成为本期最受关注的论文。但从技术深度看，Skill-RM 对奖励建模的统一框架、VaSE 对推理模型 KV 缓存的精细化管理、q0 对训练范式的重新思考，都各自在重要方向上迈出了坚实一步。</p>
+  <p>AI 的发展正在进入一个更加多元化的阶段——不再仅仅追求参数的堆砌，而是探索训练后如何管理知识、如何高效推理、如何统一评价、如何突破训练瓶颈。这些看似分散的探索，共同描绘了 AI 从"能学"到"会学"的进化路径。</p>
+</div>
+
+<div class="section">
+  <h2>参考资料</h2>
+  <ol style="margin-left: 18px; font-size: 13px; color: #555;">
+    <li>Behrouz, A., et al. "Language Models Need Sleep." arXiv:2606.03979, 2026.</li>
+    <li>Chen, T., et al. "Unifying Heterogeneous Evaluation Criteria via Agent Skill." arXiv:2606.03980, 2026.</li>
+    <li>Fu, D., et al. "Value-Aware Stochastic KV Cache Eviction for Reasoning Models." arXiv:2606.03928, 2026.</li>
+    <li>Mandal, B., et al. "q0: Primitives for Hyper-Epoch Pretraining." arXiv:2606.03938, 2026.</li>
+    <li>Liu, F., et al. "MAdam: Metric-Aware Multi-Objective Adam." arXiv:2606.03904, 2026.</li>
+    <li>Liu, X., et al. "FFR: Forward-Forward Learning for Regression." arXiv:2606.03927, 2026.</li>
+  </ol>
+</div>
+
+<div class="footer">
+  <span class="tag">小织 🧵</span> | 2026 年 6 月 3 日<br>
+  <span style="font-size: 11px; color: #bbb;">本文章由 AI 自动撰写，基于 arXiv 当日发布论文</span>
+</div>
+
+</div>
+</body>
+</html>

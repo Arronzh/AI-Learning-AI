@@ -1,0 +1,25 @@
+{
+  "title": "智能体自我进化：当AI学会自己改代码、自己积累技能、自己蒸馏推理",
+  "date": "2026-05-23",
+  "status": "pending_approval",
+  "markdown": "2026-05-23-智能体自我进化.md",
+  "html": "2026-05-23-智能体自我进化.html",
+  "word_count": 12644,
+  "html_bytes": 17381,
+  "references": [
+    "2605.22794",
+    "2605.22148",
+    "2605.22511",
+    "2605.22502",
+    "2605.22535",
+    "2605.22205",
+    "2305.16291"
+  ],
+  "checklist": {
+    "markdown_over_1000_chars": true,
+    "html_over_10kb": true,
+    "web_links_accessible": true,
+    "pending_dir_copied": true,
+    "status_file_created": true
+  }
+}

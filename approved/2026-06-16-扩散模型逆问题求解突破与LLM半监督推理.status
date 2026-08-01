@@ -1,0 +1,17 @@
+{
+  "status": "pending_approval",
+  "title": "扩散模型逆问题求解突破与LLM半监督推理",
+  "date": "2026-06-16",
+  "markdown": "agents/xiaozhi/pending/2026-06-16-扩散模型逆问题求解突破与LLM半监督推理.md",
+  "html": "agents/xiaozhi/pending/2026-06-16-扩散模型逆问题求解突破与LLM半监督推理.html",
+  "wordCount": 1826,
+  "htmlSize": "7.9KB",
+  "papers": [
+    "arXiv:2606.17048 - EPS Exact Posterior Score",
+    "arXiv:2606.16811 - Semi-Supervised LLM Reasoning",
+    "arXiv:2606.16768 - Architecture Warm-Up",
+    "arXiv:2606.17035 - RING Backdoor Attacks",
+    "arXiv:2606.16790 - Decision-Weighted Flow Matching"
+  ],
+  "createdAt": "2026-06-16T22:00:00+08:00"
+}

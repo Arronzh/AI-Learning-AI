@@ -1,0 +1,21 @@
+{
+  "date": "2026-07-08",
+  "title": "从弹性语义锚点到图卷积注意力：今日arXiv亮点速览",
+  "status": "approved",
+  "papers": [
+    "arXiv:2607.06565 - ELSA3D: Elastic Semantic Anchoring for Unified 3D Understanding and Generation",
+    "arXiv:2607.06546 - Graph Convolutional Attention: A Spectral Perspective on Graph Denoising and Diffusion",
+    "arXiv:2607.06114 - x-Prediction Is All You Need: Training-Free Accelerated Generation via Endpoint Decodability",
+    "arXiv:2607.06432 - TILDE: TILt-based Distributional Erasure for Concept Unlearning"
+  ],
+  "word_count_md": 7820,
+  "html_size": 11138,
+  "checks": {
+    "md_gt_1000chars": true,
+    "html_gt_10KB": true,
+    "pending_copied": true,
+    "status_file_created": true
+  },
+  "approvedAt": "2026-07-10T23:50:00+08:00",
+  "githubCommit": "d598576"
+}

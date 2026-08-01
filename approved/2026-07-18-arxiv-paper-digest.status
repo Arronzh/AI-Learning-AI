@@ -1,0 +1,20 @@
+{
+  "task": "arxiv-paper-digest",
+  "date": "2026-07-18",
+  "timestamp": "2026-07-18T22:00:00+08:00",
+  "status": "pending-approval",
+  "files": {
+    "markdown": "2026-07-18-arxiv-paper-digest.md",
+    "html": "2026-07-18-arxiv-paper-digest.html"
+  },
+  "papers_covered": [
+    "2607.14672 - DSTD: Scalable Training of Continuous-Time SNNs",
+    "2607.14576 - Sharp Stability Threshold for Residual Architectures",
+    "2607.14888 - Ideological Generalisation in Finetuned LLMs",
+    "2607.14466 - Interleaved Noise Injection",
+    "2607.14937 - DynaBase: Minimal Interpretable Architecture",
+    "2607.15242 - Mutable Low-Rank Sketches"
+  ],
+  "word_count_md": 9080,
+  "html_size": 12165
+}
