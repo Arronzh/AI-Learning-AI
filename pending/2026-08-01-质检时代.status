@@ -1,0 +1,22 @@
+{
+  "status": "pending_approval",
+  "title": "提示词要审计、基准要打假、数据要验真：AI 开发的\"质检时代\"来了",
+  "created_at": "2026-08-01T22:00:00+08:00",
+  "papers": [
+    "arXiv:2607.28617 - AISPA: User-Centric System Prompt Auditing for LLM Applications (Lin et al.)",
+    "arXiv:2607.28587 - PAIChecker: PR-Issue Misalignment in SWE-Bench-Like Benchmarks (Wang, Xu & He)",
+    "arXiv:2607.28591 - Change2Task: From Repository Changes to Executable Coding Agent Tasks (Qi et al.)"
+  ],
+  "word_count_md": 4396,
+  "html_size_bytes": 13865,
+  "checklist": {
+    "markdown_over_1000_words": true,
+    "html_over_10KB": true,
+    "web_links_accessible": true,
+    "pending_dir_copied": true,
+    "status_file_created": true
+  },
+  "note": "主题：AI 开发供应链的质检时代（提示词审计 + 基准打假 + 数据工业化）。三篇论文均来自 7/30 arXiv 提交（7/31 批次），链接全部验证可访问（HTTP 200）。延续 7 月底观察到的'严谨性转向'主题墙。",
+  "approval_notified_at": "2026-08-01T22:30:00+08:00",
+  "notified_via": "dingtalk cron 79f88896"
+}
