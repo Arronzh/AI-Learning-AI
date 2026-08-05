@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 7 月 28 日（周二检查：无新源入库；Anthropic 28 天静默破纪录；组件库保持 28 节 227+ 组件）
+> 最后更新：2026 年 8 月 5 日（周三检查：OpenAI 8/3-8/4 四连发，22 个新组件入库，33 节 298+ 组件）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连）
-> 数据源限制：Web Search MCP 仍不可用（第 80 天），中文样本 5/9 起中断
+> 数据源限制：Web Search MCP 仍不可用（第 88 天），中文样本 5/9 起中断
 
 ---
 
@@ -2597,6 +2597,78 @@ NanoGPT PR / Token Split / Low-severity gallery 三个案例，每个一段话�
 
 **小织使用建议**：这是 7 月末最重要的编辑模式升级——**"两日连续叙事"扩展为"三日递进叙事"**（技术→商业→哲学）。做系列内容策划时，可以按"先给技术事实 → 再给商业结果 → 最后给价值观框架"的三段式组织，每篇互相引用形成追更感。
 
+## 三十三、8/3-8/4 OpenAI 四连发 —— 法律声明文体 × 实时语音架构 × 教育产品 × 事故披露（8/5 入库）
+
+### 来源
+**OpenAI Blog** (2026-08-03 ~ 08-04) — 8月发布季重启，两天四篇：
+1. **「Apple is getting this wrong」**（Company/法律声明, 8/3）——罕见的公司级法律立场声明，回应苹果商业秘密诉讼
+2. **「Continuous voice interaction with GPT Live」**（Engineering, 8/3）——GPT Live 实时语音系统架构解析（六个月的工程复盘）
+3. **「New ways to learn and teach with ChatGPT Work and Codex」**（Product/教育, 8/4）——三个教育插件发布
+4. **「Third-party cyber evaluations involving OpenAI models」**（Security/事故披露, 8/4）——UK AISI + Irregular 两起第三方评估越界事故
+
+**定位**：8 月发布季重启（7/31 使命宣言后静默 3 天）；文体多样性突出——同一家公司两天内覆盖法律、工程、产品、安全四种文体。**「Apple is getting this wrong」是 OpenAI 历史上罕见的点名批评另一家科技巨头的公开声明**，对国内账号（差评/棱镜）是高传播度素材。
+
+### 文章 1：「Apple is getting this wrong」叙事结构（法律声明文体）
+
+```
+先扬后抑开场（Apple 是史上最伟大公司之一，但这场诉讼配不上其声誉）
+→ 逐条反驳（联系时间线 → 发错人 → 承认未发生过的对话 → 五个月沉默后起诉）
+→ 证据公开（iMessage 聊天记录 + 邮件往来全文贴出，"你可以自己读邮件"）
+→ 反客为主（"residual access"是苹果自己的系统管理问题）
+→ 人品证言（Tang Tan 服务苹果 24 年，是最具创新力的领导者之一）
+→ 遗憾+开放姿态收尾（我们本愿意澄清，但对方在换叙事）
+```
+
+### 🔥 新写作组件（14 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Greatest company... but」先扬后抑开场** | "Apple is one of the greatest companies of all time... This careless, aggressive and oddly personal lawsuit sadly doesn't live up to that reputation."→先给足对手尊重，再以"配不上"落差表达失望——比直接开骂更有力 | 回应批评/法律声明/商战文——用尊重铺垫增强批评的分量 |
+| **「Now admit / now concede」渐进式揭露** | "They now admit that... which they now concede never happened."→用"现在承认/现在让步"句式逐条拆穿对方先前说法——每一条都是一个小反转 | 反驳文/事实核查——把"对方改口"本身变成叙事节奏 |
+| **「Read the emails for yourself」证据公开邀请** | "you can just read the emails for yourself [here]"→不替读者下结论，把原始证据全文贴出并邀请自查——信任读者的判断力，比任何辩解都有力 | 争议回应/辟谣——"证据在链接里"的姿态比"我是对的"更可信 |
+| **「Residual access」问题归因反转** | 把对方的指控（前员工访问遗留数据）重新定义为对方自己的系统缺陷（"a common issue with Apple which is caused by them failing to properly manage system access"）→指控变成对方管理漏洞的证据 | 法律回应/危机公关——把"你的指控"改写成"你的问题" |
+| **「Character witness」人品证言** | "Tang served Apple for more than 24 years and was widely known as one of the most innovative leaders at the company."→用服务年限+口碑背书对冲法律指控 | 人物争议回应——数字（24年）+ 定性（最创新领导者之一）双保险 |
+| **「We wish... would have been happy」遗憾+开放姿态** | "We wish Apple had raised these issues with us... and would have been happy to clarify all of this with them."→表达本可解决的遗憾，暗示对方绕过沟通直接起诉 | 争端文收尾——"我们一直想谈"的叙事压制"对方直接开打" |
+| **「Both X and completely unnecessary」双重否定** | "request for a preliminary injunction is both based on false information and completely unnecessary"→从"事实错误"和"没有必要"两个维度同时否定对方诉求 | 法律声明/反驳——双维度否定比单点反驳更彻底 |
+| **「Knowing when to speak is harder than it sounds」反直觉开场** | "For voice AI, knowing when to speak is harder than it sounds."→把看似简单的能力（何时说话）重构为高难度工程问题 | 技术文开场——"看起来简单的事其实极难"制造好奇 |
+| **「Guess too soon / guess too late」双困境对称句** | "guess too soon, and the user gets cut off; guess too late, and the response feels sluggish"→两个方向的失败对称排列，证明旧方案无解 | 技术解读/问题铺垫——用"怎么选都错"渲染问题难度 |
+| **「Removes the X from the path」架构减法叙事** | "removes the turn detector from the audio path"→用"删掉一个组件"描述架构演进——进步=简化而非堆叠 | 架构文章——"我们删掉了什么"比"我们加了什么"更有冲击力 |
+| **「Off the live path」主路径/旁路分离** | "The heavy lifting stays off the live path, so even during a handoff, the conversation never misses a beat."→核心路径保持小而稳，重活放旁路异步完成 | 系统设计文——"关键路径要小"的工程哲学表述 |
+| **「p95 matching p50」分位数对比** | "the new system's p95 matching the previous system's p50"→用百分位对比（最差情况=过去的中位数）量化稳定性提升，比"快 2 倍"更有工程说服力 | 性能评测——尾部延迟对比是专业的性能叙事 |
+| **「Speculative vs authoritative」双视图架构** | "a speculative view of the current state and an authoritative record of what was said"→实时性（推测视图）与准确性（权威记录）分离，各取所需 | 架构/产品设计——"两套视图服务两种需求"的平衡方案 |
+| **「Trades freshness for certainty」权衡格言化** | "Every segmentation policy trades freshness for certainty."→把工程权衡压缩成一句格言——承认每个选择都有代价 | 技术文/方法论——"没有免费午餐"的工程化表达 |
+
+### 文章 3（教育）补充组件（4 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「From X to Y」能力迁移开场** | "AI is moving from tools that primarily answer questions to systems that can reason across context, use other tools..."→用行业趋势迁移为产品发布铺垫 | 产品发布——"时代变了"的宏观开场 |
+| **「Should support, not shortcut」原则句** | "AI should support learning, not shortcut it"→短句对仗表明价值立场，一句话立住产品原则 | 教育/价值观产品——"支持而非替代"的立场声明 |
+| **「Capability overhang」新概念命名** | "a widening global 'capability overhang,' defined as the gap between what AI tools can do and how people actually use them"→造一个新词概括现象，并给出精确定义 | 趋势分析/行业洞察——"造词+定义"占领概念高地 |
+| **「90-99% less」量化差距** | "Even advanced student users leverage ChatGPT's capabilities roughly 90–99% less than power users"→用具体数字区间量化"能力落差"，比"差距很大"有说服力 | 数据论证——区间数字（90-99%）比单点数字更显严谨 |
+
+### 文章 4（事故披露）补充组件（4 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Editor's Note」事件隔离声明** | "Editor's Note: These are separate from the Hugging Face security incident"→开篇先划清与既往事件的边界，防止读者混淆 | 事故连续披露——"这是新事，不是旧事重提" |
+| **「Testing conditions disclaimer」测试条件免责前置** | "Some cyber evaluations intentionally use custom configurations, including lowered safeguards to measure underlying capability—not how models ordinarily behave"→先说明异常条件，再讲事故本身 | 事故报告/争议回应——"特殊条件下发生"的语境先行 |
+| **「What happened / conditions / containment / next steps」事故四段式** | "Below, we summarize what happened, the testing conditions that enabled the activity, the steps taken to contain it, and what we're doing"→事故报告的标准四段结构：事实→条件→处置→改进 | 安全通报/复盘文——结构化的坦诚比辩解更可信 |
+| **「Did not involve... or...」排除法定性** | "This did not involve a sophisticated sandbox escape or a zero-day: the internet access resulted from a misconfiguration"→先排除最坏可能，再给出真实原因——降低恐慌同时保持透明 | 事故解释——"不是什么严重问题，但我们要说清楚" |
+
+### 选题预判：Apple 诉讼事件（8/5 起，四账号角度）
+
+| 事件类型 | 机器之心 | 差评 | 棱镜 | 量子学派 |
+|---------|---------|------|------|---------|
+| **OpenAI 罕见点名回击苹果**🔥 | 法律技术解读（诉讼细节+商业秘密法理） | "苹果把OpenAI告了，OpenAI直接甩聊天记录：你们连邮件都发错人" | 深度调查——一场诉讼背后的硅谷人才战（Tang Tan 24年苹果生涯） | 法律的边界——当商业秘密遇上AI人才流动 |
+| **证据公开策略（贴原始邮件）** | 危机公关策略分析 | "OpenAI回应苹果：不信你看聊天记录" | 公关战手法拆解 | 公开的证据——透明能否替代信任 |
+| **"Residual access"归因反转** | 企业数据安全管理讨论 | "苹果员工离职后还能看到公司文件？" | 苹果内部管理漏洞调查 | 遗留的权限——组织记忆的安全悖论 |
+
+### 8月发布季重启确认
+- **7/31 使命宣言 → 8/1-8/2 周末静默 → 8/3-8/4 四连发**：8 月节奏为"周中密集、周末停更"，与 7 月一致
+- 8/3 两篇（法律声明+工程）与 8/4 两篇（教育+安全）构成**文体组合拳**：立场类+技术类同日发布
+- 「三日递进叙事」未在 8 月延续（8/3-8/4 无主题递进），但**法律声明文可能开启新的"对抗叙事"弧线**（若苹果后续回应）
+
 ---
 
-> **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 3 日（周一检查：无新源入库；OpenAI 8 月首周静默 3 天，最新仍为 7/31 使命宣言；Anthropic 静默 34 天续创纪录；Web Search MCP 仍不可用第 86 天且报错形态变化；四个目标公众号周一工作日发布但无法获取。style_guide 保持 32 节 276+ 组件。）**
+> **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 5 日（周三检查：OpenAI 8/3-8/4 四连发重启发布季——含罕见的 Apple 法律声明文，22 个新组件入库，style_guide 更新至 33 节 298+ 组件；Anthropic 静默 36 天续创纪录；Web Search MCP 仍不可用第 88 天；四个目标公众号周三工作日发布但无法获取。）**
