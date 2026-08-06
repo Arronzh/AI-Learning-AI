@@ -1,0 +1,29 @@
+# 审批状态：pending
+- 生成时间：2026-08-05 22:20 (Asia/Shanghai)
+- 任务：每日 arXiv 论文精读（cron e26cc1a5-68cf-47f7-97fe-b44c09d172e9）
+- 文章：视频版 Deep Research：Video-DeepResearch 用 35B 开源模型反超 Claude-4.5 与 GPT-5
+- 文件名：2026-08-05-Video-DeepResearch.md / .html
+- 字数：4907 字符（中文 2535 字，>1000 字要求 ✓）
+- HTML：14364 字节（>10KB 要求 ✓）
+
+## 论文来源（8/4 arXiv 提交批次，cs.AI/cs.CV）
+1. Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent — arXiv:2608.03979
+   - 团队：中国科学技术大学等（Video-Deepresearch Team，20 位作者）
+   - 代码：https://github.com/Osilly/Vision-DeepResearch
+   - 核心：把 Deep Research 从静态图像扩展到连续视频流；解耦感知-探索流水线 + 阶段式工具解锁 + SFT/GRPO；VideoDR-Bench 基准（200 题）
+   - 结果：Video-DR-35B-A3B 64.0% SOTA（超 Claude-4.5-Sonnet 59.0% / GPT-5 52.5% / Gemini 2.5 Pro 57.5%）
+
+## 选题理由
+- 与近期文章无主题重叠（7/31 推理时计算、8/1 质检、8/2 视觉 token、8/3 输入税）
+- Deep Research 智能体是当下热点，本文首次将其推进到视频流，且有反直觉发现（模态偏见、参数知识泄漏）
+
+## 检查清单
+- [x] Markdown >1000 字（4907 字符 / 中文 2535 字）
+- [x] HTML >10KB（14364 字节）
+- [x] Web 链接可访问（arXiv abs/html/pdf + GitHub 均 200）
+- [x] pending 目录已复制（.md + .html）
+- [x] 审批状态文件已创建
+
+## 发送记录
+- 2026-08-05 22:20 文章已发送至钉钉（Arron）
+- 2026-08-05 22:30 审批通知已发送（dingtalk cron 79f88896），等待 Arron 回复批准/修改/跳过

@@ -1,0 +1,26 @@
+# 审批状态：pending
+- 生成时间：2026-08-03 22:16 (Asia/Shanghai)
+- 任务：每日 arXiv 论文精读（cron e26cc1a5-68cf-47f7-97fe-b44c09d172e9）
+- 文章：输入税三篇
+- 文件名：2026-08-03-输入税三篇.md / .html
+- 字数：5324 字符（>1000 字要求 ✓）
+- HTML：~19.3KB（>10KB 要求 ✓）
+
+## 论文来源（均为 7/31 arXiv 提交批次，未被 8/1、8/2 文章覆盖）
+1. TokTier: Exact Stateful Tokenization for Agentic LLM Serving — arXiv:2607.29678 (cs.CL)
+2. CodeShrink: Adaptive Visual Compression for Efficient Multimodal Code Understanding — arXiv:2607.29637 (cs.CV)
+3. QASP: Query-Adaptive Robust Vector Search Policy — arXiv:2607.29606 (cs.IR)
+
+## 主题
+大模型推理"输入税"：分词（TokTier）、视觉 token 压缩（CodeShrink）、向量检索（QASP）三个输入侧环节的按需自适应优化
+
+## 检查清单
+- [x] Markdown >1000 字（5324 字符）
+- [x] HTML >10KB（19279 字节）
+- [x] Web 链接可访问（arXiv 3 篇 + GitHub 代码仓库均已验证 200）
+- [x] pending 目录已复制（.md + .html）
+- [x] 审批状态文件已创建
+
+## 发送记录
+- 2026-08-03 22:16 文章已发送至钉钉（Arron）
+- 2026-08-03 22:30 审批通知已发送（dingtalk cron 79f88896），等待 Arron 回复批准/修改/跳过
