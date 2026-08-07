@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 8 月 6 日（周四检查：无新内容——OpenAI 8/5-8/6 静默，Anthropic 37 天静默；33 节 298+ 组件保持不变）
+> 最后更新：2026 年 8 月 7 日（周五检查：OpenAI 8/6 三连发——产品升级+国家×国家经济数据+APA 合作，16 个新组件入库，更新至 34 节 314+ 组件；Anthropic 抓取失败待确认；Web Search MCP 第 90 天不可用）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连）
-> 数据源限制：Web Search MCP 仍不可用（第 89 天），中文样本 5/9 起中断（8/6 验证搜狗列表页可达、正文被 antispider 拦截）
+> 数据源限制：Web Search MCP 仍不可用（第 90 天），中文样本 5/9 起中断（8/6 验证搜狗列表页可达、正文被 antispider 拦截；8/7 Anthropic 双通道抓取失败）
 
 ---
 
@@ -2672,3 +2672,110 @@ NanoGPT PR / Token Split / Low-severity gallery 三个案例，每个一段话�
 ---
 
 > **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 5 日（周三检查：OpenAI 8/3-8/4 四连发重启发布季——含罕见的 Apple 法律声明文，22 个新组件入库，style_guide 更新至 33 节 298+ 组件；Anthropic 静默 36 天续创纪录；Web Search MCP 仍不可用第 88 天；四个目标公众号周三工作日发布但无法获取。）**
+
+---
+
+## 三十四、8/6 OpenAI 三连发 —— 产品升级 × 国家×国家经济数据 × 机构合作（8/7 入库）
+
+### 背景
+8/6（美东）OpenAI 同日发布 3 篇文章，覆盖产品、经济研究、社会合作三个维度，构成 **"产品+数据研究+社会"三维组合**（7/21 是产品+安全+治理三维）。三篇文体差异极大，是难得的多文体同日样本。
+
+| 文章 | 类型 | 一句话定位 |
+|------|------|-----------|
+| Improving GPT-5.6 Sol in ChatGPT | Product | 旗舰模型按使用方式调优 + 免费用户解锁最新模型 |
+| From asking to doing | Economic Research | 首份国家×国家 ChatGPT 采用数据（OpenAI Signals） |
+| Working with the APA | Company | 心理科学引入青少年 AI 治理 |
+
+---
+
+### 文章 1：Improving GPT-5.6 Sol in ChatGPT —— 产品更新 × 交互民主化
+
+**文章类型**：产品更新公告（非重大发布，是迭代升级）
+**叙事结构**：规模锚点开场 → 三改进点（聚焦回答/可靠事实/体验一致）→ 免费用户扩展 → 安全与可用性 → 普惠升华收尾
+
+#### 🔥 新写作组件（8 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「1 billion weekly users」规模锚点开场** | "Every week, 1 billion people turn to ChatGPT for everything from quick questions and web searches to planning, research, advice, and complex decisions."→开篇即规模+场景清单（与 7/9 GPT-Live "用户规模+场景清单"同族，此处规模数字升级到 10 亿） | 产品更新/发布——规模建立重要性后再谈改进 |
+| **「Tuned for how you use it」使用方式调优定位** | "We've updated GPT-5.6 Sol to better support that full range."→产品升级的定位是"适配你的用法"而非"我们更强"——把能力升级翻译成用户体验升级 | 产品迭代报道——"更好用"比"更强"更贴近用户 |
+| **「Thought slider」连续思考滑块** | "A new slider lets you choose how much thought ChatGPT puts into each response."→**连续滑块** vs GPT-Live 的**三档离散选择**（Instant/Medium/High）——同一"用户可控深度"理念的两种 UI 形态 | 交互/产品设计——"旋钮 vs 档位"两种用户控制隐喻 |
+| **「Think button」能力门槛民主化** | 免费用户"tap the new Think button to give GPT-5.6 Luna more time"→高级推理能力以"一个按钮"的形式开放给免费层——**能力分层+低门槛入口**的组合叙事 | 免费/分层产品报道——"按钮"是能力民主化的可视化符号 |
+| **「Factual error reduction」含错率表述** | "responses containing at least one factual error were about 62% less common with GPT-5.6 Luna and 68% less common with GPT-5.6 Sol than with GPT-5.5 Instant"→用**含错回复的减少比例**而非"准确率提升"表述可靠性改进——负面指标下降比正面指标上升更可信 | 质量/可靠性评测——"错误少了 X%"比"准确率 99%"更直观 |
+| **「Consistent across modes」跨模式一致性声明** | "it should feel like the model is taking extra time for a more comprehensive answer—not like you're switching to a different model"→**体验连续性**作为产品价值：统一模型消除"换了个人"的割裂感 | 多档位产品/模式整合——"一致体验"本身是卖点 |
+| **「Access shapes opportunity」金句收尾** | "Access shapes opportunity, and this update gives more people the ability to keep asking, develop an idea, and get help when they need it."→普惠哲学压缩成一句可传播的格言 | 任何"开放/免费/普惠"类内容收尾 |
+| **「More intelligence for more people」普惠升华** | "This is a concrete step toward more abundant intelligence: making our latest models more widely available..."→结尾回到"更多人获得能力"的使命叙事（与「结尾普惠升华」同族，二次验证；并呼应 7/31 使命宣言的 abundant intelligence 母题） | 产品发布收尾——能力叙事升维为使命叙事 |
+
+#### 与已有组件的关联
+- 「Thought slider」+「Think button」= GPT-Live「三推理层级」的 UI 变体——**"用户可控思考深度"已成 OpenAI 产品叙事固定组件**（三档/滑块/按钮三种形态）
+- 「1 billion weekly users」= 7/9「用户规模+场景清单」的升级版（1.5 亿/周语音 → 10 亿/周全产品）
+
+---
+
+### 文章 2：From asking to doing —— 经济研究 × 地理数据叙事
+
+**文章类型**：经济研究数据报告（非产品发布）——"How the world is putting ChatGPT to work"
+**核心数据**：10 亿+ 用户；工作中"做事"用法 2 倍于工作外；多媒体占消息 7.8%（巴西/哥伦比亚 >1/10）；35+ 用户份额同比 +5pp（法国/捷克 +10pp）；秘鲁/乌拉圭/哥斯达黎加排名上升最快
+**新平台**：OpenAI Signals（经济研究团队数据平台，数据可下载）
+
+#### 🔥 新写作组件（6 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「From asking to doing」行为迁移标题** | 标题即完整叙事："从问到做"——一个动词对仗概括全部数据发现 | 数据报告/趋势文章——标题概括行为迁移比概括数字更有力 |
+| **「Asking vs Doing」行为二分框架** | "At work, 'doing' dominates"→用户行为分为两大类别：asking（exploratory, 询问探索）vs doing（task-completion, 完成任务）——全文的数据都挂在这两个类别上 | 用户行为/使用分析——**二分法是数据报告的组织骨架** |
+| **「2x at work」场景对比数据** | "people are more than twice as likely to use ChatGPT to complete a task or create something...than they are outside work"→场景×行为交叉数据：工作中"做事"概率是工作外 2 倍 | 行为分析——场景对比比单一比例更有洞察 |
+| **「Country-by-country data」地理数据叙事** | 国家×国家排行榜+世界地图视觉（蓝=上升/棕=下降/灰=不变）→用**地理维度**讲采用趋势，"Peru, Uruguay, and Costa Rica rising the most" | 全球化/区域分析——排行榜+地图让抽象趋势可视化 |
+| **「Adoption gap closing」追赶者叙事** | "countries...that began their AI journeys with lower ChatGPT per-capita adoption rates are gradually catching up to the established early adopters"→**差距收窄**叙事（南半球追赶北半球），比"谁领先"更有时代感 | 采用/普及类报告——"追平"故事比"领先"故事更动人 |
+| **「Fastest-growing use case」增长最快用例** | "Multimedia is the fastest-growing use case globally, accounting for 7.8% of messages and more than one in ten in countries including Brazil and Colombia"→新兴用例=增长最快+国别差异双视角 | 产品功能/用例分析——"增长最快"比"占比最高"更能说明趋势 |
+
+#### 关键写作技巧提炼
+**"数据报告的三层组织法"**：本文用三种维度组织同一批数据——行为（asking/doing）、地理（国家排行榜）、人群（35+ 年龄队列）。**同一数据集的多个切片视角**让报告既有深度又有广度，比单一维度罗列数字高级得多。小织做数据分析类文章时可复用："行为×地域×人群"三切片。
+
+**开放数据建立可信度**：文章末尾提供数据下载+方法论文档（OpenAI Signals 平台）——"你可以自己验证"比任何图表都更有说服力。与「数据来源标注」（棱镜）呼应。
+
+---
+
+### 文章 3：Working with the APA —— 机构合作 × 证据本位
+
+**文章类型**：机构合作/社会倡议公告
+**合作对象**：美国心理学会（APA）——青少年心理健康与 AI
+**核心内容**：分领域展开（父母/从业者/青少年倾听）+ 260+ 心理健康专家网络 + 已有保护措施回顾
+
+#### 🔥 新写作组件（2 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Evidence-grounded partnership」证据本位合作声明** | "grounded in the science of human behavior" + "shaped by those with lived experience, not based on assumptions"→合作的价值主张是"科学证据+亲历者经验"，而非机构名头本身 | 机构合作/专家背书类内容——"我们凭什么合作"比"我们合作了"更有说服力 |
+| **「Strengthen—not replace」North Star 变体验证** | "AI should strengthen—not replace—the real-world relationships and care young people rely on"→与 7/16 青少年安全文的 North Star（"not a substitute for real-world relationships"）**同句式二次验证**——"强化而非替代"已成 OpenAI 青少年 AI 叙事的固定立场句 | 教育/健康/青少年类 AI 内容——立场句固定复用 |
+
+#### 与已有组件的关联
+- 「Areas of focus」分领域展开 = 7/16 青少年安全文「四项原则」的组织变体（原则 vs 领域）
+- 「260+ experts」= 7/23 Health in ChatGPT「260+ 医生」的数字锚点复现（心理健康专家网络）
+- 「利益相关者枚举」（families/schools/clinicians/communities）= 7/16「利益相关者生态」验证
+
+---
+
+### 选题预判矩阵补充：8/6 三连发
+
+| 事件类型 | 机器之心 | 差评 | 棱镜 | 量子学派 |
+|---------|---------|------|------|---------|
+| **Sol 可靠性升级 + Luna 免费开放**🔥 | 技术解读（事实错误率对比+滑块机制+系统卡新评估） | "OpenAI把最新模型给免费用户了，还加了个'思考'按钮" | 免费模式扩张的商业模式+普惠经济学 | 思考的刻度——当"想多深"变成滑块，深度是否被量化了？ |
+| **国家×国家采用数据（Signals）**🔥 | 数据报告解读（asking/doing 二分+差距收窄+35+增长） | "全球10亿人怎么用ChatGPT？这份地图把国家排了名" | 全球 AI 采用格局+南北差距+数据主权 | AI 的世界地图——数字鸿沟真的在合拢吗？ |
+| **APA 青少年心理合作** | 政策+产品安全解读（260+ 专家网络+保护措施） | "OpenAI找心理学家合作，教AI怎么接住孩子的情绪" | 青少年心理健康+AI 责任产业链 | 情绪的边界——AI 何时该"接管"心理支持，何时不该 |
+
+### 8月发布节奏更新（8/7）
+```
+7/31   使命宣言（8月发布季开启）
+8/1-2  周末静默
+8/3-4  四连发（法律声明+语音工程+教育+事故披露）🔥🔥
+8/5    静默（间歇日）
+8/6    三连发（产品+经济研究+社会合作）🔥🔥🔥
+8/7    待查（周五，7 月周五发布频率较高）
+```
+- **8 月累计 7 篇**，"爆发-间歇"脉冲模式确认；8/6 是**首次"产品+研究+社会"三维同日发布**
+- 「三日递进叙事」8 月未延续，但"四连发→间歇→三连发"的节奏本身构成**脉冲式编辑墙**
+
+---
+
+> **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 7 日（周五检查：OpenAI 8/6 三连发——产品升级×国家×国家数据×APA 合作，16 个新组件入库，更新至 34 节 314+ 组件；Anthropic 双通道抓取失败待明日确认；Web Search MCP 仍不可用第 90 天；四个目标公众号周五发布但无法获取。）**

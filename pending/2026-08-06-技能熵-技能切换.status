@@ -1,0 +1,33 @@
+# 审批状态：pending
+- 生成时间：2026-08-06 22:20 (Asia/Shanghai)
+- 任务：每日 arXiv 论文精读（cron e26cc1a5-68cf-47f7-97fe-b44c09d172e9）
+- 文章：大模型的"换挡"难题：技能熵如何让 Qwen3-4B 成绩翻倍
+- 文件名：2026-08-06-技能熵-技能切换.md / .html
+- 字数：4927 字符（中文 2594 字，>1000 字要求 ✓）
+- HTML：13859 字节（>10KB 要求 ✓）
+
+## 论文来源（8/5 arXiv 提交批次，cs.CL）
+1. Toward Skill-Native LLMs: Skill Entropy for Benchmarking and Training Long-Horizon Reasoning — arXiv:2608.05139
+   - 团队：普林斯顿（Yinghui He、Ling Yang、Mengdi Wang、Sanjeev Arora）+ CMU/多伦多/UIUC/斯坦福/牛津（Gen-Verse）
+   - 代码：https://github.com/Gen-Verse/Skill-Entropy-RL ；数据：https://huggingface.co/datasets/Gen-Verse/Skill2-Bench
+   - 核心：技能熵（有向成对"切换难度"度量）+ Skill²-Bench（558 技能/9 域）+ Skill-Entropy RL
+   - 结果：Qwen3-4B 34.4%→68.4%（翻倍），Qwen3-1.7B 14.6%→40.1%；OpenR1-Math 现成数据迁移 45.6→53.3
+2. Skill-Use: Can LLMs Actually Use Skills in Agentic Harnesses? — arXiv:2608.04828（搭档论文）
+   - 79 真实技能/177 可执行任务/9 域，Docker 沙箱 + 轨迹评分
+   - 结果：8 模型 × 2 框架最强配置 SU 仅 0.613；技能使用是"模型×框架"联合属性
+
+## 选题理由
+- 与近期文章无主题重叠（7/31 推理时计算、8/1 质检、8/2 视觉 token、8/3 输入税、8/5 视频 Deep Research）
+- "技能切换"是长程推理/Agent 时代的核心议题；两篇同日论文从"训练"与"使用"两面拼出完整图景，形成 1+1>2 的叙事
+- 有反直觉发现（科学域易做但熵最高、单技能强≠组合强）+ 可复现配方（8×H100）
+
+## 检查清单
+- [x] Markdown >1000 字（4927 字符 / 中文 2594 字）
+- [x] HTML >10KB（13859 字节）
+- [x] Web 链接可访问（arXiv abs/html/pdf 均 200；GitHub/HF 沙箱网络不可达但链接出自论文官方摘要页）
+- [x] pending 目录已复制（.md + .html）
+- [x] 审批状态文件已创建
+
+## 发送记录
+- 2026-08-06 22:20 文章已发送至钉钉（Arron）
+- 2026-08-06 22:30 审批通知已发送（dingtalk cron 79f88896），等待 Arron 回复批准/修改/跳过
