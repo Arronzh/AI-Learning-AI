@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 8 月 7 日（周五检查：OpenAI 8/6 三连发——产品升级+国家×国家经济数据+APA 合作，16 个新组件入库，更新至 34 节 314+ 组件；Anthropic 抓取失败待确认；Web Search MCP 第 90 天不可用）
+> 最后更新：2026 年 8 月 8 日（周六检查：OpenAI 8/7 单篇安全声明——Astra 逼近 Critical 网络安全阈值，8 个新组件入库，更新至 35 节 322+ 组件；Anthropic 双通道仍失败；Web Search MCP 第 91 天不可用）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连）
-> 数据源限制：Web Search MCP 仍不可用（第 90 天），中文样本 5/9 起中断（8/6 验证搜狗列表页可达、正文被 antispider 拦截；8/7 Anthropic 双通道抓取失败）
+> 数据源限制：Web Search MCP 仍不可用（第 91 天），中文样本 5/9 起中断（8/6 验证搜狗列表页可达、正文被 antispider 拦截；8/8 Anthropic 双通道抓取仍失败）
 
 ---
 
@@ -2776,6 +2776,54 @@ NanoGPT PR / Token Split / Low-severity gallery 三个案例，每个一段话�
 - **8 月累计 7 篇**，"爆发-间歇"脉冲模式确认；8/6 是**首次"产品+研究+社会"三维同日发布**
 - 「三日递进叙事」8 月未延续，但"四连发→间歇→三连发"的节奏本身构成**脉冲式编辑墙**
 
+## 三十五、8/7 OpenAI 安全声明 —— 前瞻性能力评估 × 阈值框架 × 防守者立场（8/8 入库）
+
+### 背景
+8/7（周五）OpenAI 发布「Responding to the next frontier of critical cyber capabilities」（Security）。这是 8/6 三连发后的**单篇安全声明**，验证了 7 月"周五发布频率较高"的节奏在 8 月延续。与 8/4「第三方网络评估事故披露」构成**安全叙事的双轨**：8/4 是回溯性事故披露（reactive），8/7 是前瞻性能力评估（proactive）。
+
+**核心事实**：对下一代模型 **Astra** 的内部评估显示 agentic coding 与网络安全能力显著跃迁，专家组评估后**"无法排除"达到 Preparedness Framework 的 Critical（关键）网络安全阈值**——这是框架 2023 年 12 月发布以来首次有模型逼近该阈值（GPT-5.6-Sol 评估为 High 而非 Critical）。OpenAI 随即升级安全控制、暂停未达标内部活动、部署全链路监控。
+
+### 叙事结构
+```
+能力跃迁背景（双刃剑） → 评估结论（cannot rule out）→ 透明理由 → 框架溯源（2023.12）→ 门槛定义 → 与前代对比 → 事件切割（非 HF 事件）→ 缓解措施清单 → 先例锚定（2025.6 生物学）→ 防守者立场收尾
+```
+
+#### 🔥 新写作组件（8 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Cannot rule out」能力阈值不确定性声明** | "we cannot rule out Critical capability level at this time"→用**"无法排除"**而非"已达到"表述能力跃迁——结论严谨留余地，兼具诚实与审慎，是科学共同体语体进入企业声明的典范 | 能力评估/风险声明——不确定结论用"无法排除"比断言更有公信力 |
+| **「Threshold definition first」门槛定义先行** | 宣布结论前先给出 Critical 阈值的**操作性定义**（"无需人工干预即可发现并开发各严重级别零日漏洞，或仅凭高层目标即可策划端到端新型攻击"）→先立标准再下结论 | 标准/评级类内容——结论的可信度来自定义先行 |
+| **「Transparency rationale」透明理由前置** | "We are sharing this because we believe it's important to be transparent with the public and the safety and security communities"→主动说明**"为什么现在说"**，把披露本身写成价值观实践 | 敏感信息/风险披露——先解释披露动机，再给细节 |
+| **「Threshold ladder」门槛阶梯定位** | "Previous models, including GPT-5.6-Sol, have been assessed at the High (rather than Critical) threshold"→用**前代所在台阶**衬托新模型的可能跃迁，形成能力坐标系 | 版本迭代/能力对比——"上一级在哪"比"新在哪"更有参照感 |
+| **「Incident exclusion」事件切割声明（模型层）** | "Astra was not involved in exploiting Hugging Face"→一句话与近期事故**切割**，防止舆论将两件事混为一谈（与 8/4「事件隔离声明」同族，此处为模型层面切割） | 事故/争议后发布——主动切割比等追问更稳 |
+| **「Mitigation checklist」缓解措施清单** | 五项安全控制 bullet 列表（隔离测试环境/受限网络与工具访问/权重保护与加密/增强监控/沙箱执行）+ "暂停未达标活动"→把"我们怎么办"写成**可核验的行动清单** | 风险应对/整改公告——措施清单化 = 可追责 |
+| **「Precedent anchoring」先例锚定** | 引用 2025 年 6 月生物学能力跃迁先例（当时同样"加强防护+扩大测试+外部专家+部署控制"）→"We are applying the same principle here"→**用历史先例证明框架可重复**，削弱"这次是不是慌了"的质疑 | 危机/重大声明——先例证明流程成熟，而非临时反应 |
+| **「Defenders-first framing」防守者优先立场** | "advanced cyber-capable models should help defenders identify and address vulnerabilities before attackers do"→把威胁叙事**转化为防御叙事**，收尾"for the benefit of all humanity" | 安全/技术双刃剑话题——"助守而非助攻"是化解恐惧的标准姿势 |
+
+#### 与已有组件的关联
+- 「Cannot rule out」与 8/4「排除法定性」（misconfiguration, not sandbox escape）呼应——两篇都在做**边界界定**工作：一篇排除误解，一篇排除确定性
+- 「Transparency rationale」= 7/31「决策者自查问题」的机构版（对公众交代"为什么"）
+- 「Mitigation checklist」与 7/16 青少年安全文「四项原则」同为清单式承诺（安全控制 vs 产品原则）
+- 安全维度成为 OpenAI 编辑墙常驻主题：8/3 法律声明 + 8/4 事故披露 + 8/7 能力评估 = **安全三连主题墙**
+
+### 选题预判矩阵补充：Astra 网络安全能力评估（8/8）
+
+| 事件 | 机器之心 | 差评 | 棱镜 | 量子学派 |
+|------|---------|------|------|---------|
+| **Astra 逼近 Critical 网络安全阈值**🔥 | 技术解读（Preparedness Framework 阈值体系+zero-day 评估标准+安全控制清单） | "OpenAI连夜评估自家新模型：可能具备'零日漏洞'级黑客能力" | 前沿 AI 安全治理+政府机构合作+能力军备竞赛 | 潘多拉的盒子——当 AI 能攻破所有系统，防御者还剩什么？ |
+
+### 8月发布节奏更新（8/8）
+```
+8/3-4  四连发（法律+语音+教育+事故）🔥🔥
+8/5    静默（间歇日）
+8/6    三连发（产品+经济研究+社会合作）🔥🔥🔥
+8/7    单篇（安全能力评估）🔥
+8/8    周六待查（7 月周末有发布记录，OpenAI 周末不休息）
+```
+- **8 月累计 8 篇**（8/3×2 + 8/4×2 + 8/6×3 + 8/7×1），"爆发-间歇"脉冲模式持续
+- 8/7 单篇说明脉冲**不总是连发**——单篇也可能落在"爆发日"之后一天，检查窗口需保持每日
+
 ---
 
-> **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 7 日（周五检查：OpenAI 8/6 三连发——产品升级×国家×国家数据×APA 合作，16 个新组件入库，更新至 34 节 314+ 组件；Anthropic 双通道抓取失败待明日确认；Web Search MCP 仍不可用第 90 天；四个目标公众号周五发布但无法获取。）**
+> **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 8 日（周六检查：OpenAI 8/7 单篇安全声明——Astra 逼近 Critical 网络安全阈值，8 个新组件入库，更新至 35 节 322+ 组件；Anthropic 双通道仍失败（web_fetch 连接失败 + WebParser 404）静默期约 39 天待确认；Web Search MCP 仍不可用第 91 天；四个目标公众号周末不发布，8/7 周五内容仍无法获取。）**
