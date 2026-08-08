@@ -1,0 +1,31 @@
+# 审批状态：pending
+- 生成时间：2026-08-07 22:20 (Asia/Shanghai)
+- 任务：每日 arXiv 论文精读（cron e26cc1a5-68cf-47f7-97fe-b44c09d172e9）
+- 文章：一句"权威"的误导，就能让 GPT-5.5 答错题：大模型需要学会"选择性信任"
+- 文件名：2026-08-07-选择性信任-SCOPE.md / .html
+- 字数：4677 字符（中文 2780 字，>1000 字要求 ✓）
+- HTML：13989 字节（>10KB 要求 ✓）
+
+## 论文来源（8/6 arXiv 提交批次，cs.CL）
+1. Learning When to Trust via Selective Context Preference Optimization — arXiv:2608.06377
+   - 团队：杜克（Xian Sun）+ 新加坡国立（Wei Chow、Lingdong Kong）+ UC Berkeley（Yingshuo Wang）+ UC Irvine（Junhao Liu）+ 东北大学（Wei Gao）+ 南洋理工（Qing Wu）
+   - 项目页：https://worldbench.github.io/scope ；代码：https://github.com/worldbench/SCOPE ；数据：https://huggingface.co/datasets/worldbench/MIST-Bench（+ MIST-Train）
+   - 核心：选择性信任（Selective Trust）≠ 抵抗误导；MIST 基准（1000 题 × 4 匹配情境 = 4000 行）+ SC2W 配对指标 + SCOPE（反事实偏好对 + 四情境均衡 DPO）
+   - 结果：23 模型平均掉 17.1 个百分点；Qwen3-4B SC2W 35.0→16.3，Llama-3.2-3B 31.5→20.6，对照情境零损失；零样本迁移 GSM-IC/GSM-Plus/Sharma 全部最好或打平
+2. 备选：The Bitter Lesson of Tool Calling — arXiv:2608.06370（程序化工具调用 vs JSON，BFCL v4，GPT-5.6 家族 +10.6%）
+
+## 选题理由
+- 与近期文章无主题重叠（7/31 推理时计算、8/1 质检、8/2 视觉 token、8/3 输入税、8/5 视频 Deep Research、8/6 技能熵）
+- "误导上下文/选择性信任"是 RAG、Agent、对齐三线的交汇议题；有反直觉核心论点（抵抗训练是错误目标）+ 完整"基准-指标-方法"闭环 + 开源可复现（3B/4B 模型 + 标准 DPO）
+- 人类审计背书（5/6 指标 Spearman ≥0.97）+ 零样本迁移验证，叙事完整度高
+
+## 检查清单
+- [x] Markdown >1000 字（4677 字符 / 中文 2780 字）
+- [x] HTML >10KB（13989 字节）
+- [x] Web 链接可访问（arXiv abs/html/pdf 均 200；GitHub/HF 沙箱网络不可达但链接出自论文官方摘要页）
+- [x] pending 目录已复制（.md + .html）
+- [x] 审批状态文件已创建
+
+## 发送记录
+- 2026-08-07 22:20 文章已通过 cron 输出发送至钉钉（Arron）
+- 2026-08-07 22:30 审批通知已发送（dingtalk cron 79f88896），等待 Arron 回复批准/修改/跳过
