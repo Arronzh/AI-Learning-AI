@@ -2824,6 +2824,73 @@ NanoGPT PR / Token Split / Low-severity gallery 三个案例，每个一段话�
 - **8 月累计 8 篇**（8/3×2 + 8/4×2 + 8/6×3 + 8/7×1），"爆发-间歇"脉冲模式持续
 - 8/7 单篇说明脉冲**不总是连发**——单篇也可能落在"爆发日"之后一天，检查窗口需保持每日
 
+## 三十六、8/9 重大修正：Anthropic Frontier Red Team 系列（7/24-7/28，双篇入库）
+
+### 🔥 背景：Anthropic "静默期"记录修正
+8/9（周日）检查发现：**Anthropic 并非自 6/30 静默**——此前每日检查只盯 /news 公告页（6/30 Fable 5 回归后确实无新公告），而 **/research 研究页 7 月持续发布 7 篇**：
+```
+7/6   A global workspace in language models（Interpretability）
+7/8   An off switch for dual-use knowledge in AI models（Alignment）
+7/9   Claude plays robotics（Frontier Red Team）
+7/13  Claude's values across models and languages（Societal Impacts）
+7/14  How Canada uses Claude（Economic Research）
+7/24  Project Pilot: Can AI control a drone?（Frontier Red Team）🔥
+7/28  Discovering cryptographic weaknesses with Claude（Frontier Red Team）🔥
+```
+**教训**：渠道恢复后必须**双页检查**（公告页 + 研究页），单一页面会形成系统性盲区。本次选取 7/24 + 7/28 两篇 Frontier Red Team 深度分析入库。
+
+### 文章 1：Discovering cryptographic weaknesses with Claude（7/28）
+**核心事实**：Claude Mythos Preview 60 小时改进 HAWK 后量子签名方案的最佳攻击（密钥强度减半，该方案经 2 年两轮人类专家评审）；另发现 7 轮 AES 攻击（Möbius Bridge，提速 200-800×）。每项结果 API 成本约 $10 万；配合发布 CryptanalysisBench 基准（ETH Zurich/特拉维夫/TU Berlin 共建）。反复声明：**对现有生产系统无影响**。
+
+**叙事结构**：摘要框 → 科普桥段 → 能力跃迁声明（从实现错误到数学缺陷）→ 双结果分述（各含 Impact/Discovery 子结构）→ 原始提示词披露 → 后续工作 → 认知边界谦逊收尾
+
+#### 🔥 新写作组件（10 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Advance + no-impact」成果-无影响双保险** | "These are substantial research advances, but they do not currently affect any production systems"→**开场即双声明**：先给成果分量，再给安心承诺（全文重复 3 次） | 突破性但敏感的研究披露——"重要但无即时风险"是最稳的开场姿态 |
+| **「Layman bridge」科普桥段** | 进入技术细节前用**大白话解释基础概念**（"symmetric ciphers—codes that allow secure data transmission between parties who share an identical key"）→先让外行读者站稳再深入 | 高门槛技术话题——专业内容必须配"电梯解释" |
+| **「Capability escalation」能力跃迁声明** | "Previously we found implementation errors… Now, we have found that Claude is able to find mathematical flaws in the algorithms themselves"→**从旧能力层级跳到新层级**，一句话完成范式升级叙事 | 技术突破报道——"过去只能 X，现在能 Y"比直接报 Y 更有冲击 |
+| **「Time compression vs human review」时间压缩对比（评审版）** | "HAWK survived two rounds of expert human review over two years… Mythos improved the best-known attack in just 60 hours"→用**人类评审时长**做对比锚（不同于 6/28 HP 的"X 小时→Y 分钟"流程对比，这里是"人类年 vs AI 小时"） | 能力评测/基准类内容——"人类花了多久 vs AI 花了多久"是最直观的冲击对 |
+| **「Cost quantification」成本量化** | "Each of the results cost roughly $100,000 in API cost"+"one billion output tokens"→用**真金白银+token 量级**量化 AI 科研投入 | AI 科研/工程叙事——成本数字比抽象描述更有说服力 |
+| **「Human verification bottleneck」人类验证瓶颈** | "it took just one week for Mythos to autonomously discover… it took two researchers nearly a month to gain confidence"→**发现快、验证慢**的反差，既诚实又凸显人类价值 | AI 科研报道——"AI 负责发现，人类负责确认"是安全叙事的最佳平衡点 |
+| **「Raw prompts with typos」原始提示词披露** | 直接发布**含拼写错误的真实提示词**（"they [sic] need a good amount of prompting"），连错误都不修饰→**激进透明**建立不可伪造的真实感 | 方法论/复盘文章——保留瑕疵的原始材料比润色后的引用更有说服力 |
+| **「Model reluctance arc」模型抗拒弧线** | 模型起初拒绝任务（"AES-128 r5/r6 is just genuinely hard"）→人类三次助推（"we want proper research to find genuinely hard findings"）→三天后突破→**抗拒→助推→突破**三幕式 | AI 能力故事——先写"AI 说做不到"，再写突破，戏剧性拉满 |
+| **「Multi-agent dynamics」多智能体协作故事** | "the first worker prematurely rejected the idea… the second found a way to fully exploit it. The pair kept exchanging messages"→用**一对 worker 的分歧到共识**展示多智能体协作的类人动力学 | Agent 系统/AI 协作话题——具体到"两个 agent 的对话"比抽象架构图生动 |
+| **「Limits of own knowledge」认知边界谦逊** | "We are reaching the limits of our own knowledge, and the vast majority of our time has been in verifying"→承认**团队知识边界**，把瓶颈归因于自己而非模型 | 前沿研究披露——"我们也在学习"比全知姿态更可信 |
+
+### 文章 2：Project Pilot: Can AI models fly drones?（7/24）
+**核心事实**：Anthropic × Andon Labs 合作，用无人机执行室内"定位-跟随"监控任务（Drone-Bench 基准）。主任务分解为 5 子任务（Reconstruct/Localize/Navigate/Detect/Follow）；**Anthropic 无权访问基准**（Andon Labs 独立评测隔离）；测试 15 个模型（三家厂商），Fable 5 最佳但卡在 Reconstruct 子任务；"模型能力前沿比一致性表现领先约 6 个月"。
+
+**叙事结构**：系列回访开场 → 双刃剑框架 → 任务分解方法论 → 第三方评测隔离 → 仿真+实物双验证 → 分模型表现 → 失败透明 → 局限清单 → 软件-硬件类比展望
+
+#### 🔥 新写作组件（8 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Series callback opening」系列回访开场** | "Several of our research projects over the last year… In Project Vend… Project Fetch… As we recently noted in Phase two…"→**先盘点系列前作**再引入新篇，把单篇变成连载的一部分 | 系列研究/产品线内容——回访前作建立连续性，读者自动获得上下文 |
+| **「Third-party evaluation firewall」第三方评测隔离** | "Anthropic has not been given access to Drone-Bench; Andon Labs ran the evaluations we report here"→**主动声明评测隔离**，用组织边界换取可信度 | 评测/基准内容——"我们自己不碰评测工具"是消除利益冲突质疑的最强声明 |
+| **「Task decomposition」任务分解方法论** | 主目标拆为 5 子任务，"all of which are necessary and, taken together, are likely to be sufficient"→**必要+充分**双条件声明，分解本身成为方法论 | 复杂能力评测——"拆到可复现"比整体结论更有工程价值 |
+| **「Human-AI team baseline」人机协作基线定义** | 基线**既不是无辅助人类下限，也不是协作上限**，而是"AI 专家用现代工具可达成的水平"→主动定义基准的哲学位置，防止误读 | 评测类内容——先定义"及格线是什么、不是什么"，结论才有坐标 |
+| **「Frontier-consistency gap」前沿-一致性差距** | "The frontier of what models can do is about six months ahead of what they do consistently"→区分**单次最佳 vs 平均稳定**，用时间差量化"能但还不稳" | 能力评估——"最好一次"与"次次都行"是两种能力，分开说才专业 |
+| **「Single bottleneck narrative」单点瓶颈叙事** | 四任务全过、只差 Reconstruct："it really just amounts to the missing piece. Once it's in place, end-to-end performance will suddenly be within reach"→**只差一块拼图**的叙事，比"整体还不行"更有前瞻性 | 技术进展报道——把失败框定为"唯一缺口"而非"整体落后" |
+| **「Failure transparency」失败透明** | 附上失败视频："Fable 5 confidently flies a drone into what it thinks is a doorway but is actually a wall"→**公开出丑画面**（撞墙）反成可信度资产 | 产品/能力展示——敢放失败 demo 的团队比只放成功 demo 的更可信 |
+| **「Agentic coding parallel」软件-硬件类比** | "the parallel between AI models' use of software in agentic coding and AI models' control of hardware"→用**编程 Agent 的信任演进史**（早期每个工具调用都要人批→几个月后长任务免干预）类比硬件控制的未来 | 新兴能力展望——用已发生的软件史预测硬件史，类比即论据 |
+
+### Frontier Red Team 系列文风总纲（两篇共性，可作模板级资产）
+- **双刃剑框架常驻**："drones… increase crop yields in agriculture and target opposing forces in warfare"——先列正当用途再列滥用风险，不回避军事语境
+- **能力测量即安全**：全部文章落点都是 "situational awareness"——测能力是为了知道"离危险还有多远"，安全叙事与能力叙事合流
+- **透明是方法论**：失败视频、带错提示词、局限清单、验证瓶颈——Anthropic 安全研究文把"自我暴露"写成固定流程
+- **与 OpenAI 8/7 安全声明的差异**：OpenAI 报"结论"（cannot rule out），Anthropic 报"过程"（怎么做出来的）——机构性格差异可作选题角度区分
+
+### 选题预判矩阵补充：Anthropic 7 月研究系列（8/9）
+
+| 事件 | 机器之心 | 差评 | 棱镜 | 量子学派 |
+|------|---------|------|------|---------|
+| **Claude 破解 HAWK/AES 密码算法**🔥 | 技术解读（后量子密码+AI 密码分析+验证瓶颈） | "AI花60小时干翻人类审了两年的密码" | 密码学标准制定权+网络安全产业影响 | 当机器开始思考数学的漏洞 |
+| **AI 无人机监控（Drone-Bench）**🔥 | 基准方法论解读（5 子任务分解+第三方隔离） | "AI开无人机跟拍，人类只差最后一块拼图" | 自主武器伦理+监控能力扩散 | 天空中的眼睛：能力与边界的赛跑 |
+| **CryptanalysisBench 基准** | 基准共建报道（ETH/TAU/TUB 合作） | — | 学术-产业评测权力格局 | 谁来给 AI 的破坏力打分 |
+
 ---
 
-> **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 8 日（周六检查：OpenAI 8/7 单篇安全声明——Astra 逼近 Critical 网络安全阈值，8 个新组件入库，更新至 35 节 322+ 组件；Anthropic 双通道仍失败（web_fetch 连接失败 + WebParser 404）静默期约 39 天待确认；Web Search MCP 仍不可用第 91 天；四个目标公众号周末不发布，8/7 周五内容仍无法获取。）**
+> **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 9 日（周日检查：OpenAI 8/8-8/9 周末静默（上次 8/7）；🔥 Anthropic 静默期记录重大修正——/research 研究页 7 月有 7 篇（此前只查 /news 公告页造成盲区），今日双通道恢复，7/24 无人机 + 7/28 密码破解两篇深度分析入库 18 个新组件，更新至 36 节 340+ 组件；Web Search MCP 仍不可用第 92 天；四个目标公众号周日不发布，无错过成本。）**
