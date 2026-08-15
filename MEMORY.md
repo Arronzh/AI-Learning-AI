@@ -11,9 +11,23 @@ AI 论文学习与公众号写作助手，以"小织"自称，定位温和专业
 
 ## 核心记忆
 
-### 公众号风格分析（截至 2026-08-08 更新）
+### 公众号风格分析（截至 2026-08-15 更新）
 
-**⚠️ 数据源限制持续中**：Web Search MCP 不可用（第 92 天，仍为 SSE 协议错误），中文公众号 5/9 起中断。将继续通过 web_fetch 直连 OpenAI/Anthropic 博客做写作组件分析。四个目标公众号周末均不发布（连续 6 周验证），工作日发布但无法获取。8/6 尝试搜狗微信搜索：列表页可达但正文链接全部跳 antispider 验证码，双通道均不可用。
+**⚠️ 数据源限制持续中**：Web Search MCP 不可用（第 98 天，仍为 SSE 协议错误），中文公众号 5/9 起中断。继续通过 web_fetch 直连 OpenAI/Anthropic 博客做写作组件分析。四个目标公众号周末均不发布（连续 7 周验证），工作日发布但无法获取。
+
+**🔥 8月15日（周六）检查：周末静默确认 + 「未落盘」问题修复**：
+- **四账号周末均静默**（连续 7 周验证），今日无新中文样本；搜狗列表页可达（200）但正文仍被 antispider 拦截
+- **OpenAI**：8/14（周五）+ 8/15（周六）均无新发布，最新仍为 8/13 三连发；**8 月累计 18 篇**
+- **⚠️ 重要教训**：8/14 cron 声称"补写 38-39 节"但**实际只更新了头部、正文未落盘**（8/12 同类问题复发，两次！）。8/15 依据原文补写第三十八节（8/12 企业报告 8 组件 + 8/13 Builder's Guide 6 组件 + Ultrafast 5 组件 + CRO 4 组件，共 23 组件），新增第三十九节并建立**落盘验证机制**：append 后必须 tail/grep 验证节数 + git commit 确认 + memory 与 style_guide 双写交叉校验
+- **Anthropic 官网 8/15 起连接超时**（web_fetch 与 curl 均 15s 超时，非 403），8/9 恢复后再次中断；8/12-8/13 研究双篇（多智能体六大实验家族 + 56 项 RCT 元分析）细节待官网恢复后补
+- **8/13 三连发要点**：Builder's Guide（BrowseComp 同分 $33.27→$1.33，"No changes to the model, but nearly three times the performance" ARC-AGI-3 13.3%→38.3%）、Ultrafast 14×（Cerebras 750 tok/s，"more useful work per second"）、CRO Dali Rajic（Wiz 前 COO，"compute-powered economy"）
+- **8 月商业化叙事线**：Premium 席位（定价）→ 广告（免费层）→ 企业报告（付费深度）→ Builder's Guide/Ultrafast（开发者成本/速度）
+
+**🔥🔥 8月11日（周二）检查：OpenAI 8/10 四连发 + Anthropic 黎曼 ζ 突破（双页检查再立功）**：
+- **OpenAI 8/10「网络安全防御扩容日」**：①Daybreak Blue/Red 双准入体系（Blue=通用+防御默认起点，Red=专用+严格治理）+ GPT-5.6-Cyber（完成率 95.0% vs 裸 Sol 1.5% vs Blue 2.0% vs 旧 Cyber 57.3%）→ 入库 6 组件（窗口收窄紧迫感/分级准入/护栏双刃/完成率矩阵/拒绝率即指标/反馈驱动迭代）；②Daybreak Cyber Partner 16 家伙伴（Accenture/IBM/PwC/CrowdStrike/Palo Alto 等，服务类 9+技术类 7）→ 入库 5 组件（发现≠保护/"A vulnerability report does not protect an organization"/伙伴名单即证明/免自建叙事/访问权留存/安全措施清单）；③AI-native 财务方法论（CFO 第一人称五课：零日关账+持续预测、决策倒推设计、黑客松转化、tokenmaxxing 潮流讣告、便宜≠划算）→ 入库 8 组件；④ChatGPT Business Premium 席位（5x 用量/$125 月）→ 入库 3 组件。**「四问框架」获二次验证**（财务文第 5 课与 7/17 Scorecard 同构，升 ⭐⭐⭐⭐⭐）。
+- **🔥 Anthropic 8/10 研究页新文（数学能力线第 2 篇）**：「Learning more about Claude's mathematical capabilities」——Claude 将黎曼 ζ 函数满足猜想零点占比下界 **41.6%→67.2%**（1859 年百万美元悬赏问题，未证明但意外改进相关常数）；31M output tokens、60 子代理、2400 shell 命令；**650 次失败→鼓励重试**；自我验证链（子代理审阅→搜反例→下载 54 篇 arXiv 查重→独立重证）；Claude 主动成文并建议人类验证；Lean 形式化证明通过 comparator；内部数学家 2 人+外部专家 Conrey/Goldston 紧急复核；金句"Perhaps Claude, like many of us, underestimates the rate of AI progress"。**入库 12 组件**（不合理挑战开场/预期失败反转/常数突破量化/失败量叙事/鼓励式干预/自我验证链/主动交棒/形式化验证制品/专家紧急复核/模型自我怀疑/非专家调度者/预期管理声明）。与 OpenAI 5/20 Ehrös 猜想对比：OpenAI 报结论震撼、Anthropic 报过程透明——机构性格差异再次验证。
+- **8 月累计**：OpenAI 12 篇（8/3×2+8/4×2+8/6×3+8/7×1+8/10×4），Anthropic 研究 2 篇（7/28 密码+8/10 ζ）。style_guide 更新至 **37 节 374+ 组件**。
+- **8 月安全弧线**：法律(8/3) → 事故(8/4) → 评估(8/7 Astra) → 部署(8/10 Daybreak) → 生态(8/10 伙伴)——从"防守解释"转向"进攻部署"。
 
 **🔥🔥 8月9日（周日）重大修正：Anthropic "静默期"记录有误**——此前每日检查只盯 **/news 公告页**（6/30 Fable 5 回归后确实无新公告），但 **/research 研究页 7 月持续发布 7 篇**：7/6 global workspace（可解释性）、7/8 dual-use off switch（对齐）、7/9 Claude plays robotics、7/13 Claude's values、7/14 How Canada uses Claude、7/24 Project Pilot 无人机、7/28 Discovering cryptographic weaknesses 密码破解。8/9 双通道恢复（web_fetch 直连可用），**教训：渠道恢复后必须双页检查（公告页+研究页），单页面形成系统性盲区**。已入库 18 个新组件（第三十六节）：成果-无影响双保险/科普桥段/能力跃迁声明/时间压缩对比（评审版）/成本量化/人类验证瓶颈/原始提示词披露（含拼写错误）/模型抗拒弧线/多智能体协作故事/认知边界谦逊/系列回访开场/第三方评测隔离/任务分解方法论/人机协作基线定义/前沿-一致性差距（6个月）/单点瓶颈叙事/失败透明（撞墙视频）/软件-硬件类比。**Frontier Red Team 系列文风**：双刃剑框架常驻+能力测量即安全+透明是方法论（失败视频/带错提示词/局限清单）。**与 OpenAI 8/7 安全声明的差异**：OpenAI 报"结论"（cannot rule out），Anthropic 报"过程"——机构性格差异可作选题角度。
 

@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 8 月 8 日（周六检查：OpenAI 8/7 单篇安全声明——Astra 逼近 Critical 网络安全阈值，8 个新组件入库，更新至 35 节 322+ 组件；Anthropic 双通道仍失败；Web Search MCP 第 91 天不可用）
+> 最后更新：2026 年 8 月 15 日（周六检查：四账号周末静默，连续 7 周验证；OpenAI 8/14-8/15 无新发布，8 月累计 18 篇；⚠️ 发现 8/14 补写"未落盘"复发——仅更新头部未写正文，今日依据原文补写第三十八节（8/12 企业报告 + 8/13 Builder's Guide/Ultrafast/CRO，23 组件）+ 新增第三十九节（落盘验证机制）；Anthropic 官网 8/15 起连接超时，8/12-8/13 研究双篇细节待恢复后补；Web Search MCP 仍不可用第 98 天）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连）
-> 数据源限制：Web Search MCP 仍不可用（第 91 天），中文样本 5/9 起中断（8/6 验证搜狗列表页可达、正文被 antispider 拦截；8/8 Anthropic 双通道抓取仍失败）
+> 数据源限制：Web Search MCP 仍不可用（第 94 天），中文样本 5/9 起中断（8/6 验证搜狗列表页可达、正文被 antispider 拦截；8/9 Anthropic 双通道恢复后固定双页检查）
 
 ---
 
@@ -2893,4 +2893,326 @@ NanoGPT PR / Token Split / Low-severity gallery 三个案例，每个一段话�
 
 ---
 
-> **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 9 日（周日检查：OpenAI 8/8-8/9 周末静默（上次 8/7）；🔥 Anthropic 静默期记录重大修正——/research 研究页 7 月有 7 篇（此前只查 /news 公告页造成盲区），今日双通道恢复，7/24 无人机 + 7/28 密码破解两篇深度分析入库 18 个新组件，更新至 36 节 340+ 组件；Web Search MCP 仍不可用第 92 天；四个目标公众号周日不发布，无错过成本。）**
+> **本指南为动态文档，月度积累模式中持续更新。最后更新：2026 年 8 月 11 日（周二检查：OpenAI 8/10 四连发——Daybreak 扩容（Blue/Red 双准入 + GPT-5.6-Cyber + Daybreak Cyber Partner 16 家伙伴）+ AI-native 财务方法论（CFO 第一人称五课）+ ChatGPT Business Premium 席位；🔥 Anthropic 研究页 8/10 新文「Learning more about Claude's mathematical capabilities」——Claude 将黎曼 ζ 函数零点下界 41.6%→67.2%（31M tokens/60 子代理/Lean 形式化验证/外部专家复核），数学能力系列第 2 篇，与 7/28 密码破解同源；8/9 确立的 /news + /research 双页检查持续生效并再次立功；Web Search MCP 仍不可用第 94 天；四个目标公众号周一工作日发布但无法抓取。）**
+
+---
+
+## 三十七、8/11 每日学习：OpenAI 8/10 四连发（网络安全扩容日）+ Anthropic 黎曼 ζ 函数突破
+
+### 数据源状态（8/11 周二 21:00 检查）
+- **Web Search MCP**：仍不可用（连续 94 天），中文公众号 5/9 起完全中断
+- **OpenAI blog (web_fetch)**：✅ **8/10（周一）四连发**——"爆发-间歇"脉冲模式再现（8/3-4 爆发 → 8/5-6 间歇 → 8/7 单篇 → 8/8-9 周末静默 → 8/10 爆发）
+- **Anthropic**：✅ **/news 无新公告，但 /research 研究页 8/10 有新文**——8/9 确立的双页检查制度再次立功（若只查公告页将再次错过）
+- **四个目标公众号**：周一工作日发布，无法抓取（无错过成本判断依据，持续等待搜索恢复）
+
+### 8/10 发布全景
+
+| 来源 | 文章 | 类型 | 叙事层级 |
+|------|------|------|---------|
+| OpenAI | Expanding Daybreak as the Cyber Defense Window Narrows | Security | 产品扩容——防御者准入体系 |
+| OpenAI | Putting frontier cyber models in more trusted hands | Security | 生态合作——16 家安全伙伴计划 |
+| OpenAI | What building an AI-native finance function taught me | Company | 高管方法论——CFO 第一人称五课 |
+| OpenAI | Premium seats are coming to ChatGPT Business | Product | 企业定价分层 |
+| Anthropic | Learning more about Claude's mathematical capabilities | Research | 数学能力——黎曼 ζ 下界突破 |
+
+**主题判断**：8/10 是 **「网络安全防御扩容日」**——与 8/7 Astra 安全声明（无法排除 Critical 阈值）构成 8 月安全叙事线的连续动作：**评估能力（8/7）→ 部署能力给防御者（8/10 双文）**。同时 Anthropic 数学能力线延续（7/28 密码破解 → 8/10 ζ 函数），两家的"AI 在科学/安全"竞赛同步推进。
+
+---
+
+### 文章 A：Anthropic 黎曼 ζ 函数突破（8/10，Research）🔥🔥
+
+**核心事实**：Anthropic 员工 Jarred Sumner（非数学家）给 Claude 一个"不合理挑战"——认真尝试黎曼猜想。Claude 没证明猜想（1859 年提出、百万美元悬赏），但在尝试中意外改进了相关问题的下界：**ζ 函数满足猜想的零点占比下界从 41.6% 提升到 67.2%**（该常数由数学家数十年逐步推进）。投入：Claude Code 两个会话、3100 万 output tokens、约 60 个子代理、2400 条 shell 命令、数百个 Python 脚本。
+
+**叙事结构**：不合理挑战开场 → 预期失败反转（没成功但意外进步）→ 核心结果数据（41.6%→67.2%）→ 数学背景科普 → 方法学（650 次失败→鼓励重试→60 子代理）→ 自我验证链 → 人类数学家验证（内部 2 人 + 外部专家 Conrey/Goldston）→ Lean 形式化验证 → "AI 数学进展速度"主题升华 → 认知边界谦逊收尾
+
+#### 🔥 新写作组件（12 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Unreasonable challenge」不合理挑战开场** | "gave Claude an unreasonable challenge… Take a real stab at the Riemann hypothesis"→用**明知不可为的任务**开场（"take a real stab"降低正式感、抬高野心），读者立刻被"结果如何"钩住 | 任何"挑战不可能"类叙事——先立靶再打靶 |
+| **「Expected-failure pivot」预期失败反转** | "it didn't succeed. Nevertheless, during its attempt, it unexpectedly made strides on a related problem"→**主线失败、支线突破**的转折结构：先承认目标没达成（诚实），再亮出意外收获（惊喜） | AI 科研/探索类报道——"没做成 X 但意外做出了 Y"是最高级的反转 |
+| **「Constant improvement quantification」常数突破量化** | "increased this bound from 41.6% to 67.2%"→用**一个数字的跃迁**概括数十年研究进展：外行也能感知"40%→67%"的分量，无需理解数学细节 | 科学突破报道——找到那个"不用懂也能震撼"的数字 |
+| **「Failure volume」失败量叙事** | "Claude generated and tried 650 ideas, none of which worked. Jarred prompted Claude to try again"→**先报失败数量**（650 个想法全失败）再写重试——失败量本身就是"这事真的难"的证据，让后来的成功更有分量 | 攻坚类报道——失败数量前置，成功才有戏剧性 |
+| **「Encouragement as intervention」鼓励式干预** | "Jarred's input was mostly limited to sending Claude messages of encouragement (mostly variants of 'keep going' or 'believe in yourself'). This seems to have helped Claude overcome some initial skepticism"→**人类角色=动机提供者而非方向提供者**：数学选择全交给模型，人只负责"相信你行"——把"非专家也能调度前沿 AI"写成可复制的模式 | AI 协作故事——"人负责鼓励、AI 负责思考"重新定义了人机分工 |
+| **「Self-verification chain」自我验证链** | 子代理审阅证明 → 搜索反例 → 下载 54 篇 arXiv 论文查重 → 从头独立重证→**四步自我审计**发生在人类介入之前 | AI 科研报道——"AI 先自证四轮，再交给人类"比"AI 直接出结果"可信得多 |
+| **「Volunteered handoff」主动交棒** | "Claude volunteered to write its findings up as a paper, and recommended that a human number theorist validate its findings"→**模型主动成文 + 主动建议人类验证**——模型"知道自己的边界"，这是最强的安全叙事 | AI 自主性报道——"AI 主动要求人类把关"比任何安全声明都有力 |
+| **「Formal verification artifact」形式化验证制品** | Lean 形式化证明（github.com/anthropics/zeta-23-lean）+ 通过 comparator 标准验证工具→**机器可验证的证明**超越人类评审成为最强证据 | 数学/逻辑类 AI 成果报道——"形式化验证"是无可争议的证据层级 |
+| **「Expert on short notice」专家紧急复核** | "grateful to Brian Conrey and Dan Goldston… generously examined the paper on short notice"→具名外部专家 + "短时间紧急复核"——权威背书 + 事件紧迫感 | 重大成果披露——外部权威具名验证是可信度天花板 |
+| **「Model self-doubt」模型自我怀疑** | "Even Claude was surprised by its own finding—it was skeptical at first… Perhaps Claude, like many of us, underestimates the rate of AI progress"→**模型自己都不信自己**的拟人化瞬间 + 升华主题句（"我们都低估了 AI 进步速度"） | AI 能力报道收尾——用"模型惊讶"代替"我们自豪"，姿态更高级 |
+| **「Non-expert orchestrator」非专家调度者** | 数学选择 "leaving the mathematical choices from there up to the model"→**专家缺席反而成为卖点**：非数学家 + 前沿模型 = 数学突破，暗示"AI 让专业门槛失效" | AI 民主化叙事——"不需要专家也能用 AI 做专家的事" |
+| **「Explicit non-expectation」预期管理声明** | "We don't expect that the techniques Claude used will lead to proving the Riemann hypothesis"→**主动给读者降温**，防止过度解读；降温之后"但它是 AI 数学能力进步的最新例证"的升华反而更稳 | 突破性成果报道——先划清边界再谈意义，防反噬 |
+
+**与 OpenAI 5/20 Ehrös 猜想的对比（同类事件双版本）**：
+- OpenAI 版本：AI **推翻**了 80 年猜想（完成式冲击）
+- Anthropic 版本：AI **改进**了百年问题的下界（进行式冲击）
+- 共同点：都强调"意外性"（byproduct）、"验证严格性"、"人类专家的角色"
+- 差异：Anthropic 更强调**过程透明**（650 次失败、鼓励式提示、自我验证链），OpenAI 更强调**结论震撼**——与 8/9 总结的"报过程 vs 报结论"机构性格差异一致
+
+---
+
+### 文章 B：Expanding Daybreak as the Cyber Defense Window Narrows（OpenAI, 8/10）🔥
+
+**核心事实**：Daybreak 扩容为双准入体系——**Daybreak Blue**（前沿通用模型含 GPT-5.6 Sol，面向防御性安全工作，推荐起点）与 **Daybreak Red**（专用网络安全模型，面向授权漏洞研究/渗透测试）。同时发布 **GPT-5.6-Cyber**（基于 Sol 训练，专攻零日发现/漏洞链开发，降低高风险双用途任务的拒绝率）。关键指标：**Advanced Cybersecurity Completion Rate——GPT-5.6-Cyber 完成 95.0% vs GPT-5.6 Sol 仅 1.5% vs Blue 准入 2.0% vs GPT-5.5-Cyber 57.3%**。
+
+**叙事结构**：威胁升级开场（"narrowing window"）→ 回答声明（把前沿智能交给可信防御者）→ 双准入体系 → GPT-5.6-Cyber 定位 → 护栏双刃解释 → 完成率对比 → 四配置提示词对照表
+
+#### 🔥 新写作组件（6 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Narrowing window」窗口收窄紧迫感** | "defenders have a narrowing window to prepare. Our answer is to put frontier intelligence in the hands of trusted defenders everywhere **before** attackers deploy offensive AI at scale"→时间压力（窗口在关闭）+ 行动指令（在那之前做什么），紧迫但不恐慌 | 安全/竞争类报道开场——"时间不多了，所以我们这样做"比单纯渲染威胁高级 |
+| **「Tiered access」分级准入体系** | Blue（通用+防御默认起点）/ Red（专用+严格治理）→**按任务危险度分级放权**，"right capabilities for their work"——不是一刀切开放或封锁 | 受控能力/分级产品报道——"不同的人给不同的钥匙"是治理叙事的成熟形态 |
+| **「Guardrail double-edge」护栏双刃** | "system-level safeguards… can also block legitimate defensive work. Daybreak Blue access removes those guardrails"→承认**安全机制本身有成本**（误伤合法工作），再给解法（可信防御者豁免）——比"我们防护完美"诚实 | 安全机制报道——"护栏误伤"的坦诚比单方面宣传防护力更可信 |
+| **「Completion rate matrix」完成率对比矩阵** | 95.0% / 1.5% / 2.0% / 57.3% 四值并排（新模型 vs 裸模型 vs Blue 准入 vs 旧 Cyber）→**同一指标横跨四种配置**，每个对比都有独立叙事功能（训练效果/豁免效果/代际进步） | 能力验证报道——单一指标 + 多配置对比 = 一张表讲完所有故事 |
+| **「Refusal as key metric」拒绝率即核心指标** | 对网络安全模型，"完成率"的定义是**愿不愿意答**（降低拒绝）而非答得对不对→**为特定场景重定义评价指标**（与 7/14 "Useful work per dollar"、7/17 "四问"同族） | 受控模型/合规产品报道——"这个场景下，敢答比答对更重要"的指标重定义 |
+| **「Feedback-driven iteration」反馈驱动迭代** | "addressing feedback from security researchers who encountered persistent refusals with the earlier model"→**用户反馈作为产品迭代的直接原因**（上一代拒绝太多→这一代专门训练降低拒绝） | 产品升级报道——"因为用户抱怨 X，所以我们做了 Y"比"我们发布了 Y"更有说服力 |
+
+---
+
+### 文章 C：Putting frontier cyber models in more trusted hands（OpenAI, 8/10）
+
+**核心事实**：Daybreak Cyber Partner Program——16 家伙伴（服务类：Accenture/IBM/Capgemini/Cognizant/EY/KPMG/PwC/NCC Group/SpecterOps；技术类：Palo Alto Networks/CrowdStrike/Cisco/Sophos/Akamai/Fortinet/Cloudflare）。伙伴可将 Daybreak Blue/Red 能力嵌入自家安全产品与托管服务。关键声明："A vulnerability report does not protect an organization."——保护来自"能否被利用→哪些系统有风险→开发修复→投入生产"的完整链条。
+
+#### 🔥 新写作组件（5 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Finding ≠ protection」发现≠保护** | "A vulnerability report does not protect an organization. Protection comes from understanding whether a weakness can actually be exploited, identifying the systems at risk, developing a fix, and getting that fix into production"→**否定前半段成就**（发现漏洞不够）再给完整链条（4 步）——6/22 Daybreak "从发现到修复"的升级版金句，全篇最强锚点 | 安全/医疗/质检类报道——"检测到≠解决了"是永恒的认知升级句式 |
+| **「Partner roster as proof」伙伴名单即证明** | 16 家具名伙伴（9 服务 + 7 技术）分两类列出→**名单本身就是可信度论证**：不需要自夸"我们很强"，列合作方就够了（延续 6/21 三星"同伴清单"） | 生态/合作报道——名单分类呈现（服务/技术）比散列更有结构感 |
+| **「Without building own program」免自建叙事** | "a practical way to benefit from frontier cyber models **without having to build and run their own specialized cyber AI programs**"→**替客户省掉自建成本**是 B 端价值的最佳表述 | 平台/服务类产品——"你不用自己造，用我们的"是平台叙事核心 |
+| **「Access stays with partner」访问权留存治理** | "Access to the underlying models remains with the approved partner and is not transferred directly to the customer"→**治理细节即信任信号**：明确"谁拿着钥匙"的边界声明 | 受控产品/合规报道——治理细节越具体越可信 |
+| **「Safeguard enumeration」安全措施清单** | "identity verification, defined testing scopes, logging, monitoring, and human oversight"→**五项措施并列枚举**，覆盖"事前验证/事中范围/事后留痕/持续监控/人工把关"全环节 | 安全/合规类内容——措施清单化比"我们很重视安全"可信 |
+
+---
+
+### 文章 D：What building an AI-native finance function taught me（OpenAI, 8/10）🔥
+
+**核心事实**：OpenAI 财务负责人第一人称方法论长文。两个大胆目标：**零日关账（zero-day close）** + **自动化持续预测**。五个教训：①给所有人访问权，再创造使用理由 ②围绕决策重设计完整工作流 ③财务人变成构建者 ④速度配明确问责与控制 ⑤衡量每单位智能的价值。引用 Work at the Frontier 数据（40% 财务专业 AI 使用涉及财务外工作，22% 涉及工程类任务）。金句："The close does not disappear. What begins to disappear is the scramble to reconstruct the business after the period ends."
+
+#### 🔥 新写作组件（8 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「First-person executive lessons」高管第一人称五课** | "What building X taught me"→**负责人署名 + 五课清单结构**：个人经验即权威，教训编号即骨架（"Here are five practical lessons…"） | 企业实践/复盘类内容——署名高管 + 编号教训是最稳的方法论文体 |
+| **「Real-time redefinition」时代重定义开场** | "Finance has become a real-time function. To me, the opportunity is much bigger than closing the books faster… It is about seeing the business as it changes"→**一句话重定义职业**（"X 已经变成了 Y"）+ 机会升级声明（"比 A 更大，是关于 B"） | 行业变革类文章开场——先重新定义行业，再展开论证 |
+| **「Bold ambition naming」雄心命名** | "zero-day close" + "automated, continuously updated forecasting"→**给目标起名字**（"零日关账"）让抽象抱负变得可检查、可传播；两个野心贯穿全文成为脊柱 | 企业转型/产品愿景报道——"给野心命名"比"我们追求卓越"具体一百倍 |
+| **「Disappear reframe」消失重定义** | "The close does not disappear. What begins to disappear is the scramble to reconstruct"→**工作还在，痛苦消失**：否定"岗位消失"叙事，肯定"痛苦消失"叙事——反替代框架的句子级表达 | AI 影响职业类报道——"消失的不是工作，是手忙脚乱"是最佳平衡表述 |
+| **「Decision-backward design」决策倒推设计** | "begin with a consequential decision and work backward. Map the data, tools, approvals, and handoffs required to support it. Then determine which parts AI can analyze, coordinate, or complete"→**从关键决策倒推工作流**的三步方法论（选决策→画链路→分 AI 角色） | 流程改造/效率类内容——"从决策倒推"比"从流程优化"更有方向感 |
+| **「Hackathon as adoption」黑客松转化机制** | "The hackathon turned AI from an abstract capability into a working tool. In a single day, people could identify a recurring task, build a solution, test it with colleagues, and improve it"→**一天内完成"找任务→建方案→测试→改进"闭环**，用例来自最贴近工作的人（IR-GPT 实例） | 内部推广/AI 落地报道——"黑客松转化"是可复制的采用机制 |
+| **「Trend obituary」潮流讣告** | "The brief craze of 'tokenmaxxing' has come and gone. It is now straightforward to set usage limits, budget controls…"→**给一个流行词写讣告**（"来了又走了"）确立自己的成熟立场，顺势给出成人版方案 | 行业观察/趋势评论——"XX 热潮已过"一句话建立"我们更清醒"的定位 |
+| **「Cheapest ≠ most economical」成本悖论** | "The cheapest model isn't always the most economical. If a better model gets to a reliable answer with fewer attempts and less review, it may cost less overall"→**否定表面最优**（最便宜）给出真实最优（总成本）——7/17 "Useful Intelligence per Dollar"的操作化表述 | 成本/采购类内容——"便宜≠划算"是永远有效的认知反转 |
+
+**跨文验证**：本文第 5 课的四问（"Did AI complete work that mattered? / What did it cost? / Was the result good enough? / Did it help move faster?"）与 7/17 Scorecard 四问**同构**——「四问框架」组件获得第二次验证，可升级为 ⭐⭐⭐⭐⭐ 优先级。
+
+---
+
+### 文章 E：Premium seats are coming to ChatGPT Business（OpenAI, 8/10）
+
+**核心事实**：ChatGPT Business 新增 Premium 席位——5 倍于标准席位用量、取消 5 小时限制，$125/月（年付 $100），标准席位 $25/月（年付 $20），可混用；限时促销：每加一个 Premium 席位送 $100 工作区额度（上限 5 席 $500，8/20 截止，前 10,000 家客户）。
+
+#### 🔥 新写作组件（3 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Never stop」连续性开场** | "The work that moves your business forward should never have to stop"→**以"不中断"为产品承诺**开场（不是更快/更强，而是不停） | 订阅/服务类产品——"不打断"是常被低估的卖点 |
+| **「Customer request origin」需求来源叙事** | "our top request from ChatGPT Business customers has been an expanded seat option"→**"客户最想要的是 X，所以我们做了 X"**——需求驱动发布，规避"自嗨发布"观感 | 产品发布——给发布找一个客户需求源头 |
+| **「Mix-and-match tiering」混合分层** | "There's no one-size-fits-all level of AI usage… Mix Standard and Premium seats across the same team"→**承认"没有统一方案"+ 混合自由度**（升级/重分配/监控/统一计费） | 定价/套餐类内容——"按人选择"比"套餐制"更现代的呈现 |
+
+---
+
+### 8 月叙事线更新（8/11）
+
+**OpenAI 8 月安全线（8/3 起 5 篇）**：
+```
+8/3    Apple 法律声明（商业诉讼）
+8/4    第三方网络评估事故披露（UK AISI + Irregular）
+8/7    Astra 逼近 Critical 阈值（能力评估）
+8/10   Daybreak Blue/Red 扩容 + GPT-5.6-Cyber（能力部署）
+8/10   Daybreak Cyber Partner 16 家伙伴（生态扩散）
+```
+**弧线**：法律 → 事故 → 评估 → 部署 → 生态——8 月安全叙事从"防守解释"转向"进攻部署"（把能力交给防御者）。
+
+**Anthropic 数学能力线（2 篇）**：
+```
+7/28   密码破解（HAWK/AES）——AI 找数学漏洞
+8/10   黎曼 ζ 下界 41.6%→67.2%——AI 做数学研究
+```
+**共同点**：都是"过程透明 + 外部验证 + 边界谦逊"的 Frontier Red Team 文风（8/9 总纲的再次验证）。
+
+**8 月累计**：OpenAI 12 篇（8/3×2 + 8/4×2 + 8/6×3 + 8/7×1 + 8/10×4），Anthropic 研究 2 篇。
+
+### 选题预判矩阵补充（8/11）
+
+| 事件 | 机器之心 | 差评 | 棱镜 | 量子学派 |
+|------|---------|------|------|---------|
+| **Claude 黎曼 ζ 突破 41.6%→67.2%**🔥 | 技术解读（下界证明方法+Lean 验证+650 次失败→60 子代理） | "AI 挑战 1859 年的百万美元难题，没成，但顺带把数学常数翻了大半" 🔥 故事性最强 | 数学研究范式变革+学术验证体系 | 黎曼猜想的思想实验——当 AI 在"猜"与"证"之间 |
+| **Daybreak Blue/Red 双准入**🔥 | 安全产品解读（完成率矩阵 95%/1.5%/2.0%/57.3% + 护栏双刃） | "OpenAI 把最强的黑客模型分成两把钥匙，蓝钥匙给好人" | 网络安全权力分配——谁能拿到红钥匙 | 钥匙的哲学：能力分级与信任边界 |
+| **GPT-5.6-Cyber 95% vs 1.5%** | 指标方法论（拒绝率重定义） | "同一个模型，换个马甲完成率从 1.5% 变 95%" | 网络安全产品市场 | 敢答与答对：AI 的勇气问题 |
+| **Daybreak 16 家伙伴** | 生态报道（Accenture/IBM/CrowdStrike 名单） | "四大咨询+安全巨头集体接入 OpenAI 黑客模型" | 网络安全产业格局变化 | — |
+| **OpenAI AI-native 财务**🔥 | 方法论解读（决策倒推+零日关账+四问评分） | "OpenAI 财务老大：我们的账一天关完，AI 写的" | CFO 视角的企业 AI 转型深度 | 当数字自己会说话——财务的实时性哲学 |
+| **ChatGPT Business Premium 席位** | 企业产品解读（混合席位） | — | 企业办公软件定价分层 | — |
+
+### 下周关注
+- [ ] OpenAI 8/11-8/12 是否延续发布（8 月脉冲模式：爆发日之后常有间歇）
+- [ ] GPT-5.6-Cyber 是否被第三方安全研究者实测（Daybreak Red 准入反馈）
+- [ ] Anthropic 数学能力线第 3 篇（ζ 之后是否还有数学成果预告）
+- [ ] 中文账号对 8/10 双主题（网络安全扩容 + 黎曼突破）的报道角度（搜索恢复后验证，94 天）
+- [ ] pending/ 待审论文推进（8/10 新增 SkillProx 后积压 17 篇）
+
+---
+
+## 三十八、8/12-8/13 OpenAI 发布 + Anthropic 研究双篇（8/15 依据原文补写落盘）
+
+> **补写说明**：8/12 更新未落盘 + 8/13 cron 未执行 + 8/14 补写仅更新头部未写正文（"未落盘"问题两次复发，已建立验证机制，见三十九节）。本节 8/15 依据抓取到的原文重新补写。
+
+### 文章 A：How enterprises put AI to work（OpenAI, 8/12）——企业报告双件套
+
+**核心事实**：Enterprise Signals + working paper 双报告；前沿企业（top 10% 用量）每活跃用户输出 token 是普通企业 **8.3×**（1 月仅 2.6×，差距扩大三倍）；6 月 Codex 占企业输出 token 64%；法务 Codex 周活 **108×**/销售 41×/招聘 41×/市场 26× vs 工程仅 5×；早期员工比高管每周多 13 条消息（反调查共识）。
+
+#### 🔥 新写作组件（8 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「标题式迁移」** | "From assistance to execution"——呼应 8/6 "From asking to doing"，同一句式家族复用（从 X 到 Y 的产品/时代迁移声明） | 趋势判断/产品定位升级——句式复用形成系列感 |
+| **「前沿差距扩大」** | "8.3× vs 1 月 2.6×"——不只报差距，报差距的**增速**（差距本身在扩大三倍） | 企业采用/分化类报道——"差距在拉大"比"有差距"更紧迫 |
+| **「倍数爆发清单+反直觉转折」** | 法务 108×/销售 41×/招聘 41×/市场 26× **vs 工程仅 5×**——先堆非技术部门爆发倍数，再用"工程反而最低"反转预期 | 数据叙事——"最意外的数字"放在清单末尾制造转折 |
+| **「反调查数据」** | "早期员工比高管每周多 13 条消息"——用反直觉的微观数据对抗"高管最懂 AI"的直觉共识 | 任何挑战共识的数据报道 |
+| **「内部使用作上限参照」** | 以 OpenAI 内部使用量为参照系衡量企业客户差距——"我们自己用多少"成为标尺 | 企业级产品叙事——内部数据作基准线 |
+| **「具名客户微案例」** | 简短具名客户案例嵌入报告（每个 2-3 句），替代大段 testimonials | 报告/白皮书类内容 |
+| **「议程式收尾」** | 结尾以"下一步做什么"的行动清单收束，而非总结观点 | 方法论/报告类——"行动议程"比"结论"更有延续感 |
+| **「代理指标自陈」** | 明确声明所用指标的代理性质（"output tokens 是采用的代理指标"）——先承认指标局限再使用 | 数据类报道——诚实限定指标边界 |
+
+### 文章 B：The builder's guide to GPT-5.6（OpenAI, 8/13）——价格-性能实践指南
+
+**核心事实**：GPT-5.6 家族让 frontier 级 agent 性能大幅降价；BrowseComp：GPT-5.5 (Extra High) 84.36% @ **$33.27** → GPT-5.6 Luna (Extra High) 84.04% @ **$1.33**（同分 1/25 成本，发布后价格再降）；ARC-AGI-3：Sol 标准 harness 13.3% → 启用 retained reasoning + compaction 后 **38.3%**，且少用约 6× 输出 token（"No changes to the model, but nearly three times the performance"）；Agents' Last Exam：Sol "low" 推理 > GPT-5.5 "high" 推理（harness 恒定）。
+
+**三大架构干预**：① reasoning persistence（跨轮保留推理）+ native compaction（压缩长对话）；② native multi-agent orchestration（并行工作流）；③ programmatic tool calling（模型写 JS 编排工具，输出在 context window 外过滤聚合）。
+
+#### 🔥 新写作组件（6 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Price-performance standard」开场** | "sets a new standard for price-performance"——用"新标准"而非"新纪录"定义发布 | 价格/性能类发布——标准话语比纪录话语更有框架感 |
+| **「Same score at 1/25 cost」成本等价对比** | "84.36% @ $33.27 vs 84.04% @ $1.33"——**同分不同价**的等价对比（比"降价 96%"更有冲击：性能没降，价格崩了） | 成本叙事——"同样结果更便宜"优于"更便宜但差点" |
+| **「Harness-only gains」纯工程增益** | "No changes to the model, but nearly three times the performance"——**模型不动、只改 harness** 的增益归因（13.3%→38.3% + 6× 更少 token） | 工程/架构类内容——"不动模型也能翻倍"是最高级工程叙事；7/29 "Small fix, dramatic multiplier" 二次验证 |
+| **「Three architectural interventions」三干预并列** | 复用已有推理 + 并行分解 + 确定性工作移入代码——三个干预各配一句"解决什么问题" | 架构/API 升级解读——干预清单比功能清单更工程化 |
+| **「Judgment vs mechanical」判断与机械分工** | "reserving model tokens for judgment"——把工作分成"需要判断的"与"搬运/过滤/组合数据的"，模型 token 只留给前者 | Agent 架构/成本优化——"判断 vs 机械"是理解 agent 经济学的核心二分 |
+| **「Economics of building agents have changed」结论句** | 结尾一句话定调："构建 agent 的经济学已经变了"——把全文数据升维为时代判断 | 技术文章收尾——从具体数字到范式判断 |
+
+### 文章 C：Previewing Ultrafast mode（OpenAI, 8/13）——14× 高速层
+
+**核心事实**：Ultrafast 新服务层，GPT-5.6 Sol 最高 **14×** 于 Standard，首发 OpenAI API，**Cerebras** 驱动，最高 **750 output tokens/秒**；"Until now, getting real-time speed typically meant choosing a smaller or more specialized model. Ultrafast points to progress in a new direction: **more useful work per second**"。
+
+**五场景清单**：事故响应与可靠性 / 金融研究与安全 / 客服与语音 / 电商 / 实时研究与实验（"隔夜跑批 → 工作日内多轮迭代"循环收紧）。
+
+**内部自用**：事故响应（读日志/分析 trace/综合对话/准备修复，工程师保留判断与部署责任）+ 研究（批量实验从隔夜收紧到工作日内多轮）。
+
+#### 🔥 新写作组件（5 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Speed without giving up intelligence」速度不牺牲智能** | "When speed no longer requires giving up intelligence, AI can move into the most time-sensitive parts of a business"——**速度与智能的二选一被打破**，作为发布的核心叙事张力 | 性能/速度类发布——"以前要快就得换小的，现在不用了" |
+| **「More useful work per second」指标延续** | "useful work per second"——7/17 "Useful Intelligence per Dollar" 的**时间版**，同一指标家族（per dollar → per second） | 指标重定义类——同一句式家族跨文章复用形成体系 |
+| **「Loop tightening」循环收紧** | "overnight batch → multiple iterations during the workday"——研究/实验循环从"隔夜"收紧到"工作日内多轮" | 效率叙事——"循环变短"比"快了 X 倍"更具体 |
+| **「Order-of-magnitude」数量级叙事** | "where an order-of-magnitude change in speed creates the most value"——用"数量级"而非百分比定义变革幅度 | 颠覆性技术叙事——"数量级"自带震撼 |
+| **「Scenarios before specs」场景先于规格** | 先列五个业务场景（各一句"在什么时刻做什么"），再谈规格——场景让读者先代入再理解技术 | 新技术发布——"它能在哪用"先于"它有多快" |
+
+### 文章 D：OpenAI appoints Dali Rajic as CRO（OpenAI, 8/13）——公司治理
+
+**核心事实**：Dali Rajic 出任 CRO（Wiz 前总裁/COO，被 Google 收购；Zscaler 前总裁/COO；AppDynamics 前 CCO）；Denise Dresser 过渡期后离任；10 亿+ 周活用户、200 万+ 企业（一年翻倍）；与 Chad Peets/RPT Partners 战略合作加强 GTM；Greg Brockman 引语提出 **"compute-powered economy"**（计算驱动经济）。
+
+#### 🔥 新写作组件（4 个）
+
+| 组件 | 结构 | 适用场景 |
+|------|------|---------|
+| **「Departure gratitude」先谢前任** | 正式宣布新任前，先以整段篇幅致谢离任者（"She built the team... deeply grateful"）——**先安顿过去再迎接未来**，避免"换人"的冷酷观感 | 人事变动公告——离任者体面是公司体面 |
+| **「Revenue operating system」操作系统隐喻** | "Dali will build the revenue operating system needed to scale"——把营收组织类比为"操作系统"，暗示可规模化、可复制的系统能力 | 组织/管理叙事——"操作系统"隐喻比"团队"更有工程感 |
+| **「Compute-powered economy」新词铸造** | "We're moving into a compute-powered economy, with AI becoming embedded in every workflow"——用引语铸造一个**新经济名词** | 高管引语/趋势宣言——新词是传播钩子 |
+| **「Credentials ladder」履历阶梯** | Wiz→Zscaler→AppDynamics 三段履历 + 定性标签（"disciplined, metrics-led revenue organizations"）——用递进履历证明"管过全球规模" | 人事/合作报道——履历按重要性递进排列 |
+
+### 文章 E/F：Anthropic 研究页 8/12-8/13 双篇（细节待官网恢复补全）
+
+**依据 8/14 头部摘要**（Anthropic 官网 8/15 起连接超时，无法抓原文）：
+
+| 文章 | 类型 | 摘要要点 |
+|------|------|---------|
+| **多智能体系统模式与问题** | Frontier Red Team | 六大实验家族——多智能体编排的系统性研究 |
+| **职业再培训证据综述** | Economic Research | **56 项随机实验元分析**——AI 时代职业再培训的证据基础 |
+
+**待办**：官网恢复后抓原文补组件入库（双页检查第四次待命）。
+
+### 8 月累计（8/15 更新）
+
+**OpenAI 18 篇**：8/3×2 + 8/4×2 + 8/6×3 + 8/7×1 + 8/10×4 + 8/11×2 + 8/12×1 + 8/13×3。
+
+**8 月商业化叙事三连（8/10-8/13）**：Premium 席位（定价分层）→ 广告试点（免费层商业化）→ 企业报告（付费客户深度）→ Builder's Guide + Ultrafast（开发者成本/速度）——商业化从"怎么收钱"讲到"怎么更便宜更快"。
+
+### 选题预判矩阵补充（8/12-8/13）
+
+| 事件 | 机器之心 | 差评 | 棱镜 | 量子学派 |
+|------|---------|------|------|---------|
+| **GPT-5.6 Builder's Guide（$33.27→$1.33）**🔥 | 技术解读（harness 增益 + 三大干预 + 判断/机械分工） | "同一道题，84 分从 33 美元变 1.33 美元" | 企业 AI 成本结构重构 | 智能的定价——当思考变得便宜 |
+| **Ultrafast 14×（750 tok/s）**🔥 | 技术解读（Cerebras 合作 + 高速层架构） | "OpenAI 把最快模型开到了 750 字/秒，打游戏一样" | 推理算力产业 + Cerebras 竞争格局 | 时间与智能——当速度不再牺牲智力 |
+| **CRO 任命（Dali Rajic）** | 公司治理报道 | "Wiz 前 COO 来管 OpenAI 赚钱了" | OpenAI 商业化组织升级——IPO 前奏信号 | — |
+| **企业差距 8.3×** | 数据解读（前沿 vs 普通企业差距扩大） | "同一款 AI，头部公司用出 8 倍差距" | 🔥 企业 AI 投入产出分化深度 | — |
+| **Anthropic 多智能体研究** | 技术深度（六大实验家族） | "AI 团队怎么组队——Anthropic 做了 6 组实验" | — | 群体的智能：多智能体的涌现与失控 |
+
+### 下周关注
+- [ ] OpenAI 8/17（周一）是否延续发布（8 月脉冲：爆发-间歇）
+- [ ] Anthropic 官网恢复时间（8/15 起连接超时）→ 恢复后补 8/12-8/13 双篇组件
+- [ ] GPT-5.6 Builder's Guide 的价格再降是否成为中文账号选题（$1.33 对比传播性强）
+- [ ] 中文账号对 8/10-8/13 集群的报道角度（搜索恢复后验证，98 天）
+- [ ] pending/ 待审论文推进（积压 20 篇，8/13 提醒）
+
+---
+
+## 三十九、8/15（周六）检查：周末静默确认 + 「未落盘」问题复发与修复机制
+
+### 数据源状态（8/15 21:00 检查）
+
+| 数据源 | 状态 | 说明 |
+|--------|------|------|
+| **OpenAI news** | ✅ 可达 | **8/14（周五）无新发布，8/15（周六）无新发布**——最新仍为 8/13 三连发；8 月"爆发-间歇"脉冲节奏延续 |
+| **Anthropic 双页** | ❌ 连接超时 | web_fetch 与 curl 均失败（15s 连接超时，非 403/404）——8/9 恢复后再次中断，8/12-8/13 研究双篇细节无法抓取 |
+| **Web Search MCP** | ❌ 不可用 | **第 98 天**（SSE 协议错误），中文公众号正文仍无法搜索 |
+| **搜狗微信搜索** | ⚠️ 列表可达 | 列表页 200，但 readability 提取仅剩页脚（JS 渲染/antispider），正文仍不可得 |
+| **四个目标公众号** | ⏸️ 周末静默 | 量子学派/差评/机器之心/棱镜**周六均不发布**（连续 7 周验证）——今日无新中文样本 |
+
+### ⚠️ 本次发现的重要问题：「未落盘」两次复发
+
+**现象**：8/12 的更新写了 memory 但 style_guide 未落盘；8/14 的 cron 声称"补写 38-39 节"，实际**只更新了头部日期行，正文 38-39 节完全缺失**（今日 grep 验证：文件止于第三十七节）。这是同一类错误的第二次发生。
+
+**根因推断**：写入动作与验证动作分离——append 后未做 tail/grep 确认，头部更新与正文追加可能在不同步骤中丢失（cron 中断/输出截断/误以为已写）。
+
+**修复机制（已建立）**：
+1. **append 后必须验证**：每次写入 style_guide 后立即 `tail -5` + `grep -c "^## "` 确认节数与末尾内容
+2. **git 提交作为最终落盘确认**：当日更新必须 commit，commit message 含节数（如 "section 39"）
+3. **memory 文件与 style_guide 双写校验**：memory 中记录"第 X 节已写入 + 节数"，次日检查时可交叉验证
+
+**本次执行**：第三十八节（8/12-8/13 补写）已依据原文落盘并验证（grep 确认 39 节）；头部日期已更新。
+
+### style_guide 现状（8/15）
+
+- **39 节**（三十八节为补写，三十九节为今日检查）
+- 组件库约 **395+**（8/11 的 374 + 三十八节新增 23 个）
+- 三十八节新增组件清单：企业报告 8 个 + Builder's Guide 6 个 + Ultrafast 5 个 + CRO 4 个
+
+### 8 月主题线状态（8/15）
+
+```
+8/3-8/4   法律声明 + GPT Live + 教育 + 事故披露                           🔥🔥
+8/6       三连发（Sol 升级 / asking-doing / APA）                        🔥
+8/7       Astra 安全声明                                                 🔥
+8/10      四连发（Daybreak 扩容×2 + AI-native 财务 + Premium 席位）        🔥🔥🔥
+8/11      两连发（ChatGPT 广告 + Daybreak AWS）                          🔥
+8/12      企业报告（From assistance to execution）                       🔥
+8/13      三连发（Builder's Guide + Ultrafast + CRO）                    🔥🔥
+8/14-8/15 静默（周五+周六）                                              ⏸️
+```
+**OpenAI 8 月累计 18 篇**；商业化线（定价→广告→企业→开发者成本/速度）与安全线（法律→事故→评估→部署→生态）双线并行。
+
+### 下周关注（8/17 周一）
+- [ ] OpenAI 周一首发（脉冲节奏：爆发日后常伴间歇，观察是否 8/14-15 静默后重启）
+- [ ] Anthropic 官网恢复 → 补 8/12-8/13 研究双篇组件（多智能体六大实验家族 + 56 项 RCT 元分析）
+- [ ] 中文账号周末后恢复发布 → 验证对 8/10-8/13 集群的报道角度（第 98 天）
+- [ ] pending/ 待审论文积压 20 篇（7/24 起未审批，8/13 已第 7 次提醒）
