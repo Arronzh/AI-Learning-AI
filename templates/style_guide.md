@@ -3301,3 +3301,74 @@ NanoGPT PR / Token Split / Low-severity gallery 三个案例，每个一段话�
 - [ ] Anthropic 官网稳定性（8/15 超时→8/16 恢复，若再中断优先补抓 /research 页）
 - [ ] 中文账号周末后恢复发布 → 验证对 8/10-8/13 集群的报道角度（第 99 天）
 - [ ] pending/ 待审论文积压 22 篇（7/24 起未审批，8/15 已第 9 次提醒）
+
+---
+
+## 四十一、8/18（周二）检查：OpenAI 8/17 基建大单 PORTS-Pike（三日静默后重启）+ 新「基建-社区」文体
+
+### 数据源状态（8/18 21:00 检查）
+
+| 数据源 | 状态 | 说明 |
+|--------|------|------|
+| **OpenAI news** | ✅ 可达 | **8/17（周一）恢复发布：「OpenAI joins PORTS-Pike project」**（Global Affairs 类）——8/14-8/16 三日静默后重启，"爆发-间歇"脉冲节奏第三次验证（8/3-8/4 → 8/10 → 8/17）；**8 月累计 19 篇** |
+| **Anthropic 双页** | ✅ 可达 | /news 最新仍为 6/30 Fable 5（公告页静默 49 天）；/research 最新仍为 8/13 多智能体篇——研究线 5 天无新发布 |
+| **Web Search MCP** | ❌ 不可用 | **第 101 天**（SSE 协议错误），中文公众号正文仍无法搜索 |
+| **搜狗微信搜索** | ⚠️ 软拦截 | 列表页 200 但返回"暂无相关官方认证订阅号"空结果（antispider 软拦截，第 101 天） |
+| **四个目标公众号** | ⏸️ 不可达 | 量子学派/差评/机器之心/棱镜今日（周二）应工作日发布但正文无法获取——中文样本连续中断第 101 天 |
+
+### 🔥 本次发现：「OpenAI joins PORTS-Pike project」（8/17, Global Affairs/基建）
+
+**文章定位**：OpenAI 史上最大单笔数据中心容量协议之一——与 SB Energy、NVIDIA、美国能源部合作，锁定俄亥俄州 Pike County PORTS-Pike 科技园区约 **8 GW-IT** 算力容量。**首次系统性展示 OpenAI 的"基建-社区"文体**（区别于产品/安全/研究线）。
+
+**关键数据**：
+- 8 GW-IT 容量；前 Portsmouth 气体扩散厂旧址（美国 20 世纪工业遗产地）
+- **35,000 个建设岗位**（6 年建设期至 2032）+ **2,500 个长期运营岗位**
+- OpenAI **$40M 社区赠款基金** + SB Energy 既有 $40M = **$160M+ 总福利包**（含 $84M Codex 学分）
+- **$84M Codex 学分**：844,000 名俄亥俄州大学生每人 $100（2026-2027 学年）
+- 首批 **800 MW 于 2028 年**可用（利用现有 AEP 基础设施）；后续需新建电厂+输电
+- NVIDIA **$15 亿投资** SB Energy + 4.25 IT-GW 初始容量信贷支持
+- SB Energy 建设/持有/运营，20 年租约；OpenAI 按交付容量付费（先付后用）
+- 闭路循环风冷（水循环利用，用水量≈办公楼水平，远低于原扩散厂）
+- 每年公开报告：本地招聘/社区投资/用水/能耗；NVIDIA+OpenAI 联合技术白皮书
+
+**新入库写作组件（14 个）**：
+
+1. **「历史场地复活」叙事**——"Pike County helped power America's industrial growth in the 20th century and now... a leading role in the next era of American industrialization"——把数据中心的选址写成国家工业史的续章（20 世纪扩散厂 → 21 世纪 Intelligence Era），场地即叙事的锚点
+2. **「社区伙伴」定位开场**——"We want to develop this project as a partner to Pike County"——不是"进驻"而是"成为伙伴"，先定关系再给数字
+3. **「成本自担承诺」**——"The project will pay its own energy and infrastructure costs. Those costs will not be shifted to Ohio or other ratepayers."——主动打消"成本转嫁"疑虑，把商业协议写成对当地居民的承诺
+4. **「用水量锚定」环保量化**——闭路循环风冷 + "comparable to an office building"——用日常参照物（办公楼）替代抽象环保指标，还补一句"site design finalized 后公开报告用水量"（透明留白）
+5. **「就业双轨数字」**——35,000 建设岗（6 年）+ 2,500 长期运营岗：建设期/运营期分开量化，时间维度让数字更可信
+6. **「社区基金」民主化清单**——$40M 基金 + "priorities identified by local residents" + 长清单（schools/public safety/health care/utilities/workforce training/housing/veterans' services/small businesses）——钱花在哪由居民定，清单本身即诚意
+7. **「教育普惠代金券」**——$84M Codex 学分 / 844,000 学生 / 每人 $100——把基建福利落到"下一代工作工具"，算力大单与人才管道叙事缝合
+8. **「福利总账加总」**——"Together... represent more than $160 million in benefits"——把分散承诺（OpenAI $40M + SB $40M + Codex $84M）加总成单一震撼数字
+9. **「透明度承诺」机制**——每年公开报告（本地招聘/社区投资/用水/能耗）+ Ohio Community Compact（"turn these principles into specific, public measures"）——承诺要有可审计的落地机制
+10. **「分阶段务实交付」**——首批 800 MW 2028 年用现有基础设施；"Further development will require new power plants"——不画大饼，明确依赖条件（permits/environmental reviews/financing）
+11. **「三方资本结构」透明化**——SB Energy 建/持/营（20 年租约）+ NVIDIA $1.5B 投资 + OpenAI 按交付容量付费（"begin paying only as completed capacity becomes available"）——资本角色分工清晰，先付后用降低风险叙事
+12. **「联合白皮书」知识沉淀**——NVIDIA+OpenAI 联合发布技术白皮书（resilient infrastructure design / component qualification / software-level workload management / MTBI）——基建经验抽象成行业知识，单项目升维为行业范式（"model for future next gen supercomputer design"）
+13. **「物理地基」隐喻**——"Data centers like the PORTS-Pike Technology Data Center are part of the physical foundation behind AI"——与 chips/power/networks 并列，把基建写成 AI 的"物理底座"，与软性叙事形成对照
+14. **「使命-责任」双收尾**——"Our mission is to ensure AGI benefits all of humanity" + "Our responsibility is to make sure the communities helping build it share meaningfully in those benefits"——使命句与责任句并置收尾，宏大叙事落到具体社区
+
+**文体特征小结（基建-社区文体）**：选址历史叙事开场 → 社区关系定位 → 环保/成本承诺（打消疑虑）→ 就业+基金+教育福利三件套 → 透明度机制 → 资本结构透明 → 白皮书升华 → 使命收尾。与产品线（能力数据）、安全线（风险叙事）并列，构成 OpenAI 第三条叙事线：**物理世界落地线**。
+
+### 8 月主题线状态（8/18 更新）
+
+```
+8/3-8/4   法律声明 + GPT Live + 教育 + 事故披露                           🔥🔥
+8/6       三连发（Sol 升级 / asking-doing / APA）                        🔥
+8/7       Astra 安全声明                                                 🔥
+8/10      四连发（Daybreak 扩容×2 + AI-native 财务 + Premium 席位）        🔥🔥🔥
+8/11      两连发（ChatGPT 广告 + Daybreak AWS）                          🔥
+8/12      企业报告（From assistance to execution）                       🔥
+8/13      三连发（Builder's Guide + Ultrafast + CRO）                    🔥🔥
+8/14-8/16 连续三日静默                                                   ⏸️
+8/17      PORTS-Pike 8GW 基建大单（Global Affairs）                      🔥🔥（基建线开启）
+```
+- **OpenAI 8 月累计 19 篇**；叙事三线并行：商业化线（定价→广告→企业→开发者成本）+ 安全线（法律→事故→评估→部署→生态）+ **基建线（PORTS-Pike 8GW）**
+- **Anthropic 研究线**：8/13 多智能体篇后静默 5 天（/research 无更新）；公告页静默 49 天（自 6/30）
+- **中文样本中断第 101 天**：四账号工作日正常发布但正文不可达
+
+### 下周关注
+- [ ] OpenAI 是否延续"脉冲节奏"（8/17 单篇后是否 8/18-8/19 再发）；基建线是否有后续（Stargate/SB Energy 系列）
+- [ ] Anthropic 研究线下一篇（距 8/13 已 5 天）；官网稳定性
+- [ ] 中文账号对 PORTS-Pike 的报道角度（基建大单：机器之心→算力基建解读；差评→"OpenAI 花 160 亿建数据中心"；棱镜→中美算力基建竞赛；量子学派→算力即国力的哲学）——第 101 天
+- [ ] pending/ 待审论文积压 22 篇（7/24 起未审批，8/15 已第 9 次提醒）
