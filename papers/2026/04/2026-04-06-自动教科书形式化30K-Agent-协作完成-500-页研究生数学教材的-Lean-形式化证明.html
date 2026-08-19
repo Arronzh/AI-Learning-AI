@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>自动教科书形式化：30K Agent 协作完成 500 页研究生数学教材的 Lean 形式化证明</title><style>* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f5f5; color: #333; line-height: 1.8; }
+.article { max-width: 680px; margin: 0 auto; background: #fff; padding: 30px 20px 40px; }
+h1 { font-size: 22px; font-weight: 700; line-height: 1.5; margin-bottom: 20px; color: #111; }
+h2 { font-size: 18px; font-weight: 600; margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #1a7dfa; color: #1a1a1a; }
+h3 { font-size: 16px; font-weight: 600; margin: 20px 0 10px; color: #1a7dfa; }
+p { margin: 10px 0; font-size: 15px; }
+strong { color: #111; }
+ul { margin: 10px 0 10px 22px; font-size: 15px; }
+li { margin: 6px 0; }
+blockquote { background: #fafafa; border-left: 3px solid #1a7dfa; padding: 10px 14px; margin: 14px 0; color: #555; font-size: 14px; }
+a { color: #1a7dfa; text-decoration: none; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13.5px; }
+th { background: #1a7dfa; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; }
+td { padding: 8px 10px; border-bottom: 1px solid #eee; }
+tr:nth-child(even) td { background: #f8fafd; }
+.footer-line { margin-top: 32px; padding-top: 16px; border-top: 1px solid #eee; font-size: 13px; color: #999; text-align: center; }</style></head>
+<body><div class="article"><h1>自动教科书形式化：30K Agent 协作完成 500 页研究生数学教材的 Lean 形式化证明</h1>
+<p>📌 <strong>核心摘要</strong></p>
+<p>Meta FAIR 等机构的研究团队实现了一项多 Agent 系统工程里程碑：使用 30,000 个 Claude 4.5 Opus Agent 在<strong>一周内</strong>完成了一本 500 多页研究生级别代数组合学教科书的 Lean 形式化。最终产出<strong>13 万行 Lean 代码</strong>、<strong>5900 个声明</strong>，覆盖全部 340 个目标定理和定义。总推理成本约<strong>10 万美元</strong>（约 200 美元/页，300 美元/定理），成本已低于人类专家团队薪资估算。该系统采用基于 Git 的 trunk-based 开发模型，通过 Sketcher-Prover-Reviewer 多角色协作、文件系统 Issue Tracker 协调、Pull Request 审核机制，有效解决了大规模 Agent 协作的一致性问题。代码、Lean 代码库及蓝图网站已开源。</p>
+<p>---</p>
+<h2>一、研究背景与动机</h2>
+<h3>1.1 数学的"审稿危机"</h3>
+<p>当前数学出版体系面临严峻的验证困境：期刊审稿人在时间和激励结构限制下，往往无法逐条验证论文中的所有证明。正如 Fields 奖得主 Vladimir Voevodsky 所指出的："来自可信作者的技术论证，如果难以检查且与已知正确的论证相似，几乎从不会被详细验证。"这导致数学文献中偶尔会出现错误证明，甚至错误结论。</p>
+<h3>1.2 形式化证明的困境</h3>
+<p>使用 Lean 等证明助手进行数学形式化是解决这一问题的长期方案——它将信任层缩减到小型验证内核和少量手动审查的定义与定理陈述。然而，形式化面临两大挑战：</p>
+<table><thead>
+<tr><th>挑战</th><th>现状</th><th>需求</th></tr></thead><tbody>
+<tr><td><strong>基础内容规模</strong></td><td>Lean mathlib 约 220 万行代码，覆盖本科及部分研究生内容</td><td>需扩展数个数量级以覆盖研究文献</td></tr>
+<tr><td><strong>形式化成本</strong></td><td>完全依赖人工，扩展速度近年趋于线性</td><td>需大幅降低时间、精力和专家门槛</td></tr>
+</tbody></table>
+<h3>1.3 自动形式化的三代演进</h3>
+<p>1. <strong>第一代</strong>：定制化模型形式化孤立数学陈述，在 IMO/Putnam 竞赛题上表现出色，但缺乏仓库级工程能力</p>
+<p>2. <strong>第二代</strong>：基于通用模型的单 Agent 编码助手（如 Claude Code），可完成拓扑学教科书部分章节，但无法规模化</p>
+<p>3. <strong>第三代</strong>：多 Agent 协作框架——本研究的核心贡献</p>
+<p>---</p>
+<h2>二、核心方法</h2>
+<h3>2.1 多 Agent 协作架构</h3>
+<p>研究团队提出了一套基于软件工程最佳实践的多 Agent Scaffold，核心设计原则：</p>
+<p>```</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│                    多 Agent 协作系统                          │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│  A) 大规模并行：Sub-agents 明确任务分配                       │</p>
+<p>│  B) 版本控制：Git + trunk-based 开发，短生命周期特性分支       │</p>
+<p>│  C) PR 审核：独立 Reviewer + 清晰代码质量指南                  │</p>
+<p>│  D) 合并队列：Staging 分支测试，确保 main 始终可构建           │</p>
+<p>│  E) 升级机制：基于文件系统的 Issue Tracker                    │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>```</p>
+<h3>2.2 Agent 角色设计</h3>
+<table><thead>
+<tr><th>角色</th><th>职责</th><th>输出</th></tr></thead><tbody>
+<tr><td><strong>Sketcher</strong></td><td>接收教材章节，形式化所有定义和定理陈述（证明用 `sorry` 占位）</td><td>形式化骨架</td></tr>
+<tr><td><strong>Prover</strong></td><td>接收待证明定理，填充证明；可升级问题至 Issue Tracker</td><td>完整证明</td></tr>
+<tr><td><strong>Reviewer</strong></td><td>独立审核 PR：数学审查（陈述准确性）+ 工程审查（代码质量）</td><td>批准/修改/拒绝</td></tr>
+<tr><td><strong>Maintainer</strong></td><td>处理 Issue Tracker 中的待办事项</td><td>问题解决</td></tr>
+<tr><td><strong>Triage</strong></td><td>识别已解决的 Issue 并标记</td><td>Issue 状态更新</td></tr>
+<tr><td><strong>Scan</strong></td><td>扫描代码库发现全局问题（重复代码、重构机会）</td><td>新 Issue 创建</td></tr>
+<tr><td><strong>Progress</strong></td><td>跟踪目标定理进度，防止"跑题"</td><td>进度报告</td></tr>
+</tbody></table>
+<h3>2.3 协调机制：文件系统 Issue Tracker</h3>
+<p>研究团队创新性地使用<strong>文件系统</strong>作为 Agent 通信协议：</p>
+<ul><li>仓库中包含一个文件夹，存放描述待办事项的短文本文件（Issues）</li><li>Agent 被鼓励在 PR 中标记已解决的 Issue</li><li>Reviewer 检查这些判断</li><li>所有 Agent（包括 Maintainer、Triage、Scan）的 PR 都经过相同的 Review 流程</li></ul>
+<p>这种设计避免了定制消息传递系统的复杂性，利用 Agent 天然熟悉的 Git 接口实现协调。</p>
+<h3>2.4 工具集设计</h3>
+<p>Agent 可访问四类工具：</p>
+<table><thead>
+<tr><th>类别</th><th>工具示例</th></tr></thead><tbody>
+<tr><td><strong>文件工具</strong></td><td>列出文件、按行号读取/写入/编辑、复制粘贴</td></tr>
+<tr><td><strong>Lean 工具</strong></td><td>Lean REPL 执行、mathlib 文件搜索、声明搜索</td></tr>
+<tr><td><strong>Git 工具</strong></td><td>status/add/log/diff/commit/rebase/reset（仅限自有分支）</td></tr>
+<tr><td><strong>Bash 工具</strong></td><td>lake 构建、文本处理（cat/grep/sed 等）、文件系统命令</td></tr>
+<tr><td><strong>Issue 工具</strong></td><td>create-issue、list-issues</td></tr>
+</tbody></table>
+<p>所有工具均设计自动截断机制，防止单次工具使用导致上下文溢出。</p>
+<p>---</p>
+<h2>三、实验结果</h2>
+<h3>3.1 案例研究：代数组合学教科书</h3>
+<p>研究选取 Darij Grinberg 的《Introduction to Algebraic Combinatorics》（2025 年预印本）作为目标：</p>
+<ul><li><strong>规模</strong>：500+ 页，研究生级别</li><li><strong>选择理由</strong>：内容大部分不在 mathlib 中、证明完整、外部依赖少、公共领域</li><li><strong>目标追踪</strong>：340 个定义和定理被指定为形式化目标（排除辅助引理）</li></ul>
+<h3>3.2 核心性能指标</h3>
+<table><thead>
+<tr><th>指标</th><th>数值</th></tr></thead><tbody>
+<tr><td><strong>运行时间</strong></td><td>1 周</td></tr>
+<tr><td><strong>Agent 总数</strong></td><td>30,000 个 Claude 4.5 Opus</td></tr>
+<tr><td><strong>代码行数</strong></td><td>130,000 行</td></tr>
+<tr><td><strong>Lean 声明数</strong></td><td>5,900 个</td></tr>
+<tr><td><strong>目标覆盖率</strong></td><td>340/340（100%）</td></tr>
+<tr><td><strong>推理成本</strong></td><td>~$100,000</td></tr>
+<tr><td><strong>单位成本</strong></td><td>$200/页，$300/定理</td></tr>
+</tbody></table>
+<h3>3.3 形式化进度分析</h3>
+<p>系统运行呈现两个明显阶段：</p>
+<p>1. <strong>持续扩展阶段</strong>：代码库不断增长（包含不必要的"兔子洞"内容）</p>
+<p>2. <strong>清理阶段</strong>：Agent 提示词更新触发代码重构和精简</p>
+<p>每个 Commit 代表一个独立 Agent 将其工作合并到主分支。最终所有 340 个目标定理和定义均被完整形式化并证明。</p>
+<h3>3.4 PR 粒度分析</h3>
+<p>多 Agent 设置确保了 PR 的原子性和细粒度：</p>
+<ul><li>大多数 PR 约<strong>100 行代码</strong></li><li>减少整体代码量的重构 PR 较少见</li><li>PR 频繁在扩展代码库的同时替换旧代码</li></ul>
+<h3>3.5 Token 使用分布</h3>
+<table><thead>
+<tr><th>Agent 类型</th><th>Token 占比</th></tr></thead><tbody>
+<tr><td>Prover</td><td>最高（证明生成密集）</td></tr>
+<tr><td>Sketcher</td><td>中等（骨架创建）</td></tr>
+<tr><td>Reviewer</td><td>中等（审核决策）</td></tr>
+<tr><td>其他角色</td><td>较低</td></tr>
+</tbody></table>
+<p>---</p>
+<h2>四、技术启示与发展方向</h2>
+<h3>4.1 对 AI Agent 开发的启发</h3>
+<p><strong>1. 协调问题可通过成熟工程实践解决</strong></p>
+<p>无需复杂的编排逻辑，借用人类软件工程的 Git 工作流（trunk-based + PR + Review）即可实现大规模 Agent 协作。关键洞察：<strong>Agent 已天然熟悉这些工具</strong>。</p>
+<p><strong>2. 文件系统是通用通信协议</strong></p>
+<p>相比定制消息传递系统，基于文件的 Issue Tracker 更简单、可解释、可调试。Agent 可通过读写文件实现状态同步。</p>
+<p><strong>3. 角色分离降低相关性错误</strong></p>
+<p>Proposer/Executor/Checker/Adversary 角色分化可在信息不对称和验证负担下减少相关性错误。</p>
+<p><strong>4. 经济性拐点已现</strong></p>
+<p>$100K 成本已低于人类专家团队薪资估算，且未计入未来效率提升空间。自动形式化正成为经济上可行的选项。</p>
+<h3>4.2 可直接应用的技术点</h3>
+<table><thead>
+<tr><th>技术点</th><th>适用场景</th><th>实施难度</th></tr></thead><tbody>
+<tr><td>Git 分支隔离</td><td>多 Agent 共享代码库</td><td>低</td></tr>
+<tr><td>双 Reviewer 机制</td><td>质量敏感任务</td><td>中</td></tr>
+<tr><td>文件 Issue Tracker</td><td>跨 Agent 状态同步</td><td>低</td></tr>
+<tr><td>合并队列 + Staging</td><td>确保主干稳定性</td><td>中</td></tr>
+<tr><td>工具输出截断</td><td>防止上下文溢出</td><td>低</td></tr>
+</tbody></table>
+<h3>4.3 局限性与未来方向</h3>
+<p><strong>当前局限</strong>：</p>
+<ul><li>单线程合并队列是瓶颈，PR 需长时间排队</li><li>NFS 带宽限制导致 git worktree 复制和 lake 构建偶发超时</li><li>需添加延迟和抖动防止"惊群效应"</li></ul>
+<p><strong>改进方向</strong>：</p>
+<ul><li>自动 Staging 分支 + PR 批处理 + 失败二分法（类似 mathlib 的 bors bot）</li><li>更高效的分布式构建系统</li><li>更智能的 Issue 优先级排序</li></ul>
+<p>---</p>
+<h2>五、总结</h2>
+<p>本研究展示了多 Agent 证明工程系统的有效性：</p>
+<table><thead>
+<tr><th>维度</th><th>成果</th></tr></thead><tbody>
+<tr><td><strong>规模</strong></td><td>130K 行代码，5900 声明，340 目标定理</td></tr>
+<tr><td><strong>速度</strong></td><td>1 周完成，远超人类验证时间</td></tr>
+<tr><td><strong>成本</strong></td><td>$100K，低于人类专家团队估算</td></tr>
+<tr><td><strong>质量</strong></td><td>全部目标定理完整证明，通过双 Reviewer 审核</td></tr>
+<tr><td><strong>开源</strong></td><td>代码、Lean 库、蓝图网站全部公开</td></tr>
+</tbody></table>
+<p>这是教科书形式化规模和熟练度的新里程碑——从早期本科拓扑学结果和现有库内容重组，迈向研究生教科书的完整独立形式化。随着效率持续提升，自动形式化有望成为数学研究的标准基础设施。</p>
+<p>---</p>
+<h2>参考资料</h2>
+<p>1. Grinberg, D. (2025). *Introduction to Algebraic Combinatorics*. Preprint.</p>
+<p>2. The mathlib Community. (2020). The Lean Mathematical Library. *Proceedings of the 9th ACM SIGPLAN International Conference on Certified Programs and Proofs*.</p>
+<p>3. Urban, J. et al. (2026). 130K Lines of Formal Topology: Autoformalizing a Textbook with Claude Code. *arXiv:2601.xxxxx*.</p>
+<p>4. Wang, H. et al. (2026). M2F: Automated Formalization of Mathematical Textbooks. *arXiv:2602.xxxxx*.</p>
+<p>5. Voevodsky, V. (2014). Origins of the replication crisis in mathematics. *Talk at ICMI*.</p>
+<p>6. Buzzard, K. (2020). The future of mathematical proof. *Talk at Oxford*.</p>
+<p>---</p>
+<p class="footer-line">小悟 🧵 | 2026-04-06</p></div></body></html>

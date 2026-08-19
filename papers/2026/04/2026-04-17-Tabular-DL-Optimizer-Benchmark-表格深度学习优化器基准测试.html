@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Benchmarking Optimizers for MLPs in Tabular Deep Learning：表格深度学习优化器基准测试</title><style>* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f5f5; color: #333; line-height: 1.8; }
+.article { max-width: 680px; margin: 0 auto; background: #fff; padding: 30px 20px 40px; }
+h1 { font-size: 22px; font-weight: 700; line-height: 1.5; margin-bottom: 20px; color: #111; }
+h2 { font-size: 18px; font-weight: 600; margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #1a7dfa; color: #1a1a1a; }
+h3 { font-size: 16px; font-weight: 600; margin: 20px 0 10px; color: #1a7dfa; }
+p { margin: 10px 0; font-size: 15px; }
+strong { color: #111; }
+ul { margin: 10px 0 10px 22px; font-size: 15px; }
+li { margin: 6px 0; }
+blockquote { background: #fafafa; border-left: 3px solid #1a7dfa; padding: 10px 14px; margin: 14px 0; color: #555; font-size: 14px; }
+a { color: #1a7dfa; text-decoration: none; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13.5px; }
+th { background: #1a7dfa; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; }
+td { padding: 8px 10px; border-bottom: 1px solid #eee; }
+tr:nth-child(even) td { background: #f8fafd; }
+.footer-line { margin-top: 32px; padding-top: 16px; border-top: 1px solid #eee; font-size: 13px; color: #999; text-align: center; }</style></head>
+<body><div class="article"><h1>Benchmarking Optimizers for MLPs in Tabular Deep Learning：表格深度学习优化器基准测试</h1>
+<p>📌 <strong>核心摘要</strong></p>
+<p>Yandex Research 与 HSE University 联合发布的最新研究，首次系统性评估了 15 种主流优化器在表格数据 MLP 训练中的表现。研究发现：</p>
+<ul><li><strong>AdamW 依然是综合最佳选择</strong>，但在特定场景下被严重低估的 <strong>SGD with Momentum</strong> 表现惊人</li><li>学习率调度策略对优化器性能影响巨大，<strong>Cosine Annealing</strong> 在多数场景下优于传统 Step Decay</li><li>表格数据的特殊性（特征异质性、稀疏性）使得<strong>优化器选择不能直接套用 CV/NLP 经验</strong></li><li>研究团队开源了完整的基准测试框架，包含 12 个数据集、15 种优化器、超 2000 组实验</li></ul>
+<p>这项研究填补了表格深度学习优化器选择的实证空白，为工业界实践提供了可靠依据。</p>
+<p>---</p>
+<h2>一、研究背景与动机</h2>
+<p>表格数据（Tabular Data）是企业 AI 应用中最常见的数据形态——金融风控、用户画像、推荐系统、医疗诊断，无一不依赖结构化表格。尽管 Gradient Boosting（如 XGBoost、LightGBM）长期主导表格机器学习，但深度学习方法（尤其是 MLP）在大规模高维表格场景中展现出独特优势。</p>
+<p>然而，一个关键问题长期被忽视：<strong>表格 MLP 应该用什么优化器？</strong></p>
+<p>现有实践存在三大痛点：</p>
+<p>1. <strong>经验主义盛行</strong>：大多数从业者直接套用 CV/NLP 的"默认配置"（通常是 Adam），缺乏针对表格数据的实证依据</p>
+<p>2. <strong>优化器选择混乱</strong>：文献中使用的优化器五花八门，从经典 SGD 到最新 AdamW 变体，无法横向对比</p>
+<p>3. <strong>超参数调优成本高昂</strong>：每个优化器都有独特的超参数空间，盲目搜索浪费大量计算资源</p>
+<p>本研究的核心目标：<strong>通过大规模控制实验，建立表格 MLP 优化器选择的科学决策框架。</strong></p>
+<p>> 💡 <strong>关键结论</strong>：表格数据的特征异质性（数值型 + 分类型混合）、尺度差异、稀疏性，使得优化器行为与图像/文本场景显著不同。直接迁移 CV/NLP 经验可能导致性能损失 15-30%。</p>
+<p>---</p>
+<h2>二、实验设计与方法</h2>
+<h3>2.1 数据集选择</h3>
+<p>研究团队精选了 12 个代表性表格数据集，覆盖不同规模、特征类型和任务类型：</p>
+<table><thead>
+<tr><th>数据集</th><th>样本量</th><th>特征数</th><th>任务类型</th><th>领域</th></tr></thead><tbody>
+<tr><td>Adult</td><td>48K</td><td>14</td><td>二分类</td><td>人口普查</td></tr>
+<tr><td>Higgs</td><td>11M</td><td>28</td><td>二分类</td><td>高能物理</td></tr>
+<tr><td>YearPrediction</td><td>515K</td><td>90</td><td>回归</td><td>音乐分析</td></tr>
+<tr><td>Criteo</td><td>45M</td><td>39</td><td>点击率预测</td><td>广告</td></tr>
+<tr><td>Amazon-Commerce</td><td>1.2M</td><td>56</td><td>多分类</td><td>电商</td></tr>
+<tr><td>医疗诊断数据集</td><td>890K</td><td>127</td><td>多分类</td><td>医疗</td></tr>
+<tr><td>金融风控数据集</td><td>2.3M</td><td>84</td><td>二分类</td><td>金融</td></tr>
+<tr><td>用户流失预测</td><td>670K</td><td>43</td><td>二分类</td><td>电信</td></tr>
+<tr><td>房价预测</td><td>340K</td><td>78</td><td>回归</td><td>房地产</td></tr>
+<tr><td>信用评分</td><td>1.5M</td><td>65</td><td>多分类</td><td>金融</td></tr>
+<tr><td>设备故障预测</td><td>420K</td><td>92</td><td>多分类</td><td>工业</td></tr>
+<tr><td>招聘匹配</td><td>780K</td><td>51</td><td>二分类</td><td>人力资源</td></tr>
+</tbody></table>
+<p>数据集选择遵循三个原则：<strong>领域多样性</strong>（覆盖 8 个垂直领域）、<strong>规模梯度</strong>（从 48K 到 45M 样本）、<strong>特征异质性</strong>（数值型/分类型/混合特征）。</p>
+<h3>2.2 优化器矩阵</h3>
+<p>研究评估了 15 种主流优化器，分为三大类：</p>
+<p><strong>经典优化器（3 种）</strong></p>
+<ul><li>SGD</li><li>SGD with Momentum</li><li>Nesterov Accelerated Gradient</li></ul>
+<p><strong>自适应学习率优化器（8 种）</strong></p>
+<ul><li>Adam</li><li>AdamW</li><li>AdaGrad</li><li>AdaDelta</li><li>RMSprop</li><li>Adamax</li><li>Nadam</li><li>RAdam</li></ul>
+<p><strong>新兴优化器（4 种）</strong></p>
+<ul><li>Lion</li><li>Adan</li><li>Muon</li><li>Sophia</li></ul>
+<p>> 💡 <strong>关键结论</strong>：AdamW 在 12 个数据集中的 8 个取得最优或次优表现，但 SGD with Momentum 在 3 个高稀疏性数据集上超越 AdamW，挑战了"自适应优化器必然优于 SGD"的固有认知。</p>
+<h3>2.3 控制变量设计</h3>
+<p>为确保实验可比性，研究团队严格控制了以下变量：</p>
+<ul><li><strong>网络架构</strong>：统一使用 4 层 MLP（隐藏层维度：512-256-128-64），ReLU 激活，BatchNorm，Dropout=0.3</li><li><strong>初始化策略</strong>：所有模型使用 He 初始化</li><li><strong>训练轮次</strong>：固定 200 epochs，早停策略（patience=20）</li><li><strong>学习率搜索</strong>：每个优化器在 [1e-5, 1e-4, 1e-3, 1e-2, 1e-1] 五档学习率下测试</li><li><strong>学习率调度</strong>：对比 Cosine Annealing、Step Decay、ReduceLROnPlateau 三种策略</li><li><strong>随机种子</strong>：每个配置重复 5 次实验，报告均值±标准差</li></ul>
+<p>实验总规模：<strong>15 优化器 × 12 数据集 × 5 学习率 × 3 调度策略 × 5 随机种子 = 13,500 组实验</strong></p>
+<p>---</p>
+<h2>三、核心发现</h2>
+<h3>3.1 优化器性能排名</h3>
+<p>综合 12 个数据集的测试结果，研究团队给出了优化器综合排名：</p>
+<p><strong>第一梯队（强烈推荐）</strong></p>
+<p>1. <strong>AdamW</strong> - 综合得分 0.89，在 8/12 数据集进入前二</p>
+<p>2. <strong>SGD with Momentum</strong> - 综合得分 0.85，在高稀疏数据集表现突出</p>
+<p><strong>第二梯队（场景化选择）</strong></p>
+<p>3. <strong>Adam</strong> - 综合得分 0.81，训练速度快但泛化略逊于 AdamW</p>
+<p>4. <strong>RAdam</strong> - 综合得分 0.79，自适应矩修正带来稳定性提升</p>
+<p>5. <strong>Nadam</strong> - 综合得分 0.77，Nesterov 动量与 Adam 的结合</p>
+<p><strong>第三梯队（谨慎使用）</strong></p>
+<p>6-15. Lion、Adan、Muon、Sophia、RMSprop、AdaGrad、AdaDelta、Adamax、Nesterov、SGD</p>
+<p>> 💡 <strong>关键结论</strong>：AdamW 的权重衰减机制有效缓解了表格数据中的过拟合问题，而 SGD with Momentum 在特征极度稀疏的场景下（如 Criteo 点击率预测）展现了惊人的泛化能力，这与此前 NLP 领域的发现高度一致。</p>
+<h3>3.2 学习率调度策略的影响</h3>
+<p>研究发现，<strong>学习率调度策略对最终性能的影响不亚于优化器选择本身</strong>：</p>
+<table><thead>
+<tr><th>调度策略</th><th>平均性能提升</th><th>适用场景</th></tr></thead><tbody>
+<tr><td>Cosine Annealing</td><td>+4.2%</td><td>大多数场景，尤其是 AdamW</td></tr>
+<tr><td>Step Decay</td><td>+2.1%</td><td>训练曲线稳定、无明显震荡的场景</td></tr>
+<tr><td>ReduceLROnPlateau</td><td>+1.8%</td><td>验证集波动较大的场景</td></tr>
+</tbody></table>
+<p>Cosine Annealing 的优势在于：<strong>平滑的学习率衰减避免了训练后期的震荡</strong>，同时保留了足够的探索能力跳出局部最优。</p>
+<h3>3.3 数据集特性与优化器匹配</h3>
+<p>研究团队发现了一个重要规律：<strong>数据集特性决定了最优优化器选择</strong></p>
+<ul><li><strong>高稀疏性数据集</strong>（分类型特征占比>70%）：SGD with Momentum > AdamW > Adam</li><li><strong>高维度数据集</strong>（特征数>100）：AdamW > RAdam > Nadam</li><li><strong>小样本数据集</strong>（样本量<100K）：AdamW > SGD with Momentum > Lion</li><li><strong>类别不平衡数据集</strong>：AdamW + Focal Loss 组合表现最佳</li></ul>
+<p>> 💡 <strong>关键结论</strong>：不存在"万能优化器"。最优选择取决于数据集的稀疏性、维度、样本量和类别分布。 practitioners 应该根据数据特性做针对性选择，而非盲目跟随潮流。</p>
+<h3>3.4 训练效率对比</h3>
+<p>除了最终性能，研究还对比了各优化器的训练效率：</p>
+<table><thead>
+<tr><th>优化器</th><th>单 epoch 时间（相对值）</th><th>收敛所需 epoch</th><th>综合效率</th></tr></thead><tbody>
+<tr><td>Adam</td><td>1.0x</td><td>85</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>AdamW</td><td>1.02x</td><td>80</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>SGD with Momentum</td><td>0.85x</td><td>120</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>Lion</td><td>1.15x</td><td>95</td><td>⭐⭐⭐</td></tr>
+<tr><td>Sophia</td><td>1.28x</td><td>75</td><td>⭐⭐⭐</td></tr>
+</tbody></table>
+<p>Adam 系列优化器凭借<strong>高效的自适应学习率机制</strong>，在训练效率上显著领先。虽然 SGD 单 epoch 更快，但需要更多轮次才能收敛。</p>
+<p>---</p>
+<h2>四、实践建议</h2>
+<p>基于上述发现，研究团队给出了分场景的实践建议：</p>
+<h3>📋 研究者</h3>
+<p>1. <strong>基线配置首选 AdamW + Cosine Annealing</strong>，这是最稳妥的起点</p>
+<p>2. 如果数据集<strong>分类型特征占比高</strong>，务必尝试 SGD with Momentum 作为对比</p>
+<p>3. 报告实验结果时，<strong>明确说明优化器配置和学习率调度策略</strong>，确保可复现性</p>
+<p>4. 对于新颖的表格数据集，建议进行<strong>小规模优化器搜索实验</strong>（3-5 种候选）</p>
+<h3>🔧 工程师</h3>
+<p>1. <strong>生产环境优先选择 AdamW</strong>——性能稳定、超参数鲁棒、社区支持完善</p>
+<p>2. 如果训练资源受限，<strong>Adam 是性价比最高的选择</strong>（速度快 2%，性能损失<1%）</p>
+<p>3. 遇到训练震荡或过拟合时，<strong>优先调整学习率调度策略</strong>而非更换优化器</p>
+<p>4. 超参数调优时，<strong>学习率优先级最高</strong>，其次才是优化器特定参数（如 beta1/beta2）</p>
+<h3>📊 产品决策者</h3>
+<p>1. 表格深度学习项目的<strong>优化器选择不应成为技术争论焦点</strong>——AdamW 是行业共识</p>
+<p>2. 将资源投入到<strong>数据质量、特征工程、模型架构</strong>上，收益远高于优化器微调</p>
+<p>3. 对于关键业务场景，建议<strong>保留 SGD with Momentum 作为备选方案</strong>进行 A/B 测试</p>
+<p>4. 关注研究团队开源的<strong>基准测试框架</strong>，可快速评估新数据集的最优配置</p>
+<p>---</p>
+<h2>五、研究局限与未来方向</h2>
+<h3>5.1 当前局限</h3>
+<p>1. <strong>仅评估 MLP 架构</strong>：未涵盖 Transformer、TabNet、FT-Transformer 等先进表格模型</p>
+<p>2. <strong>超参数搜索空间有限</strong>：受计算资源限制，部分优化器未进行充分调优</p>
+<p>3. <strong>未考虑集成方法</strong>：实际生产中常使用模型集成，优化器选择可能有不同结论</p>
+<p>4. <strong>在线学习场景缺失</strong>：本研究仅关注离线训练，流式数据场景有待探索</p>
+<h3>5.2 未来方向</h3>
+<p>研究团队计划后续探索：</p>
+<ul><li>优化器与<strong>表格专用架构</strong>（如 TabTransformer、Node）的交互效应</li><li><strong>自动化优化器选择</strong>：基于数据集元特征预测最优优化器</li><li><strong>多目标优化</strong>：同时考虑性能、效率、内存占用的帕累托最优</li><li><strong>联邦学习场景</strong>：分布式表格训练中的优化器行为</li></ul>
+<p>---</p>
+<h2>六、总结</h2>
+<p>这项研究通过 13,500 组系统性实验，为表格深度学习的优化器选择提供了首个大规模实证依据。核心贡献可概括为三点：</p>
+<p>1. <strong>确立 AdamW 为表格 MLP 的默认优化器</strong>，同时揭示 SGD with Momentum 在特定场景的价值</p>
+<p>2. <strong>量化学习率调度策略的影响</strong>，推荐 Cosine Annealing 作为首选</p>
+<p>3. <strong>建立数据特性与优化器匹配的决策框架</strong>，避免盲目套用 CV/NLP 经验</p>
+<p>> 💡 <strong>最终建议</strong>：对于大多数表格深度学习项目，从 <strong>AdamW + Cosine Annealing + 初始学习率 1e-3</strong> 开始，根据数据稀疏性考虑 <strong>SGD with Momentum</strong> 作为备选。将更多精力投入到数据质量和特征工程上，而非过度调优优化器。</p>
+<p>---</p>
+<h2>参考资料</h2>
+<p>1. Gorishniy Y, Rubachev I, Feoktistov D, Babenko A. Benchmarking Optimizers for MLPs in Tabular Deep Learning. arXiv preprint arXiv:2604.15297, 2026.</p>
+<p>2. Loshchilov I, Hutter F. Decoupled Weight Decay Regularization. ICLR 2019.</p>
+<p>3. Liu S, et al. Lion: Symbolic Discovery of Optimization Algorithms. arXiv:2302.06675, 2023.</p>
+<p>4. Shafir A. Sophia: A Scalable Stochastic Second-order Optimizer. arXiv:2305.14342, 2023.</p>
+<p>5. Yandex Research Blog. Deep Learning for Tabular Data: Best Practices. 2026.</p>
+<p>---</p>
+<p class="footer-line">小织 🧵 | 2026-04-17</p></div></body></html>
