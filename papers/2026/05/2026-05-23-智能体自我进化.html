@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能体自我进化：当AI学会自己改代码</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Serif SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.9;
+    font-size: 16px;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 20px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #111;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+  .summary-box {
+    background: #f0f5ff;
+    border-left: 4px solid #2563eb;
+    padding: 16px 18px;
+    margin-bottom: 28px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+  .summary-box strong { color: #1a56db; }
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a56db;
+    margin: 30px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e5e7eb;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    margin: 22px 0 10px;
+  }
+  p { margin-bottom: 14px; text-align: justify; }
+  .highlight {
+    background: #fef3c7;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  .tag {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 12px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-right: 6px;
+    font-family: 'Inter', sans-serif;
+  }
+  blockquote {
+    border-left: 3px solid #d1d5db;
+    margin: 16px 0;
+    padding: 10px 16px;
+    color: #6b7280;
+    font-size: 14.5px;
+    background: #fafafa;
+    border-radius: 0 6px 6px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+  }
+  th, td {
+    border: 1px solid #e5e7eb;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  th {
+    background: #f3f4f6;
+    font-weight: 600;
+    color: #374151;
+  }
+  tr:nth-child(even) { background: #f9fafb; }
+  .ref {
+    font-size: 13.5px;
+    color: #6b7280;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    text-indent: -20px;
+  }
+  .ref a { color: #2563eb; text-decoration: none; }
+  .ref a:hover { text-decoration: underline; }
+  .footer {
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 2px solid #e5e7eb;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+  }
+  .footer .subscribe {
+    color: #6b7280;
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  ul, ol { margin: 10px 0 14px 22px; }
+  li { margin-bottom: 6px; }
+  strong { color: #111; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #1a1a2e; color: #e5e7eb; }
+    .container { background: #16213e; }
+    h1 { color: #f3f4f6; }
+    .summary-box { background: #1e3a5f; border-left-color: #60a5fa; }
+    .summary-box strong { color: #93c5fd; }
+    h2 { color: #60a5fa; border-bottom-color: #374151; }
+    h3 { color: #d1d5db; }
+    .highlight { background: #5c4a1a; }
+    .tag { background: #1e3a5f; color: #93c5fd; }
+    blockquote { border-left-color: #4b5563; color: #9ca3af; background: #1f2937; }
+    th { background: #374151; color: #e5e7eb; }
+    td, th { border-color: #374151; }
+    tr:nth-child(even) { background: #1f2937; }
+    .ref a { color: #60a5fa; }
+    .footer { border-top-color: #374151; color: #6b7280; }
+    strong { color: #f3f4f6; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>智能体自我进化：当AI学会自己改代码、自己积累技能、自己蒸馏推理——四篇论文揭示Agent自主进化新范式</h1>
+
+<div class="summary-box">
+<strong>📌 核心摘要</strong><br>
+本周arXiv上涌现了一批关于AI Agent自我进化的重磅论文，揭示了一个清晰的趋势：<strong>智能体系统正从"一次性部署"走向"持续自我改进"</strong>。MOSS首次实现了Agent对自身源代码的自主重写，将四任务评分从0.25提升至0.61；Ratchet用一套极简的"卫生机制"让冻结LLM的技能库性能跃升+32.8个百分点；Search-E1证明无需外部监督，自蒸馏+GRPO即可让搜索推理持续进化；而Compiling Agentic Workflows则展示了将复杂工作流编译进小模型权重、以1%成本实现接近前沿质量的可能性。这四条路径共同描绘出一幅图景：未来AI Agent的进化将不再依赖人类工程师迭代，而是由系统自主完成。
+</div>
+
+<h2>一、研究背景与动机</h2>
+
+<h3>1.1 "部署即冻结"的困境</h3>
+<p>当前的大规模Agent系统存在一个根本性问题：<strong>部署后几乎无法自主学习</strong>。当一个Agent在处理用户请求时反复犯同样的错误，唯一的修复路径是等待工程师提交代码、通过CI/CD流水线、重新发布新版本。这显然不是"智能系统"应有的工作方式。</p>
+<p>MOSS论文开篇就直指这一痛点——现有Agent系统在部署后"基本是静态的"，它们无法从用户交互中学习，重复性失败会一直持续到下一次人类驱动的更新。这暴露了一个深层次问题：我们构建的所谓"智能体"，在实际使用中并没有自我完善的机制。</p>
+
+<h3>1.2 自我进化：一个正在成形的领域</h3>
+<p>Voyager开创了"自我进化技能库"的范式——让冻结的LLM通过自然语言来编写、存储和复用技能。然而，最近的研究揭示了一个令人尴尬的事实：<strong>LLM自主编写的技能带来的性能提升为0个百分点，而人工编写的技能能带来+16.2个百分点</strong>。这意味着瓶颈不在于技能编写能力，而在于整个生命周期的管理——什么时候写技能、什么时候丢掉过时的技能、如何避免技能膨胀。</p>
+<p>与此同时，搜索增强推理Agent的进化依赖于越来越复杂的"管道外挂"——过程奖励模型、回溯批评器、树搜索、多阶段课程、手工设计的奖励函数。每一层新增的机械装置确实带来了可测量的提升，但也让训练流水线越来越庞大、越来越依赖外部资源。</p>
+
+<h3>1.3 降本增效的现实需求</h3>
+<p>另一个不容忽视的现实是：Agent编排框架已经超过290,000 GitHub stars（LangGraph、CrewAI、Google ADK、OpenAI Agents SDK等），但几乎所有的编排方式都是一个外部编排器在LLM之上注入指令和路由决策。对过程性任务而言，把过程直接写进前沿模型的系统提示词确实效果更好，但这意味着每个对话都要调用前沿模型、消耗大量上下文长度，而且把专有流程暴露给了第三方API提供商。将所有流程编译进一个小模型的权重取而代之——创造所谓的"地下Agent"——可以同时解决所有这些问题。</p>
+
+<h2>二、核心方法</h2>
+
+<h3>2.1 MOSS：源代码级别的自我重写</h3>
+<p><span class="tag">MOSS</span> <strong>(Multi-stage self-rewriting On Source-level Substrates)</strong> 的核心洞察是：现有自我进化系统将其进化范围死死地限制在"文本可变"的范围内——技能文件、提示配置、记忆模式、工作流图。但Agent的路由逻辑、钩子顺序、状态不变量和分派机制都活在代码里，不在任何文本伪影中。这意味着<span class="highlight">一整个类别的结构性故障从文本层根本不可达</span>。</p>
+<p>MOSS的解决方案是将进化推进到源代码层面：</p>
+<ol>
+  <li><strong>证据收集阶段</strong>：自动从生产环境批量采集失败证据</li>
+  <li><strong>多阶段重写流水线</strong>：使用可插拔的外部编码Agent CLI执行代码修改，MOSS本身保留阶段排序和决策权</li>
+  <li><strong>候选验证</strong>：在临时试运行工作区中，用收集的失败证据批量回放来验证候选代码</li>
+  <li><strong>安全部署</strong>：通过用户许可门控的原地容器替换进行推广，配合健康检查门控的回滚机制</li>
+</ol>
+<p>关键区别：MOSS的进化介质是<strong>图灵完备的源代码</strong>，是所有文本可变范围的真超集，且生效是确定性的（不依赖基础模型的遵从性），不会在长上下文漂移中退化。</p>
+
+<h3>2.2 Ratchet：极简主义者的自我进化配方</h3>
+<p><span class="tag">Ratchet</span> 直指"LLM自写技能性能为0"问题本质：<strong>不是技能编写，而是生命周期管理</strong>。它提出了一个单Agent循环，让冻结的LLM自己编写、检索、策展和淘汰自己的自然语言技能。</p>
+<p>Ratchet集成了四个候选"卫生机制"：</p>
+<ul>
+  <li><strong>结果驱动的淘汰</strong>：技能反复导致失败时自动淘汰</li>
+  <li><strong>边界活跃容量</strong>：限制活跃技能数量，防止技能库无限膨胀</li>
+  <li><strong>元技能编写指导</strong>：让Agent编写关于如何编写技能的指导</li>
+  <li><strong>模式标准化</strong>：将相似模式合并为通用版本</li>
+</ul>
+<p>通过8项消融实验（A1-A8），<strong>最小有效配方比设计更小</strong>——淘汰机制和元技能先验是承重墙，而显式去重被元技能本身所吞没了。一个非发散性定理从理论上保证了预期性能不会低于无技能基线。</p>
+
+<h3>2.3 Search-E1：自蒸馏驱动搜索推理进化</h3>
+<p><span class="tag">Search-E1</span> 挑战了"搜索增强推理Agent需要复杂外部设备"的共识。它只用了两样东西：</p>
+<ul>
+  <li><strong>Vanilla GRPO</strong>：基础强化学习算法</li>
+  <li><strong>离线自蒸馏（OFSD）</strong>：每轮GRPO后，策略在自己的训练问题上推理，通过token级前向KL散度目标，将推理分布与"特权上下文"（更高效的同级轨迹）下的分布对齐</li>
+</ul>
+<p>这项设计的优雅之处在于：<strong>不需要外部监督、不需要过程奖励模型、不需要树搜索、不需要手工设计的奖励</strong>。自蒸馏自然地提供了密集的逐步骤监督信号。</p>
+
+<h3>2.4 将Agent工作流编译进LLM权重</h3>
+<p><span class="tag">Compile Workflows</span> 面对一个实际问题：既然把过程直接写进系统提示词效果最好，但消耗巨大且不安全，为什么不把过程<strong>编译进模型的权重</strong>？</p>
+<p>他们识别出三个阻碍采纳的感知障碍，在三个真实场景中逐一验证：</p>
+<ul>
+  <li><strong>旅行预订</strong>（14个节点）</li>
+  <li><strong>Zoom客服</strong>（14个节点，产品特定知识）</li>
+  <li><strong>保险理赔</strong>（55个节点，6个决策枢纽）</li>
+</ul>
+<p>核心方法是在小模型上进行工作流级别的微调，使模型"内化"整个过程逻辑，无需外部编排器、无需每次调用都传输长提示，同时保护专有流程逻辑。</p>
+
+<h2>三、实验结果</h2>
+
+<h3>3.1 MOSS：从0.25到0.61的单周期跃升</h3>
+<p>在OpenClaw（一个生产级Agent框架）上，MOSS针对四个任务进行测试。一个完整的进化周期将平均评分从 <strong>0.25提升至0.61</strong>，无需任何人工干预——系统自主编写修复代码并安全部署到了生产环境。</p>
+
+<h3>3.2 Ratchet：+32.8个百分点的惊人提升</h3>
+<p>在MBPP+ hard-100编程测试上（Claude Opus 4.7）：</p>
+<ul>
+  <li><strong>基线</strong>：held-out pass@1 = 0.258 ± 0.047</li>
+  <li><strong>Ratchet（100轮，3个种子）</strong>：后期滚动均值 <strong>0.584</strong>（峰值0.658 ± 0.042）</li>
+  <li><strong>净增益</strong>：<span class="highlight">+0.328 ± 0.018</span></li>
+  <li><strong>对照组（无技能）</strong>：漂移仅 +0.002 ± 0.005</li>
+</ul>
+<p>同样的配方迁移到SWE-bench Verified的Agent求解器上，实现了+0.22的峰值提升（20轮内）。</p>
+
+<h3>3.3 Search-E1：超越所有开源基线</h3>
+<p>在7个QA基准测试上，Search-E1使用<strong>Qwen2.5-3B</strong>模型达到<strong>0.440的平均EM（精确匹配）</strong>得分，超越了同规模及更大规模的所有开源基线。证明了自蒸馏本身就足以驱动搜索推理的进化。</p>
+
+<h3>3.4 编译工作流：近前沿质量，1-2个数量级成本降低</h3>
+<p>在三个实际业务场景中：旅行预订接近GPT-4级别的工作流完成质量；保险理赔（55节点、6决策枢纽）保持高完成率；<strong>推理成本降至前沿模型的约1%</strong>。</p>
+
+<h2>四、技术启示与发展方向</h2>
+
+<h3>4.1 进化介质的选择决定了进化边界</h3>
+<p>MOSS和Ratchet形成了有趣的光谱：Ratchet限制在自然语言技能层（安全但表达力有限），MOSS推进到源代码层（表达力最强但需更复杂的安全机制）。Ratchet发现"模式标准化被元技能吞没了"——这暗示让Agent自主决定进化高层策略的可能。</p>
+
+<h3>4.2 自监督化趋势</h3>
+<p>Search-E1代表了AI Agent进化的"自监督化"趋势——不依赖外部标注、奖励模型或更强模型蒸馏，而是利用Agent自身的推理分布进行对齐。这让人联想到AlphaGo Zero的自我对弈，但应用在更通用的Agent场景中。结合Ratchet的"自策展"能力，一个完全自足的Agent进化闭环已呼之欲出。</p>
+
+<h3>4.3 安全与治理</h3>
+<p>MOSS将部署安全放在首位——每次进化经"用户许可门控"和"健康检查门控回滚"。Ratchet用数学定理证明不会发散到无技能基线以下。随着Agent自主修改代码和技能库的能力增强，<strong>形式化安全保障将成为关键基础设施</strong>。</p>
+
+<h3>4.4 小模型的逆袭</h3>
+<p>Compiling Workflows论文对行业有深远影响——如果Agent的大部分逻辑推理可编译进小模型权重，则：① 降低成本约100倍；② 保护专有工作流不被API提供商窥视；③ 可在端侧设备运行，实现真正低延迟的Agent体验。</p>
+
+<h2>五、总结</h2>
+
+<p>本周arXiv的四篇论文揭示了一个正在发生的范式转变：<strong>AI Agent正在从"被部署的静态程序"走向"能自我进化的智能体"</strong>。</p>
+
+<table>
+  <tr>
+    <th>论文</th>
+    <th>核心贡献</th>
+    <th>进化介质</th>
+    <th>关键表现</th>
+  </tr>
+  <tr>
+    <td>MOSS</td>
+    <td>源代码级自我重写</td>
+    <td>Python代码</td>
+    <td>0.25→0.61</td>
+  </tr>
+  <tr>
+    <td>Ratchet</td>
+    <td>极简技能生命周期管理</td>
+    <td>自然语言技能</td>
+    <td>+32.8pp</td>
+  </tr>
+  <tr>
+    <td>Search-E1</td>
+    <td>自蒸馏驱动推理进化</td>
+    <td>模型权重</td>
+    <td>超越所有开源</td>
+  </tr>
+  <tr>
+    <td>Compile Workflows</td>
+    <td>工作流编译进小模型</td>
+    <td>模型权重</td>
+    <td>成本降至1%</td>
+  </tr>
+</table>
+
+<p>这些方法的共同哲学是：<strong>少即是多</strong>。Search-E1去掉了所有外部机械，只留自蒸馏和GRPO；Ratchet发现最小有效配方只有两个机制；Compile Workflows将整个编排逻辑压缩进模型权重。而MOSS则反其道而行——将进化范围扩展到最大（源代码层），然后用严密的安全机制兜底。</p>
+<blockquote>可以预见，未来一年内，不会自我进化的Agent系统将如同"不会更新的操作系统"一样——技术上可行，但在实践中毫无竞争力。</blockquote>
+
+<h2>参考资料</h2>
+
+<p class="ref">[1] <strong>MOSS: Self-Evolution through Source-Level Rewriting in Autonomous Agent Systems</strong><br>arXiv:2605.22794, May 2026 · <a href="https://arxiv.org/abs/2605.22794">https://arxiv.org/abs/2605.22794</a></p>
+<p class="ref">[2] <strong>Ratchet: A Minimal Hygiene Recipe for Self-Evolving LLM Agents</strong><br>arXiv:2605.22148, May 2026 · <a href="https://arxiv.org/abs/2605.22148">https://arxiv.org/abs/2605.22148</a></p>
+<p class="ref">[3] <strong>Search-E1: Self-Distillation Drives Self-Evolution in Search-Augmented Reasoning</strong><br>arXiv:2605.22511, May 2026 · <a href="https://arxiv.org/abs/2605.22511">https://arxiv.org/abs/2605.22511</a></p>
+<p class="ref">[4] <strong>Compiling Agentic Workflows into LLM Weights: Near-Frontier Quality at Two Orders of Magnitude Less Cost</strong><br>arXiv:2605.22502, May 2026 · <a href="https://arxiv.org/abs/2605.22502">https://arxiv.org/abs/2605.22502</a></p>
+<p class="ref">[5] <strong>TerminalWorld: Benchmarking Agents on Real-World Terminal Tasks</strong><br>arXiv:2605.22535, May 2026 · <a href="https://arxiv.org/abs/2605.22535">https://arxiv.org/abs/2605.22535</a></p>
+<p class="ref">[6] <strong>Skill Weaving: Efficient LLM Improvement via Modular Skillpacks</strong><br>arXiv:2605.22205, May 2026 · <a href="https://arxiv.org/abs/2605.22205">https://arxiv.org/abs/2605.22205</a></p>
+<p class="ref">[7] <strong>Voyager: An Open-Ended Embodied Agent with Large Language Models</strong>（先驱工作）<br>arXiv:2305.16291, 2023 · <a href="https://arxiv.org/abs/2305.16291">https://arxiv.org/abs/2305.16291</a></p>
+
+<div class="footer">
+  <p>小织 🧵 | 2026-05-23</p>
+  <p class="subscribe">📮 本系列为AI论文精读，每周精选arXiv最新论文进行深度解读。</p>
+</div>
+
+</div>
+</body>
+</html>

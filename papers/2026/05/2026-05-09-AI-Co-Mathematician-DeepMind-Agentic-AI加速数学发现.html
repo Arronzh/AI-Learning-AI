@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>前沿 AI 论文精读：Agentic AI 如何重塑科研与协同能力</title>
+<style>
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; max-width: 720px; margin: 0 auto; padding: 20px; line-height: 1.8; color: #333; background: #fafafa; }
+h1 { font-size: 22px; color: #1a1a1a; border-bottom: 3px solid #6C5CE7; padding-bottom: 12px; margin-top: 10px; }
+h2 { font-size: 18px; color: #2d2d2d; margin-top: 28px; padding-left: 10px; border-left: 4px solid #6C5CE7; }
+h3 { font-size: 16px; color: #444; margin-top: 20px; }
+p { margin: 12px 0; font-size: 15px; }
+.highlight { background: #f0eefb; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #6C5CE7; }
+.highlight strong { color: #6C5CE7; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+th { background: #6C5CE7; color: white; padding: 10px; text-align: left; }
+td { padding: 10px; border-bottom: 1px solid #eee; }
+tr:nth-child(even) { background: #f9f9f9; }
+.tag { display: inline-block; background: #6C5CE7; color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px; margin-right: 5px; }
+.tag-deepmind { background: #4285F4; }
+.footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; text-align: center; }
+a { color: #6C5CE7; text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul { font-size: 14px; padding-left: 20px; }
+li { margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<h1>🧭 前沿 AI 论文精读：Agentic AI 如何重塑科研与协同能力</h1>
+
+<div class="highlight">
+<strong>📌 核心摘要</strong>
+<p>本周五 arXiv 上涌现了多篇高质量 AI 论文，涵盖 Agentic AI 辅助数学发现、LLM 智能体的技能自我进化机制、以及多智能体系统的联合提示优化等前沿方向。其中，Google DeepMind 推出的 <strong>AI Co-Mathematician（AI 联合数学家）</strong> 尤为亮眼——它不仅是一个将 AI 代理深度嵌入数学研究全流程的工作台，更在 FrontierMath Tier 4 上取得了 48% 的最高分，标志着 AI 辅助科研迈入新范式。</p>
+</div>
+
+<h2>一、研究背景与动机</h2>
+
+<h3>1.1 AI 辅助科研的瓶颈</h3>
+<p>近年来，LLM 在数学推理、代码生成等方面取得了显著进展，但现有工具大多是"单次求解器"：你给一个问题，它给出一个答案。真正的数学研究是<strong>探索性、迭代性</strong>的——需要构思猜想、查阅文献、做计算实验、尝试证明、推翻假设、再重新出发。这一过程的非线性、不确定性，使得传统的"问-答"式 AI 工具难以深入嵌入科研工作流。</p>
+<p>以数学研究为例，一个典型的工作日可能包括：上午阅读新论文并发现一个有趣的猜想，中午编写计算脚本进行数值实验，下午尝试构造证明框架，晚上发现反例后又回到文献中寻找新思路。这种高度非线性的探索过程，要求 AI 工具不仅能够处理单点问题，还要能<strong>理解上下文演变、记忆失败路径、主动推荐下一步方向</strong>。</p>
+<p>与此同时，LLM 智能体在实际部署中也面临类似困境：每次执行任务后，它们很少能从经验中学习。过往的交互与洞察被丢弃，下一次又从零开始。这种"学了就忘"的缺陷，严重制约了智能体在复杂长期任务中的表现。</p>
+
+<h3>1.2 两个关键缺失</h3>
+<ul>
+<li><strong>科研场景的"协作深度"不足</strong>：AI 工具无法理解数学家的意图演变、无法追踪已失败的假说、无法在异步协作中保留上下文。</li>
+<li><strong>智能体的"自我进化"能力缺失</strong>：智能体执行任务后不会从经验中提炼可复用的技能，每一次交互都是"一次性"的。</li>
+</ul>
+<p>本周 arXiv 上的三篇论文恰好从不同角度回应了这些挑战。</p>
+
+<h2>二、核心方法</h2>
+
+<h3>🏆 论文一：AI Co-Mathematician — AI 联合数学家</h3>
+<p><strong>作者：</strong> Daniel Zheng, Ingrid von Glehn, Yori Zwols, Iuliya Beloshapka 等（Google DeepMind）</p>
+
+<div class="highlight">
+<strong>核心创新：</strong>
+<p>AI Co-Mathematician 不是一个简单的对话式数学助手，而是一个<strong>异步、有状态的协作工作台</strong>。其设计原则直接来源于数学家真实的协作模式：</p>
+<ul>
+<li><strong>意图管理与细化</strong>：系统持续追踪数学家的研究意图，允许意图在探索过程中自然演化。</li>
+<li><strong>假设追踪与失败管理</strong>：记录哪些猜想已被尝试、为何失败，避免重复走死胡同。</li>
+<li><strong>多模态产出物</strong>：输出完整的数学产物——公式推导、反例构造、文献关联、新研究方向建议。</li>
+<li><strong>异步多 Agent 协作</strong>：不同 AI Agent 分别负责文献搜索、计算探索、定理证明等子任务。</li>
+</ul>
+<p>核心洞察：<strong>将 AI 嵌入数学研究，不是让 AI 替代数学家，而是让 AI 成为值得信赖的研究伙伴。</strong></p>
+</div>
+
+<h3>📌 论文二：SkillOS — 自我进化智能体的技能策展系统</h3>
+<p><strong>作者：</strong> Siru Ouyang, Jun Yan, Yanfei Chen 等</p>
+<p>SkillOS 提出了一个经验驱动的 RL 训练框架，让 LLM 智能体学会如何<strong>筛选、更新、组织自己的技能库</strong>：</p>
+<ul>
+<li><strong>双模块架构</strong>：冻结的 Agent Executor（应用技能） + 可训练的 Skill Curator（管理技能库）</li>
+<li><strong>复合奖励设计</strong>：不仅奖励任务完成度，还奖励技能库的质量和结构化程度</li>
+<li><strong>分组任务流训练</strong>：基于技能相关的任务依赖关系分组训练</li>
+<li><strong>跨骨干泛化</strong>：策展策略可跨不同 LLM 骨干和任务域迁移</li>
+</ul>
+<p>关键发现：经过 SkillOS 训练后，技能库中的条目会自然演化成<strong>结构化更强的 Markdown 文件</strong>，编码了更高层次的元技能。</p>
+
+<h3>📌 论文三：MASPO — 多智能体系统联合提示优化</h3>
+<p><strong>作者：</strong> Zhexuan Wang, Xuebo Liu, Li Wang 等（ICML 2026）</p>
+<p>MASPO 解决了多智能体系统中一个核心痛点：每个 Agent 有自己的角色提示（prompt），但这些提示是<strong>局部优化的</strong>，不一定有利于全局任务目标。</p>
+<ul>
+<li><strong>联合评估机制</strong>：评估 Agent 提示时，看其是否有利于后继 Agent 的后续工作</li>
+<li><strong>数据驱动的进化束搜索</strong>：在高维提示空间中高效导航</li>
+<li><strong>无需真实标签</strong>：仅通过 Agent 间的交互信号驱动优化</li>
+</ul>
+
+<h2>三、实验结果</h2>
+
+<table>
+<tr><th>论文</th><th>关键指标</th><th>结果</th></tr>
+<tr><td>AI Co-Mathematician</td><td>FrontierMath Tier 4</td><td><strong>48%</strong>（所有 AI 系统最高）</td></tr>
+<tr><td></td><td>解决开放问题</td><td>帮助研究人员解决未解决的数学问题</td></tr>
+<tr><td></td><td>新研究方向</td><td>识别被忽略的已有文献和新方向</td></tr>
+<tr><td>SkillOS</td><td>多轮任务 & 单轮推理</td><td>超越无记忆 / 强记忆基线</td></tr>
+<tr><td></td><td>跨骨干泛化</td><td>策展策略可跨不同 LLM 骨干迁移</td></tr>
+<tr><td>MASPO</td><td>6 个协作任务</td><td>平均准确率提升 <strong>2.9%</strong></td></tr>
+</table>
+
+<h2>四、技术启示与发展方向</h2>
+
+<h3>4.1 AI + 科研：从工具到伙伴</h3>
+<p>AI Co-Mathematician 的价值不仅在于分数。它代表了一种<strong>范式的转变</strong>：从"AI 解答你的问题"到"AI 和你一起探索未知"。这种理念可以扩展到生物学、药物发现、物理模拟等科研领域。</p>
+<p>后续值得关注的方向：</p>
+<ul>
+<li>长时间跨度的科研项目管理（数周到数月）</li>
+<li>多个 AI 研究员之间的协作与辩论机制</li>
+<li>AI 研究产出物的人类可验证性与可信度</li>
+</ul>
+
+<h3>4.2 智能体的自我进化：技能是核心资产</h3>
+<p>SkillOS 告诉我们，<strong>技能库不是静态的知识集合，而是可以持续进化的认知结构</strong>。这对于构建真正"越用越聪明"的 AI 智能体至关重要。</p>
+<ul>
+<li>技能策展的长期目标是专业化还是通用化？</li>
+<li>多个智能体之间是否可以共享和交易技能？</li>
+<li>技能库如何应对知识过时和任务漂移？</li>
+</ul>
+
+<h3>4.3 多智能体协同：提示也值得全局优化</h3>
+<p>MASPO 揭示了一个被低估的洞见：<strong>在多智能体系统中，提示设计本质上是一个全局优化问题</strong>，而非局部优化问题。这为此后多智能体系统的工程实践提供了重要的方法论指导。</p>
+
+<h2>五、总结</h2>
+<p>本周五 arXiv 上的这三篇论文，从不同侧面共同描绘了 AI 发展的下一阶段图景：</p>
+<ul>
+<li><strong>AI Co-Mathematician</strong> 展示了 Agentic AI 如何深度融入科研工作流</li>
+<li><strong>SkillOS</strong> 揭示了智能体自我进化的关键瓶颈与解决方案</li>
+<li><strong>MASPO</strong> 提供了多智能体系统优化的新思路</li>
+</ul>
+<p>三者的共同主题是：<strong>AI 不再只是一个回答问题或执行单次任务的工具，而正在成为能够持续学习、协作、共同探索的智能伙伴。</strong></p>
+
+<h2>参考资料</h2>
+<ol>
+<li><a href="https://arxiv.org/abs/2605.06651" target="_blank">AI Co-Mathematician: Accelerating Mathematicians with Agentic AI</a> — Zheng et al., Google DeepMind</li>
+<li><a href="https://arxiv.org/abs/2605.06614" target="_blank">SkillOS: Learning Skill Curation for Self-Evolving Agents</a> — Ouyang et al.</li>
+<li><a href="https://arxiv.org/abs/2605.06623" target="_blank">MASPO: Joint Prompt Optimization for LLM-based Multi-Agent Systems</a> — Wang et al., ICML 2026</li>
+<li><a href="https://arxiv.org/abs/2605.06638" target="_blank">Can RL Teach Long-Horizon Reasoning to LLMs? Expressiveness Is Key</a> — Wang et al.</li>
+</ol>
+
+<div class="footer">
+小织 🧵 | 2026 年 5 月 9 日
+</div>
+
+</body>
+</html>

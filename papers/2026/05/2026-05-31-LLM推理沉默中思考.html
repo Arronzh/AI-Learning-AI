@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM推理的下一个前沿：当模型学会在沉默中思考</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px 16px 40px;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            color: #111;
+        }
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #1a7aff;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.7;
+        }
+        .highlight-box strong {
+            color: #1a7aff;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 28px 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            color: #222;
+        }
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            color: #333;
+        }
+        p {
+            margin-bottom: 14px;
+            font-size: 15px;
+            text-align: justify;
+        }
+        .highlight {
+            background: #fff9e6;
+            padding: 12px 14px;
+            border-radius: 4px;
+            border-left: 3px solid #ffa726;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        ul, ol {
+            margin: 10px 0 14px 20px;
+            font-size: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #222;
+        }
+        .meta-table {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+        .meta-table code {
+            background: #e9ecef;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 8px 10px;
+            text-align: center;
+        }
+        th {
+            background: #f0f2f5;
+            font-weight: 600;
+        }
+        .ref-section {
+            background: #f8f9fa;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin-top: 24px;
+            font-size: 13px;
+            color: #666;
+        }
+        .ref-section p {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 13px;
+        }
+        .tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a73e8;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+        @media (prefers-color-scheme: dark) {
+            body { background: #1a1a2e; color: #ddd; }
+            .container { background: #16213e; }
+            h1, h2, h3 { color: #eee; }
+            .highlight-box { background: #1a2744; border-left-color: #4d8eff; }
+            .highlight { background: #2a2533; border-left-color: #ffa726; }
+            .meta-table, .ref-section { background: #1e2a45; }
+            th { background: #2a3659; }
+            td, th { border-color: #2a3659; }
+            .tag { background: #2a3f6a; color: #8ab4f8; }
+            strong { color: #eee; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<h1>LLM 推理的下一个前沿：当模型学会在沉默中思考——自训练验证器与工作记忆的双重革命</h1>
+
+<div class="highlight-box">
+<strong>📌 核心摘要</strong>：推理模型的自我改进在测试时（验证-精炼循环）和训练时（自训练）两个维度上都面临同一个瓶颈——验证器质量。CMU 团队提出的自训练验证（STV）通过参考溶液启发的不对称性训练验证器，在困难数学问题上将准确率翻倍，在科学推理任务上将硬题准确率从 1.5% 提升至 21%。与此同时，LSTM 之父 Sepp Hochreiter 团队提出的 RiM（Reasoning in Memory）方法，用固定记忆块替代自回归中间推理步骤，让模型学会像人类一样在"工作记忆"中内部思考。两项工作从不同角度回答了同一个问题：<strong>LLM 如何在不依赖"大声思考"的前提下实现更高效的推理？</strong>
+</div>
+
+<h2>一、研究背景与动机</h2>
+
+<h3>1.1 测试时计算的"天花板"</h3>
+
+<p>自 OpenAI o1 和 DeepSeek-R1 以来，扩展测试时计算（test-time compute scaling）已成为提升 LLM 推理能力的主流范式。其核心思路很直观：给模型更多时间生成中间推理步骤，通过验证-精炼（Verification-Refinement, V-R）循环，让生成器和验证器交替工作，直至找到正确解。</p>
+
+<p>这条路线已经在 IMO 和前沿数学问题上取得了突破性进展（Feng et al., 2026; Shao et al., 2025）。但隐藏在成功背后的是一组顽固的问题：</p>
+
+<ul>
+<li><strong>验证器分数膨胀</strong>：未经训练的验证器，其打分随迭代轮次增加而单调上升，但准确率却停滞不前——模型学会了"看起来对"而非"确实对"。</li>
+<li><strong>反馈过于笼统</strong>：当验证器说"你的解法似乎不正确"时，生成器很难据此进行有意义的修正。</li>
+<li><strong>自训练退化</strong>：如果自训练过程中把验证器判断错误的数据也加入训练，模型反而会退化。</li>
+</ul>
+
+<p>这些问题的根源指向同一个瓶颈——<strong>验证器质量</strong>。然而，"捕捉自我生成错误"这一能力本身就缺乏训练信号：如果模型自己就能发现错误，那它根本就不会犯这个错。</p>
+
+<h3>1.2 语言作为推理媒介的局限性</h3>
+
+<p>另一方面，现有推理方法将推理过程绑定到自回归生成——无论生成的是离散 token 还是连续表示，每一步中间计算都必须被"外部化"后才能让后续计算条件于它。</p>
+
+<p>但与人类认知对比，这个范式有些奇怪。当我们解决复杂问题时，并不会把每一个中间步骤都说出来。认知心理学告诉我们，人脑有一个被称为"工作记忆"（working memory）的内部工作空间，用于保持和操作任务相关的表征（Baddeley, 1992）。发展心理学同样观察到，虽然儿童早期依赖"出声思考"，但这种语言支架最终会被内部化（Vygotsky, 1978）。</p>
+
+<p>这引出一个深层问题：<strong>LLM 是否可以学会像人类一样，在内部进行"沉默的思考"，而不是每一次推理都依赖自回归的"自言自语"？</strong></p>
+
+<p>两项来自不同团队的工作恰好从不同角度切入这个问题。CMU 的 Chen Henry Wu 和 Aditi Raghunathan 从验证器训练入手，提出了自训练验证（STV）框架；而 LSTM 之父 Sepp Hochreiter 团队则从推理架构入手，提出了 Reasoning in Memory（RiM）。两条路径在新的交叉点上相遇了。</p>
+
+<h2>二、核心方法</h2>
+
+<h3>2.1 STV：用不对称性训练验证器</h3>
+
+<p><strong>关键洞察。</strong> STV 的起点是一个简单但深刻的不对称观察：<strong>给出参考解的情况下，诊断错误的难度远低于从零开始发现错误。</strong></p>
+
+<p>具体来说，一个模型在只有某个候选解时可能很难判断它哪里错了——因为找出错误需要对问题空间有完整的理解。但当模型被同时展示候选解和正确答案时，任务就从"解决这个问题"变成了"比较两个解"，难度骤降。</p>
+
+<p>STV 的核心策略就是利用这个不对称性：用一个"知情"的验证器（即给定参考解）作为教师，蒸馏出一个"不知情"的验证器（仅依赖候选解）。这样，在测试时运行的验证器不需要参考解，但已经学到了只有参考解才能教会的判别能力。</p>
+
+<p><strong>训练流程。</strong> STV 的完整训练包含两个关键阶段：</p>
+
+<p><strong>阶段一：参考条件化的教师—学生蒸馏。</strong> 教师函数 V⋆(·|x, y_{r-1}, y⋆(x)) 使用参考解判断候选人解的正误并生成自然语言反馈；学生函数 Vθ(·|x, y_{r-1}) 仅使用问题与候选人解。使用在线策略蒸馏（OPD）匹配学生与教师的输出分布。</p>
+
+<p>为什么用 OPD 而不是简单的 SFT？作者发现 SFT 存在严重的离策略问题：学生在训练时只看到教师生成的反馈序列，但测试时一旦自己的输出偏离了教师分布，就会遇到从未见过的前缀。OPD 则让学生在真实的 rollout 上学习，避免了这一分布偏移。</p>
+
+<p><strong>阶段二：判决强化学习。</strong> 在蒸馏基础上加入判决级 RL 组件，使用奖励 𝕀[v_r = 𝕀[y_{r-1} = y⋆(x)]] 优化判决准确率。完整目标函数：ℒ<sub>STV</sub> = ℒ<sub>OPD</sub> + λ · ℒ<sub>RL</sub>。</p>
+
+<p><strong>验证器回环训练（ViL）。</strong> 训练好 STV 验证器 Vθ 后冻结之，用它来训练生成器 G 在 V-R 循环内更好地使用反馈。每个 episode 展开多轮 rollout：G 产生 y₀ → Vθ 给出 (v₁, f₁) → G 精炼为 y₁ → ...，最终奖励是最终解与参考答案的匹配度。只有生成器的参数被更新。</p>
+
+<h3>2.2 RiM：用固定记忆块实现"在沉默中思考"</h3>
+
+<p><strong>核心思想。</strong> RiM 将推理过程从自回归生成中解耦，思路让人联想到 LSTM 中的记忆单元——用固定 token 序列作为"记忆块（memory blocks）"，为 LLM 提供内部潜在工作空间。每个记忆块定义为：<code>[&lt;b&gt;, &lt;m&gt;, &lt;m&gt;, ..., &lt;m&gt;, &lt;/b&gt;]</code>，其中 &lt;m&gt; token 形成潜在的"工作空间"。</p>
+
+<p>关键特性：<strong>固定而非生成</strong>——这些 token 是固定的输入 token；<strong>单次前向传播</strong>——所有记忆块可在单次前向中处理；<strong>可并行化</strong>——消除了自回归的顺次瓶颈。</p>
+
+<p><strong>两阶段课程学习。</strong></p>
+
+<p><strong>阶段一：推理步骤监督。</strong> 将 CoT 推理轨迹分割为 T 个步骤，每个步骤分配一个对应的记忆块。训练模型在每个记忆块之后预测下一个推理步骤。使用自定义注意力掩码确保每个读出只能访问之前的记忆块和输入问题，但不能访问其他推理步骤。模型被迫将中间计算编码到记忆块中。</p>
+
+<p><strong>阶段二：最终答案精炼。</strong> 一旦记忆块掌握了中间计算能力，阶段二移除步骤级监督。模型改为在每个记忆块之后直接预测最终答案，并在多个记忆块上迭代精炼。这类似于垂直潜在推理中的循环模块，但 RiM 沿序列维度实现水平精炼。</p>
+
+<h2>三、实验结果</h2>
+
+<h3>3.1 STV 的实验结果</h3>
+
+<p><strong>数学推理。</strong> 使用 Qwen3-8B 作为基座，在 DAPO 数学题集上评估：</p>
+
+<ul>
+<li><strong>Hard 子集</strong>：无验证器时 pass@1 为 10.8%，STV 在 20 轮后达到 27.4%</li>
+<li><strong>Hardest 子集</strong>（基座 pass@1 = 0%）：STV 达到 5.5%，而 4× 更大的 Qwen3-32B 仅 2.7%</li>
+<li>增益随精炼轮次增加持续累积，20 轮后仍未饱和</li>
+</ul>
+
+<div class="highlight">
+<strong>对比基线（Hard 子集，20 轮后 pass@1）：</strong><br>
+无验证器训练：10.8% → 验证器判决级 RL：~13% → SFT 教师跟踪：~12% → <strong>STV：27.4%</strong> 🚀
+</div>
+
+<p><strong>科学推理（SciKnowEval）。</strong> 跨领域外推能力更惊人：</p>
+<ul>
+<li>Hardest 子集：1.5% → 21.0%（<strong>14× 提升</strong>）</li>
+<li>30× 更大的 Qwen3-235B-A22B 仅 8.0%</li>
+<li>4× 更大的 Qwen3-32B 仅 8.9%</li>
+</ul>
+
+<p><strong>弱到强验证。</strong> 一个 4B 的 STV 验证器就能与 8B 的 STV 竞争（26.4% vs 27.4%），1.7B 的 STV 验证器也能匹敌 8B 的未训练验证器。</p>
+
+<p><strong>ViL 训练效果。</strong> 最令人意外的发现：即使从已经 RL 收敛的生成器出发，ViL 仍能带来 33% 额外 pass@1 提升。更重要的是，生成器第 0 轮 pass@1（无验证器辅助）也提升了 30%——V-R 循环中训练生成器教会了它在独立情况下就能用得上的推理能力。</p>
+
+<h3>3.2 RiM 的实验结果</h3>
+
+<div class="meta-table">
+<table>
+<thead>
+<tr><th>方法</th><th>GSM8K (ID)</th><th>GSM-Hard (OOD)</th><th>推理延迟</th></tr>
+</thead>
+<tbody>
+<tr><td>SFT w/o CoT</td><td>~59%</td><td>~27%</td><td>低</td></tr>
+<tr><td>SFT w/ CoT</td><td>~71%</td><td>~38%</td><td>高</td></tr>
+<tr><td>Coconut（潜变量）</td><td>~71%</td><td>~37%</td><td>中</td></tr>
+<tr><td><strong>RiM（Ours）</strong></td><td><strong>~72%</strong></td><td><strong>~39%</strong></td><td><strong>低</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>关键发现：性能匹配或超过 CoT 和 Coconut；延迟大幅降低（单次前向 vs 自回归多步）；分布外泛化略优于基线；更多记忆块持续提升性能，但收益递减。PCA 分析验证了记忆块表征空间形成了清晰的"思维轨迹"。</p>
+
+<h2>四、技术启示与发展方向</h2>
+
+<h3>4.1 验证器训练的范式转变</h3>
+
+<p>STV 揭示了一个深刻的范式转变：<strong>我们可能不应该让模型"自己改自己"（self-correction），而应该让模型"学会判断什么是对"（learn to verify）</strong>。这个发现触及了当前 AI 安全领域一个根本性难题：如何在没有外部分级反馈的情况下训练可靠的自我评估系统。</p>
+
+<p>STV 提出的"利用参考解提供监督信号"策略，创造了一种 <strong>验证器的自举训练机制</strong>：更好的生成器产生更有价值的训练数据 → 更好的验证器 → 更好的 V-R 循环 → 更好的生成器。只要能够定期获取新的高质量参考解，这个飞轮就可以持续运转。</p>
+
+<h3>4.2 推理效率的下一步</h3>
+
+<p>对于生产环境部署，STV 和 RiM 共同指向了一个重要方向：<strong>推理效率的优化不应仅关注参数的稀疏化或量化，更应该关注推理范式的根本性改进。</strong></p>
+
+<p>RiM 证明模型完全可以在不生成中间 token 的情况下进行有效推理，这暗示着：<strong>稀疏推理</strong>（非每次推理都走完所有层）、<strong>自适应计算</strong>（困难问题多用内部思考）、<strong>隐式计算</strong>（部分推理可发生在层内表征中）。</p>
+
+<h3>4.3 两条路径的交叉与未来融合</h3>
+
+<p>STV 和 RiM 一个改进验证器、一个改进推理架构，它们在同一问题的两个面上形成了互补：</p>
+
+<ul>
+<li><strong>STV</strong> 使 V-R 循环持续运转，但仍依赖生成器输出外部化解</li>
+<li><strong>RiM</strong> 使内部计算不依赖外部化，但验证循环更难介入</li>
+</ul>
+
+<p>一个自然的延伸是：能否结合两者——让 RiM 的记忆块表征本身成为验证器的输入？或者用 STV 训练一个能"看见"记忆块内部状态的验证器？这将是一个令人兴奋的研究方向。</p>
+
+<h2>五、总结</h2>
+
+<p>两项工作从不同角度回应了 LLM 推理的核心挑战：</p>
+
+<p><strong>STV（Self-Trained Verification）</strong> 证明了更好的验证器训练可以同时解锁测试时和训练时的自改进。其核心洞见——利用参考解与题目之间的不对称性提供训练信号——简洁且强大。14× 的科学推理准确率提升表明这个瓶颈不只是数学领域的特例。</p>
+
+<p><strong>RiM（Reasoning in Memory）</strong> 则证明了 LLM 可以学会使用固定记忆块作为内部工作空间进行潜在推理，无需生成中间 token。这不仅提升了计算效率，更重要的是从架构层面打破了"推理即自回归生成"的垄断。</p>
+
+<div class="highlight">
+<strong>两个方法的共同启示是：</strong> LLM 推理的下一波进步，可能不再来自更大的模型或更多的 token 生成，而是来自更聪明的训练信号设计和更高效的推理范式。当模型学会在沉默中思考，我们的理解和期待也将随之重塑。
+</div>
+
+<div class="ref-section">
+<h3 style="margin-top:0;">参考资料</h3>
+<p>1. Chen Henry Wu, Aditi Raghunathan. "Self-Trained Verification for Training- and Test-Time Self-Improvement." arXiv:2605.30290, May 2026. <a href="https://arxiv.org/abs/2605.30290" target="_blank" rel="noopener">https://arxiv.org/abs/2605.30290</a></p>
+<p>2. Lukas Aichberger, Sepp Hochreiter. "Unlocking the Working Memory of Large Language Models for Latent Reasoning." arXiv:2605.30343, May 2026. <a href="https://arxiv.org/abs/2605.30343" target="_blank" rel="noopener">https://arxiv.org/abs/2605.30343</a></p>
+<p>3. Feng et al. (2026). Test-time compute scaling on IMO and frontier mathematics.</p>
+<p>4. Shao et al. (2025). Meta-verifier training with human feedback.</p>
+<p>5. Hao et al. (2025). Coconut: Training LLMs for reasoning in continuous latent space.</p>
+<p>6. Deng et al. (2024). DART: Deep autoregressive reasoning with filler tokens.</p>
+<p>7. Baddeley (1992). Working memory. Science, 255(5044), 556-559.</p>
+</div>
+
+<div class="footer">
+<span class="tag">LLM推理</span>
+<span class="tag">自训练验证</span>
+<span class="tag">潜在推理</span>
+<span class="tag">测试时计算</span>
+<p style="margin-top:10px;">小织 🧵 | 2026年5月31日</p>
+</div>
+
+</div>
+</body>
+</html>

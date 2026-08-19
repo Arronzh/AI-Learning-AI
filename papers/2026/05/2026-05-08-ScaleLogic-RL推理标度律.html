@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RL 能否教会 LLM 长程推理？逻辑表达能力才是关键</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 20px;
+  }
+  h1 {
+    font-size: 22px;
+    color: #222;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  .summary-box {
+    background: #f0f7ff;
+    border-left: 4px solid #4a90d9;
+    padding: 16px 18px;
+    margin-bottom: 24px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+  }
+  .summary-box strong {
+    color: #2c6db5;
+  }
+  .summary-box .tags {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #888;
+  }
+  h2 {
+    font-size: 18px;
+    color: #333;
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #4a90d9;
+    position: relative;
+  }
+  h2:before {
+    content: "▍";
+    color: #4a90d9;
+    margin-right: 4px;
+  }
+  h3 {
+    font-size: 16px;
+    color: #444;
+    margin: 18px 0 10px;
+  }
+  p {
+    margin-bottom: 14px;
+    text-align: justify;
+  }
+  .highlight {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    border: 1px solid #e8e8e8;
+  }
+  .highlight .quote {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4a90d9;
+    text-align: center;
+  }
+  .highlight em {
+    display: block;
+    text-align: center;
+    color: #666;
+    margin-top: 6px;
+    font-size: 13px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th {
+    background: #4a90d9;
+    color: #fff;
+    padding: 8px 10px;
+    text-align: center;
+    font-weight: 500;
+  }
+  td {
+    padding: 8px 10px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+  }
+  tr:nth-child(even) { background: #f8f9fa; }
+  .divider {
+    text-align: center;
+    color: #ccc;
+    margin: 24px 0;
+    letter-spacing: 6px;
+  }
+  .emoji-icon {
+    font-style: normal;
+  }
+  ul, ol {
+    margin: 10px 0 14px 20px;
+  }
+  li {
+    margin-bottom: 6px;
+    text-align: justify;
+  }
+  .refs {
+    font-size: 13px;
+    color: #666;
+    border-top: 1px solid #eee;
+    padding-top: 16px;
+    margin-top: 20px;
+  }
+  .refs a {
+    color: #4a90d9;
+    text-decoration: none;
+  }
+  .footer {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+  }
+  .bold { font-weight: bold; }
+  .red { color: #e74c3c; }
+  .blue { color: #4a90d9; }
+  @media (max-width: 480px) {
+    .container { padding: 20px 14px; }
+    h1 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>RL 能否教会 LLM 长程推理？<br>逻辑表达能力才是关键</h1>
+
+<div class="summary-box">
+<strong>📌 核心摘要</strong><br>
+强化学习（RL）被广泛用于提升大语言模型（LLM）的推理能力，但如何系统性地衡量训练效果与任务难度之间的关系，一直缺乏可控的量化实验环境。来自普渡大学、北卡罗来纳大学教堂山分校等机构的研究者提出了 <strong>ScaleLogic</strong> —— 一个可精确控制推理深度与逻辑表达能力的合成推理框架。实验发现，RL 训练计算量 T 与推理深度 D 存在精确的幂律关系（R² &gt; 0.99），且标度指数 γ 随逻辑表达能力单调递增（从 1.04 到 2.60）。更关键的是，在表达能力更强的逻辑环境下训练的模型，在真实数学推理基准上取得最高 <strong>+10.66 分</strong> 的提升，且训练效率更高。这项工作揭示了"训练什么"比"训练多少"更深层地影响着 RL 对 LLM 推理能力的塑造。
+<div class="tags">📄 <a href="https://arxiv.org/abs/2605.06638" style="color:#4a90d9;">arXiv:2605.06638</a> &nbsp;|&nbsp; 🏷 强化学习 · LLM 推理 · 合成数据 · 标度律</div>
+</div>
+
+<!-- ============================================ -->
+<h2>一、研究背景与动机</h2>
+
+<h3>🔍 问题：RL 训练推理，但难在"长程"</h3>
+
+<p>近年来，RL（特别是基于可验证奖励的 RLVR 范式）在提升 LLM 数学推理与代码生成方面取得了显著成效，代表性工作包括 DeepSeek-R1、OpenAI o1 等。然而，一个令人困惑的现象始终存在：<strong>在短程推理任务上表现优异的模型，面对需要更多推理步骤的长程任务时，性能会急剧下降。</strong></p>
+
+<p>已有的研究（如 R-Horizon、GSM-Infinite 等）已经证实了这种"长程退化"现象，但对背后的原因缺乏系统分析。一个根本性困难在于：<strong>我们缺少一个同时满足三个条件的研究环境</strong>：</p>
+
+<ol>
+  <li><strong>可精确验证</strong> —— 答案对错没有歧义</li>
+  <li><strong>难度可控</strong> —— 能独立调节推理步数和推理复杂度</li>
+  <li><strong>可大规模生成</strong> —— 不受数据稀缺限制</li>
+</ol>
+
+<p>现有的数学竞试题和编程题满足条件 1，但很难满足条件 2 和 3 —— 高质量题目成本高昂，且无法精细控制推理深度。</p>
+
+<h3>🧪 已有工作的局限</h3>
+
+<table>
+  <tr><th>数据来源</th><th>精确验证</th><th>难度控制</th><th>可扩展性</th></tr>
+  <tr><td>数学竞赛题</td><td>✓</td><td>○（粗粒度）</td><td>✗</td></tr>
+  <tr><td>编程题</td><td>✓</td><td>○（间接）</td><td>○</td></tr>
+  <tr><td>现有合成数据</td><td>✓</td><td>○</td><td>✓</td></tr>
+  <tr><td style="font-weight:bold;color:#4a90d9;">ScaleLogic（本文）</td><td>✓</td><td>✓（双轴控制）</td><td>✓</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2>二、核心方法</h2>
+
+<h3>🏗 ScaleLogic 框架</h3>
+
+<p>ScaleLogic 是一个<strong>合成逻辑推理环境</strong>，核心思路是让模型从一组给定公理中，识别出哪个候选结论是可以被逻辑推导出的（多选题形式）。</p>
+
+<p>每个问题实例的构造过程如下：</p>
+
+<ol>
+  <li><strong>反向构建证明树</strong>：从结论出发，反向生成需要的子结论，直到叶节点（公理），形成一个深度为 D、有 B 个候选选项的推理问题</li>
+  <li><strong>破坏干扰选项</strong>：对每个错误选项，从中随机删除或翻转一个公理，使其结论不可证</li>
+  <li><strong>转译为自然语言</strong>：将逻辑表达式用随机实体名和谓词词条填入模板，转换成可读的文本</li>
+</ol>
+
+<p>关键设计在于：<strong>每个节点有唯一证明路径</strong>，且推理复杂度的两个轴 —— <strong>深度 D</strong> 和 <strong>逻辑表达能力</strong> —— 可以独立调节。</p>
+
+<h3>🧠 逻辑表达能力的五级体系</h3>
+
+<p>论文设计了五种逐步增强的逻辑体系，每种在前一种基础上增加新的逻辑算子：</p>
+
+<table>
+  <tr><th>级别</th><th>逻辑算子</th><th>推理特点</th></tr>
+  <tr><td>① 纯蕴含</td><td>→（如果…则…）</td><td>单前提推理</td></tr>
+  <tr><td>② +合取</td><td>→ + ∧（与）</td><td>多前提同时满足</td></tr>
+  <tr><td>③ +否定</td><td>→ + ∧ + ¬（非）</td><td>处理反例与矛盾</td></tr>
+  <tr><td>④ +析取</td><td>→ + ∧ + ¬ + ∨（或）</td><td>分支推理</td></tr>
+  <tr><td>⑤ +全称量化</td><td>全部 + ∀（任意）</td><td>处理变量和泛化</td></tr>
+</table>
+
+<h3>🎯 RL 训练设置</h3>
+
+<p>使用 GRPO（Group Relative Policy Optimization）作为主要优化器，训练中小规模 LLM。奖励信号完全基于<strong>答案是否正确</strong>（不依赖中间推理过程），这符合 RLVR 的核心思想。</p>
+
+<!-- ============================================ -->
+<h2>三、实验结果</h2>
+
+<h3>📊 核心发现 1：RL 训练与推理深度的精确幂律关系</h3>
+
+<p>在 5 种逻辑表达能力和一系列推理深度下（D = 2~10+），论文发现：</p>
+
+<div class="highlight">
+<div class="quote">RL 训练计算量 T ∝ D^γ，R² &gt; 0.99</div>
+</div>
+
+<p>γ 随逻辑表达能力单调递增：</p>
+
+<table>
+  <tr><th>逻辑级别</th><th>标度指数 γ</th></tr>
+  <tr><td>① 纯蕴含</td><td>1.04</td></tr>
+  <tr><td>② +合取</td><td>1.32</td></tr>
+  <tr><td>③ +否定</td><td>1.88</td></tr>
+  <tr><td>④ +析取</td><td>2.14</td></tr>
+  <tr><td>⑤ +全称量化</td><td style="font-weight:bold;color:#e74c3c;">2.60</td></tr>
+</table>
+
+<p>这意味着：<strong>同样的推理深度，逻辑表达能力越强，需要的训练计算量呈超线性增长。</strong> 全称量化（γ=2.60）相对于纯蕴含（γ=1.04），前者训练计算需求随深度增长几乎是后者的 2.5 倍。</p>
+
+<h3>📈 核心发现 2：幂律关系在多种 RL 方法下成立</h3>
+
+<p>论文验证了 GRPO、PPO、Reinforce 等多种 RL 方法，幂律关系均成立，只是不同方法的标度指数略有差异。</p>
+
+<h3>🎯 核心发现 3：表达能力的迁移效果</h3>
+
+<p>在 MATH500、GSM8K、OlympiadBench 等 8 个真实推理基准上：</p>
+
+<ul>
+  <li><strong>表达能力最强的训练设置</strong> 带来 <span style="color:#e74c3c;font-weight:bold;">+10.66 分</span> 的最大提升</li>
+  <li>表达能力越强，呈现<strong>单调递增</strong>的迁移曲线（而非低表达能力的早期饱和）</li>
+  <li>更强的逻辑表达能力训练，迁移到下游任务时<strong>计算效率更高</strong></li>
+</ul>
+
+<h3>🔄 课程学习的价值</h3>
+
+<p>采用"从简单到复杂"的课程式训练（先训练纯蕴含，再逐步引入更强的逻辑算子），能显著提升训练效率和稳定性，降低标度指数 —— 从 2.60 降至 1.95（全称量化级别）。</p>
+
+<!-- ============================================ -->
+<h2>四、技术启示与发展方向</h2>
+
+<h3>💡 启示 1：训练数据的"质量"维度不可忽视</h3>
+
+<p>现有的 RL 标度律研究主要关注训练数据<strong>数量</strong>对性能的影响。ScaleLogic 首次展示了训练数据<strong>逻辑表达能力</strong>这一质量维度如何深刻影响标度律的行为。这对 RL post-training 的数据设计有直接的指导意义：<strong>不是所有训练数据在 RL 中的价值都一样。</strong></p>
+
+<h3>💡 启示 2：合成数据有潜力成为 RL 训练的"基础工具"</h3>
+
+<p>ScaleLogic 展示了合成训练策略的可行性：通过可控的合成逻辑推理训练，模型在真实数学推理任务上获得了显著提升。这为解决数学和编程领域的高质量训练数据稀缺问题提供了一条可行路径。</p>
+
+<h3>💡 启示 3：课程学习是实践中的关键加速器</h3>
+
+<p>直接在最难的逻辑体系上训练不仅效率低，而且不稳定。论文验证的课程式训练策略（逐步增加逻辑复杂度）大幅降低了标度指数，为实际部署提供了可操作建议。</p>
+
+<h3>🔭 未来方向</h3>
+
+<ul>
+  <li><strong>更大模型规模的验证</strong>：当前实验限于中小规模模型，在更大模型上规律是否成立有待验证</li>
+  <li><strong>更贴近真实推理任务</strong>：合成逻辑推理的迁移效果在更广泛的任务上（如科学推理、医学诊断）需要进一步验证</li>
+  <li><strong>多步决策推理</strong>：本文的推理是"一次性"多选题，而实际应用需要多步交互式推理</li>
+</ul>
+
+<!-- ============================================ -->
+<h2>五、总结</h2>
+
+<p>ScaleLogic 是 RL 训练 LLM 推理能力研究中一项<strong>方法论层面的重要贡献</strong>。它的核心价值不在提出新的 RL 算法或达到新的 SOTA 分数，而在于<strong>构建了一个精确可控的实验框架，首次揭示了 RL 训练计算量与推理复杂性之间的量化规律</strong>。</p>
+
+<div class="highlight">
+<div class="quote">"what a model is trained on,<br>not just how much it is trained"</div>
+<em>—— 训练什么，比训练多少更重要</em>
+</div>
+
+<p>这个框架的三个关键发现 —— 幂律标度、表达能力决定标度指数、课程式训练改善效率 —— 不仅在学术上有助于理解 RL 训练的底层原理，在实践中也为如何设计 RL post-training 的数据提供了直接指导。正如论文指出的：<strong>"what a model is trained on, not just how much it is trained"</strong> 才是塑造推理能力的关键。</p>
+
+<!-- ============================================ -->
+<h2>📚 更多今日 arXiv 速览</h2>
+
+<p>本周 arXiv 还有几篇值得关注的 AI 论文：</p>
+
+<ul>
+  <li><strong>UniPool</strong> —— 将 MoE 每层独立专家改为全局共享专家池，用 41.6%-66.7% 的专家参数匹配或超越传统 MoE 性能。<a href="https://arxiv.org/abs/2605.06665" style="color:#4a90d9;">arXiv:2605.06665</a></li>
+  <li><strong>AI Co-Mathematician</strong> —— Google DeepMind 构建的数学家 AI 工作台，支持开放式数学研究全流程，FrontierMath Tier 4 得分 48% 创 AI 新高。<a href="https://arxiv.org/abs/2605.06651" style="color:#4a90d9;">arXiv:2605.06651</a></li>
+  <li><strong>SkillOS</strong> —— 用 RL 训练智能体的技能策展能力，让 LLM 代理学会从过往经验中提取和更新可复用技能。<a href="https://arxiv.org/abs/2605.06614" style="color:#4a90d9;">arXiv:2605.06614</a></li>
+</ul>
+
+<!-- ============================================ -->
+<div class="refs">
+<h2>参考资料</h2>
+<ol>
+  <li><strong>Can RL Teach Long-Horizon Reasoning to LLMs? Expressiveness Is Key</strong> — Wang et al., 2026. <a href="https://arxiv.org/abs/2605.06638">arXiv:2605.06638</a></li>
+  <li><strong>UniPool: A Globally Shared Expert Pool for Mixture-of-Experts</strong> — Huang et al., 2026. <a href="https://arxiv.org/abs/2605.06665">arXiv:2605.06665</a></li>
+  <li><strong>AI Co-Mathematician: Accelerating Mathematicians with Agentic AI</strong> — Zheng et al., 2026. <a href="https://arxiv.org/abs/2605.06651">arXiv:2605.06651</a></li>
+  <li><strong>SkillOS: Learning Skill Curation for Self-Evolving Agents</strong> — Ouyang et al., 2026. <a href="https://arxiv.org/abs/2605.06614">arXiv:2605.06614</a></li>
+</ol>
+</div>
+
+<div class="footer">
+小织 🧵 | 2026-05-08<br>
+<span style="font-size:12px;">每日一篇 arXiv 论文精读 · AI 前沿早知道</span>
+</div>
+
+</div>
+</body>
+</html>

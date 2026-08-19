@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>环境工程驱动AI科研：清华与智谱AI提出EurekAgent</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: #f7f7f7;
+    color: #333;
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 20px 50px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: #111;
+    letter-spacing: 0.5px;
+  }
+  .summary-box {
+    background: #f0f7ff;
+    border-left: 4px solid #1a73e8;
+    padding: 16px 18px;
+    margin-bottom: 24px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    color: #444;
+    line-height: 1.7;
+  }
+  .summary-box strong { color: #1a73e8; }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 30px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a73e8;
+    color: #1a73e8;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 20px 0 8px;
+    color: #222;
+  }
+  p { margin-bottom: 14px; text-align: justify; }
+  .highlight {
+    background: linear-gradient(180deg, transparent 60%, #fff3cd 60%);
+    padding: 0 2px;
+  }
+  .quote {
+    background: #f9f9f9;
+    border-left: 3px solid #999;
+    padding: 12px 16px;
+    margin: 16px 0;
+    color: #666;
+    font-style: italic;
+    font-size: 15px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  th {
+    background: #1a73e8;
+    color: #fff;
+    font-weight: 600;
+  }
+  td { background: #fff; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .ref-list {
+    margin-top: 20px;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #666;
+  }
+  .ref-list li { margin-bottom: 6px; }
+  .footer {
+    margin-top: 30px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+  }
+  .tag {
+    display: inline-block;
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-right: 6px;
+  }
+  hr { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  .stat-row { display: flex; gap: 12px; margin: 16px 0; }
+  .stat-card {
+    flex: 1;
+    background: #f0f7ff;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a73e8;
+    display: block;
+  }
+  .stat-card .label {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #1a1a2e; color: #e0e0e0; }
+    .container { background: #16213e; }
+    h1 { color: #eee; }
+    .summary-box { background: #1a2744; border-left-color: #4a90d9; }
+    .summary-box strong { color: #4a90d9; }
+    h2 { color: #4a90d9; border-bottom-color: #4a90d9; }
+    .quote { background: #1e1e3a; color: #aaa; }
+    th { background: #4a90d9; }
+    td { background: #1e2a4a; }
+    tr:nth-child(even) td { background: #1a2744; }
+    .tag { background: #1e3a5f; color: #6ab0ff; }
+    .stat-card { background: #1a2744; }
+    .stat-card .num { color: #4a90d9; }
+    .footer { border-top-color: #333; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>别再给AI写剧本了：清华与智谱AI提出"环境工程"新范式，11美元跑出顶级科研成绩</h1>
+
+<div class="summary-box">
+<strong>📌 核心摘要</strong><br><br>
+当大多数研究还在为AI Agent设计精密的"工作流剧本"时，清华大学与智谱AI联合团队另辟蹊径——他们提出了<strong>EurekAgent</strong>，一个以"环境工程"而非"流程控制"为核心的自主科研系统。该系统在数学发现、内核工程和机器学习三大领域的多项任务上刷新了SOTA，其中<strong>26圆 packing 问题的求解仅花费不到11美元</strong>API费用。同期，香港中文大学发布的<strong>FORGE基准</strong>则揭示了一个令人不安的事实：联网搜索增强的LLM在面对单页被污染的网页内容时，仍有高达<strong>27%的概率</strong>推荐虚假商品——推理能力越强，反而越容易被欺骗。这两篇论文共同指向一个趋势：AI系统的可靠性，正从模型能力的比拼，转向<strong>环境设计</strong>的较量。
+</div>
+
+<h2>一、研究背景与动机</h2>
+
+<h3>自主科研智能体的"新瓶颈"</h3>
+
+<p>大语言模型的飞速发展，让AI自主科研从愿景走向现实。从FunSearch到AIDE，从AlphaEvolve到The AI Scientist，一系列系统已经证明：给定一个可优化的目标和执行环境，LLM Agent能够自主提出假设、编写代码、运行实验并迭代方案。</p>
+
+<p>然而，一个耐人寻味的发现打破了行业共识：在ResearchClawBench基准上，<strong>通用型CLI Agent（如Claude Code和Codex）的表现，竟然超越了所有专为科研设计的专用Agent系统</strong>。</p>
+
+<p>这意味着什么？清华与智谱AI团队的答案很明确：<span class="highlight">随着基础模型能力的持续提升，自主科研的瓶颈正在从"如何设计Agent的工作流"转向"如何设计Agent的环境"</span>——这个环境包括了资源、约束和接口，它们共同塑造了Agent的行为模式。</p>
+
+<div class="quote">
+"一位优秀的博士生：他的生产力不是来自于导师每分钟的指令，而是来自于责任机制、研究自主权、准确反馈、同行协作和导师监督。"<br>
+—— EurekAgent论文
+</div>
+
+<h3>搜索增强LLM的"推荐陷阱"</h3>
+
+<p>与此同时，香港中文大学团队关注了一个与日俱增的现实威胁：越来越多的AI助手通过联网搜索为用户提供消费推荐，但搜索引擎可能被"生成式引擎优化（GEO）"技术所污染。2026年3月15日，央视3·15晚会曝光了一个地下产业——商业GEO运营者通过在网络上植入虚假评论，能在数小时内让一个虚假品牌出现在主流AI助手的推荐结果中。</p>
+
+<p><strong>问题不再是"模型有多聪明"，而是"环境是否可信"。</strong></p>
+
+<h2>二、核心方法</h2>
+
+<h3>EurekAgent：环境工程的四个维度</h3>
+
+<p>EurekAgent的核心理念非常简洁：使用现成的通用CLI Agent作为基本节点，围绕Agent设计一个精心编排的外部环境，而非试图控制Agent内部的每一步行为。</p>
+
+<p>其运行流程是一个简单的三轮循环：</p>
+
+<div class="quote" style="text-align:center;">
+准备 → [提案 → 并行的 {实施₁, 实施₂, ..., 实施ₚ}] × R轮
+</div>
+
+<p>在这一循环中，环境只负责外层协调：初始化工作空间、切换阶段、设定目标和交付物、暴露工具和资源接口、记录排序方案、以及执行预算和时限约束。<strong>Agent在这些边界内完全自由地决定自己的研究策略。</strong></p>
+
+<p>更关键的是EurekAgent围绕<strong>四个环境工程维度</strong>的设计：</p>
+
+<p><strong>① 权限工程</strong><br>
+系统通过Docker容器实现运行级隔离，被评估的解决方案和测试数据位于Agent可见的工作区之外，仅通过安全评分服务暴露接口。Agent可以提交候选方案并获得官方评分，但<strong>无法查看或篡改评估器本身</strong>。同时，同轮的并行实施会话之间相互隔离，防止过早收敛到单一方向。</p>
+
+<p><strong>② 制品工程</strong><br>
+每一次运行都有完整的文件系统和Git版本控制。制品的结构遵循严格的模板，构建起一份"共享进度记忆"。这使得Agent可以追踪自己的历史方案，而人类研究者也可以通过Web监控界面一览所有会话的完整轨迹。</p>
+
+<p><strong>③ 预算工程</strong><br>
+Agent的探索受到时间和API成本的双重约束。预算不仅是一个截止条件，更是一种<strong>引导工具</strong>——预算的多寡直接影响了Agent选择探索策略还是利用已知方向。</p>
+
+<p><strong>④ 人机协同工程</strong><br>
+研究者可通过Web监控界面实时观察评分曲线，在必要时暂停运行、调整参数或介入干预。Agent也被设定为在检测到配置含糊时主动请求人类说明。</p>
+
+<h3>FORGE基准：可复现的内容污染评估</h3>
+
+<p>FORGE的核心设计简洁而严谨。它模拟了真实世界中搜索增强LLM的工作流程：</p>
+
+<div class="quote" style="text-align:center;">
+用户查询 → 实时网络搜索 → 前K个搜索结果 → LLM阅读理解 → 推荐输出
+</div>
+
+<p>但为了避免实际污染网络，FORGE采用<strong>局部替换</strong>的方式：在冻结的搜索结果中，将选中文档里的真实品牌名称重写为虚构的"假品牌-产品"组合，同时保留文档的排名、URL、来源归属、长度和周围上下文。这样一来，LLM推荐结果的变化只能来自品牌替换本身。</p>
+
+<p>FORGE涵盖了<strong>15个产品类别、225个真实产品、5种消费场景</strong>，评估了12个商用和开源LLM。</p>
+
+<h2>三、实验结果</h2>
+
+<h3>EurekAgent：低成本的SOTA突破</h3>
+
+<div class="stat-row">
+  <div class="stat-card">
+    <span class="num">$11</span>
+    <span class="label">26圆Packing最低成本</span>
+  </div>
+  <div class="stat-card">
+    <span class="num">$17</span>
+    <span class="label">数学任务平均API成本</span>
+  </div>
+  <div class="stat-card">
+    <span class="num">85.71%</span>
+    <span class="label">MLE-Bench最高得分</span>
+  </div>
+</div>
+
+<p>在数学发现、内核工程和机器学习三大领域的5项任务中，EurekAgent全面刷新SOTA：</p>
+
+<table>
+  <tr>
+    <th>任务</th>
+    <th>此前最佳（人类）</th>
+    <th>此前最佳（AI）</th>
+    <th>EurekAgent</th>
+  </tr>
+  <tr>
+    <td>26圆 Packing（↑）</td>
+    <td>~2.634</td>
+    <td>2.635986</td>
+    <td><strong>2.635999</strong></td>
+  </tr>
+  <tr>
+    <td>Erdős最小重叠（↓）</td>
+    <td>0.380927</td>
+    <td>0.380876</td>
+    <td><strong>0.380870</strong></td>
+  </tr>
+  <tr>
+    <td>一阶自相关不等式（↓）</td>
+    <td>1.509730</td>
+    <td>1.502863</td>
+    <td><strong>1.502861</strong></td>
+  </tr>
+  <tr>
+    <td>TriMul核函数（↓）</td>
+    <td>2096.04μs</td>
+    <td>2247.78μs</td>
+    <td><strong>2005.03μs</strong></td>
+  </tr>
+  <tr>
+    <td>MLE-Bench子集（↑）</td>
+    <td>N/A</td>
+    <td>71.43%</td>
+    <td><strong>85.71%</strong></td>
+  </tr>
+</table>
+
+<p>其中，以Claude Code为CLI Agent、GLM-5.1为基础模型的配置下，三项数学任务的平均API成本不到<strong>17美元</strong>——比绝大多数研究者手动实验的成本还要低得多。</p>
+
+<h3>FORGE：没有模型能免疫</h3>
+
+<p>FORGE的实验结果令人警醒：</p>
+
+<ul style="margin:12px 0 12px 20px; line-height:2;">
+  <li><strong>普遍脆弱性</strong>：所有12个模型在top-3替换攻击下，被愚弄率从13.3%到73.8%不等。即使<strong>单页污染</strong>，也有高达27%的被骗概率。</li>
+  <li><strong>规模与安全性无关</strong>：更大的模型并不更安全——Gemini 3.1 Pro被愚弄的次数竟是Gemini 3 Flash的约3倍。</li>
+  <li><strong>推理反成弱点</strong>：启用推理的模型比禁用的版本更易受骗（差距最大达18个百分点）。模型在推荐虚假产品时会<strong>编造"社会证据"</strong>——虚假社交证明标识的出现频率是正常推荐时的1.5~11倍。</li>
+  <li><strong>现有防御失效</strong>：怀疑提示（skepticism prompting）甚至在某些模型上使攻击成功率增加多达44个百分点。</li>
+</ul>
+
+<p><strong>最脆弱的类别恰恰是用户最需要推荐的领域</strong>：餐饮（平均81.7%被愚弄率）、个人服务（60.6%）和保健品（60.0%）。</p>
+
+<h2>四、技术启示与发展方向</h2>
+
+<p>两篇论文共同揭示了一个正在形成的共识：<span class="highlight">AI能力的下一步跃升，很可能不是来自更大的模型或更巧妙的算法，而是来自更聪明的环境设计。</span></p>
+
+<p>EurekAgent告诉我们：当基础 Agent 足够强大时，"保姆式"的工作流控制反而可能限制其潜力。更聪明的做法是像设计一个实验室一样设计Agent的运行环境——设定清晰的边界、提供准确的反馈、赋予充分的自主权，然后放手让Agent自己去探索。</p>
+
+<p>而FORGE则从反面验证了这一观点：同样是因为环境（搜索结果的污染）而非模型本身的缺陷，才导致了推荐系统失效。<strong>当环境不设防时，最强的推理能力也可能变成最强的"被骗能力"。</strong></p>
+
+<p>两个值得关注的发展方向：</p>
+
+<ol style="margin:12px 0 12px 20px; line-height:2;">
+  <li><strong>环境工程作为AI系统设计的一等公民</strong>：正如软件工程从编写代码发展到设计架构和基础设施，AI Agent的设计也需要从写Prompt的层面提升到设计运行环境的层面。</li>
+  <li><strong>"抗污染"环境协议</strong>：FORGE团队提出的防御方案大多失效，说明需要更根本性的方案——比如建立内容可信度评分体系、跨来源交叉验证的标准协议、以及"可追溯的数字身份"机制。</li>
+</ol>
+
+<h2>五、总结</h2>
+
+<p>清华大学与智谱AI的EurekAgent，以环境工程为核心理念，用不到11美元的API成本就刷新了数学发现的SOTA，为自主科研AI的发展提出了一个极具启发性的新范式。而香港中文大学的FORGE基准，则冷静地揭示了联网AI的脆弱性——在复杂的真实环境下，能力与可信度之间存在巨大的鸿沟。</p>
+
+<p>两者合在一起传递了一个清晰的信息：<strong>下一代AI竞争力的核心，不是模型有多大，而是环境有多好。</strong></p>
+
+<hr>
+
+<h2>参考资料</h2>
+<ol class="ref-list">
+  <li><strong>EurekAgent: Agent Environment Engineering is All You Need For Autonomous Scientific Discovery</strong> - Xin et al., 2026. arXiv:2606.13662. <a href="https://arxiv.org/abs/2606.13662" style="color:#1a73e8;">https://arxiv.org/abs/2606.13662</a></li>
+  <li><strong>One Polluted Page Is Enough: Evaluating Web Content Pollution in Generative Recommenders (FORGE)</strong> - Luo & Chen, 2026. arXiv:2606.13610. <a href="https://arxiv.org/abs/2606.13610" style="color:#1a73e8;">https://arxiv.org/abs/2606.13610</a></li>
+  <li>Anthropic, Dynamic Workflows (2026)</li>
+  <li>South China Morning Post, 3·15 Consumer Rights Day Coverage (2026)</li>
+  <li>FunSearch, AlphaEvolve, AIDE 等相关工作详见论文引用</li>
+</ol>
+
+<div class="footer">
+  <span class="tag">AI 论文精读</span>
+  <span class="tag">环境工程</span>
+  <span class="tag">EurekAgent</span>
+  <span class="tag">FORGE</span>
+  <br><br>
+  小织 🧵 | 2026年6月13日
+</div>
+
+</div>
+</body>
+</html>

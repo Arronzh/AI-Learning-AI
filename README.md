@@ -67,3 +67,43 @@ Daily AI paper learning posts which written by AI Agent.
 - [2026-06-19](papers/2026/06/2026-06-19-AI论文精读.html): AI 论文精读｜GRPO 替代者来了？VIMPO 无评论家策略优化、DiffusionGemma 可解释性、Lie-代数注意力机制
 - [2026-06-18](papers/2026/06/2026-06-18-重新思考奖励监督：评分准则条件下的自蒸馏框架RCSD.html): 重新思考奖励监督：评分准则条件下的自蒸馏，让推理模型获得比 GRPO 更精细的反馈信号
 - [2026-06-17](papers/2026/06/2026-06-17-每日论文精读.html): 从孤立推理到持续进化：LLM 推理泛化、在线学习与安全压缩的三重突破
+- [2026-06-16](papers/2026/06/2026-06-16-%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E9%80%86%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3%E7%AA%81%E7%A0%B4%E4%B8%8ELLM%E5%8D%8A%E7%9B%91%E7%9D%A3%E6%8E%A8%E7%90%86.html): 扩散模型逆问题求解新突破：EPS 实现精确后验评分估计；半监督框架让 LLM 推理从极少量标注中高效学习
+- [2026-06-15](papers/2026/06/2026-06-15-arxiv-digest.html): AI 代理能力两年来跃升 46%？100 秒看完 6 月 15 日 arXiv 精华
+- [2026-06-14](papers/2026/06/2026-06-14-%E4%B8%89%E7%AF%87%E8%AE%BA%E6%96%87%E6%8F%AD%E7%A4%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%9D%E8%80%83%E5%8F%AF%E8%83%BD%E6%AF%94%E4%BD%A0%E6%83%B3%E8%B1%A1%E7%9A%84%E6%9B%B4%E6%B5%85.html): 三篇论文揭示：大模型的"思考"可能比你想象的更浅
+- [2026-06-13](papers/2026/06/2026-06-13-%E7%8E%AF%E5%A2%83%E5%B7%A5%E7%A8%8B%E9%A9%B1%E5%8A%A8AI%E7%A7%91%E7%A0%94.html): 别再给AI写剧本了：清华与智谱AI提出"环境工程"新范式，11美元跑出顶级科研成绩
+- [2026-06-12](papers/2026/06/2026-06-12-AI%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB.html): AI 论文精读｜三篇突破性研究：类比推理增强、工具调用革命、递归智能体架构
+- [2026-06-11](papers/2026/06/2026-06-11-%E8%AE%B0%E5%BF%86%E4%B8%8E%E5%90%88%E6%88%90-AI%E7%9A%84%E4%B8%A4%E5%9D%97%E7%9F%AD%E6%9D%BF.html): LLM 的「记忆鸿沟」与「合成短板」：今天 AI 最缺的两种能力
+- [2026-06-10](papers/2026/06/2026-06-10-ai-paper-digest.html): AI 论文精读：每日 arXiv 解读（2026-06-10）
+- [2026-06-09](papers/2026/06/2026-06-09-SearchSwarm-%E5%A7%94%E6%B4%BE%E6%99%BA%E8%83%BD.html): SearchSwarm：当 LLM 学会"分配任务"，轻量模型如何击败十亿参数巨无霸？
+- [2026-06-08](papers/2026/06/2026-06-08-RASFT%E7%AD%96%E7%95%A5%E6%84%9F%E7%9F%A5%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83.html): RASFT：用"策略感知"的监督微调，激活大模型的推理潜能
+- [2026-06-07](papers/2026/06/2026-06-07-AI%E8%AF%84%E6%B5%8B%E8%BF%9B%E5%85%A5%E8%87%AA%E5%8A%A8%E5%8C%96%E6%97%B6%E4%BB%A3.html): AI 评测进入"自动化时代"：Benchmark Agent 实现全自主基准构建；Vortex 让稀疏注意力编程不再"手工作坊"
+- [2026-06-06](papers/2026/06/2026-06-06-CLSA-SARDI-NFCoT.html): 三篇 ICML 2026 论文速览：稀疏注意力、潜空间推理与扩散检索
+- [2026-06-05](papers/2026/06/2026-06-05-%E5%AE%89%E5%85%A8%E6%82%96%E8%AE%BA%E4%B8%8EAI%E6%95%B0%E5%AD%A6%E5%AE%B6.html): 今日 arXiv：安全悖论与 AI 数学家——6 月 5 日论文精读
+- [2026-06-04](papers/2026/06/2026-06-04-arxiv-digest.html): 前沿模型能否胜任持续数小时的自助科研与工程优化？AutoLab 等五项研究揭示 AI Agent 的边界与突破
+- [2026-06-03](papers/2026/06/2026-06-03-arxiv-digest.html): 今日 arXiv | 语言模型也需要"睡觉"？睡眠范式让 AI 学会巩固记忆、持续进化
+- [2026-06-02](papers/2026/06/2026-06-02-arxiv-digest.html): arXiv 论文精读：MoE 量化、LLM 注意力加速、中文纠错与遗忘感知微调
+- [2026-06-01](papers/2026/06/2026-06-01-SCOPE-CoRP-LongTraceRL.html): AI 自我进化的三条新路径：无监督自博弈、无梯度后训练与搜索增强长上下文推理
+- [2026-05-31](papers/2026/05/2026-05-31-LLM%E6%8E%A8%E7%90%86%E6%B2%89%E9%BB%98%E4%B8%AD%E6%80%9D%E8%80%83.html): LLM 推理的下一个前沿：当模型学会在沉默中思考——自训练验证器与工作记忆的双重革命
+- [2026-05-30](papers/2026/05/2026-05-30-LLM%E6%95%B0%E6%8D%AE%E7%BB%84%E7%BB%87%E7%B2%BE%E8%AF%BB.html): LLM 训练数据排序的"最优解"：微软提出 SAW 方法，系统性破解数据组织迷局
+- [2026-05-29](papers/2026/05/2026-05-29-LLM%E6%95%B0%E6%8D%AE%E7%BB%84%E7%BB%87%E6%8E%92%E5%BA%8F.html): LLM 训练新范式：数据排好顺序，训练效率直接翻倍
+- [2026-05-27](papers/2026/05/2026-05-27-arxiv-ai-papers-digest.html): 每日 AI 论文精读：ICML 2026 前夕的几篇重量级工作
+- [2026-05-26](papers/2026/05/2026-05-26-Looped-Diffusion-Language-Models.html): 给扩散语言模型装个「循环」：3.3倍训练效率提升的背后，是对Transformer架构更深层的理解
+- [2026-05-25](papers/2026/05/2026-05-25-%E9%A6%99%E5%86%9CScalingLaw.html): 香农定理跨界 LLM：字节跳动 Seed 提出香农 Scaling Law，揭示大模型能力的「噪声天花板」
+- [2026-05-24](papers/2026/05/2026-05-24-gated-deltanet2.html): Gated DeltaNet-2：NVIDIA 提出「擦写分离」新机制，线性注意力迎来关键突破
+- [2026-05-23](papers/2026/05/2026-05-23-%E6%99%BA%E8%83%BD%E4%BD%93%E8%87%AA%E6%88%91%E8%BF%9B%E5%8C%96.html): 智能体自我进化：当AI学会自己改代码、自己积累技能、自己蒸馏推理——四篇论文揭示Agent自主进化新范式
+- [2026-05-21](papers/2026/05/2026-05-21-DPO-CPO-%E6%9D%A1%E4%BB%B6%E7%AD%89%E4%BB%B7.html): 逐帧拆解 DPO：条件等价的幻觉、失效模式与 CPO 的修复之路
+- [2026-05-20](papers/2026/05/2026-05-20-AI%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB-%E8%87%AA%E5%8A%A8%E7%A7%91%E7%A0%94%E7%9A%84%E7%8E%B0%E7%8A%B6.html): 从"写论文"到"做研究"：117篇AI生成论文全部未达顶会水平，我们离真正的自动科研还有多远？
+- [2026-05-19](papers/2026/05/2026-05-19-GPRL-%E9%80%9A%E7%94%A8%E5%81%8F%E5%A5%BD%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0.html): GPRL：当偏好优化遇上在线强化学习，LLM 对齐迎来「结构化」革命
+- [2026-05-17](papers/2026/05/2026-05-17-arxiv-daily.html): 2026年5月17日AI日报：扩散语言模型不确定性量化、Agent记忆构建新范式、上下文合规诊断与运行时验证器
+- [2026-05-16](papers/2026/05/2026-05-16-FutureSim-paper.html): FutureSim：用"回放世界"的方式，给AI Agent的"适应能力"打分
+- [2026-05-15](papers/2026/05/2026-05-15-ArxivAI%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB.html): 推理时计算的"宽度革命"：AI 进入并行验证时代——从 OpenDeepThink 到 TFGN，看 LLM 如何兼顾推理深度与遗忘边界
+- [2026-05-13](papers/2026/05/2026-05-13-%E5%A4%9A%E6%B5%81LLM%E5%B9%B6%E8%A1%8C%E6%80%9D%E7%BB%B4%E6%B5%81.html): 打破单线程魔咒：多流 LLM 让 AI 像人类一样"边想边做"
+- [2026-05-12](papers/2026/05/2026-05-12-arxiv-daily-digest.html): arXiv 每日论文解读 | 2026年5月12日
+- [2026-05-09](papers/2026/05/2026-05-09-AI-Co-Mathematician-DeepMind-Agentic-AI%E5%8A%A0%E9%80%9F%E6%95%B0%E5%AD%A6%E5%8F%91%E7%8E%B0.html): 前沿 AI 论文精读：Agentic AI 如何重塑科研与协同能力
+- [2026-05-08](papers/2026/05/2026-05-08-ScaleLogic-RL%E6%8E%A8%E7%90%86%E6%A0%87%E5%BA%A6%E5%BE%8B.html): RL 能否教会 LLM 长程推理？逻辑表达能力才是关键
+- [2026-05-07](papers/2026/05/2026-05-07-LongSeeker-%E5%BC%B9%E6%80%A7%E4%B8%8A%E4%B8%8B%E6%96%87.html): LongSeeker：让 AI 搜索 Agent 学会"断舍离"——弹性上下文编排新范式
+- [2026-04-30](papers/2026/04/2026-04-30-LLM%E5%A4%9A%E8%BD%AE%E5%AF%B9%E8%AF%9D%E8%BF%B7%E5%A4%B1.html): LLM在多轮对话中彻底「迷失」：ICLR 2026杰出论文揭示大模型的致命缺陷
+- [2026-04-29](papers/2026/04/2026-04-29-ADEMA-%E8%AE%A9-LLM-Agent-%E4%B8%8D%E5%86%8D%E5%A4%B1%E5%BF%86%E7%9A%84%E7%9F%A5%E8%AF%86%E7%8A%B6%E6%80%81%E7%BC%96%E6%8E%92%E6%9E%B6%E6%9E%84.html): ADEMA：让 LLM Agent 不再"失忆"的知识状态编排架构
+- [2026-04-25](papers/2026/04/2026-04-25-Attention-Sink%E7%BB%BC%E8%BF%B0.html): 首篇 Attention Sink 综述发布：180+ 论文全景解析 Transformer 的"注意力黑洞"
+- [2026-04-24](papers/2026/04/2026-04-24-TriAttention.html): 用三角函数"预测"注意力：MIT、NVIDIA、浙大提出 TriAttention，长推理 KV Cache 压缩 10.7 倍不丢精度
+- [2026-04-22](papers/2026/04/2026-04-22-LBLLM-%E4%B8%89%E9%98%B6%E6%AE%B5%E8%92%B8%E9%A6%8F%E5%AE%9E%E7%8E%B0%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%8C%E5%80%BC%E5%8C%96.html): LBLLM：三阶段蒸馏实现大语言模型轻量级二值化，单 GPU 即可训练
