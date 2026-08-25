@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 8 月 24 日（周一检查：四账号工作日发布但正文仍不可达（第 107 天）；OpenAI 8/21-8/24 四日无新发布——8 月累计口径修正为 RSS 全量 40 篇（原追踪 32 篇漏计客户故事 8 篇）；「爆发-间歇」脉冲第五次验证（静默期 3→4 天延长）；Anthropic /news 静默 55 天、/research 最新仍为 8/18 蛋白质篇；无新组件入库（第四十五节状态记录）；Web Search MCP 仍不可用第 107 天）
+> 最后更新：2026 年 8 月 25 日（周二检查：静默打破——OpenAI 8/24-8/25 两篇新文，8 月累计 42 篇（RSS 全量口径）；「爆发-间歇」脉冲第六次验证（预测窗口应验，静默实为 3 日）；俄罗斯 IO 深度披露 11 组件 + Kiro 5 组件入库（组件库 497+）；Anthropic 双页首次完全不可达（超时）；四账号正文仍不可达第 108 天；Web Search MCP 仍不可用第 108 天）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 全量为计数权威）
-> 数据源限制：Web Search MCP 仍不可用（第 107 天，SSE 协议错误），中文样本 5/9 起中断（8/24 复验搜狗 /link 跳转被 antispider 验证页拦截；8/9 Anthropic 双通道恢复后固定双页检查）
+> 数据源限制：Web Search MCP 仍不可用（第 108 天，SSE 协议错误），中文样本 5/9 起中断（8/25 复验搜狗列表页仅陈旧缓存、无 verify 特征但无时效条目；Anthropic 8/25 双页超时不可达，待复验）
 
 ---
 
@@ -3602,3 +3602,66 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - 无新增组件，总量维持 **481+**（43 组件节 + 2 状态节）
 - 关注清单不变：AI Futures 后续（bounded legibility）、Pacing 监控详述、Anthropic 科学家访问计划、客户故事线持续性、蛋白质设计行业反响
+
+---
+
+## 四十六、8/25（周二）检查：静默打破——脉冲预测应验（第六次验证）+ 俄罗斯 IO 深度披露组件入库（11 组件）+ GPT-5.6 登陆 Kiro（AWS 生态）
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 搜狗本次返回列表页但全为陈旧缓存（量子学派仅 2021-2022 第三方旧文、机器之心仅 2017 GMIS 缓存），无任何 2026 时效条目，正文仍不可达（**第 108 天**）。小变化：本次未再检出 anti.min.css/verify.css 特征（页面结构微调，但陈旧缓存策略未变，无时效价值） |
+| OpenAI RSS | 🔥 **静默打破**：8/24「GPT-5.6 in Kiro」+ 8/25「Disrupting a new covert influence campaign from Russia」两篇新文；**8 月累计 42 篇**（RSS 全量口径，+2） |
+| Anthropic /news | ⚠️ **本次完全不可达**（curl 两次 + web_fetch 均超时/失败，rc=28）——首次出现双页全挂；最后已知状态：静默 55+ 天（自 6/30 "Redeploying Fable 5"） |
+| Anthropic /research | ⚠️ 同上不可达；最后已知最新仍为 8/18 蛋白质设计篇 |
+| Web Search MCP | ❌ 第 108 天（SSE 协议错误）；中文样本中断第 108 天 |
+
+### 今日新增认知
+
+**1. 📈「爆发-间歇」脉冲第六次验证：预测窗口应验，静默实为 3 日**
+- 8/13 三连发 → 3 日静默 → 8/17-8/20 四天 14 篇爆发 → 8/21-8/23 三日静默 → **8/24 20:00（北京时间）起新一波启动**
+- **修正昨日判断**：8/24 检查称"静默延伸至 4 天且首次延伸到周一"实为 RSS 延迟/漏检——8/24 12:00 GMT（北京 20:00）已有 Kiro 篇，静默期实为 **3 日**（8/21-8/23），与第一次静默等长。昨日预测窗口「8/25-8/27」基本应验（实际提前半天启动）
+- **方法论教训**：RSS 时间戳以 GMT 为准，北京 21:00 检查可能错过当天 12:00 GMT 之后的新条目（北京 20:00-24:00 发布需次日确认）——**GMT 日期边界 ≠ 北京时间边界**，检查时应以「北京时间日期」重映射 RSS pubDate
+- 8 月发布日分布更新：**15 个发布日 / 42 篇**；新一波进行中（已 2 篇），若延续 8/17-8/20 模式，未来 1-3 天可能继续放量
+
+**2. 🔥 叙事线更新：客户故事线扩至开发者工具生态 + 安全线以 IO 披露重启**
+- **客户故事线**（8 月已达 10 篇）：Circles / Zapier / Virgin Atlantic / HSP GRUPPE / Model ML / NVIDIA / Asana / Stampli / Replit / **Kiro**——从「企业采用 ChatGPT Work」扩展至「AWS 编码代理生态」（Kiro 为 AWS 产品，OpenAI+AWS 联合优化），覆盖面从营销/财务/税务/航空/电信到 AI 原生开发工具链
+- **安全线回归**：8/3-8/7 防守解释 → 8/10 进攻部署 → 8/18 Pacing 自我约束 → **8/25 俄罗斯 IO 干扰行动披露**——威胁情报系列（自 2024 年 5 月起周期性发布：May 2024 / Oct 2024 / June 2025 / 本次 8/25），是安全线最成熟的定期文体
+- **AI Futures「战略未来」线仍无第二篇**（等待第 6 天）；Pacing 监控系统详述博客仍缺
+
+### 🔥 新组件分析：俄罗斯 IO 披露（8/25，threat-intel 报告，11 组件）
+
+**文章类型**：威胁情报/安全调查披露；**结构**：Mission preamble → Actor → AI activity → Non-AI activity → Impact → 洞见收尾
+
+1. **「使命前置」开场**——"Our mission is to ensure AGI benefits all humanity... This includes building tools to detect, investigate, disrupt and expose covert influence operations"——安全报告锚定于公司使命，技术细节获得目的感（比直接报事件高一个格局）
+2. **「四段式调查骨架」**——Actor / AI activity / Non-AI activity / Impact——棱镜式深度调查的经典解剖结构：先人物、再 AI 行为、再非 AI 行为、最后影响评估
+3. **「精心程度即新闻价值」定性**——"its elaborate construction distinguishes it from other Russia-linked operations"——用"构造的精密程度"作为事件重要性的标尺（不靠受众规模）
+4. **「语言指纹取证」**——"svetofor coalition"（светофор=斯拉夫语"红绿灯"）直译自斯拉夫语、英语/德语母语者绝不可能如此表述——单个词暴露机器翻译痕迹，侦探式细节（差评式网感素材：'"美国观察者"账号 bio 里 a totally unhackneyed perspective on hazzy'）
+5. **「抄袭样本量化」**——抽样 36 篇中 34 篇抄自别处（94%）；错配示例：剑桥大学出版社原文→错误署名诺丁汉教授、移民政策研究所文章→署名澳洲食品科学教授——"stocking it with authentic content while obfuscating that content's actual source"（用真实内容装点门面）
+6. **「对方原文自证荒诞」**——直接引用虚构智库的"主权指数"报告原文（法国"Rothschild Bank 打开保险柜"、德国"identity without taboos"、斯洛伐克vs意大利"人质国家悖论"）——让荒诞内容自己说话，比评论更有力
+7. **「影响与基础设施分离」反转**——"significance lies less in the audience it reached, than in the infrastructure it had built"——受众影响有限（Category Three 低端）但基础设施庞大（虚构智库+专家网络+专有指数），评估维度分离
+8. **「外部度量框架」背书**——Brookings Breakout Scale 第三方量表定位影响等级——延续 8/18 蛋白质篇"行业基线对照"逻辑：不自评，借外部标尺
+9. **「制造权威」三动词机制**——"manufacture authority, obscure the source of favored narratives, and establish assets that could be scaled over time"——把复杂操作压缩为三个动词的机制概括
+10. **「暴露悖论」收尾**——"their supporting use of AI can lead to the broader operation being exposed"——AI 双刃剑：既是造假工具也是暴露路径（与 7/20 "Persistence as double-edged" 同构，可信度工程的镜像）
+11. **「认知谦逊」边界声明**——"We are not in a position to determine the relationship between these individuals, the IBI, and the operators"——对不确定性的诚实声明（延续 8/7 "cannot rule out" 可信度工程）
+
+### 新组件分析：GPT-5.6 登陆 Kiro（8/24，产品/伙伴短公告，5 组件）
+
+1. **「每 token 有用功」价值框架**——"more useful work from every token" / "stronger performance per dollar"——7/17 Scorecard「Useful Intelligence per Dollar」母题的持续复用，产品线统一价值语言
+2. **「单数字撑全篇」量化锚点**——Terminal-Bench 2.1 上 "roughly 82% cost reduction"——短公告只给一个数字，但给出基准（Terminal-Bench 2.1）+ 条件（在 Kiro 中）保证可信
+3. **「spec-driven development」概念包装**——"structured context helps GPT‑5.6 understand what a team is building"——把工程方法论（结构化上下文）作为差异化卖点，而非罗列参数
+4. **「能力清单」bullet 化**——六项开发者能力（需求→计划→多步任务→spec 驱动→检查点→属性测试）——机器之心式结构清晰
+5. **「三连排比」收束**——"more finished work, less wasted effort, and better value from every coding session"——对称三短句收尾
+
+### 四账号适配预判
+
+| 事件 | 机器之心 | 差评 | 棱镜 | 量子学派 |
+|------|---------|------|------|---------|
+| **俄罗斯 IO 披露**（虚构智库+主权指数） | 技术检测方法+IO 运作机制解读 | "俄罗斯人建了个假智库，连'红绿灯'都翻译错了" 🔥（svetofor 梗） | 深度调查：IBI 造假网络解剖（跨以色列/俄罗斯）🔥 | 主权指数：数字如何被用来制造权威 |
+| **GPT-5.6 登陆 Kiro** | 开发者工具生态解读（82% 成本降） | "写代码便宜 82%，程序员又慌了" | AWS 与 OpenAI 生态博弈 | 工具理性的边界：spec 驱动与人的判断 |
+
+### 组件库状态
+
+- **新增 16 组件**（俄罗斯 IO 11 + Kiro 5），总量 **497+**（43 组件节 + 3 状态节）
+- 关注清单更新：AI Futures 后续（bounded legibility）、Pacing 监控详述、Anthropic 科学家访问计划（Anthropic 站点本次不可达，需复验）、客户故事线生态扩展、蛋白质设计行业反响
