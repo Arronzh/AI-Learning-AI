@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 8 月 25 日（周二检查：静默打破——OpenAI 8/24-8/25 两篇新文，8 月累计 42 篇（RSS 全量口径）；「爆发-间歇」脉冲第六次验证（预测窗口应验，静默实为 3 日）；俄罗斯 IO 深度披露 11 组件 + Kiro 5 组件入库（组件库 497+）；Anthropic 双页首次完全不可达（超时）；四账号正文仍不可达第 108 天；Web Search MCP 仍不可用第 108 天）
+> 最后更新：2026 年 8 月 26 日（周三检查：新一波放量确认——8/24-8/26 六篇，8 月累计 46 篇（RSS 全量口径，修正昨日漏计 4 篇）；双重磅联动文体入库（Jalapeño 芯片实测 14 组件 + CFO 全栈战略 9 组件 + 价值度量三级递进元组件）；loveholidays 客户故事 7 组件；Anthropic /news 记录修正（55 天静默结论错误，7/22-7/30 有发布）并入库 wellbeing 资助篇 8 组件（组件库 536+）；Anthropic 双页恢复可达；四账号正文仍不可达第 109 天；Web Search MCP 仍不可用第 109 天）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 全量为计数权威）
-> 数据源限制：Web Search MCP 仍不可用（第 108 天，SSE 协议错误），中文样本 5/9 起中断（8/25 复验搜狗列表页仅陈旧缓存、无 verify 特征但无时效条目；Anthropic 8/25 双页超时不可达，待复验）
+> 数据源限制：Web Search MCP 仍不可用（第 109 天，SSE 协议错误），中文样本 5/9 起中断（8/26 复验搜狗列表页 200 但仅陈旧缓存、无日期条目；Anthropic 双页 8/26 恢复可达，/news 记录修正见第四十七节）
 
 ---
 
@@ -3665,3 +3665,110 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增 16 组件**（俄罗斯 IO 11 + Kiro 5），总量 **497+**（43 组件节 + 3 状态节）
 - 关注清单更新：AI Futures 后续（bounded legibility）、Pacing 监控详述、Anthropic 科学家访问计划（Anthropic 站点本次不可达，需复验）、客户故事线生态扩展、蛋白质设计行业反响
+
+## 四十七、8/26（周三）检查：新一波放量确认（8/24-8/26 六篇，8 月累计 46 篇）+ 双重磅联动文体（Jalapeño 芯片实测 + CFO 全栈战略）+ Anthropic /news 记录修正与 wellbeing 资助篇入库
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 搜狗列表页 200 但仅陈旧缓存（量子学派 17 处提及、无任何日期条目，疑为 2021-2022 旧缓存），正文仍不可达（**第 109 天**） |
+| OpenAI RSS | 🔥 **新一波放量确认**：8/24-8/26 共 **6 篇**（Kiro / Admin plugin / 俄罗斯 IO / **Jalapeño 芯片实测** / **CFO 全栈战略** / loveholidays）；**8 月累计 46 篇（16 个发布日）**——修正昨日"已 2 篇"口径（漏计 4 篇：8/25 的 Admin plugin/Jalapeño/full stack + 8/26 的 loveholidays） |
+| Anthropic /news | ✅ **恢复可达 + 记录修正**：昨日"双页完全不可达"已恢复（HTTP 200）；**"55 天静默（自 6/30）"结论错误**——页面实际显示 7/22（×2）、7/27、7/30 三篇发布（此前检查漏看）；真实静默期为 6/30→7/22（22 天）；**8/25 新增 wellbeing-research-grants（$5M 资助）已入库** |
+| Anthropic /research | ✅ 恢复可达；无新文章（最新仍 8/18 蛋白质设计篇） |
+| Web Search MCP | ❌ 第 109 天（SSE 协议错误）；中文样本中断第 109 天 |
+
+### 今日新增认知
+
+**1. 📈「爆发-间歇」脉冲第七次验证：新一波确认放量（6 篇进行中）**
+- 节奏：8/13 三连发 → 3 日静默 → 8/17-8/20 四天 14 篇爆发 → 8/21-8/23 三日静默 → **8/24-8/26 新一波 6 篇进行中**（8/24 Kiro、8/25 Admin plugin + 俄罗斯 IO + Jalapeño + CFO 全栈、8/26 loveholidays）
+- 8/25 单日 4 篇为 8 月单日第三（仅次于 8/10 八连发、8/18 七连发）；8/25 15:00 北京 双篇同发（Jalapeño + CFO 全栈）构成"工程实测 + 战略框架"联动
+- **方法论教训（第二次同类）**：昨日 21:00 检查时 RSS 中已有 Jalapeño/full stack（15:00 发布）但记录为"已 2 篇"——**只分析"大新闻"会系统性漏计同批次的次要条目（Admin plugin 类产品公告）**；计数必须逐条核对 RSS pubDate 增量，不能按"已分析篇数"记
+- 8 月发布日分布：**16 个发布日 / 46 篇**（8/1、8/3、8/4、8/6、8/7、8/10×8、8/11、8/12、8/13、8/17、8/18×7、8/19、8/20、8/24、8/25×4、8/26）
+
+**2. 🔥 双篇联动文体确立：「工程实测 + 战略框架」同日双发**
+- 8/25 15:00 北京：Jalapeño 首测结果（工程细节、数据密集型）+ CFO Sarah Friar 全栈战略（框架型、叙事型）——两篇互相超链接（CFO 文引用芯片文），一篇给证据、一篇给意义
+- 与 8/18 七连发（产品+安全+客户故事多线并进）不同：本次是**同一主题（算力/芯片）的深浅双层结构**——深层读者看数据附录，浅层读者看战略叙事
+- 对四账号的启示：大事件报道可采用"硬核数据篇 + 宏观意义篇"双稿制
+
+**3. 🔧 Anthropic /news 记录修正（重要）**
+- 昨日记录"双页完全不可达；/news 静默 55+ 天（自 6/30）"——今日恢复后 raw HTML 检查发现：**页面实际有 7/22（Economic Futures 研究议程 + Economic Index Connector）、7/27（开放权重立场）、7/30（网络安全事件调查）三篇**——"55 天静默"为测量伪影（疑为过往检查只匹配特定页面结构/渲染差异）
+- 真实状态：/news 静默期 6/30→7/22（22 天）；8/25 新发 wellbeing-research-grants
+- **方法论教训：不可达恢复后需回看页面全量条目，不能沿用旧的"静默 N 天"结论；页面列表（非首页 hero）才是权威**
+- 7 月三篇漏看文章列入待补分析清单（7/22 Economic Futures 研究议程或与 AI Futures 治理线相关，优先度中）
+
+### 🔥 新组件分析：Jalapeño 首测结果（8/25，工程/芯片实测，14 组件）
+
+**文章类型**：硬件工程实测报告；**结构**：结论先行 → 测量方法 → 架构设计 → AI 参与开发 → 路线图 → 使命收尾 + 数据附录
+
+1. **「首测结果」节奏文体**——"working first-party silicon with measured results"——从"我们宣布要造"（8/24 前后）到"我们测过了"的信任进阶：先承诺、后兑现数据，实测结果本身成为叙事
+2. **「跨模型独立性证明」**——GPT-OSS 120B / DeepSeek R1 / Kimi K2.5 三模型全部领先，"works across models developed both inside and outside OpenAI"——用第三方模型验证排除"自卖自夸"（与 8/18 蛋白质篇"外部实验室验证"同构，硬件版的湿实验验证）
+3. **「公平比较方法论声明」**——"We evaluate performance at a matched user experience"——先定义比较规则（对齐用户体验而非峰值规格）再给数字，堵死"田忌赛马"质疑（差评式拆台预判）
+4. **「度量衡之争」主动定义标准**——"Although performance is sometimes reported per chip, we believe the more useful standard is performance per unit of power"——不否认旧标准、直接宣称新标准更"有用"，把评价权抢到自己手里
+5. **「额定 vs 实测能耗披露」**——700W 额定 / 实测持续 ≤550W——主动自曝余量（标称保守），反向建立可信（少报性能的机构反而可信）
+6. **「帕累托前沿」自我定位**——"placing it on the Pareto frontier"——用经济学概念给性能结果定级，暗示"没有其他系统能同时在所有维度超越"
+7. **「第一性原理提问」开场**——"what hardware would we build if its primary job were serving modern and future language models, especially interactive agents?"——以假想提问代替产品参数罗列（量子学派式思想实验开场）
+8. **「回文式金句」**——"We used AI to design the chip, and designed the chip so AI could program it"——对称结构一句话讲完 AI 与芯片的双向关系（本日最佳标题素材，量子学派适配度🔥）
+9. **「时间压缩锚点」**——9 个月从设计到 tapeout——用日历时间证明工程效率
+10. **「AI 反超人类专家」+ 诚实边界**——AI 生成实现比人类专家代码快 1.5-1.8×，但主动声明"Those figures apply to the selected blocks, not the full model"——认知谦逊组件复用（8/7"cannot rule out"、8/18 湿实验、8/25 IO 披露同族）
+11. **「瓶颈二分科普」**——prefill（算力密集）vs decode（内存带宽受限）——用两个术语讲清芯片设计动机，把硬件决策翻译成可理解的技术叙事（机器之心式）
+12. **「代际路线图」**——Gen 1 年底部署 / Gen 2 深度开发 / Gen 3 成形——"当前成果 + 多代承诺"并存，暗示长期主义
+13. **「极端倍数锚点」**——53.7× / 104.3× / 56.1×（previous TBT 下的吞吐提升）——用极端条件下的倍数制造记忆点（正文 1.5-1.9× 是常态，附录极端值是钩子）
+14. **「使命首尾呼应」**——开头结尾各一次 "AGI benefits all of humanity"——技术文以使命作括号（俄罗斯 IO 篇"使命前置"组件的复用）
+
+### 🔥 新组件分析：The full stack behind abundant intelligence（8/25，CFO 战略文，9 组件）
+
+**文章类型**：高管署名战略文（CFO Sarah Friar 第 2 篇署名）；**结构**：单句立论 → 全栈定义 → 供应商组合策略 → 经济价值 → 复利收尾
+
+1. **「全栈复合」单句立论**——"Progress in AI compounds fastest when the entire system improves together"——开篇一句定义全文立场（芯片/模型/产品/设备层层互强）
+2. **「对仗小标题」**——"Build for breadth, own for leverage"——战略二分压缩成八字对仗（控制 vs 杠杆，广撒网 vs 精持有）
+3. **「伙伴清单即证明」**——Microsoft/NVIDIA foundational + AWS/AMD/Broadcom/Cerebras/CoreWeave/Oracle/SB Energy/SoftBank 九家名单——用名单长度证明"可信选择"不是空话（8/10 Daybreak 伙伴名单组件复用）
+4. **「三动词决策框架」**——"Direct control adds leverage... We partner where the ecosystem helps us move faster and build where co-design creates a meaningful advantage"——control / partner / build 三分法：什么时候自己做、什么时候合作、什么时候自建，边界清晰
+5. **「杰文斯悖论」经济论证**——效率提升 → 更多用途变得划算 → 消费扩张 → 新经济活动——用经济学定律为"效率叙事"升维（"greater efficiency makes more uses worthwhile"），回应"AI 效率越高用得越少"的直觉质疑
+6. **「价值度量升级」**——"useful intelligence per dollar"——与 Jalapeño "per watt"、Ultrafast "per second" 构成三级递进（见元组件）
+7. **「单数字锚点」**——GPT-5.6 Sol 少用 54% output tokens（Artificial Analysis Coding Agent Index 第三方基准）——一个数字 + 第三方基准，足够支撑"效率在提升"的断言
+8. **「复利优势收尾」**——"better technology creates better economics, better economics fund the next wave of progress"——循环因果闭环收束（与 7/31 "Building abundant intelligence" 标题母题呼应）
+9. **「CFO 署名战略文」**——财务负责人谈全栈技术战略（第 2 篇 Sarah Friar 署名，前作 8/10 AI-native finance 五课）——职位与议题的错位制造权威：CFO 谈"单位美元有用智能"比 CTO 谈更有说服力（可信度工程：让对的人说对的话）
+
+### ⭐ 元组件（跨篇）：「价值度量三级递进」
+
+- **more useful work per second**（8/13 Ultrafast，速度）→ **more useful AI work per unit of power**（8/25 Jalapeño，能效）→ **useful intelligence per dollar**（8/25 CFO，经济性）——同一价值主张随受众升级度量单位：开发者听速度、基础设施听能效、投资者/CFO 听经济性
+- **写作启示（小织可用）**：同一成果面向不同读者时，换度量单位即可重写叙事——"快"是给工程师的，"省电"是给运维的，"省钱"是给老板的
+
+### 新组件分析：loveholidays（8/26，客户故事，7 组件）
+
+1. **「人人皆 builder」标题公式**——"making everyone a builder with Codex"——把单个客户案例升华为行业趋势断言（客户故事线的标题公式演进：时间压缩型（Asana/Stampli）→ 生态扩展型（NVIDIA/Replit）→ **角色革命型**（everyone a builder））
+2. **「概念包装」命名权**——"general intelligence for travel" + "single control plane"——引用客户自己的愿景词（而非记者总结），让故事有思想内核
+3. **「引语锚点矩阵」**——CTO（Mike Jones）+ Head of Engineering（Dmitri Lerko）双人引语交替支撑各段落——机器之心式"专家背书"结构
+4. **「机会成本论证」**——"engineering time spent testing one idea was engineering time unavailable elsewhere"——用经济学语言讲原型验证痛点（把"排队等开发"翻译成机会成本）
+5. **「量化成果三件套」**——AI-assisted 代码变更 7%→79%、部署 +73% 而工程师人数持平、数据平台变更成功率 58%→93%——前中后三个数字覆盖全篇，每段都有数字支撑
+6. **「成本节约锚点」**——£36,000/年云存储 + £100,000/年数据处理浪费——具体到英镑的省钱叙事（B2B 客户故事标配收尾）
+7. **「金句收尾」**——"what used to be too hard is now ordinary... what's too hard now will become more ordinary"——递进式金句（过去太难→现在平常；现在太难→未来平常），把案例总结成可传播的格言
+
+### 新组件分析：Anthropic wellbeing-research-grants（8/25，公告/资助，8 组件）
+
+**文章类型**：资助计划公告；**结构**：资助宣布 → 为什么难 → 好评估的标准 → 行动号召
+
+1. **「资助即立场」**——$5M 资助 + 模型访问 + 技术支持——用真金白银表明重视程度（比"我们重视心理健康"的声明有力一个量级）
+2. **「独立性三重强调」**——"work fully independently" + "publish as open-source" + "any developer can make use of"——资助但切割控制权（资助方不干预+成果开源+人人可用），建立第三方可信（延续 Anthropic "外部验证"家族组件）
+3. **「评估难度论证」**——单答可判 vs 需长期上下文："a user in distress might not share thoughts of self-harm right away; the need for a more cautious response might only become clear over the course of a long conversation"——先讲清为什么难（把难点讲透，方案才有说服力）
+4. **「具体危害场景」**——节食建议 vs 进食障碍史——一个具体反例胜过十句抽象原则（"balanced diets and workout routines" 对 "history of disordered eating"）
+5. **「双向风险词汇」**——"evaluate the risk of both overcompliance and overrefusal"——过度顺从 + 过度拒绝对称概念（安全评估的成熟语言，机器之心适配）
+6. **「评估严谨性五标准清单」**——明确测量对象（pass/fail 定义）/ 临床专家参与设计验证 / 双向测试（precautions+harms）/ 真实多轮对话场景 / 评分者对照专家验证——把"什么是好评估"写成可操作的 checklist（知识开源组件：不只有钱，还有方法）
+7. **「专家邀请清单」**——clinicians, psychologists, methodologists——点名目标专家群体，让资助对象具象化
+8. **「具体时间锚点」**——申请截止 9/21、入选通知 10/5——明确的流程时间表（行动号召落地）
+
+### 四账号适配预判
+
+| 事件 | 机器之心 | 差评 | 棱镜 | 量子学派 |
+|------|---------|------|------|---------|
+| **Jalapeño 芯片实测** | 芯片架构科普（prefill/decode 瓶颈 + 帕累托前沿解读） | "OpenAI 自研芯片实测：同样的电，干 1.9 倍的活" | 自研芯片背后的算力军备竞赛与供应商博弈 | "用 AI 造芯片，再让芯片给 AI 编程" 🔥（回文金句适配） |
+| **CFO 全栈战略** | 供应商多元化策略解读（九家名单拆解） | "OpenAI 把'不把鸡蛋放一个篮子'讲成了战略" | 算力版图：微软之外的第二极（AWS/AMD/自研） | 杰文斯悖论：效率越高，用得越多——技术的反直觉宿命 |
+| **wellbeing 资助** | 评估方法论解读（五标准清单） | "Anthropic 花 500 万美元请人挑 Claude 的毛病" | 心理健康评估：AI 陪伴的监管前哨 | AI 陪伴的伦理边界：谁定义"好"的对话 |
+| **loveholidays** | 非工程师写代码的趋势数据（7%→79%） | "度假公司让产品经理写代码，程序员失业了？" | 工作组织形态的迁移 | "人人皆 builder"与工具理性的扩张 |
+
+### 组件库状态
+
+- **新增 39 组件**（Jalapeño 14 + CFO 全栈 9 + 元组件 1 + loveholidays 7 + wellbeing 8），总量 **536+**（44 组件节 + 3 状态节）
+- 8 月客户故事线扩至 **11 篇**（+loveholidays）：Circles / Zapier / Virgin Atlantic / HSP GRUPPE / Model ML / NVIDIA / Asana / Stampli / Replit / Kiro / loveholidays——"角色革命型"标题成为新公式
+- 关注清单更新：AI Futures 第二篇等待第 7 天；Pacing 监控详述仍缺；**Anthropic 7 月三篇漏看文章待补**（7/22 Economic Futures 议程 / 7/22 Economic Index Connector / 7/27 开放权重立场 / 7/30 网络安全事件调查——优先度中，与治理线/安全线相关）；Jalapeño Gen 2/Gen 3 进展；蛋白质设计行业反响
