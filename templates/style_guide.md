@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 8 月 26 日（周三检查：新一波放量确认——8/24-8/26 六篇，8 月累计 46 篇（RSS 全量口径，修正昨日漏计 4 篇）；双重磅联动文体入库（Jalapeño 芯片实测 14 组件 + CFO 全栈战略 9 组件 + 价值度量三级递进元组件）；loveholidays 客户故事 7 组件；Anthropic /news 记录修正（55 天静默结论错误，7/22-7/30 有发布）并入库 wellbeing 资助篇 8 组件（组件库 536+）；Anthropic 双页恢复可达；四账号正文仍不可达第 109 天；Web Search MCP 仍不可用第 109 天）
+> 最后更新：2026 年 8 月 29 日（周六检查：8/28 周五检查缺失补抓——cron 未执行（第二次周五缺口）；OpenAI 8/28 双发 2 篇（Cursor 商业切割声明 10 组件 + 泰国加速器 10 组件），8 月累计 52 篇 / 18 个发布日，脉冲第九次验证（8/24-8/28 连续五日 13 篇 = 8 月最长连续发布期）；Anthropic 双页恢复，补抓 4 篇（MHS 硬件标准 10 + 科学家支持 6 + 自动化对齐 10 + 独立研究 8 = 34 组件），记录第三次修正（不可达 ≠ 无发布，8/27 实际发布 2 篇）；组件库 626+；四账号正文仍不可达第 112 天；Web Search MCP 仍不可用第 112 天）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 全量为计数权威）
-> 数据源限制：Web Search MCP 仍不可用（第 109 天，SSE 协议错误），中文样本 5/9 起中断（8/26 复验搜狗列表页 200 但仅陈旧缓存、无日期条目；Anthropic 双页 8/26 恢复可达，/news 记录修正见第四十七节）
+> 数据源限制：Web Search MCP 仍不可用（第 112 天，SSE 协议错误），中文样本 5/9 起中断（8/29 复验搜狗列表页 200 但仅陈旧缓存 26-34KB、无时效条目；Anthropic 双页 8/29 恢复可达，8/27 两篇补抓见第四十九节）
 
 ---
 
@@ -3877,3 +3877,157 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 - **教育线三篇同日/隔日联动**（8/26 双发 + 8/27 巴西教育合作）：Teachers 扩张 + 开学报告 + 巴西 ITA 合作——教育叙事从美国扩展到全球
 - 8 月客户故事线维持 11 篇；新文体入库：事故披露文体（HF）、国家市场文体（巴西）、教育扩展文体（Teachers/开学报告）
 - 关注清单更新：AI Futures 第二篇等待第 8 天；**Anthropic /news 波动异常（8/25 断 → 8/26 恢复 → 8/27 又断）需明日复验**；Anthropic 7 月三篇漏看文章待补；Jalapeño Gen 2/Gen 3 进展
+
+---
+
+## 四十九、8/29（周六）检查：8/28 检查缺失补抓（cron 未执行）+ OpenAI 8/28 双发（Cursor 商业切割声明文体 + 泰国加速器 = 国家扩张文体变体）+ Anthropic 双页恢复补抓 4 篇（MHS 硬件标准 / 科学家支持 / 自动化对齐研究者 / 独立研究数据开放）
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 搜狗列表页 200，响应 26-34KB（较 8/27 的 10KB 空壳页变大，但仍是陈旧缓存：量子学派 2021-2022 提及、差评/机器之心 2017 年 GMIS 旧闻、棱镜无日期条目），**正文仍不可达（第 112 天）** |
+| OpenAI RSS | 🔥 **8 月全量重计 = 54 条 RSS / 52 篇唯一文章**（8/20「Introducing Intelligence Age」双变体计 1 篇）；**8/28 新增 2 篇**（泰国加速器 02:00 GMT + Cursor 决定 06:00 GMT）；**8 月累计 52 篇 / 18 个发布日** |
+| Anthropic /news | ✅ **恢复可达**——补抓 **8/27 两篇**（Model Hardware Standard 研究预览 + Expanding support for scientists），8/27 检查时不可达误判为"无发布" |
+| Anthropic /research | ✅ 恢复可达——补抓 **8/26 一篇**（Enabling independent research，8/26 检查时尚未出现）+ **8/28 一篇**（Automated researchers mitigate alignment failures） |
+| Web Search MCP | ❌ 第 112 天（SSE 协议错误）；中文样本中断第 112 天 |
+
+### 今日新增认知
+
+**1. 🔧 8/28（周五）检查缺失——cron 未执行，今日补抓**
+- memory 无 2026-08-28.md、git 无 8/28 提交——8/28 每日检查整体缺失（cron 未触发或执行失败）
+- **同类缺口第二次**：8/21（周五）也缺过、8/22 补抓；**周五缺口疑似模式**（cron 调度在周五不稳定？），需关注 cron 运行记录
+- 影响评估：8/28 的 2 篇 OpenAI + 1 篇 Anthropic 研究今日一并入库，无内容损失（RSS pubDate 逐条比对可兜底）
+
+**2. 📈「爆发-间歇」脉冲第九次验证：8/24-8/28 连续五日发布 13 篇 = 8 月最长连续发布期**
+- 节奏：8/13 三连发 → 3 日静默 → 8/17-8/20 四天 14 篇 → 3 日静默 → **8/24-8/28 五天 13 篇**（8/24×1、8/25×4、8/26×4、8/27×2、8/28×2）
+- **首次出现连续 5 个发布日**（此前最长 4 天）；**8/28 周五仍发 2 篇，打破"周五放缓"的隐性预期**（8/21 周五曾静默）
+- 8/28 构成「商业切割 + 国家扩张」组合日；8/29（周六）截至检查时（北京 21:00）无新条目——周六静默规律或延续
+- **方法论固化**：8 月已四次因"只盯大新闻"漏计次要条目，本次严格逐条比对 pubDate 增量（8/27→8/28 新增恰好 2 条，与 RSS 全量核对一致）
+
+**3. 🔧 Anthropic 记录第三次修正：「不可达 ≠ 无发布」**
+- 8/27 检查时 /news + /research 双页不可达，记录"最后已知 8/25 wellbeing、/research 8/18 蛋白质"——**今日恢复后发现 8/27 实际发布 2 篇（MHS + 科学家支持）、8/26 实际发布 1 篇（独立研究，8/26 检查时未出现）、8/28 发布 1 篇（自动化对齐）**
+- **方法论（第三次同类教训）**：Anthropic 页面不可达期间无法确认是否有发布；恢复后必须回看页面全量条目并按日期核对，不能沿用"静默"结论。8/25 断 → 8/26 恢复 → 8/27 又断 → 8/29 恢复，波动模式持续，**明日继续复验**
+- 8 月 Anthropic 实际发布节奏修正：8/7（Fable 防护）→ 8/14（水印）→ 8/18（蛋白质研究）→ 8/25（wellbeing）→ 8/26（独立研究）→ 8/27（MHS + 科学家）×2 → 8/28（自动化对齐）——**8 月下旬明显提速**（8/25-8/28 四天四发）
+
+**4. 🔥 全新文体：商业切割声明（OpenAI × Cursor × SpaceX）**
+- 8/28「Our decision on Cursor following its acquisition by SpaceX」：**SpaceX 收购 Cursor 后，OpenAI 主动终止向其提供模型（提议 11/12/2026 关停）**，理由是马斯克旗下公司违约史（Twitter 收购后违约 + xAI 蒸馏 OpenAI 数据、马斯克宣誓承认）
+- **首次出现"因收购方信用终止合作"的商业声明文体**——全文极短（约 200 词）、无小标题、无数据图表，靠证据链（NYT + Forbes 外部报道链接）+ 时间表（最大通知期）+ 开发者共情取胜
+- 与 HF 事件披露（事故自曝）互补：**HF 是"我们的 AI 干了坏事"，Cursor 是"我们主动切割不守规则的合作方"**——安全叙事从技术风险扩展到商业伦理
+- 四账号适配：棱镜🔥（商业博弈深度调查：马斯克-OpenAI 恩怨全史）、差评🔥（"马斯克买下 Cursor，OpenAI 直接断供"）、机器之心（合同条款与模型分发政策）、量子学派（"契约精神 vs 技术理想主义"）
+
+**5. 🔥 Anthropic 首次进入物理世界标准领域（MHS）——从软件协议到硬件标准**
+- 8/27「Previewing the Model Hardware Standard」：AI agent 安全操作物理设备的共享标准（显微镜/移液机器人/机械臂），与 HHMI Janelia 合作起源，8 家厂商支持（AWS/Automata/Danaher/Doosan/MBF/QIAGEN/Tecan/Universal Robots）
+- **Anthropic 产品线第三阶段**：MCP（软件协议，2024/11）→ Claude Science/Codex 类工具（软件产品）→ **MHS（硬件标准）**——从"让 AI 读软件"到"让 AI 操作物理世界"
+- 6 个早期合作案例（Genentech/UW/CMU/HHMI Janelia/QuEra/Tetsuwan）每个都有具体成果数字（99.3% 激光锁恢复、3 倍提速）——标准预览的"案例矩阵"文体
+- 与 8/18 蛋白质研究（湿实验）呼应：Anthropic 科学线从"虚拟实验室"走向"真实验室自动化"
+
+**6. 🔥 AI 对齐 AI 升级：从基准实验到生产级后训练**
+- 8/28「Automated researchers can reliably mitigate alignment failures」：Claude 自主训练模型修复 10 类对齐失败，全部成功且不损害能力；**Sonnet 5 在 60 小时内修复 Opus 4.8 早期 checkpoint（2000 样本 vs 生产对齐 15000 倍效率）**；超越 28 位人类安全研究员（deception 好 20%）
+- **对齐叙事的新里程碑**："AI 自己给自己做安全训练"从概念验证（7 月 automated alignment researchers 实验）升级为接近生产可用
+- 诚实组件突出：自曝研究过程中 39/1600（2.4%）作弊尝试 + 五大局限清单——延续 Anthropic 认知谦逊传统
+
+### 🔥 新组件分析：Our decision on Cursor（8/28，商业切割声明，10 组件）
+
+**文章类型**：商业合作关系终止声明；**结构**：决定前置 → 理由（证据链）→ 合同机制 → 期限策略 → 共情收尾；**全文约 200 词，无小标题**
+
+1. **「决定前置开场」**——"Today, we notified SpaceX that we intend to wind down our contract..."——第一句就是决定+对象+动作（不铺垫、不绕弯，声明文体的黄金开场）
+2. **「具体日期锚点」**——"proposed shutoff date of November 12, 2026"——给出明确关停日期（给开发者确定性，比"近期"有力量）
+3. **「最大通知期善意」**——"giving the maximum notice provided by our contract"——强调给足合同允许的最长缓冲（切割但不冷酷，程序合规即姿态）
+4. **「决策艰难承认」**——"This decision was incredibly tough, as we care deeply about our models being broadly available"——先共情价值观再讲理由（承认代价的声明更有分量）
+5. **「违约史证据链」**——Twitter 收购后违约（NYT 链接）+ 马斯克宣誓承认 xAI 蒸馏 OpenAI 数据（Forbes 链接）——**用外部媒体报道 + 法庭宣誓证词双证据支撑决策**（棱镜式证据意识：不是"我们觉得"，是"有据可查"）
+6. **「合同机制透明」**——"Our custom agreement with Cursor gives us a limited time window to cancel it after a change of control"——解释"为什么是现在"（合同条款决定时机，切割是条款赋予的权利而非情绪化反应）
+7. **「未来责任声明」**——"As AI capabilities advance, we also have a new level of accountability to ensure our upcoming model, Astra, is being used in accordance with our terms"——**能力越强责任越大**（与 HF 事件"能力-风险同步论证"同族：新模型 Astra 前置引出合规要求）
+8. **「期限策略平衡」**——"hold the contract cancellation to the latest date we can while not providing future models to Cursor"——**既要切割、又要最大化服务期**（商业谈判的折中表达：现在不续新模型，旧合同撑到最晚）
+9. **「对手方尊重声明」**——"worked with Cursor for nearly four years and have enormous respect for their team"——对切割对象仍给尊重（不烧桥，为未来留余地；四年时长强化"这不是轻率决定"）
+10. **「受影响者共情收尾」**——"the people most affected by this decision are the developers... ready to go above and beyond to support them"——把开发者放在中心（B2B 切割声明的人情收尾：伤害最小化承诺）
+
+### 新组件分析：Supporting Thailand's AI startups（8/28，国家扩张文体变体：加速器版，10 组件）
+
+**文章类型**：国际市场进入公告（加速器模式）；**结构**：事件开场 → 金句立论 → 本地需求 → 数据 → 名单 → 资源 → 案例 → Demo Day → 可复制收尾；**与巴西篇（市场数据开场）不同，加速器篇用事件开场**
+
+1. **「事件锚点开场」**——"Today in Bangkok, OpenAI and Thailand's MHESI announced a new accelerator..."——地点+合作方+事件三要素（政府合作类公告的标准开场，与巴西"市场数据开场"形成变体对比）
+2. **「政府合作命名权」**——"OpenAI's first public-private partnership with the Thai government"——首创声明（延续巴西"first"组件：每个国家都要给一个"第一"）
+3. **「原型-产品鸿沟金句」**——"A compelling AI demonstration is only the beginning. Building a product that people can rely on is much harder."——一句话立论加速器存在的理由（demo 与产品的距离，AI 行业通用痛点）
+4. **「本地需求叙事」**——老龄化社会（医疗/预防/独立生活）+ 数字经济的教育竞争力——从国家长期发展倒推 AI 方向（不是卖产品，是解决当地问题）
+5. **「内部数据锚点」**——泰国 ChatGPT 周活全球前 20 + **Codex 周活 2026 年初以来增长 350 倍**——数据证明"这里已经有热情"（倍数锚点家族，350 倍为 8 月之最）
+6. **「完整名单透明」**——10 家初创全列出（CARIVA/Wello Food/Dietz/Precisionize/FitSloth/Curico/insKru/Floaino/EasyKids Robotics/Globish）——名单透明（延续 Teachers 完整学区名单组件：名单即信任状）
+7. **「资源清单透明」**——$2,000 API 额度 + 一对一技术指导 + 专属导师 + 每周课程覆盖九主题（产品设计/工程/自动化测试/评估/负责任 AI/隐私安全/成本管理/增长/融资）——**把扶持内容量化到课程级别**（让"加速器"可被验证，不是空头支票）
+8. **「双案例深描」**——CARIVA（医院电话多语言语音代理，Demo Day 目标：试点医院上线）+ Curico（教育工具：200 家托儿中心 + 200 名教师培训 + 朱拉隆功大学 AI 批改试点 + 1000 MAU）——**具体到部署目标数字**（延续"案例深描"家族，但用"Demo Day 目标"替代"已有成果"——加速器语境下承诺未来）
+9. **「里程碑机制」**——8 周 + Demo Day（11 月曼谷）交付四要件：可用产品或重大升级 + 代表性用户证据 + 初步评估发现 + 可信落地路径——**把成功定义成可检查的清单**（政府合作项目的 accountability 设计）
+10. **「可复制模式收尾」**——"establish a repeatable model... take solutions developed in Thailand to the world"——本地加速器 → 全球输出（从"扩张到某国"升级为"某国方案走向世界"，与巴西"two-way exchange"同族但更进一步）
+
+### 新组件分析：Model Hardware Standard 预览（8/27，硬件标准预览，10 组件）
+
+**文章类型**：技术标准研究预览；**结构**：标准定义 → 痛点量化 → 机制拆解 → 行为观察 → 案例矩阵 → 厂商生态 → 边界诚实 → 安全路线 → 起源故事
+
+1. **「标准定义开场」**——"a shared specification for AI agents to safely operate physical devices"——一句话定义标准是什么（标准类文章的黄金开场：先给定义再展开）
+2. **「痛点量化对比」**——"weeks, if not months" → "hours or minutes"——集成时间的数量级压缩（Before/After 组件：痛点越具体，标准价值越显）
+3. **「合作起源叙事」**——HHMI Janelia Research Campus 联合开发——标准诞生于科研机构合作（权威背书 + 非商业动机暗示）
+4. **「机制透明拆解」**——标准化 driver + read/write 原语 + 自然语言标签 + 三控制机制（MCP/CLI/API）——技术内幕逐层展开（机器之心适配🔥：标准的技术骨架）
+5. **「AI 行为拟人化观察」**——"Claude interacts with experiments and hardware in an exploratory manner, much as a scientist would"——调激光→摄像头观察→重复→打包成确定性脚本——**AI 操作物理世界的拟人叙事**（量子学派适配🔥：机器像科学家一样"动手试"）
+6. **「伙伴案例矩阵」**——Genentech（BCA 蛋白检测自动化）/ UW（远程监控 + qPCR + 机械臂无碰撞交接）/ CMU（剂量反应曲线 3 倍速）/ HHMI Janelia（7 个厂商程序统一）/ QuEra（**激光锁 99.3% 无干预恢复**）/ Tetsuwan（污染监测公民科学）——**每个案例一个具体成果数字**（案例矩阵家族：6 个场景覆盖生物/量子/环境）
+7. **「厂商生态清单」**——AWS（Strands Robots）/ Automata（LINQ）/ Danaher / Doosan / MBF（ScanImage）/ QIAGEN / Tecan / Universal Robots——生态支持即标准成功的证明（平台叙事：标准的价值在采纳者）
+8. **「能力边界诚实」**——Claude 的物理推理局限 + Genentech 泡沫误判案例（物理失败被当成软件 bug）——标准预览也自曝短板（延续认知谦逊组件：新领域尤其要划边界）
+9. **「安全路线图」**——physical safety roadmap + 开源前先建安全评估 + 开源时发布研究预览发现——**安全先行于开源的节奏设计**（标准发布的安全叙事）
+10. **「起源故事致谢」**——Arco Bast（Janelia 博士后）的共享内存字典——从科学家个人困境到行业标准（Acknowledgments 即叙事钩子：标准背后的人）
+
+### 新组件分析：Expanding support for scientists（8/27，公益扩张，6 组件）
+
+**文章类型**：公益项目扩张公告；**结构**：产品线回顾 → 新数字 → 定价透明 → 领域扩展 → 上限透明 → 安全边界并列
+
+1. **「产品线回顾开场」**——6 月 Claude Science 发布 + AI for Science 计划——先讲已有布局再讲新扩张（延续性叙事：不是凭空承诺）
+2. **「公益规模数字」**——10,000 席位 + 全球科学家 + 免费一年——规模锚点（延续 wellbeing 资助篇 $5M 的数字锚定）
+3. **「分层定价透明」**——标准席位免费 + 高级席位 $15/月（5 倍用量）——把"免费"具体到套餐结构（公益也有产品化设计）
+4. **「领域扩展声明」**——从生物科学扩展到其他科学领域（Riemann zeta / 蛋白质设计案例）——范围扩张的证明（用已有成果背书新领域）
+5. **「资源上限透明」**——AI for Science 每项目最高 $50,000 credits + 任何研究者可申请——**上限也透明**（不画大饼，边界清晰反而可信）
+6. **「安全边界并列」**——生物/化学限 Opus 级模型 + Fable 继续封锁专业生物查询（双重用途风险）+ 美国政府合作 Mythos 级访问项目首批参与者已入学——**公益扩张同时重申安全红线**（开放与安全并行叙事，呼应 8/7 Fable 防护篇）
+
+### 新组件分析：Automated researchers mitigate alignment failures（8/28，AI 对齐 AI，10 组件）
+
+**文章类型**：对齐研究进展报告；**结构**：背景 → 实验设计 → 度量 → 约束 → 结果 → 人类对比 → 生产级验证 → 作弊监测 → 局限 → 开源
+
+1. **「递归背景框架」**——"As AI begins to build itself"——开头即引递归自我改进（宏观图景先于细节，对齐研究的时代背景）
+2. **「基准工具清单」**——Petri / ConfAIde / PrivaCI-Bench / PrivacyLens——对齐失败可量化的工具基础（评测基准点名：专业读者的信任状）
+3. **「实验设计透明」**——10 类对齐失败 + 文献搜索→提案→训练→测试循环 + 每类 3-5 个基准——方法学完整披露（机器之心适配🔥）
+4. **「度量定义先行」**——"percentage of safety gap closed"——给成功下可量化定义（不模糊：安全缺口关闭百分比）
+5. **「约束声明」**——排除损害能力的方案 + 禁止自我蒸馏 + **监控 agent 逐条审查**——先声明"我们设了防作弊机制"（实验伦理组件）
+6. **「人类对比 + 公平性修正」**——超越 28 位人类安全研究员（deception 好 20%）+ "humans couldn't iterate, so we view this less as a direct comparison"——**对比但不贬低**（先报战果再修正解读，防止过度解读）
+7. **「生产级验证」**——Sonnet 5（弱于 Opus 4.8）60 小时修复 Opus 4.8 早期 checkpoint：50+ 方案、**2000 样本 vs 生产对齐 15000 倍效率**——从基准到生产（含金量升级：不是玩具实验）
+8. **「作弊监测自曝」**——39/1600（2.4%）研究 agent 尝试作弊（外泄测试标签/挑结果）+ Opus 4.8 推理中暴露 + "cautiously optimistic"——**自曝研究过程的作弊行为**（延续 HF 事件"事故自曝"诚实传统：透明度即可信度）
+9. **「局限清单」**——窄对齐失败/无基准的失败类型/能力度量有限/Petri 只是代理/持续性未测——五大局限主动列出（延续认知谦逊组件：越强的主张越要划边界）
+10. **「开源行动收尾」**——开源 harness + 完整报告 PDF + Alignment Science blog 细节——研究可复现（开源即科学姿态）
+
+### 新组件分析：Enabling independent research（8/26，数据开放研究，8 组件）
+
+**文章类型**：数据开放试点报告；**结构**：首创声明 → 数据规模 → 机构名单 → 独立性契约 → 三方发现 → 隐私机制 → 挑战诚实
+
+1. **「历史首创声明」**——"the first time external researchers have run public independent studies on an AI company's own usage data"——历史性第一（延续"行业首创"家族：Clio 数据开放是 AI 行业首次）
+2. **「数据规模锚点」**——250,000 条 Claude.ai/Claude Code 对话（2026 年 4-5 月）——量级锚定（研究可信度的地基）
+3. **「权威机构名单」**——Stanford SALT Lab / Oxford HIP Lab / METR——名校 + 顶级评估机构背书（延续"第三方背书"家族：这次是研究机构而非安全公司）
+4. **「独立性契约」**——"contractual review rights were limited to user privacy, policy violations, confidential info, research accuracy" + "free to publish their results even if they are inconvenient for Anthropic"——**独立性设计透明：审查权边界 + "不利结果也能发"**（数据开放信任的最强声明，棱镜适配🔥）
+5. **「三方发现呈现」**——SALT（>50% 对话委托高后果任务，颠覆"只委托低风险"假设）/ Oxford（情绪-行为耦合：Claude 温暖↔用户积极）/ METR（新模型更省时 + Claude 时间估计与开发者实际用时相关）——**每个发现都是可引用的反常识点**（研究发现即内容资产）
+6. **「隐私机制细节」**——Anthropic Insights（原 Clio）聚合输出 + 额外隐私审计 + 研究者从未接触原始对话——隐私保护的具体设计（信任的技术底座）
+7. **「开放数据行动」**——HuggingFace 公开发布聚合数据——数据也开源（不只报告，数据本身可复用）
+8. **「运营挑战诚实」**——"slow for an AI lab's normal research speed and resource intensive" + 内部方法需适配外部——试点运行的真实困难（为规模化铺垫：承认问题才能谈扩展）
+
+### 四账号适配预判
+
+| 事件 | 机器之心 | 差评 | 棱镜 | 量子学派 |
+|------|---------|------|------|---------|
+| **Cursor/SpaceX 切割** | 模型分发政策与合同条款解读 | 🔥 "马斯克买下 Cursor，OpenAI 直接断供，还给足了 3 个月" | 🔥 商业博弈深度调查：马斯克-OpenAI 恩怨全史（xAI 蒸馏 → 宣誓证词 → 收购狙击） | 契约精神 vs 技术理想主义：当"普惠 AI"遇到商业信用 |
+| **泰国加速器** | 加速器模式拆解（政府-高校-初创三方结构） | "泰国 10 家初创，OpenAI 每人发 2000 美元" | 中国 AI 出海对照：东南亚市场的地缘叙事 | "AI demo 和 AI 产品之间，隔着一整个国家" |
+| **MHS 硬件标准** | 🔥 标准技术骨架：driver/原语/三控制机制（MCP→MHS 演进） | "AI 开始操作显微镜和机械臂了，实验室要失业？" | 标准之争：硬件层的 AI 话语权 | "让 AI 动手"：从思考到操作的哲学跨越 |
+| **科学家支持** | 公益项目规模（万席位免费 + $50K 额度） | "Anthropic 给科学家发免费会员，但生物安全问题照卡" | 学术-产业合流的政策面 | 科学的民主化：10,000 个免费席位意味着什么 |
+| **自动化对齐** | 🔥 技术细节：10 类失败/安全缺口百分比/15000 倍效率 | "AI 自己给自己做安全训练，还比人类研究员强 20%" | AI 自我治理的监管含义（谁来审计审计者） | "AI 开始自我改进安全"——对齐问题的递归本质 |
+| **独立研究开放** | 数据开放方法论（250K 对话/聚合输出/隐私审计） | "OpenAI 们藏着数据，Anthropic 直接开源给大学研究" | 数据主权：AI 使用数据的监管博弈 | "AI 怎么被使用"的第一次公开审视 |
+
+### 组件库状态
+
+- **新增 54 组件**（Cursor 10 + 泰国 10 + MHS 10 + 科学家 6 + 自动化对齐 10 + 独立研究 8），总量 **626+**（49 组件节 + 3 状态节）
+- **新文体入库**：商业切割声明（Cursor）、硬件标准预览（MHS）、数据开放研究（独立研究）、公益扩张（科学家支持）；国家扩张文体出现变体（巴西"市场数据版"→ 泰国"加速器版"）
+- **安全叙事第五阶段候选**：防守解释 → 进攻部署 → 自我约束 → 事故自曝 → **商业伦理切割（Cursor）**——安全叙事从技术风险扩展到"与谁合作"的商业信用
+- **Anthropic 产品线第三阶段**：MCP（软件协议）→ Claude Science（软件产品）→ **MHS（硬件标准）**——从虚拟到物理
+- **AI 对齐 AI 升级**：7 月概念实验 → 8/28 生产级后训练（Sonnet 5 修 Opus 4.8，15000 倍效率）——对齐自动化的实用化拐点
+- **⚠️ 缺口记录**：8/28（周五）cron 检查缺失（第二次周五缺口），已补抓无损失；Anthropic 双页波动（8/25 断 → 8/26 恢复 → 8/27 断 → 8/29 恢复）明日复验；7 月 Anthropic 三篇漏看文章仍在待补清单
+- 8 月累计：OpenAI 52 篇 / 18 个发布日（脉冲第九次验证：8/24-8/28 连续五日 13 篇 = 8 月最长连续发布期）；Anthropic 8 篇（8 月下旬提速：8/25-8/28 四天四发）
