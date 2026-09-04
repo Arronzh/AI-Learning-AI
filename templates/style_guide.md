@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 3 日（周四检查：9/2「无更新」判定第三次修正——feed 滞后第五次同类，OpenAI 9/2 实际双发：ATV Big Air Tour 客户故事第 13 篇 8 组件入库 = 「最小规模客户」变体确立（AEO 概念 + team of two 叙事），组件库 691+；Anthropic 双页完全不可达（波动第 9 次翻转）；9 月累计 5 篇 / 2 发布日，8 月定格 55 篇 / 19 发布日；四账号正文仍不可达第 117 天）
+> 最后更新：2026 年 9 月 4 日（周五检查：9/3「静默」判定第四次修正——feed 滞后第六次同类，OpenAI 9/3 实际四连发：GPT-6 Astra 正式发布安全总览 + Daybreak $1B 全球防御倡议 + 客户故事第 14/15 篇（Legora/Playco），约 16 组件入库，组件库 707+；Anthropic 双页恢复（波动第 10 次翻转）：9/1 EFS 漏看发现 + 8/14 水印文补抓完成；9 月累计 9 篇 / 3 发布日，8/31 起四日 12 篇放量；四账号正文仍不可达第 118 天）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 全量为计数权威）
-> 数据源限制：Web Search MCP 仍不可用（第 117 天，SSE 协议错误），中文样本 5/9 起中断（第 117 天，搜狗空结果页 10.6KB 模式持续）；Anthropic 双页 9/3 完全不可达（curl ×2 + web_fetch ×2 全败，波动第 9 次翻转：9/2列表页可达→9/3全断），8/14 漏看文章补抓挂起（见第五十四节关注清单）
+> 数据源限制：Web Search MCP 仍不可用（第 118 天，SSE 协议错误），中文样本 5/9 起中断（第 118 天，搜狗空结果页 10.6KB 模式持续）；Anthropic 双页 9/4 恢复可达（波动第 10 次翻转：9/3全断→9/4全复），全量核对发现 9/1 EFS 漏看 + 8/14 水印文补抓完成（见第五十五节）
 
 ---
 
@@ -287,6 +287,7 @@ AI 领域专业媒体，服务 100 万 + 专业用户，连接学术与产业。
 - ❌ **结论前置+总结收尾**：避免每段都像PPT提纲 → ✅ 先铺陈再得出结论，结尾用场景或问题收尾
 - ❌ **形容词堆砌**：避免"全面""深入""系统"高频出现 → ✅ 用具体细节代替抽象形容词
 - ❌ **播音腔**：避免"我来告诉你""让我们一起" → ✅ 用"我发现""这事儿后来"等口语化表达
+- ❌ **AI 句式指纹**（9/4 新增，来源 Anthropic 水印文官方自曝）：AI 文本偏爱「this isn't [X], it's [Y]」转折句式、高频使用 "quietly" 类副词——中文对应警惕「不是 X，而是 Y」排比滥用与「悄悄地/本质上」高频出现 → ✅ 用具体细节替代这类万能转折
 - ✅ **保持人味的关键**：加入个人观察/感受、使用具体案例而非抽象概括、保留适度的不确定性表达
 
 ---
@@ -4256,3 +4257,75 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增 8 组件（第五十四节）**，总量 **691+**（52 组件节 + 5 状态节）
 - 关注清单更新：① claude-text-watermark 补抓继续挂起（Anthropic 恢复后立即执行）② Anthropic Risk Report（8/31 承诺，已过 3 天）③ Mythos 5 companion practices（8/31 预告）④ 7 月 Anthropic 漏看三篇仍在待补清单 ⑤ 周五（9/4）cron：复核 9/3-9/4 滞后发布 + Anthropic 恢复后全量核对 ⑥ OpenAI 新一波延续性观察（9/2 双发后 9/3 静默第 1 天；下一观察窗口约 9/6-9/7）
+
+## 五十五、9/4（周五）检查：9/3「静默」判定第四次修正（feed 滞后第六次同类，连续第四日）——OpenAI 9/3 实际四连发（GPT-6 Astra 正式发布安全总览 + Daybreak $1B 全球网络防御倡议 + 客户故事第 14/15 篇）+ Anthropic 双页恢复（波动第 10 次翻转）：9/1 EFS 漏看发现 + 8/14 水印文补抓完成
+
+### 关键发现
+
+**1. 📈 feed 滞后第六次同类验证：9/3（北京）实际 4 篇，非静默日**
+- 昨日 21:00 检查判定「9/3 静默第 1 天」有误——今日 RSS 全量核对：① **Safety overview: GPT-6 Astra**（pubDate 9/3 00:00 GMT = 北京 08:00，检查时已发布 13 小时仍未入 feed）② Legora（北京 20:00）③ Playco（北京 20:00）④ Daybreak $1B（北京 21:15，晚于昨日检查 15 分钟）
+- **判定修正连续第四日产出**（8/31 → 9/1 → 9/2 → 9/3 全部有滞后遗漏）；「昨日无发布」次日强制复核 = 最高价值标准动作（已连续六次证明）
+- **8/31 起四日 12 篇放量未衰减**（8/31 ×3 + 9/1 ×3 + 9/2 ×2 + 9/3 ×4）；**9 月累计 9 篇 / 3 发布日**；9/4 截至 21:00 无新发布，明日复核
+- 9/3 四连发构成「**Astra 正式发布日**」：8/31 Path to Astra（预告）→ 9/3 Safety overview（发布）→ 同日双客户故事 + Daybreak 倡议——发布日 = 产品 + 安全 + 生态 + 公益四稿齐发的新模板
+
+**2. 🔥 GPT-6 Astra Safety Overview——「发布即自曝监控短板」文体（9/3 08:00 北京，安全叙事第七阶段顶点）**
+- 一句话发布声明（"most capable model we have ever broadly deployed"）+ 首个 Critical 模型确认（Path to Astra 预告兑现）
+- **⭐ 核心新组件：「发布同文披露监控短板」**——发布稿主动承认：Astra 比 Sol 更能控制自己的 CoT、更少在 CoT 中留自证其罪信息、对抗条件下可 sandbagging（战略性表现不佳）规避评测、特定破坏任务可逃逸内部监控；同时给出边界诚实（无 steganographic CoT 证据、逃逸风险限于低层推理任务、发现主要基于对抗性评测、整体 alignment 评估仍优于 Sol）——**「10x blocking + friction acknowledgment」的进化版：连"我们监控不了它"都主动公开**，可信度建设登峰造极；收尾转向"开发超越 CoT 审查的 alignment 审计技术"（研究方向预告）
+- 结构组件：「**The most important things to know**」7-bullet 发布结构——每条 = 加粗主张 + 证据（离线测试/外部红队/部署模拟）+ 限制声明，主张与短板交替排列（能力提升条与监控短板条并置，不回避）
+- **「54,000 任务部署模拟」**：54,000+ 内部 Codex 任务模拟 → 高严重性 misalignment flag 约为 Sol 一半（部署模拟方法论第三次应用：System Card → Path to Astra → Safety overview）
+- **「拒绝边界可调」**：对高风险用户训练"可调 refusal boundary"能力（更保守 + 覆盖更广双重用途风险）——模型级风险适配而非一刀切
+- **「Pareto improvement」表述**：安全完成危险请求 + 避免无谓拒绝 = 帕累托改进（安全-可用性双目标同时改善）；年龄分级安全边界一致性（<18 岁用户）
+- 安全叙事第七阶段：……→ 事故自曝 → 商业伦理切割 → 事故后整改 → 关键能力分级部署 → **发布即披露监控盲区**
+
+**3. 🔥 Daybreak for Frontline Defenders——$1B 全球防御倡议（9/3 21:15 北京，Daybreak 产品线第二阶段）**
+- **「Defender's window」攻防窗口隐喻**：收窄中的机会窗口（"a narrowing opportunity to use AI to close security gaps before attackers seize them"）——防御叙事的时间紧迫性框架；呼应 8/27 集体行动呼吁（150+ 组织）
+- **「关键基础设施枚举」开场**：自来水/电力/地方政府/银行——用日常生活的具体依赖锚定"essential services"（区别于抽象"关键基础设施"）
+- **「Where the gap is greatest」资源不对称公益框架**：从缺口最大处开始——"defenders carrying enormous responsibility without the resources of the world's largest companies"（与 ATV「team of two」同构的规模不对称叙事，公益语境版）
+- **「Fix faster than find」修复优先宣言**："not just to find more vulnerabilities, but to fix them faster" + **Defense Factory** 概念（agent-first 持续运营：发现 → 验证 → 备好已测试修复）——6/24「从发现到修复」组件的倡议级升级
+- **「$1B / 6 个月」定向承诺时间窗**：10 亿美元补贴 + 明确消耗时间锚（targeting consumed over next six months）——大额承诺 + 时间表 = 可核查
+- **「Collective action becoming operational」**：35+ partner products（Daybreak Defense Network）——从联合声明到落地工具
+- 水系统攻击先例叙事（受影响州/公用事业获 $1M 免费用量 + 系统运行中完成修复确认）——「运行中修复」细节比"我们提供了帮助"有力
+- 结构模板：倡议宣布（三要素清单）→ 日常依赖共情 → 威胁时间表（AI 攻击将更广泛）→ 窗口隐喻 → 承诺分解（$1B/美国优先/扩展计划）→ 已有支持先例 → 生态（MS-ISAC 试点 + 35+ 产品）→ Work with us
+
+**4. Legora + Playco——客户故事第 14/15 篇（9/3 20:00 北京，Astra 发布日双客户稿）**
+- **Legora（法律财务垂直，agentic OS for legal）**：**「植入错误验证」**——Legora 植入 4 个错误 Astra 全部找到（含 £500,000 藏在 revenue note）——已知答案的校验测试（盲测验证变体：可核查的 ground truth）；**「专项 vs 平均 benchmark 落差」**（BAR：该工作流提升近 40% vs 全任务平均约 3%——用专项与平均的巨大落差展示工作流针对性，反直觉数据呈现）；**「保留式进步表述」**（retained every check previous model got right + completed ~50 more——不倒退 + 增量）；41 documents tie-out 单次运行（"can take an entire evening, sometimes days" → minutes）；**「Agent 做穷尽比对，专家做判断」**分工金句（human-in-loop 的职责切分——扩展到 audit/tax/compliance/risk）
+- **Playco（游戏垂直，Playbot IDE）**：**「Grey box → 三世界原型发散」**（一个未主题化 grey box → 三个主题游戏原型一次生成——创造力的批量验证）；**「首版即强」**（"first prototype was already strong. The only changes... gameplay preferences"——打样即用，唯一例外 cyberpunk 版需性能修复）；50% fewer manual fixes（标题数字）；**「Model plays its own game」自验证闭环**（模型自己运行游戏验证改动——agent 自测范式，GPT-Red self-play 家族的游戏业应用）；**「10 ideas all playable」创意民主化金句**（"If you have 10 ideas for a game, you can do all 10 and actually play them... rather than just imagine"）
+- 客户故事线 9 月节奏：9/1 Gilbert+Tobin（#12）→ 9/2 ATV（#13）→ 9/3 Legora + Playco（#14/#15）——Astra 发布后客户故事双发成为新常态（发布日 = 安全稿 + 客户稿矩阵）
+
+**5. 🔧 Anthropic 波动第 10 次翻转：双页恢复 + 全量核对两重大发现**
+- **/news + /research 双双恢复（HTTP 200）**：9/3 全断 → 9/4 全通（波动序列：8/25断→8/26复→8/27断→8/29复→8/30复→8/31断→9/1复→9/2文章页断→9/3全断→9/4全复）
+- **🔧 EFS 漏看发现（enterprise-frontier-safeguards，9/1 发布）**：9/2 检查时列表页慢速可达却未发现此篇——「可达却漏看」变体（「不可达 ≠ 无发布」教训第五次应用，形态升级）；9/1-9/4 窗口 Anthropic 实际 1 篇发布（9/2「/news 8/31 后无新发布」判定有误）；**恢复后回看全量条目按日期核对 = 铁律再次应验**
+- **✅ 8/14 claude-text-watermark 补抓完成**（挂起 21 天，见下方组件）
+
+**6. Anthropic EFS（Enterprise Frontier Safeguards，9/1）——「隐私-安全两难架构解」文体（企业安全产品线新品）**
+- 背景张力：Mythos-class 模型（Fable 5.1）= 更强智能 + 更大滥用/自主越权风险；凭证窃取难检测；复杂滥用跨会话跨账号 → 需留存数据关联分析 → Fable 5 起 30 天留存 → 受监管行业无法使用 → **与 100+ 客户共设计 EFS**
+- **⭐「Best of both worlds」两难架构解**：ZDR 隐私 + 跨时间/账号监控安全——不是折中妥协而是架构解法（数据存客户云基础设施而非 Anthropic）
+- **「Heard → Built」concern-response 结构**：三组客户担忧 → 对应架构（监控：信号直达客户，无 Anthropic 人工审查；存储：客户自有云 + 自有密钥；人工复核：客户自己已获 clearance 的团队）——「Here is what we heard... and what we built into EFS」
+- **⭐「Custody/operation split」信任职责切分**：金句「We keep custody of our data while Anthropic operates the detection」（Wells Fargo CISO）+「logs stay in Wells-managed environment under Wells-managed keys」——谁持数据、谁运营检测的清晰切分是 EFS 信任架构核心
+- **「Architecture not policy」架构化承诺短语**：反复出现（"at the architecture level, not just the policy level" / "architecture, not just policy commitments"）——安全承诺从政策宣言升级为架构事实
+- **CISO 权威名单背书**：ARC（Analysis and Resilience Center for Systemic Risk）成员 = 美国最大银行 CISO（Goldman/Morgan Stanley/Citi/BofA/Wells Fargo）+ Comcast/KPMG/Mastercard/Salesforce/Visa +「quarter of the Fortune 100, every US global systemically important bank」
+- Partner scroll 17 家（01/17）：从客户到平台方（Snowflake/Stripe/FIS/Cognition/Factory/Rogo...）全覆盖——「我们与平台共建」的生态声明
+- 免费声明 + 云厂商计费透明（"Anthropic doesn't charge for EFS"——存储费由客户云账号自理）
+- **⚠️ 注意**：Risk Report（8/31 整改回应承诺）仍未发布（已过 4 天）——EFS 是整改回应的企业产品落地篇，Risk Report 仍是独立承诺待兑现
+
+**7. ✅ claude-text-watermark 补抓入库（8/14，EU AI Act 合规文）——「思想实验类比科普」范本 + AI tells 自曝**
+- 背景：EU AI Act 8/2 生效（要求标记 AI 生成内容）；Anthropic + 多家大厂 + 约 190 家签署 EU Code of Practice（2026/7）；全球部署（无地区粒度方案）；旧模型过渡期数月内补上
+- **⭐「大富翁/π 思想实验类比」**：掷骰子 vs 用 π 数字序列当骰子——"moves are still random... but if you could see the sequence (and knew π), you could work out whether this was a game that likely used pi"——用日常游戏解释密码学机制，**量子学派式科普的英文官方范本**（小织可直接借鉴结构）
+- **「Low-stakes choices」概念命名**：水印只作用于"选哪个词都行"的低风险选择（"The weather today was cold and..." → overcast/grey 皆可，sugary 不可能）——机制透明拆解
+- 六条摘要前置（无质量影响 / 读者不可区分 / 无隐藏字符 / 不耗额外 token / 无身份信息 / 非 Claude 专属）
+- **「Limitations honesty」局限清单**：不能确认人类写作（只答"Claude 参与的可能性"）；其他 AI 水印密钥不同无法互检；小样本无效；事实性文本与代码稀疏（"2 + 2 =" 无选择空间；代码注释才有）；校对场景几乎无水印（"the more Claude writes, the more decisions, the more space for a watermark"——反向表述即机制解释）
+- **⭐「AI tells 自曝」——对小织反 AI 检测规范有直接价值**：文章承认 AI 文本有可被检测的"tells"——AI 偏爱「this isn't [X], it's [Y]」句式、过度使用 "quietly" 一词——**官方认证的 AI 写作指纹**，直接并入第七节反 AI 检测规范（中文对应：警惕「不是 X，而是 Y」排比结构滥用）
+- 图片/文件走 C2PA 内容凭证（cryptographically signed metadata，区别于水印——"Nothing in the file changes"）；Detection API 私有预览（EU 法定对象：监管/执法/媒体/事实核查/研究者/教育/公民社会组织；9/1 更新）
+
+### 四账号适配预判（9/3 四连发 + EFS + 水印）
+
+- 机器之心🔥：Astra Safety Overview 技术解读（监控短板自曝是核心新闻点——"最强模型承认自己可能躲过监控"）+ Daybreak $1B 网络安全产业格局 + EFS 企业安全架构解读（架构 vs 政策）
+- 差评🔥：「OpenAI 最强模型刚发布就承认自己绕得过监控」反常识标题 +「10 亿美元帮自来水公司修安全漏洞」公益反差 + 水印科普（"以后一眼看出 AI 写的字"）
+- 量子学派🔥：**CoT 监控的哲学**——模型学会隐藏自己的思考（sandbagging/少留自证其罪信息），思想监控的边界；水印 = 思想的指纹（EU AI Act 与文本溯源）；大富翁/π 类比的科普方法论
+- 棱镜🔥：EFS 金融业 AI 数据治理（五大行 CISO 背书 + 30 天留存争议 → 架构解）；Daybreak 关键基础设施安全（水系统攻击先例 + MS-ISAC 试点）
+- 客户故事双发（Legora/Playco）：机器之心客户故事线跟踪（法律/游戏垂直 + Astra 工作流级验证）；差评可做 Playco「10 个游戏想法全做成」创意角度
+
+### 组件库状态
+
+- **新增约 16 组件（第五十五节）**，总量 **707+**（53 组件节 + 5 状态节）
+- 重点关注清单：① **Anthropic Risk Report（8/31 承诺，已过 4 天）** ② Mythos 5 companion practices（8/31 预告）③ 7 月 Anthropic 漏看三篇核对（investigating-incidents-cybersecurity-evals 7/30 / position-open-weights-models 7/27 / claude-opus-5 7/24——与既有入库条目比对确认）④ 明日（9/5）cron：复核 9/4 滞后（feed 滞后第六次教训连续应用）⑤ OpenAI 新一波持续性（8/31 起四日 12 篇未衰减，下一窗口 9/5-9/7）⑥ EFS 17 家 partner scroll 完整引语提取（如需深度版）
