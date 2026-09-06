@@ -4363,3 +4363,93 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - 无新增组件，总量维持 **707+**（53 组件节 + 6 状态节）
 - 关注清单：① 明日（9/6）cron：复核 9/5 全天发布 ② Anthropic 恢复后全量核对 9/4-9/5 + **Risk Report 逾期第 5 天** ③ OpenAI 下一窗口 9/7-9/8（脉冲第十二次验证预备，周末静默后周一观察）④ Mythos 5 companion practices ⑤ 7 月 Anthropic 漏看三篇 ⑥ 搜狗空结果页是否持续
+
+## 五十七、9/6（周日）检查：复核日变「漏看修正日」——三大漏看同日发现（GPT-6 Astra 正式发布主文 + Anthropic Fable 5.1/Mythos 5.1 旗舰发布 + Fermat 形式化），40+ 组件入库，组件库 707+ → 749+
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 第 120 天不可达；搜狗空结果页持续（量子学派 10,686B / 差评 10,572B ≈ 10.6KB 空壳页，连续第 8 日） |
+| OpenAI RSS | 最新仍 9/3 13:15 GMT（Daybreak）；**9/4「复核确认」✅ + 9/5「复核确认」✅ 双双成立**（9/4 判定距检查 72h+、9/5 距 48h+，均远超 ~19h 滞后窗口）；9/6 截至 21:00 无新（低置信，明日复核）；**9 月累计修正为 10 篇 / 3 发布日**（见下） |
+| Anthropic /news + /research | ✅ 全复（HTTP 200，curl + web_fetch 双通）；/news 列表最新仍 9/1 EFS；**Risk Report 逾期第 6 天仍未发布** |
+| Anthropic /research | 🔥 **发现 9/4 新篇：Formalizing Fermat's Last Theorem**（9/5 全断窗口漏看，今日恢复后全量回看捕获） |
+| Web Search MCP | ❌ 第 120 天（SSE 协议错误） |
+
+### 关键发现：三大漏看修正（今日核心）
+
+**1. 🔥🔥 GPT-6 Astra 正式发布主文漏看（"A New Generation of Intelligence"，pubDate 9/3 11:00 GMT = 北京 19:00）——9/3 实为五连发非四连发**
+- 9/4 复核把 Safety overview（北京 08:00）当作"正式发布"，漏掉同日 19:00 的**主发布文**（/index/gpt-6-astra）——9/3 实际五连发：Safety overview 08:00 + **主发布文 19:00** + Legora/Playco 20:00 + Daybreak 21:15
+- 此篇才是旗舰文体样本（产品发布主文），Safety overview 是配套安全稿；**9 月累计 9 → 10 篇**；8/31-9/3 四日爆发 12 → 13 篇
+- 漏看根因复盘：9/4 复核时该文 pubDate（11:00 GMT）位于已发现四篇的时间跨度内（00:00-13:15 GMT），按"列表尾部新增"核对顺序扫描时夹在中间被跳过——**时间跨度内补漏需按 pubDate 全排序逐条比对，不能只看列表两端**
+
+**2. 🔥🔥🔥 Anthropic Claude Fable 5.1 + Mythos 5.1 发布漏看（9/1-9/2，旗舰模型发布从未入库——历史最大漏看）**
+- /news 页 FeaturedGrid hero 区展示「Introducing Claude Fable 5.1 and Claude Mythos 5.1」（日期 Sep 1, 2026，URL 为顶级路径 /claude-fable-and-mythos-5-1 而非 /news/ 子路径）
+- **系统性盲区新形态「hero 区盲区」**：每日检查只解析 PublicationList（公告列表，最新到 9/1 EFS），hero 区（FeaturedGrid，放模型发布等大新闻）被跳过；web_fetch readability 对 hero 区提取也不稳定（今日 readability 只抽出 MHS + 水印两条 side items，主 hero 丢失）——**两通道同时漏 hero 区**
+- 佐证其 9/3 前已公开：OpenAI Astra 文引用「Claude Fable 5.1 & Claude Mythos 5.1 System Card.pdf」；9/4 入库的 EFS 文已提 "Mythos-class 模型（Fable 5.1）"——EFS 入库时本应顺藤摸瓜发现 Fable 5.1 已发布
+- 修正：9/1-9/2 窗口 Anthropic 实际 2 篇发布（EFS + Fable 5.1/Mythos 5.1 发布文），非 1 篇；**下次全量核对须含 hero 区 + 顶级路径页面**
+
+**3. 🔥 Anthropic Formalizing Fermat's Last Theorem 漏看（/research，Sep 4）**
+- 「不可达 ≠ 无发布」第七次应用应验：9/5 全断窗口 + 9/4 检查未及（发布晚于 9/4 21:00 检查或当日 feed 未更新）→ 9/4-9/5 窗口实际有 1 篇研究发布
+- **双通道复核独立性教训**：9/5 的「复核确认 ✅」只对 OpenAI 通道成立；Anthropic 通道因全断无法复核，9/4「Anthropic 无新发布」判定随今日发现而修正——**OpenAI 复核通过 ≠ Anthropic 无发布，两通道各自独立走复核铁律**
+
+### 今日入库（40+ 组件，第五十七节）
+
+**A. GPT-6 Astra 正式发布主文（约 15 组件）——「旗舰发布主文」文体范本**
+- **「双最高级定位」开场**：「the world's most intelligent and aligned model」——能力 + 对齐双最高级并列（对照 Anthropic "most advanced for coding and knowledge work"）
+- **「saturates」封顶声明**：saturates FrontierMath Tier 4 98% / ARC-AGI-3 99.9% / ExploitBench 100%——用"饱和"一词宣告 benchmark 触顶（区别于"领先/刷新"）
+- **「研究先行锚点」**：发布文直接披露数学成果（素数间隙 bound 246→240→186、80 年未变的 bound 被改进、附证明 PDF + abridged CoT）——能力声明用可核查的开放研究成果背书
+- **「渐进式可用性」三段**：today limited organizations → coming days all Plus/Pro/Business/Enterprise + API/Azure/Bedrock——发布即分层铺开
+- **第三方引言矩阵**：每个能力域配一家（ARC Prize Foundation / Cognition / Higgsfield / Harvey / Jane Street / EpochAI）——第三方覆盖评测方、客户、研究者三类
+- **⭐「HF 事故对照 eval」**：新 eval 由 Hugging Face 事故启发——无生产防护时越权率 Sol 48% vs Astra 0%（以事故为基准构建的安全度量，安全叙事第八阶段新组件）
+- **「能力-安全双面呈现」**：网络安全段 = 最强能力（100% ExploitBench）+ 最强限制（"will refuse to comply with more advanced cybersecurity tasks"）+ 后续放宽路线图（Daybreak 数周内）——同一段内给足两面
+- **「监控短板诚实」延续**：written reasoning harder to monitor + 归因解释（更少书面步骤）+ 研究优先级声明——与 Safety overview 呼应成对
+- **「误报诚实」**：extra safety checks can slow/pause/stop legitimate work——安全代价不遮掩
+- **九大基准表矩阵**：Computer Use/Professional/Coding/Academic/Science/Cyber/Alignment/Long Context/Abstract Reasoning——自家 vs 对手同表（对手含 Fable 5.1/Opus 5/Gemini 3.8 Flash）
+- **「防污染新基准」母题延续**：ExploitBench (June–August 2026) 内部新基准（近三个月漏洞防记忆污染）+ SRE-Bench 逆向工程基准
+- **「零日披露」**：评测中发现 2 个未知零日漏洞 → 披露给维护者（发现即负责）
+- **Codex 跨上下文笔记机制**：context 满时 notes across context windows + 旧窗口可搜索——产品机制细节进发布文（技术读者钩子）
+- **定价透明**：$10/M input、$50/M output、Fast mode 2x 速度 2x 价格；ZDR + Private Safety Processing 测试
+- **⭐ 金句收尾**：「Misalignment monitoring cannot replace alignment」——防护层 ≠ 对齐本身的定位声明
+
+**B. Claude Fable 5.1 / Mythos 5.1 发布文（约 15 组件）——「同体双模型」文体新形态**
+- **⭐「同模型双安全级」声明**：「are the same model, but with different levels of safeguards」——Fable GA / Mythos 仅 trusted access（网络 + 生命科学）——一稿发两模型的架构化叙事（对照 OpenAI 按能力分 Sol/Terra/Luna）
+- **「Heard → 三栏回应」**：Price / Data retention / Safeguards 三栏回应客户反馈（降价 25%、EFS 完整隐私、误报降 60%）——产品改进以"回应反馈"框架呈现
+- **「应得降价归因」**：降价主要来自 cache reads 定价（75% 降幅 → $0.25/M）——降价的机制归因（不是"我们让利"而是"成本结构变了"）
+- **「第三方轶事锚点」**：Millennium 内部系统罕见崩溃——Fable 5.1 找到根因（自家工程师 + 所有其他模型数年未解）——客户故事压缩成一段开场轶事
+- **「标准差 + 复现声明」诚实基准**：±3.5-4.5 pts 误差披露 + 复现他人结果（Opus 5 官方 30.0% vs 我们复现 29.0%，within noise）——基准表附测量诚实
+- **22 家早期伙伴引言轮播**（Jane Street / Millennium 等，01/22）——引言矩阵的规模化形态
+- **科学三案例并置**：分子设计（10x Adaptyv 最佳 + ~50% hit rate vs 行业 10-15%）/ 金星地图（NASA Magellan 30 年前数据 → 2-3km vs 10-20km 分辨率 + CC 协议发布给 VERITAS/EnVision 用）/ GPU kernel 加速（7 模型 up to 2.5x、成本降 30-60%、"工程师数周 vs 模型数天"）
+- **「能力仍低于下一风险档」声明**：cbRN 评测（PhD 生物学家 + AI 专家 tabletop）→ "still falls short of the next risk tier"——强能力 + 未越档双声明
+- **「对齐改进 + 局限并列」**：越权/动机推理/reward hacking 率全面下降 + 诚实局限（仍可绕过 approvals、long-context/multi-agent 覆盖不足）——与 OpenAI "monitorability decline" 同构的发布即自曝
+- **反蒸馏机制披露**：新 API 账户禁止手动编辑先前上下文（关闭公开蒸馏技术）——安全机制具体到产品行为
+- **EFS 承接段**：100+ 客户 + AWS/GCP/Azure + 秋季分阶段 + 落地平台清单——独立公告文在发布文中的承接复用
+- **可信访问双项目**：CVP（网络验证）+ LSVP（生命科学验证，与美国政府合建）——"验证过的访问"成为高端能力分发模式
+- **EU AI Act 合规段**：水印（8/2 后模型）+ detection API private preview（监管/执法/媒体对象）——合规作为发布文固定章节
+- **「Vulnerability discovery 与 exploit 分离」**：Fable 5.1 可发现漏洞但不可开发 exploit；双用途任务（渗透/exploit 生成/二进制扫描）仍重定向 Opus——能力边界按任务类型精细切分
+
+**C. Formalizing Fermat's Last Theorem（约 12 组件）——「数学形式化里程碑」文体（量子学派/机器之心双适配度最高）**
+- **里程碑声明开场**：「the first complete computer-checked proof of Fermat's Last Theorem」+ 自主性 + 时间压缩（Claude largely autonomously 11 days）
+- **⭐「350 年叙事纵轴」**：1637 书边笔记（"margin too narrow to contain"）→ 1908 十万金马克奖（第一年 621 个错误尝试）→ 1993 Wiles 演讲 + 审查者提问暴露 gap + 一年修复 + 濒临放弃 → 1995 发表（129 页）→ 2005 Bergstra 提议形式化 → 2024 Buzzard 社区项目（86 页 blueprint）→ 2026 Claude 11 天——**用世纪纵深铺垫"11 天"的冲击力**
+- **「人类验证之慢」铺垫段**：Kepler 猜想 4 年审查 "99% certain" / Perelman 4 年三篇 300 页 / Helfgott 仍在审 / Voevodsky 错误被接受多年——验证瓶颈是形式化意义的标尺
+- **数字锚点矩阵**：13M 行 Lean（5x Mathlib）、29,500 中间定理（途中 30,300）、86 页 blueprint、约 6B output tokens、11 天
+- **「失败贡献透明」**：初始尝试失败（agent 失去项目状态、协作失效）+ **失败尝试贡献了最终证明约 7% 的非样板代码**——失败也计入成果（比单纯报成功可信）
+- **⭐「脚手架归因」**：成功关键 = Prove2Me 平台切换（DAG 定理图 + statement/proof 分文件 + 自然语言检索）而非模型单打独斗——把成功归因于工具架构，为"换个脚手架普通人也能做"埋伏笔
+- **⭐「AI 内心独白引用」**：Claude 的 thinking 摘录（"🏁🏁🏁 The FLT root reads PROVED... Historic moment"）——AI 的"历史时刻"自我认知（MHS「像科学家一样试激光」母题续）
+- **「新颖性定位二分」**：Riemann 工作 = 新颖在数学本身；FLT = 新颖在验证——先澄清"这次不是新数学"再展开（防误读的预期管理）
+- **专家双引言**：Buzzard 两段（成果评价 + 意义评价分置文首文尾）
+- **⭐「消费级延伸实验」**：3 个个人 Claude Max 订阅 + Prove2Me = 3 天证明 Vinogradov 三素数定理——"消费级订阅也能做大事"的民主化收尾
+- **「伦理立场明确」**：「Formalization... a place where we feel unambiguously good about the role of AI」——对照 Leiden Declaration 的 grappling，明确无纠结地带
+- **脚注人味故事**：Peng 本科导师问 "99% sure?" 错失 Nature 的轶事 + 致谢长清单（Wiles/Taylor/Frey/Serre/Ribet/Mazur/Langlands...）——严谨文里的人文钩子
+
+### 四账号适配预判（三大漏看篇）
+
+- 量子学派🔥：Fermat 形式化 = 天选题（书边笔记 350 年 → AI 11 天；"margin too narrow" 的宿命反转）；素数间隙 186 新界（Astra 发布文里的数学彩蛋）；验证 vs 发现的认识论（人类验证之慢的故事链）
+- 差评🔥：「AI 用 11 天证明了费马大定理，人类花了 350 年」+「最强模型发布会自己承认监控不了自己」+ 13M 行代码 / 6B token 的直观化（"相当于每天写 100 万行"）
+- 机器之心🔥：Astra 主发布文九大基准表全解读 + Fable 5.1/Mythos 5.1 同体双安全级架构 + Prove2Me DAG 多智能体形式化技术拆解
+- 棱镜🔥：Anthropic 与美国政府合建 LSVP 生命科学访问项目（公私边界）；EFS 数据主权续篇；OpenAI 零日漏洞披露流程
+
+### 组件库状态
+
+- **新增约 42 组件（第五十七节）**，总量 **749+**（54 组件节 + 6 状态节）
+- 重点关注清单：① **Anthropic Risk Report 逾期第 6 天**（8/31 承诺，恢复后仍未见——下一核查项）② 明日（9/7）cron：复核 9/6 全天 + **Anthropic 全量核对含 hero 区**（FeaturedGrid + 顶级路径页 /claude-fable-and-mythos-5-1 类）③ OpenAI 下一窗口 9/7-9/8（脉冲第十二次验证预备：8/31-9/3 四日 13 篇爆发修正后，9/4-9/6 三日静默，若「爆发后静默 3-4 天」规律延续则周一-周二开窗）④ Mythos 5 companion practices ⑤ 7 月 Anthropic 漏看三篇核对 ⑥ 搜狗空结果页是否持续（第 9 日观察）⑦ 8/31-9/3 OpenAI 爆发 13 篇修正后 8 月/9 月累计口径复核（10 篇 / 3 发布日）
