@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 9 日（周三检查：9/8 cron 缺失补抓变「大发现日」——OpenAI 9/8 七连发（2026 单日最高）：Navier-Stokes 千禧年问题解决声明 + CFO 复利战略文 + Images 2.5 + Codex 量子实验 + 三轻量篇，约 38 组件入库，组件库 779+ → 817+（第五十九节）；9/7 复核确认 ✅；9 月累计 20 篇 / 6 发布日；Anthropic 双页恢复（波动第 14 次翻转）全量核对 9/6-9/9 窗口 + hero 区无新文，Risk Report 逾期第 9 天仍未发布；四账号正文仍不可达第 122 天，搜狗空壳页连续第 10 日）
+> 最后更新：2026 年 9 月 10 日（周四检查：9/9「无新（低置信）」判定修正——feed 滞后第八次同类，OpenAI 9/9 实际三连发：GPT-6 Astra 工作版发布文（Astra for work，含点名 Claude Fable 5.1 的跨公司对照 eval）+ AI 政策窗口檄文「The AI policy window is open. We need to act.」（六章政策长文）+ Paul Christiano 加入 OpenAI Foundation Board（治理人事）；约 22 组件入库，组件库 817+ → 839+（第六十节）；9 月累计 23 篇 / 7 发布日；Anthropic 双页全断（波动第 15 次翻转：9/9复→9/10断），Risk Report 逾期第 10 天仍未发布；四账号正文仍不可达第 123 天，搜狗空壳页连续第 11 日）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 全量为计数权威）
-> 数据源限制：Web Search MCP 仍不可用（第 122 天，SSE 协议错误），中文样本 5/9 起中断（第 122 天，搜狗空结果页 10.5-10.7KB 模式持续）；Anthropic 双页 9/9 恢复（波动第 14 次翻转：9/7断→9/9复；9/8 状态因 cron 缺失未知），9/6-9/9 窗口 + hero 区全量核对完成无新文（见第五十九节）
+> 数据源限制：Web Search MCP 仍不可用（第 123 天，SSE 协议错误），中文样本 5/9 起中断（第 123 天，搜狗空结果页 10.5-10.7KB 模式持续）；Anthropic 双页 9/10 全断（波动第 15 次翻转：9/9复→9/10断；curl news/research http=000 + sitemap 超时 exit 28 四通道全败），9/9 窗口是否发布无法核对（「不可达 ≠ 无发布」第八次应用预备，见第六十节）
 
 ---
 
@@ -4612,3 +4612,59 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增约 38 组件（第五十九节）**，总量 **817+**（56 组件节 + 6 状态节）
 - 重点关注清单：① 明日（9/10）cron：复核 9/9 全天（feed 滞后史下 9/9「低置信」，9/8 七连发余波可能滞后入 feed）+ 9/8 篇目 pubDate 全排序复核 ② **Risk Report 逾期第 9 天**（8/31 承诺；Anthropic 已可达仍未发布）③ OpenAI 9/8 七连发后静默窗观察（2-4 天规律 → 下一窗口预计 9/11-9/12）④ Alpöge/Buckmaster forced Euler 论文公开后核对（Anthropic 通道 + 数学界反应）⑤ 内部超 Astra 模型（8/28 起训练）后续披露跟踪 ⑥ 7 月 Anthropic 漏看三篇核对 ⑦ 搜狗空结果页第 11 日观察 ⑧ An Alien Mind 署名确认 ⑨ Mythos 5 companion practices 项结项（Fable 5.1 页全量核查：无该名称章节，疑为「Safety, security, and alignment」段 + EU AI Act Code of Practice 的误记）
+
+---
+
+## 六十、9/10（周四）检查：9/9「无新（低置信）」判定修正——feed 滞后第八次同类，OpenAI 9/9 实际三连发（GPT-6 Astra 工作版 + 政策窗口檄文 + Paul Christiano 入董事会），约 22 组件入库（817+ → 839+）
+
+> 数据源：OpenAI RSS 全量（`openai.com/news/rss.xml`，1,183 条，pubDate 全排序）为计数权威；三篇新文经 web_fetch 直连全文提取。Anthropic 双页 9/10 全断（curl http=000 + sitemap exit 28）。四账号第 123 天不可达。
+
+### 📈 判定修正：feed 滞后第八次同类验证
+
+- 昨日（9/9）21:00 检查判「9/9 截至 21:00 无新（低置信）」——**再次有误**：9/9 实际 3 篇，其中 11:00 / 13:00 GMT 两篇在检查前 8-10h 已发布但未入 feed；**「低置信」标注连续多次救场**（第八次同类修正，判定修正链 8/31→9/1→9/2→9/3→9/6→9/9）
+- 9/9 三篇（GMT）：11:00 **GPT-6 Astra: The next generation in intelligence for work** + 13:00 **The AI policy window is open. We need to act.** + 17:00 **Paul Christiano joins OpenAI Foundation Board**
+- **9/8 篇目 pubDate 全排序复核 ✅**：9/8 确为 7 篇（无追加），昨日判定成立
+- **9 月累计修正为 23 篇 / 7 发布日**（9/1 ×4 + 9/2 ×1 + 9/3 ×5 + 9/6 ×2 + 9/7 ×1 + 9/8 ×7 + 9/9 ×3）；9/9 三连发打破「9/8 七连发后静默窗 2-4 天」的短窗预期（仅在 9/10 观察静默）
+
+### A. GPT-6 Astra: The next generation in intelligence for work（9/9 11:00 GMT，约 10 组件）——「旗舰模型工作版落地」文体（对照 9/3 正式发布主文 + 9/4 Safety Overview）
+
+- **「Last week we introduced」时间承接开场**：以"上周我们发布了 X"起手，本篇定位为工作场景落地补充——发布叙事的「主文 + 落地文 + 安全文」多稿拆分延续
+- **「最高级定位复述」**：world's most intelligent and aligned model（跨稿一致性话术）
+- **⭐「无 API 也能操作」核心差异化**：can write code and work through the same applications people use every day—**even when those applications don't have an API** → "put AI to work within existing workflows **from day one, without extensive preparation**"——把 computer use 讲成"免集成采纳"的商业卖点（对照 9/3 main launch 的技术面）
+- **⭐「点名竞对产品的跨公司对照 eval」**：internal computer use safety benchmark（测试暴露机密 / 过度共享 dashboard / 删除数据等最难商业场景）——Astra 意外结果比 GPT-5.6 Sol 少 89%、**比 Claude Fable 5.1 少 74.7%**——首次在官方发布文中直接点名竞对旗舰产品并给出对照数字（跨公司对照的营销新组件；对照 9/3 基准表矩阵的"对手列名"升级为"直接胜负句"）
+- **⭐「内部 dogfooding 数据叙事」**：rolled out internally weeks before launch；两内部用例——① developer/marketing 团队用 Astra+Codex 把 **3 小时多机位素材**做成 Developer First Impressions 视频（**4 天 550k 观看**）② 工程团队用 Astra 定位 memory-allocation bottleneck，切换 allocator → **25× lower turn latency / +30% peak memory use**——"先自用再外卖"的可信度组件（自曝权衡：延迟大降但内存涨 30%）
+- **⭐「first result 更接近可用」产品哲学**：better at following a company's voice, templates, and design standards，so the first result is closer to something a team can put to use——把"可用性"定义为迭代轮次减少
+- **「More useful work for every dollar」成本效率框架**：trained to complete tasks in **fewer tokens with fewer retries** → less rework / lower cost per task；occupies **majority of the cost-efficiency frontier**（Terminal Bench 4.0 + Artificial Analysis Intelligence Index）；定价 $10/$50 per M tokens——"每美元产出更多有用工作"的度量语言（对照 CFO 复利文的效率叙事）
+- **⭐「Critical 阈值 + 部署安全站互链」**：Astra is also the first model to reach the Critical cybersecurity capability threshold（链 Path to Astra）+ deploymentsafety.openai.com/gpt-6-astra——能力声明与独立安全站绑定
+- **「企业管控清单 + 插件首发」**：admin controls（限制可访问网站/桌面应用、管理上传下载、控制浏览历史）+ confirmation policies + automated review；**新企业插件** Oracle Analytics / Power BI / Navan / Avalara——以"接入既有企业软件"降低企业采用门槛（B 端采纳叙事新组件）
+- **⭐「launch 即默认关闭 + 渐进放行」**：Enterprise access is **off by default at launch** + ZDR 可用——强势模型发布的保守默认值（安全叙事基因）
+
+### B. The AI policy window is open. We need to act.（9/9 13:00 GMT，约 9 组件）——「政策檄文」文体（六章长文，OpenAI 政策线集大成）
+
+- **⭐「窗口比喻贯穿全文」**：开场 "new chapter in AI capabilities demands a new chapter for AI policy" + "No company, industry, or government can meet this challenge alone" + **"a bias toward meaningful action over policy perfection"**；收尾回环 "The AI policy window is open, **for now**. We intend to use it." / "the greater risk now is waiting too long to take one"——首尾呼应的"窗口"母题（与 Greg Brockman「defenders window」形成双窗口并置）
+- **⭐「行动清单四条 bullet」**：Pushing for mandatory national AI safety requirements / Keeping up momentum in the states / Advancing industry-led standards / Building global standards——政策诉求压缩为四条编号行动（可扫读的檄文骨架）
+- **⭐「内部高管金句互引」**：Chief Scientist Jakub Pachocki 的 "extreme caution"（链 9/6 An Alien Mind）——以自家哲思文为政策文背书（跨文互文 + 署名锚点，呼应 9/9 检查的"An Alien Mind 署名"疑点：确认 JAKUB PACHOCKI 为 Chief Scientist）
+- **⭐「外部博客引语并置」**：Greg Brockman "defenders window"（引 blog.gregbrockman.com）→ policymakers face "an **analogous** moment: a closing window"——借外部声音搭桥到政策论证
+- **⭐「安全不阻碍进步」金句**：Safety does not stand in the way of progress; it is what allows progress to go further and benefit more people——回应"安全拖慢创新"质疑的一句定调
+- **⭐「公开承认立场转变」**：Some of these bills we did not endorse in the past, and are now supporting **after reconsidering in light of the recent jump in capabilities**——罕见公开自认转向（政策文里的诚实组件，对照 Anthropic 8/31 整改的自我归因）
+- **⭐「RSI 边界声明」**：Fully autonomous recursive self-improvement "is not happening today. We should not pursue it unless and until it can be done safely"——对 RSI 这一最敏感话题给出"现状 + 红线"两段式界定
+- **⭐「安全 bar 优先于能力」**：If we cannot meet certain safety bars without slowing down capability growth, we should prioritize the former——把"必要时减速"写成可执行原则（对照 8/31 Anthropic pacing 双类型框架）
+- **「四法案并列 + reverse federalism」**：SB 813（独立评估基础设施）/ AB 1405（AI 审计师标准）/ SB 1119（青少年保护）/ AB 1864（生物威胁基因合成筛查）各配一句话定义 + "reverse federalism"（州际收敛 → de facto 全国基线 → 国会 codify）；政策文亦含「去中心化治理论证」（reduce not increase concentration of power / 取代 fragmented private governance）与「监控 = 最紧急起点」（misalignment 定义"without requiring consciousness or malicious intent" + incident written-notice 要求）
+
+### C. Paul Christiano joins OpenAI Foundation Board（9/9 17:00 GMT，约 3 组件）——「治理人事公告」文体
+
+- **⭐「人事即治理叙事」**：任命 + 双重身份（Foundation Board 非投票观察员 + SSC 成员）+ 点名 SSC 主席 Zico Kolter——把一次人事变成"治理结构加强"的信号
+- **⭐「独立声音背书」**：He has been an **independent voice** on whether the industry's safeguards are adequate；"we believe the Foundation's governance is stronger with people prepared to **challenge prevailing assumptions**"——以"欢迎挑战者"框定为治理可信度组件（安全人设的治理侧补强）
+- **「背景三段式 + 结构 callback」**：government experience（CAISI/NIST 高级技术顾问）→ ARC 创始人 → 2017-2021 OpenAI 对齐研究负责人 + RLHF 奠基；链 recapitalization（2025/10）+ CA AG / DE AG 审查——个人履历 + 治理沿革双线（标准人事稿模板）
+
+### 四账号适配预判（9/9 三连发）
+
+- 量子学派：**「AI 政策窗口」= 思想史级选题**——"一个正在关闭的窗口：当 AI 的能力开始跑在监管机构前面"（Brockman 防御者窗口 × 政策窗口的双隐喻）；"不要追求完美的政策，而要追求有意义的行动"背后的治理哲学
+- 差评：「OpenAI 上一周刚发完最强的模型，这一周又发了一个'工作版'，还顺手点名说比 Claude 少 74.7% 的翻车」（Astra work + 点名对照 eval）；「OpenAI 把 RLHF 之父请进了自己的董事会」（Paul Christiano 治理）
+- 机器之心：Astra work 的成本效率前沿（fewer tokens/fewer retries + Terminal Bench 4.0 + Artificial Analysis）+ 25× 延迟改进内部案例 + 企业管控与插件矩阵；政策文六章框架拆解（四条行动 + 四法案 + reverse federalism）
+- 棱镜：**OpenAI 的"政策窗口"叙事 vs 自家 Frontline Red Team 事故史**（一边呼吁强制监管、一边发布 Critical 级模型）；点名竞对 eval 的商业伦理（是透明对照还是营销胜负手？）；"安全不阻碍进步"话术与 8/31 Anthropic pacing 的对照；内部 dogfooding 数据的自证问题
+
+### 组件库状态
+
+- **新增约 22 组件（第六十节）**，总量 **839+**（57 组件节 + 6 状态节）
+- 重点关注清单：① 明日（9/11）cron：复核 9/10 全天（9/9 三连发后是否延续，或进入静默窗）+ **Anthropic 恢复后全量核对 9/9-9/11 窗口 + hero 区**（「不可达 ≠ 无发布」第八次应用）② **Risk Report 逾期第 10 天**（8/31 承诺）③ OpenAI 9/9 三连发后静态观察（短窗打破，1-2 天内或续发）④ Alpöge/Buckmaster forced Euler 论文公开后核对 ⑤ 内部超 Astra 模型（8/28 起训练）后续披露 ⑥ 7 月 Anthropic 漏看三篇核对 ⑦ 搜狗空结果页第 12 日观察 ⑧ 「Paul Christiano」治理观察（SSC 与安全承诺的兑现）
