@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 11 日（周五检查：9/10 判定修正——feed 滞后第九次同类，OpenAI 9/10 实际六连发：Agents API（开发者平台）+ GPT-Live-1 in the API（语音模型 API）+ ChatGPT for Financial Services（金融垂直）+ 政府采购/网络安全扩展 + Data agent（「Now everyone can put data to work」）+ 抗菌分子研究者故事；**Anthropic /research 双页恢复后新发现 9/9 + 9/10 两篇**（网安事故对齐评估 + 战术情报定位/常规武器能力红队评估，「不可达 ≠ 无发布」第八次应验）；约 45 组件入库，组件库 839+ → 884+（第六十一节）；9 月累计 29 篇 / 8 发布日；Anthropic /news 仍无新（Risk Report 逾期第 11 天仍未发布）；四账号正文仍不可达第 124 天，搜狗空壳页连续第 12 日）
+> 最后更新：2026 年 9 月 12 日（周六检查：9/11「无新（低置信）」判定修正——feed 滞后第十次同类，OpenAI 9/11 实际双发：Habitat 在线存储工程博客 Part 1（7000 万请求/秒、1 PB 级）+ Cognition/Devin 客户故事（GPT-6 Astra 自证式测试）；**feed 首现未来日期预约条目**（9/14 Perplexity 客户故事）；约 28 组件入库，组件库 884+ → 912+（第六十二节）；9 月累计 31 篇 / 9 发布日；Anthropic 9/12 双页全断（波动第 17 次翻转，Risk Report 逾期第 12 天无法核查）；四账号正文仍不可达第 125 天，搜狗空壳页连续第 13 日）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 全量为计数权威）
-> 数据源限制：Web Search MCP 仍不可用（第 124 天，SSE 协议错误），中文样本 5/9 起中断（第 124 天，搜狗空结果页 10.5-10.7KB 模式持续）；Anthropic 双页 9/11 恢复（波动第 16 次翻转：9/10断→9/11复；curl news/research http=200 + sitemap 200），/news 最新仍 9/1、**/research 全量核对发现 9/9 + 9/10 两新文**（「不可达 ≠ 无发布」第八次应验，见第六十一节）
+> 数据源限制：Web Search MCP 仍不可用（第 125 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 404（SSE Non-200）；中文样本 5/9 起中断（第 125 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 双页 9/12 全断**（波动第 17 次翻转：9/11复→9/12断；curl news/research/sitemap 全 http=000 超时 exit 28），恢复后须全量核对 9/11-9/13 窗口 + Risk Report（「不可达 ≠ 无发布」第九次应用预备）
 
 ---
 
@@ -4796,3 +4796,71 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增约 45 组件（第六十一节）**，总量 **839+ → 884+**（58 组件节 + 6 状态节）
 - 重点关注清单：① 明日（9/12）cron：复核 9/11 全天（9/10 六连发后是否延续，或进入静默窗）② **Risk Report 逾期第 11 天**（8/31 承诺；/news 仍无新）③ **Anthropic 9/9 对齐评估 + 9/10 武器定位评估**入库后的后续（METR 调查进展 + 数学界/政策界反应）④ Alpöge/Buckmaster forced Euler 论文公开后核对 ⑤ 内部超 Astra 模型（8/28 起训练）后续披露 ⑥ 7 月 Anthropic 漏看三篇核对（investigating-incidents-cybersecurity-evals 7/30 的后续 = 9/9 对齐评估已入库，可结项）⑦ 搜狗空结果页第 13 日观察 ⑧ GPT-Live-1 六榜（Full Duplex Bench/Tau3 等）完整数据备用
+
+---
+
+## 六十二、9/12（周六）检查：9/11「无新（低置信）」判定修正——feed 滞后第十次同类，OpenAI 9/11 实际双发（Habitat 存储工程博客 Part 1 + Cognition/Devin 客户故事）+ feed 首现未来日期预约条目（9/14 Perplexity 客户故事）；约 28 组件入库（884+ → 912+）
+
+### 9/11 判定修正（feed 滞后第十次同类）
+
+- **📈 判定修正链延伸**：8/31→9/1→9/2→9/3→9/6→9/9→9/10→**9/11**——昨日「9/11 截至 21:00 无新（低置信）」有误，今日 RSS 全量复核发现 **9/11 实际 2 篇**：
+  - `09-11 10:00 GMT`（北京 18:00）= **Rapidly scaling online storage to serve over 1 billion ChatGPT users**（Habitat 工程博客 Part 1）——昨检（北京 21:00）前 3h 已发布却仍未入 feed（滞后）
+  - `09-11 16:00 GMT`（北京 9/12 00:00）= **Cognition helps Devin test its own work with GPT‑6 Astra**（客户故事）——发布时刻在昨检之后
+- **9 月累计修正为 31 篇 / 9 发布日**（9/1 ×4 + 9/2 ×1 + 9/3 ×5 + 9/6 ×2 + 9/7 ×1 + 9/8 ×7 + 9/9 ×3 + 9/10 ×6 + 9/11 ×2）
+- **🔥 feed 结构新现象：首现「未来日期」条目**——RSS 顶部出现 `Mon, 14 Sep 2026 00:00:00 GMT`（北京 9/14 08:00）的 Perplexity 客户故事，**当前时间（9/12 21:00）早于其 pubDate 约 2 天**——疑为预发布/预约排期；计数口径上先记为「9/14 条目」，待 9/14 cron 复核其为正常发布还是排期占位
+- **9/12（今日）截至 21:00 无新条目（低置信）**——放量节奏：9/8 七连发 → 9/9 三连发 → 9/10 六连发 → 9/11 二连发 → 9/12 暂零，接近本波尾声
+
+### A. OpenAI｜Rapidly scaling online storage to serve over 1 billion ChatGPT users（Habitat 工程博客 Part 1，约 15 组件）——「超大规模工程长文」文体（机器之心式范本）
+
+- **⭐「三数据锚点开场」**：**70M+ 请求/秒 · 1B+ 人/周 · 500 PB+ 数据**，横跨 **近 40 个地理区域**——用规模数字瞬间建立权威感
+- **⭐「因果链痛点开场」**：每个产品动作（登录/查设置/开新对话）都可能触发多次数据查询——"请求慢则产品慢，请求失败则产品彻底停摆"——把基础设施问题翻译成用户体验
+- **⭐「演进史 + 系列化」**：Habitat 起于 DevDay 2023 一个简单 Python 客户端库（对接单库 Azure Cosmos DB）→ 今日复杂分布式系统；明示**两篇系列**（本篇讲演进/库→服务/拉伸 Python；下篇讲多租户可靠性/读优化/Azure Cosmos DB 合作）
+- **⭐「反常规增长叙事」**：别人"按 10x 设计、盼能撑几年"，OpenAI **连续三年每年 >10x** ——"we've grown more than 10x year-over-year for the last three years"
+- **⭐「战术排序 + 榨干栈」工程师语气**：building and operating Habitat 是"a series of tactical decisions and sequencing"——理解每个组件到最低层以 squeeze as much juice out of our existing stack，同时顶住存储/算力 crunch
+- **⭐「谦逊转折」**：规模本身"not particularly challenging"，真正独特的是——**在支撑惊人造用户增长的同时还要把平台做成熟**（增速与成熟度双线并行）
+- **⭐「三阶段目标排序」**：先可靠到能扛 mission-critical 流量 → 再快到服务全球用户 → 最后"deftly operate at massive scale"
+- **⭐「抽象化宣言」**：Habitat 始于一个简单理念——**产品工程师不该操心数据库管理**（无需理解 schema lookup / routing / authorization / encryption / serialization / request shaping / connection pooling，甚至无需知道数据来自 Cosmos DB、缓存还是别的存储）
+- **⭐「用一次真实翻车证明架构选择」**：为降低单区域故障影响而做区域化迁移——加路由逻辑 + feature flag → 逐服务协调数天 → 加 shadowing 又几天 → 修 bug 又几天 → 最终因某团队无关原因回滚到有 bug 的客户端，**导致了本想避免的故障**——"increasingly brittle, inefficient, and susceptible to operational failures"
+- **⭐「operational fan out」术语 + 单点控制**：把存储逻辑抽为独立服务 = 部署/可观测/平台增强的**单点控制**，改进一次即惠及所有产品
+- **⭐「单点安全阻塞点」双刃**：集中式服务同时也是 **single chokepoint**——可集中强制访问控制、审计日志、限制对底层存储（Cosmos DB）的访问，"protecting user data and preventing unauthorized access from external, internal, and agent actors"（**点名 agent 为威胁主体之一**）
+- **⭐「主动承受技术债 + 押注自家模型」**：明知 Python 服务 overhead 高、100x 规模不可接受、终将重写，仍视之为 "strategic incursion of technical debt"；**赌自家 coding 模型会让未来迁移变简单**（"we bet that by the time a full migration off Python was required, Codex and GPT would make that migration achievable"——最终赌对）——**AI 时代工程决策的新论证方式**
+- **⭐「尾延迟核心命题」**："平均请求导致数百次数据库调用，**最慢的那次数据库调用才是用户感受到的**"
+- **⭐「asyncio 调度延迟的可操作度量」**：周期性调度后台任务 + 记录期望 vs 实际执行时间差 = 实时测量事件循环调度延迟；高负载下调度抖动可达数百毫秒甚至数秒 → 对策是**每进程只服务少量并发请求 + 海量扩 Python worker 进程**
+- **⭐「并发 ≠ CPU 并行」**：asyncio 允许并发处理，但同一时刻只有一个请求在 CPU 线程上执行——CPU 密集型工作多时严重拉高延迟
+- **「根因叙事」**：Statsig feature flag 默认每分钟无抖动轮询 + 每 pod 跑 8 个 Python 进程 → 每分钟整 pod 所有 worker 同时停顿解析超大配置文件 → p99 尖刺；修复 = 部署更小的定向配置（CPU profiling 定位）
+
+### B. OpenAI｜Cognition helps Devin test its own work with GPT‑6 Astra（客户故事，约 7 组件）——「自证式测试」客户故事变体
+
+- **⭐「自测并展示结果」核心命题**：标题即论点——让 AI **测试自己的工作并展示结果**（test its own work and show that it works）
+- **⭐「客户高管金句」**：Walden Yan（Cognition 联创）——"Astra 改进的一大块是**测试并证明其工作确实按预期运行**的能力"
+- **⭐「证据化测试 demo」**：Devin 用 Astra 测 Otter Run（iPhone 游戏）→ 返回**模拟器运行录像** + 通过检查项/未测区域的**报告**——"录像 = 行为，报告 = 测试范围"，工程师据此判断
+- **⭐「截图→修复→截图闭环」**：客户发 bug 截图 → 交给 Devin（用 Astra）→ 修复 → 返回结果截图——"get back to customers much quicker"
+- **⭐「终局愿景句」**："we have to **manually look at less code and end up shipping more**"——从"逐行人工复核"到"AI 自证 + 人抽查"的信任迁移
+- **「产品线全铺」**：Astra 应用于 Devin 云 agent + CLI + 桌面产品全线
+
+### C. OpenAI｜Perplexity trusts GPT‑6 Astra with end-to-end systems（客户故事，9/14 条目，约 6 组件）
+
+- **⭐「能力外溢链」**："模型编码能力每次变强，Perplexity 的搜索引擎也变强"——更会写程序 → 更好地搜索网络与内部信息并简洁总结
+- **⭐「客户高管金句」**：Johnny Ho（Perplexity 联创 & CSO）——"我们可以让模型**撰写沟通、编辑真实系统、监控生产软件**，这是前几代做不到的"
+- **⭐「模拟服务自测」**：让模型围绕应用建一个小型测试程序，生成"像另一个服务会发来的"真实响应（如某语言模型 API 或 connector），**代替那些服务来端到端测工作流**
+- **⭐「信任迁移金句」**："we're actually able to **trust it with full end-to-end systems and check in on it much less frequently** than previous generations"——与 Cognition 稿同主题：**从逐行复核到端到端信任**
+- **「真实系统三类操作」**：craft communications / edit real-world systems / monitor production software
+
+### 风格观察（9/11-9/14 窗口）
+
+- **⭐「信任迁移」成为 Astra 客户故事统一叙事弧**：Cognition（自测证据 → 少看代码多交付）+ Perplexity（端到端少检查）——客户故事模板从"能力演示"升级为"**人工复核量下降**"的信任叙事
+- **⭐「工程深度长文回归」**：8 月起少有纯工程稿，本周出 Habitat Part 1（两篇系列）——"数据锚点 + 因果链痛点 + 根因叙事 + 坦率权衡 + 押注自家模型"= 机器之心式工程范本
+- **⭐「预约/未来日期条目」新现象**：feed 首现 pubDate 晚于当前时间的条目，计数与判读需新增一条规则
+- **「放量尾声」**：9/8→9/12 单日篇数 7→3→6→2→0，脉冲式爆发进入尾声
+
+### 四账号适配预判（9/11-9/14 窗口）
+
+- 量子学派：**「并发不等于并行」**——Python 的 GIL 与事件循环调度延迟，可作"看不见的瓶颈"思想实验；**「最慢的那次调用才是用户感受到的」**——尾延迟的哲学化（平均值骗局）
+- 差评：「OpenAI 把自己家的存储系统扒了个底朝天——500 PB、每秒 7000 万次请求」；「以前的 AI 写完代码你得逐行看，现在它自己测自己还附录像」
+- 机器之心：Habitat 架构演进（库→服务、单点控制 vs single chokepoint、asyncio 调度延迟度量、Statsig 配置根因）；Astra 客户故事的"自证式测试"方法论
+- 棱镜：**「AI 时代的技术债策略：押注自家模型会替你重写」**（OpenAI 押注 Codex/GPT 完成未来 Python 迁移）；客户故事里"人工复核量下降"的就业/信任含义；**agent 被列为内部威胁主体之一**的安全叙事
+
+### 组件库状态
+
+- **新增约 28 组件（第六十二节）**，总量 **884+ → 912+**（59 组件节 + 6 状态节）
+- 重点关注清单：① 明日（9/13）cron：复核 9/12 全天 ② **9/14 预约条目（Perplexity）复核**——确认正常发布还是排期占位 ③ **Risk Report 逾期第 12 天**（8/31 承诺；/news 仍无新）④ Anthropic 9/12 双页全断（波动第 17 次翻转）→ 恢复后全量核对 9/11-9/13 窗口 + Risk Report ⑤ Habitat Part 2（已预告：多租户可靠性/读优化/Cosmos DB）⑥ Alpöge/Buckmaster forced Euler 公开后核对 ⑦ 内部超 Astra 模型（8/28 起训练）后续披露 ⑧ 搜狗空结果页第 13 日观察 ⑨ GPT-Live-1 六榜完整数据备用
