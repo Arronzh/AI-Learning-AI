@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 12 日（周六检查：9/11「无新（低置信）」判定修正——feed 滞后第十次同类，OpenAI 9/11 实际双发：Habitat 在线存储工程博客 Part 1（7000 万请求/秒、1 PB 级）+ Cognition/Devin 客户故事（GPT-6 Astra 自证式测试）；**feed 首现未来日期预约条目**（9/14 Perplexity 客户故事）；约 28 组件入库，组件库 884+ → 912+（第六十二节）；9 月累计 31 篇 / 9 发布日；Anthropic 9/12 双页全断（波动第 17 次翻转，Risk Report 逾期第 12 天无法核查）；四账号正文仍不可达第 125 天，搜狗空壳页连续第 13 日）
-> 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 全量为计数权威）
-> 数据源限制：Web Search MCP 仍不可用（第 125 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 404（SSE Non-200）；中文样本 5/9 起中断（第 125 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 双页 9/12 全断**（波动第 17 次翻转：9/11复→9/12断；curl news/research/sitemap 全 http=000 超时 exit 28），恢复后须全量核对 9/11-9/13 窗口 + Risk Report（「不可达 ≠ 无发布」第九次应用预备）
+> 最后更新：2026 年 9 月 13 日（周日检查：安静日 + 方法论升级——9/12 零发布「复核确认」✅ + 9/13 截至 21:00 无新（低置信），**周末静默回归**；**🔥 sitemap 交叉核对揭露 RSS 盲区**：13 条 /index/ 条目不在 feed（最新 = two-blind-brothers 无障碍客户故事，lastmod 9/13 06:16）；9/14 Perplexity 条目复核 = 页面已上线但 pubDate 为未来日期；约 14 组件入库，组件库 912+ → 926+（第六十三节）；9 月累计仍 31 篇 / 9 发布日；Anthropic 9/13 连续第二日全断（Risk Report 逾期第 13 天无法核查）；四账号正文仍不可达第 126 天，搜狗空壳页连续第 14 日）
+> 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 计数权威 + **sitemap lastmod 交叉核对（新增，可发现 RSS 未收录条目）**）
+> 数据源限制：Web Search MCP 仍不可用（第 126 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 404（SSE Non-200）；中文样本 5/9 起中断（第 126 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 双页 9/13 连续第二日全断**（9/12断→9/13断；curl news/research/sitemap 全 http=000 超时 exit 28），恢复后须全量核对 9/11-9/13 窗口 + Risk Report（「不可达 ≠ 无发布」第九次应用预备）；**新增可靠通道：openai.com/sitemap.xml/page/（lastmod 交叉核对待办，用于补 RSS 盲区）**
 
 ---
 
@@ -4864,3 +4864,68 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增约 28 组件（第六十二节）**，总量 **884+ → 912+**（59 组件节 + 6 状态节）
 - 重点关注清单：① 明日（9/13）cron：复核 9/12 全天 ② **9/14 预约条目（Perplexity）复核**——确认正常发布还是排期占位 ③ **Risk Report 逾期第 12 天**（8/31 承诺；/news 仍无新）④ Anthropic 9/12 双页全断（波动第 17 次翻转）→ 恢复后全量核对 9/11-9/13 窗口 + Risk Report ⑤ Habitat Part 2（已预告：多租户可靠性/读优化/Cosmos DB）⑥ Alpöge/Buckmaster forced Euler 公开后核对 ⑦ 内部超 Astra 模型（8/28 起训练）后续披露 ⑧ 搜狗空结果页第 13 日观察 ⑨ GPT-Live-1 六榜完整数据备用
+
+## 六十三、9/13（周日）检查：安静日（周末静默回归）+ 方法论升级——9/12 零发布「复核确认」✅ + 9/13 截至 21:00 无新（低置信）；🔥 sitemap 交叉核对揭露 RSS 盲区（13 条 /index/ 不在 feed，最新 = two-blind-brothers 无障碍客户故事）；约 14 组件入库（912+ → 926+）
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 第 126 天不可达；搜狗空结果页持续（量子学派/机器之心 10,686B、差评/棱镜 10,572B ≈ 10.5-10.7KB「暂无相关官方认证订阅号」空壳页，连续第 14 日） |
+| OpenAI RSS | 最新**非未来**条目仍 9/11 16:00 GMT（Cognition）；**9/12 全天零发布「复核确认」✅**（距检查 >33h，超实测最长滞后 ~28h）；**9/13 截至 21:00 无新（低置信，待明日复核）**；9 月累计仍 31 篇 / 9 发布日 |
+| OpenAI sitemap | ✅ 可达（`sitemap.xml/page/` 3.1MB / 504 条 URL）；**交叉核对发现 13 条 /index/ 条目不在 RSS**（详见下） |
+| Anthropic /news + /research + sitemap | ❌ 全断（curl exit 28 超时 http=000，**连续第二日**）；最后已知 /news 9/1、/research 9/10 |
+| Web Search MCP | ❌ 第 126 天（SSE 协议错误「Invalid content type」） |
+| aliyun_web_parser | ❌ SSE Non-200（连续不可用） |
+
+### 今日新增认知
+
+**1. ✅ 9/12 零发布「复核确认」（连续第二次）——周末静默回归**
+- 9/12（周六）昨日判「无新（低置信）」→ 今日 RSS 全量复核**确认成立**：距最新非未来条目（9/11 16:00 GMT）已 >33h，远超实测最长滞后 ~28h
+- **9/13（周日）截至 21:00 亦无新（低置信）**；OpenAI 连续两日（周六 + 周日）零发布 = **8 月「周末静默」惯例回归**（8 月连续 5 个周末零发布）；且 feed 已提前挂上 9/14（周一）条目 → **周一恢复发布**预期
+- **脉冲观察**：9/8 七连发 → 9/9 三连发 → 9/10 六连发 → 9/11 二连发 → 9/12 零 → 9/13 零；本波（9/8-9/11 共 18 篇）疑似结束，「爆发后静默 2-4 天」规律暂符（当前静默 2 天）
+
+**2. 🔧 Perplexity 9/14 条目复核：页面已上线 + pubDate 为未来日期（认知修正）**
+- 昨日记为「预约/未来日期条目」，今日复核：`openai.com/index/perplexity-improving-accuracy-with-astra/` **页面已可正常读取（web_fetch 200，全文可读）**，但 RSS pubDate 仍为 `9/14 00:00 GMT`（北京 9/14 08:00）
+- **修正认知**：不是"尚未发布的排期占位"，而是"**正文已上线、pubDate 设为未来**"——RSS 采用**计划发布日**而非实际上线时刻；据此昨日入库的 Perplexity 内容（第六十二节入库 C）确认有效；9/14 仍须复核 `pubDate == 实际发布` 关系
+
+**3. 🔥🔥 方法论升级：sitemap 交叉核对揭露 RSS 盲区（RSS ≠ /index/ 完整镜像）**
+- 首次启用 `openai.com/sitemap.xml/page/`（含 `<lastmod>`）与 RSS 全量交叉核对：sitemap 含 **181 条 /index/ 条目**，其中 **13 条不在 RSS feed 中**
+- **最新一条 = `two-blind-brothers`（lastmod 9/13 06:16 GMT）**，内容为**无障碍/视障社群客户故事**（详见入库）；其余 12 条含旧条目（最早 2026-05-22）与同批次页面
+- **方法论意义**：「RSS 全量为计数权威」假设修正为「**RSS 覆盖大部分 /index/ 但存在盲区**」；sitemap `lastmod` 可作**辅助发现通道**（但 lastmod 亦随编辑变动 ≠ 发布日期——如 9/2 的 ATV 条目 lastmod 显示 9/12）；**后续每日 cron 应增补 sitemap 交叉核对步骤**
+- 注：13 条中多为民用/事件/计划页（devday-2026、early-access-for-safety-testing、economic-research-exchange…）或客户故事（zalando、bbva-2025、growing-atv-big-air-tour）——OpenAI 并非全部 /index/ 页都进 RSS
+
+**4. 🔧 Anthropic 连续第二日全断（9/12断→9/13断）+ Risk Report 逾期第 13 天**
+- curl（news/research/sitemap）三通道全 http=000（exit 28 超时）——继昨日（波动第 17 次翻转）后**连续第二日不可达**，隔日交替特征暂被"连续断"打破；**Risk Report（8/31 承诺）逾期第 13 天无法核查**；「不可达 ≠ 无发布」第九次应用预备（恢复后全量核对 9/11-9/13 窗口 + hero 区）
+
+### 今日入库（约 14 组件，第六十三节）——RSS 盲区首条：无障碍/人文客户故事
+
+#### I. Supporting the blind community with ChatGPT（Two Blind Brothers，sitemap lastmod 9/13 06:16 GMT；RSS 未收录）——「无障碍人文客户故事」文体
+
+- **⭐「具名人物 + 疾病故事」开场**：Bradford 与 Bryan Manning 兄弟，同患 **Stargardt 病**（罕见遗传性黄斑病变，丧失大部分中心视力）——"spent their lives adapting to a world that was not designed with them in mind"
+- **⭐「残缺 → 连接」转折**：同样的视力丧失经历让兄弟彼此更亲近，并连接起他们想支持的视障社群（把缺陷重写为纽带）
+- **叙事锚点**：2016 年 5 月创立非营利服饰公司 **Two Blind Brothers**（用品与平台为盲人研究募资、创造机会）
+- **⭐主角金句**：Bradford——"success means moving this community that we come from **one inch further, one minute faster**"（微小进步的价值观）
+- **⭐「生活仍依赖视觉」痛点清单**：读菜单 / 填表 / 找特定信息 / 读表格——"需要显著更多的时间、精力或他人帮助"
+- **⭐「小瞬间累积 → 塑造机会」句**："Those moments may seem small, but they add up. They can shape how people **learn**, how they **work**, and **which opportunities feel attainable**."（把日常摩擦上升到机会平等）
+- **⭐核心价值命题**：把**视觉信息转化为可听、可理解、可行动**的内容 → 直接接入世界（"Tasks that once required an extensive workaround are now within reach"）
+- **⭐金句**：Bradford——"**Accessibility means removing a barrier**"（无障碍 = 移除障碍）
+- **⭐具体 demo（用细节而非功能清单）**：用摄像头对准显示器背面问该用哪个口；**用 ChatGPT Live 在多个几乎相同的接口中定位 DisplayPort**（本可求助妻子或朋友——"独立性"的具体化）
+- **⭐场景化移动使用**：问建筑长什么样 / 地标在哪 / 从机场登机口到网约车上车点
+- **⭐工作流迁移**：表格从"放大屏幕逐格找数字"→ 让 ChatGPT 分析数据、找异常；连接邮箱 → 问"哪些需要我处理"
+- **⭐「不只是检索，而是推进工作」**：用语音头脑风暴与口述、分析募资数据、为 **Thrive Blind**（青年视障者培训与职业机会项目）做演示
+- **⭐金句**：Bryan——"ChatGPT is **the greatest accessibility tool in history**"
+- **⭐愿景收尾（身份重定义）**：视障者"first known for what they **create, lead, and accomplish**"；Bradford 想象失明有一天成为"**maybe the second or third thing** that they're known for"
+- **⭐人文升华收尾**：近十年为社群打造 + "moving forward"（对照 9/10 抗菌故事的"望远镜/显微镜"收尾）
+
+### 四账号适配预判（RSS 盲区条目）
+
+- 量子学派：**「无障碍即移除障碍」**——把技术哲学化为"世界是为何人设计的"；"one inch further, one minute faster" 的微小进步观
+- 差评：「这两位盲人兄弟创办了卖衣服的公益公司，现在靠 ChatGPT 独立出门、自己看表格」；"ChatGPT 是历史上最伟大的无障碍工具"
+- 机器之心：ChatGPT Live 的**实时视觉定位**能力（在几乎相同的接口中识别 DisplayPort）作为多模态落地用例
+- 棱镜：**「无障碍是 AI 最被低估的社会价值」**——从"生产力工具"到"机会平等"的叙事；少数群体如何成为 AI 落地的受益主体
+
+### 组件库状态
+
+- **新增约 14 组件（第六十三节）**，总量 **912+ → 926+**（60 组件节 + 6 状态节）
+- 重点关注清单：① 明日（9/14）cron：复核 9/13 全天 ② **9/14 Perplexity 条目复核**——pubDate（9/14 00:00 GMT）是否等于实际可见日起，是否有周一追加发布 ③ **Risk Report 逾期第 13 天**（8/31 承诺；/news 仍无新）④ Anthropic 9/13 连续第二日全断 → 恢复后全量核对 9/11-9/13 窗口 + hero 区 ⑤ **新增 sitemap 交叉核对步骤常态化**（监控 /index/ 盲区新增）⑥ Habitat Part 2（预告：多租户可靠性/读优化/Cosmos DB）⑦ Alpöge/Buckmaster forced Euler 公开后核对 ⑧ 内部超 Astra 模型（8/28 起训练）后续披露 ⑨ 搜狗空结果页第 14 日观察 ⑩ GPT-Live-1 六榜完整数据备用
