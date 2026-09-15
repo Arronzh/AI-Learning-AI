@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 14 日（周一检查：周末静默结束 + 🔥 方法论再升级——9/13 零发布「复核确认」✅（周末两日零发布），9/14（周一）恢复发布（Perplexity 客户故事正式上线）；**🔥🔥 sitemap 全路径核对揭露新盲区**：root 级「事故枢纽页」`hugging-face-incident-and-misalignment`（lastmod 9/13 00:42，既不在 RSS 也不在 /index/）——**盲区不止 /index/**；约 15 组件入库，组件库 926+ → 941+（第六十四节）；9 月累计 32 篇 / 10 发布日；Anthropic 连续第三日全断（Risk Report 逾期第 14 天无法核查）；四账号正文仍不可达第 127 天，搜狗空壳页连续第 15 日）
+> 最后更新：2026 年 9 月 15 日（周二检查：9/14「单篇」判定修正——feed 滞后同类再验，9/14 实际双发（Perplexity 客户故事 + **Fyxer 客户故事**，后者 BJ 20:00 发布但 RSS 未收录）；**9/15 新图文**（sitemap 全路径盲区首条「实践型」条目：`using ChatGPT to detect wildfires early`，少年主角 + 五年级科学项目 → 三城部署，RSS 尚未收录）；事故枢纽页 lastmod 更新至 9/15（**滚动维护确认**）；约 22 组件入库，组件库 941+ → 963+（第六十五节）；9 月累计 33 篇 / 10 发布日；Anthropic 连续第四日全断（Risk Report 逾期第 15 天无法核查）；四账号正文仍不可达第 128 天，搜狗空壳页连续第 16 日）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 计数权威 + **sitemap 全路径 lastmod 交叉核对（新增，可发现 RSS 与 /index/ 均未收录的 root 级 hub/政策/业务页）**）
-> 数据源限制：Web Search MCP 仍不可用（第 127 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 404（SSE Non-200）；中文样本 5/9 起中断（第 127 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 双页 9/14 连续第三日全断**（9/12断→9/13断→9/14断；curl news/research 全 http=000 超时 exit 28），恢复后须全量核对 9/11-9/14 窗口 + Risk Report（「不可达 ≠ 无发布」第九次应用预备）；**可靠通道：openai.com/sitemap.xml/page/（全路径 lastmod 交叉核对，用于补 RSS 与 /index/ 盲区）**
+> 数据源限制：Web Search MCP 仍不可用（第 128 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 128 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 双页 9/15 连续第四日全断**（9/12断→9/13断→9/14断→9/15断；curl news http=000、research http=200 size=0），恢复后须全量核对 9/11-9/15 窗口 + Risk Report（「不可达 ≠ 无发布」第九次应用预备）；**可靠通道：openai.com/sitemap.xml/page/（全路径 lastmod 交叉核对，用于补 RSS 与 /index/ 盲区——本轮再证「RSS 与 /index/ 之外仍可能有新图文」）；⚠️ 注意 lastmod 亦含批量 re-render 噪声（如 9/14 21:27 数十个客户页同秒更新），lastmod ≠ 发布日期**
 
 ---
 
@@ -4996,3 +4996,84 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增约 15 组件（第六十四节）**，总量 **926+ → 941+**（61 组件节 + 6 状态节）
 - 重点关注清单：① 明日（9/15）cron：复核 9/14 全天（周一是否续发）② **sitemap 全路径核对常态化**（非 /index/ 的 hub/政策/业务页纳入监控；root 级页面）③ **Risk Report 逾期第 14 天**（8/31 承诺；Anthropic 连续三日全断无法核查）④ Anthropic 恢复后全量核对 9/11-9/14 窗口 + hero 区 ⑤ 事故枢纽页后续追加（时间线滚动更新 + "soon" 待发的 misalignment 披露标准）⑥ Habitat Part 2（预告：多租户可靠性/读优化/Cosmos DB）⑦ Alpöge/Buckmaster forced Euler 公开后核对 ⑧ 内部超 Astra 模型（8/28 起训练）后续披露 ⑨ 搜狗空结果页第 15 日观察 ⑩ RubyGems 案后续核查
+
+## 六十五、9/15（周二）检查：9/14「单篇」判定修正——feed 滞后同类再验，9/14 实际双发（Perplexity + Fyxer 客户故事）；9/15 新图文（sitemap 全路径盲区首条「实践型」条目：Using ChatGPT to detect wildfires early）；事故枢纽页滚动维护（lastmod 9/15）；约 22 组件入库（941+ → 963+）
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 第 128 天不可达；搜狗空结果页持续（量子学派/机器之心 10,686B、差评/棱镜 10,572B ≈ 10.5-10.7KB「暂无相关官方认证订阅号」空壳页，连续第 16 日） |
+| OpenAI RSS | 最新条目 = **9/14 12:00 GMT（Fyxer 客户故事）**；**⚠️ 9/14 判定修正：实际 = 2 篇**（Perplexity + Fyxer）——昨日 cron 只记 1 篇，Fyxer（BJ 20:00 = 检查前 1h 发布）未入 feed；9 月累计修正为 **33 篇 / 10 发布日**；9/15 截至 21:00 RSS 暂未收录新条目（低置信，见 sitemap 发现） |
+| OpenAI sitemap | ✅ 可达（3.2MB / 522 条 URL）；/index/ 交叉核对：**14 条不在 RSS**（新增 `detecting-wildfires-early`）；**🔥 全路径盲区再发现**（详见下） |
+| Anthropic /news + /research | ❌ 全断（curl news http=000 exit 28；research http=200 但 size=0，**连续第四日**）；最后已知 /news 9/1、/research 9/10/9/11 |
+| Web Search MCP | ❌ 第 128 天（SSE 协议错误「Invalid content type」） |
+| aliyun_web_parser | ❌ SSE Non-200（连续不可用） |
+
+### 今日新增认知
+
+**1. 📈 9/14「单篇」判定修正——feed 滞后同类再验（第 N 次）**
+- 昨日 21:00 检查记录 9/14 = 1 篇（Perplexity）；今日 RSS 复查发现 **Fyxer 客户故事**（pubDate `Mon, 14 Sep 2026 12:00:00 GMT` = 北京 9/14 20:00，**在昨检前 1 小时已发布，但 RSS 未及时收录**）
+- **9/14 实际 = 2 篇**；**9 月累计修正为 33 篇 / 10 发布日**
+- **教训延续**：「当日检查的 RSS 结果 ≠ 当日真实发布量」——hour-level 滞后持续存在；**日志式"低置信"标注 + 次日 RSS 全量复核**仍是最高价值铁律
+
+**2. 🔥 sitemap 全路径核对再立功：9/15 新图文「Using ChatGPT to detect wildfires early」**
+- sitemap `/index/` 条目 lastmod **9/15T13:00Z**（= 北京 9/15 21:00，检查时点），URL = `openai.com/index/detecting-wildfires-early/`；**RSS 尚未收录，页面可读（web_fetch 200）** → 判定为 **9/15 新发布**
+- **确认「sitemap 全路径 + lastmod 排序」是 RSS 之外的有效发现通道**（继 9/13 two-blind-brothers、9/14 事故枢纽页之后，第三次靠 sitemap 补 RSS 盲区）
+
+**3. ⚠️ lastmod 噪声辨认：批量 re-render ≠ 新发布**
+- 本轮 sitemap 中 `/index/` 约 **80 个客户页**（uber/notion/stripe/ramp/databricks/zendesk/…）lastmod 集中为 **9/14 21:27:4x–5x 同秒区间** → 明显的**批量重建时间戳**，非发布日期
+- **方法论修正**：`lastmod` 仅作「发现候选」用，**须与 RSS / 页面正文 / 标题语义交叉验证是否为真正新图文**；单看 lastmod 会把批量重渲染误判为"80 篇新文"
+
+**4. 🔧 事故枢纽页滚动维护确认**：`hugging-face-incident-and-misalignment`（root 路径）lastmod 更新至 **9/15T12:54Z**，但页面可见章节（五类行为分类 / 时间线 / agent spam 定义）与 9/14 入库一致——**「活文档」持续编辑但未新增实质章节**，印证枢纽页体裁的"维护态"
+
+**5. 🔧 Anthropic 连续第四日全断（9/12→9/15）**——curl /news http=000、/research http=200 但 body 空；**Risk Report（8/31 承诺）逾期第 15 天无法核查**；「不可达 ≠ 无发布」第九次应用预备（恢复后全量核对 9/11-9/15 窗口 + hero 区）
+
+### 今日入库（约 22 组件，第六十五节）
+
+#### A. How Fyxer built an AI executive assistant people trust（客户故事第 17 篇，9/14 12:00 GMT）
+
+- **⭐「Moravec 悖论」命名锚点开场**：引用经典 AI 悖论（"Things that humans find easy are hard for computers, and things that computers find easy are hard for humans"）——**用学术概念为产品难点背书**，一句话把"邮件回复"的难度升维（对照 OpenAI 客户故事常用"痛点-数字-故事"开场，此为"概念锚点"变体）
+- **⭐「同邮件不同回复」反直觉难度论证**："Two people can receive the same email and need **completely different replies** depending on the relationship, what has happened before, and what each person is trying to get done. That makes a seemingly simple task **deceptively hard** for AI"——**用对照案例把"简单任务"重定义为"难任务"**
+- **⭐「工作定义式」痛点开场**："work means keeping track of conversations and commitments across inboxes, meetings, messages, and apps… those commitments can **fall through the cracks**"
+- **⭐「选型归因三件套」**：客户为何选 OpenAI = ① 内部 benchmark 最强 ② 主观任务（语气/意图）的 fine-tuning 能力 ③ whiteboarding sessions + 技术协作的"hands-on"支持
+- **⭐客户金句 + 偏好表达**："I can drop a question in Slack and get an answer quickly… the team comes to our office and works through it with us. **They show up.**"（把 B2B 关系写成人的可靠感）
+- **⭐「Three lessons for founders」教育化结构**：客户故事从"讲故事"转向"给方法论"（三条可迁移经验，直接对创业者喊话）——**客户故事的第 N 形态：教程化**
+- **⭐「原子化拆解」主张**：30–50 个专用模型，"**Breaking the problem into many smaller models works much better than asking one model to write a good email**"——**系统之系统（system of systems）叙事**（对照"单体大模型"路线）
+- **⭐「种子模型分工链」**：reply decision model（分类：需回复/需排程/仅需知悉）→ intent + outcome 预测模型 → retrieval/memory 模型——把"写邮件"拆成预测流水线
+- **⭐「Memory 是系统核心」**：核心是决定**哪些细节跨对话保留、哪些单次消失**（"which details should persist across conversations and which should disappear"）
+- **⭐「数据资产」叙事**：先运营多年**人类行政助理服务** → 积累 **500,000+ 小时标注工作流** → 成为训练数据（"training data drawn from **the job itself**"）
+- **⭐技术透明（SFT + LoRA）**：supervised fine-tuning + Low-Rank Adaptation 做任务专用变体并控成本
+- **⭐「自训练反馈闭环」**：用户编辑草稿 → **编辑前后差异即训练信号**（"the difference between…"）
+- **⭐部署前 validation + 三维权衡**：accuracy × response time × cost（"the best choice can vary by job"）
+
+#### B. Using ChatGPT to detect wildfires early（实践型 / 少年主角故事，9/15 新图文）
+
+- **⭐「少年主角 + 触发场景」开场**：五年级目睹 2018 Camp Fire → 科学项目（few wires + heat detector + **hair dryer**，极简材料反差）
+- **⭐主角金句开场**："As a fifth grader, I wanted to understand why fires were so devastating and why there wasn't a solution."——先给动机，再给产品
+- **⭐「年龄反差」传播母题**："This would be a breakthrough technology, **even if it hadn't been developed by a kid**."（专家背书里嵌入年龄钩子）
+- **⭐时间压缩叙事**：五年后 science project → SensoRy AI 系统（科学展 → 落地产品）
+- **⭐技术平铺分解**：solar-powered sensors（heat/smoke/flame/plume）→ **mesh network** → ChatGPT 翻译成清晰警报（三段式信号链）
+- **⭐「检测只是第一步」递进命题**："Detecting a fire is only the first step. **The real challenge is turning complex sensor data into answers people can act on.**"
+- **⭐具体功能 demo + 三连问句示例**：walkie-talkie 功能让消防员直接问——"Is this a fire? Where is it located? What is the best evacuation route?"（把抽象能力落到对话场景）
+- **⭐一线用户背书**（Chief Nico King, Laguna Beach Fire Department）+ 土地管理机构背书（Michael O'Connell, Irvine Ranch Conservancy）
+- **⭐落地规模数据**：已在实地检测到火灾、部署 3 城、向全州 100+ 传感器扩展
+- **⭐身份传承式收尾金句**：上大学仍持续改进网络；"**There's no age requirement for you to find something that you're truly passionate to work on.**"
+
+### 跨稿/跨期观察
+
+- **⭐OpenAI 客户/实践故事形态谱系（9 月）**：自测证据型（Cognition 9/11）→ 端到端信任迁移型（Perplexity 9/14）→ **教程化给创业者型（Fyxer 9/14）** → **少年实践型（wildfires 9/15）**——同一"客户故事"体裁四分
+- **⭐「年龄/身份反差」成传播钩子**（五年级学生 + 消防系统；对照 Two Blind Brothers 的"残疾创业者"）——OpenAI 故事线从"企业 ROI"扩展到"个人意义"
+- **⭐发现通道迭代**：9 月已连续三次靠 **sitemap 全路径** 补 RSS/`/index/` 盲区（two-blind-brothers 9/13、事故枢纽页 9/14、wildfires 9/15）
+
+### 四账号适配预判（Fyxer + wildfires）
+
+- 量子学派：**Moravec 悖论**——"人类觉得容易的，正是机器觉得难的"，一封邮件背后的人机认知边界
+- 差评：「一个五年级小孩用 ChatGPT 做了套山火预警系统，现在三个城市在用」；或「这家公司用 50 个小模型回邮件，比一个大模型强」
+- 机器之心：**"系统之系统"架构解读**（30-50 专用模型分工 + memory 核心 + SFT/LoRA 成本控制）；或**传感器→mesh→ChatGPT 的三段信号链**作为具身/edge AI 落地案例
+- 棱镜：**「AI 落地的最动人样本来自最不像工程师的人」**——少年创业者、消防救援一线的技术采纳
+
+### 组件库状态
+
+- **新增约 22 组件（第六十五节）**，总量 **941+ → 963+**（62 组件节 + 6 状态节）
+- 重点关注清单：① 明日（9/16）cron：复核 9/15 全天（wildfires 是否入 feed + 是否续发）② **sitemap 全路径核对常态化**（含 lastmod 噪声辨认：批量 re-render）③ **Risk Report 逾期第 15 天**（8/31 承诺；Anthropic 连续四日全断无法核查）④ Anthropic 恢复后全量核对 9/11-9/15 窗口 + hero 区 ⑤ 事故枢纽页滚动追加（时间线 + "soon" 待发的 misalignment 披露标准）⑥ Habitat Part 2（多租户可靠性/读优化/Cosmos DB）⑦ RubyGems 案后续核查 ⑧ Fyxer 客户故事第 17 篇后续（是否进入 feed 正式归档）⑨ 搜狗空结果页第 16 日观察 ⑩ DevDay 2026 页面（sitemap 新现 `/index/devday-2026/`）后续观察
