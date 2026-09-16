@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 15 日（周二检查：9/14「单篇」判定修正——feed 滞后同类再验，9/14 实际双发（Perplexity 客户故事 + **Fyxer 客户故事**，后者 BJ 20:00 发布但 RSS 未收录）；**9/15 新图文**（sitemap 全路径盲区首条「实践型」条目：`using ChatGPT to detect wildfires early`，少年主角 + 五年级科学项目 → 三城部署，RSS 尚未收录）；事故枢纽页 lastmod 更新至 9/15（**滚动维护确认**）；约 22 组件入库，组件库 941+ → 963+（第六十五节）；9 月累计 33 篇 / 10 发布日；Anthropic 连续第四日全断（Risk Report 逾期第 15 天无法核查）；四账号正文仍不可达第 128 天，搜狗空壳页连续第 16 日）
-> 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 计数权威 + **sitemap 全路径 lastmod 交叉核对（新增，可发现 RSS 与 /index/ 均未收录的 root 级 hub/政策/业务页）**）
-> 数据源限制：Web Search MCP 仍不可用（第 128 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 128 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 双页 9/15 连续第四日全断**（9/12断→9/13断→9/14断→9/15断；curl news http=000、research http=200 size=0），恢复后须全量核对 9/11-9/15 窗口 + Risk Report（「不可达 ≠ 无发布」第九次应用预备）；**可靠通道：openai.com/sitemap.xml/page/（全路径 lastmod 交叉核对，用于补 RSS 与 /index/ 盲区——本轮再证「RSS 与 /index/ 之外仍可能有新图文」）；⚠️ 注意 lastmod 亦含批量 re-render 噪声（如 9/14 21:27 数十个客户页同秒更新），lastmod ≠ 发布日期**
+> 最后更新：2026 年 9 月 16 日（周三检查：🔥 **sitemap 盲区「逐条清点」揭开 RSS 体裁性系统盲区**——三篇从未入库的研究者/人文故事（`creating new simulations of black holes with Codex`、`training to cycle across Antarctica with ChatGPT`、`accelerating antibiotic discovery with ChatGPT`），均为 /index/ 页且不入 RSS（科研「故事版」仅存 sitemap，feed 只收「科学深潜版」）；9/15 `detecting-wildfires-early` 发布满 2 天仍未入 feed；约 27 组件入库，组件库 963+ → 990+（第六十六节）；**Anthropic 恢复**（波动第 18 次翻转，news 465KB/research 315KB 正常体积）核查确认 9/1-9/16 news、9/10-9/16 research 均无新，Risk Report 逾期第 16 天仍未发；四账号正文仍不可达第 129 天，搜狗空壳页连续第 17 日）
+> 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 计数权威 + **sitemap 全路径 lastmod 交叉核对（可发现 RSS 与 /index/ 均未收录的页面）+「不在 RSS 清单」逐条 triage（禁止归类打包，逐条打开判体裁/新旧）**）
+> 数据源限制：Web Search MCP 仍不可用（第 129 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 129 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 双页 9/16 恢复**（9/12-9/15 连续四日断线后翻转，第 18 次波动）；**可靠通道：openai.com/sitemap.xml/page/（全路径 lastmod 交叉核对——⚠️ 本轮证实 RSS 存在「体裁性系统盲区」：科研主题同发「science 页（入 RSS）+ story 页（不入 RSS）」两个版本，RSS 是发布类型子集，不可单独作为文章总量分母）；⚠️ 注意 lastmod 亦含批量 re-render 噪声（如 9/15 17:58、9/16 09:30-10:44 数十个业务/客户页同秒区间更新），lastmod ≠ 发布日期**
 
 ---
 
@@ -5077,3 +5077,94 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增约 22 组件（第六十五节）**，总量 **941+ → 963+**（62 组件节 + 6 状态节）
 - 重点关注清单：① 明日（9/16）cron：复核 9/15 全天（wildfires 是否入 feed + 是否续发）② **sitemap 全路径核对常态化**（含 lastmod 噪声辨认：批量 re-render）③ **Risk Report 逾期第 15 天**（8/31 承诺；Anthropic 连续四日全断无法核查）④ Anthropic 恢复后全量核对 9/11-9/15 窗口 + hero 区 ⑤ 事故枢纽页滚动追加（时间线 + "soon" 待发的 misalignment 披露标准）⑥ Habitat Part 2（多租户可靠性/读优化/Cosmos DB）⑦ RubyGems 案后续核查 ⑧ Fyxer 客户故事第 17 篇后续（是否进入 feed 正式归档）⑨ 搜狗空结果页第 16 日观察 ⑩ DevDay 2026 页面（sitemap 新现 `/index/devday-2026/`）后续观察
+
+## 六十六、9/16（周三）检查：🔥 sitemap 盲区「逐条清点」揭开 RSS 系统性盲区——三篇被漏掉的人文/研究者故事（Codex 黑洞模拟 + ChatGPT 南极骑行 + ChatGPT 抗生素发现）；Anthropic 恢复（波动第 18 次翻转）核查无新；约 27 组件入库（963+ → 990+）
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 第 129 天不可达；搜狗空结果页持续（量子学派/机器之心 10,686B、差评/棱镜 10,572B ≈ 10.5-10.7KB「暂无相关官方认证订阅号」空壳页，连续第 17 日） |
+| OpenAI RSS | 最新条目 = **仍为 9/14 12:00 GMT（Fyxer 客户故事）**；**⚠️ 9/15 的 `detecting-wildfires-early` 发布已满 2 天仍未入 feed**（feed 滞后拉长）；1193 items，9/16 截至 21:00 无新条目 |
+| OpenAI sitemap | ✅ 可达（3.23MB / 525 loc / 507 lastmod 对）；/index/ 182 页，**14 条不在 RSS（与昨日同数）**；🔥 **本轮对「不在 RSS 清单」逐条清点，发现三篇从未入库的真正新图文**（详见下） |
+| Anthropic /news + /research | ✅ **恢复**（news http=200 465KB、research http=200 315KB，**连续第四日断线后翻转，第 18 次波动**）；核查后：/news 最新仍 **9/1 EFS**、/research 最新 **9/10 intelligence-targeting**，**9/11-9/16 窗口无新增** |
+| OpenAI release notes（/products/release-notes） | ✅ 可达；最新 **9/14**「Retiring automatic switching to Thinking」（ChatGPT Plus/Pro 全球下线 Instant→Thinking 自动切换）+「Updated permissions for new Health connections」 |
+| Web Search MCP | ❌ 第 129 天（SSE 协议错误「Invalid content type」） |
+| aliyun_web_parser | ❌ SSE Non-200（连续不可用） |
+
+### 今日新增认知
+
+**1. 🔥🔥 方法论重大升级：sitemap「不在 RSS 清单」必须逐条清点，不可归类打包**
+- 前几轮（9/13-9/15）虽已发现「14 条 /index/ 不在 RSS」，但**把这批条目当作"民用/事件/计划/客户故事页"整体带过**，未逐条打开核对
+- 本轮**逐条 triage** 后发现其中**至少三篇是真正的内容图文（story 体裁），且从未入库**：
+  - `index/creating-new-simulations-black-holes/`（lastmod 9/8，web_fetch 200）
+  - `index/cycling-across-antarctica/`（lastmod 9/8，web_fetch 200）
+  - `index/accelerating-antibiotic-discovery/`（lastmod 9/10，web_fetch 200）
+- **教训**：盲区清单的**数量稳定 ≠ 内容已消化**；`lastmod` 只是发现入口，**必须逐条打开正文判定体裁与新旧**
+
+**2. 🔥 RSS 存在「体裁性系统性盲区」——科研「故事版」页不进 feed**
+- 交叉验证发现：RSS **收录**同一研究的"科学深潜版"（`using-codex-to-simulate-black-holes`、`using-codex-chatgpt-to-search-for-new-antimicrobials`），**却不收录**其人文化"故事版"（`creating-new-simulations-black-holes`、`accelerating-antibiotic-discovery`）
+- `cycling-across-antarctica`（个人故事）**完全无 RSS 对应条目** → 纯盲区
+- **结论**：OpenAI 对部分科研主题**同发两页**（science 页入 RSS / story 页仅存 sitemap）；RSS 是"发布类型子集"，**不可单独作为 9 月文章总量分母**
+
+**3. ⚠️ 9/15 图文 feed 滞后拉长验证**：`detecting-wildfires-early`（9/15 发布）至 9/16 21:00 **已满 2 天仍未入 RSS** → 印证「feed 滞后」不仅是 hour-level，对部分 story 页可能是**长期/永久**不入库
+
+**4. ✅ Anthropic 恢复 + 全窗口核查无新**：news 465KB / research 315KB 均为**正常体积**（对照此前 http=200 但 size=0 的"空体"故障）→ 本轮为**真恢复**；核对 hero 区与列表后确认 **9/1 之后 /news 无新、9/10 之后 /research 无新**；**Risk Report（8/31 承诺）逾期第 16 天，确认仍未发布**（「不可达 ≠ 无发布」第九次应用完成：断线窗口内并无遗漏条目）
+
+**5. 🔧 sitemap lastmod 噪声延续**：`/index/` 大批客户页（cognition/perplexity 等）9/16T12:31-12:41Z 单条重渲染；`/business/partners/*` 等 9/16T09:30-10:44Z 批量重渲染 → 与 9/15T17:58 批次同型，**批量重渲染 ≠ 新发布**（方法论保持）
+
+### 今日入库（约 27 组件，第六十六节）
+
+#### A. Creating new simulations of black holes with Codex（研究者故事，9/8，科学页 `using-codex-to-simulate-black-holes` 入 RSS / 本故事页不入）
+
+- **⭐「对话式人物引言」开场**（对照客户故事的金句开场）：以主角 CK Chan 的困境陈述开篇，而非品牌主张
+- **⭐「天体尺度的不可能」痛点升维**："They don't emit light… you'd need **a telescope the size of earth** to see one"——用物理直觉的极端比喻制造敬畏
+- **⭐资历背书链**：专业身份（computational astrophysicist）→ 时间纵深（20+ 年）→ 权威项目（2019 Event Horizon Telescope 首张黑洞照）→ 新目标（首个黑洞"动态影像"）
+- **⭐「科学方法本身才是瓶颈」叙事**："the physics… don't always match up with our current understanding"；把难点从"算力"提升到"建模方法学"
+- **⭐「模拟 vs 观测」实证闭环**：CK 造等离子体模拟 → 与望远镜观测对比 → 发现流体近似失效（"can't approximate the plasma as a fluid"）→ 只能逐电子/离子追踪（"computationally intractable"）
+- **⭐量化跃迁金句（本稿核心锚点）**："Codex we are now able to **automatically discover new coordinate transformations and algorithms** that can speed up these calculations **by a factor of 1000**"——把 AI 价值写成"发现新算法"，而非"加速编码"
+- **⭐人机边界诚实标注**："CK still has to implement and verify each approximation Codex creates"——**研究者的验证责任不可让渡**（可信度加分项）
+- **⭐开放目标式收尾**：2027 期望发布首个黑洞动态影像 + 领域宣言（"a new era of horizon-scale, time-domain black hole astrophysics"）——**以尚未完成的未来允诺收尾**（对照产品故事的"已落地数据"收尾）
+
+#### B. Training to cycle across Antarctica with ChatGPT（个人/志趣故事，9/8，无 RSS 对应条目）
+
+- **⭐「极限目标 + 个人所有权」引言**："turning that impossible task into something that I had **ownership and control over**… with my own goal"——把工具叙事写成**自主性叙事**
+- **⭐世界纪录式场景设定**："first person to cycle **solo and unsupported** from the edge of Antarctica to the South Pole… up to 60 days"
+- **⭐「没有标准答案」类比的普适化**："There is **no standard training plan** for what James is trying to do"——与产品故事"没有现成方案"母题同构
+- **⭐替代方案成本对比**：传统需为每项协议雇独立教练（"assembling a team of separate coaches"）→ 成本 + 时间壁垒 → 改用 ChatGPT 自建
+- **⭐「造系统，而非造计划」核心主张**："Building **a system, not a plan**"——从"一次优化一件事"转向"同时平衡所有事"（system-of-systems 母题再现，对照 Fyxer 的"多小模型"）
+- **⭐现场问题解决细节**：冰岛高地试炼 → 炉子冻坏 → 现场让 ChatGPT 诊断出方案（**危机即用例**的叙事技巧）
+- **⭐「生活化琐碎细节」降低距离感**："even down to small weight-saving decisions like **cutting his toothbrush in half**"（用可爱细节构建真实感）
+- **⭐碎片时间多功能使用**：骑行中算配速/心率/日照 → 营地"下载思绪…almost like an **audio diary**"（从工具到"思维伙伴"的角色升级）
+- **⭐角色演进收尾**："less about building the plan and more about **helping James stay inside it**"——工具定位从"规划者"变为"陪伴者"
+
+#### C. Accelerating antibiotic discovery with ChatGPT（研究者故事，9/10，科学页 `using-codex-chatgpt-to-search-for-new-antimicrobials` 入 RSS / 本页不入）
+
+- **⭐「全人类议题」痛点开场**："Around **5 million deaths** are associated with bacterial AMR every year, and that number is expected to **double by 2050**"——用公共卫生数据开场（对照黑洞稿的物理直觉开场，同体裁双开场法）
+- **⭐传统方法"苦工"对照**："scientists heading into nature, **digging into soil, plants**… time-consuming and prone to trial and error"——用旧方法的笨拙反衬新方法
+- **⭐「数字速度」主张**："We do everything at **digital speed**"——把实验室工作重定义
+- **⭐「把生物当代码」认知重框**："**treating this problem as an information problem**: DNA… is just a code"——**学科范式重定义**是本月研究者故事的高频母题（对照 CK 的"发现新算法"）
+- **⭐量化加速金句**："discover new antibiotic molecules in **a few hours instead of in five or six years**"
+- **⭐「实验室的公共大脑」拟人化**："It has become the lab's **communal brain**… It really captures our thinking"——把 AI 写成**集体记忆载体**（对照 Fyxer 的 memory 叙事）
+- **⭐民主化编程叙事**："someone who has never programmed before… can now do it"——Codex 打破技术门槛
+- **⭐一线场景白描**："Oftentimes I have a cup of coffee, and my team already has a ton of new molecules"（把颠覆性成果写进日常）
+- **⭐态度转折收尾（可信度技法）**："a couple years ago, I was **pessimistic**… But now some of these systems give me a lot more hope than I anticipated"——**从悲观到希望的转变**制造情感弧线（对照开放目标收尾）
+
+### 跨稿/跨期观察
+
+- **⭐OpenAI「研究者/实践故事」= 独立体裁线**：黑洞（物理）× 抗生素（生物医学）× 南极骑行（个人志趣）——**同一体裁（个人/研究者故事）跨三个领域**，共同结构 = 主角引言 → 极端痛点 → 旧法笨拙 → AI 重定义问题 → 量化跃迁 → 人类验证责任 → 希望收尾
+- **⭐「AI 发现新算法/新范式」母题**：黑洞稿"automatically discover new coordinate transformations and algorithms"（1000×）× 抗生素稿"treating biology as code"× 骑行稿"build a system, not a plan"——**同一母题三种表达**（算法发现 / 范式重定义 / 系统构建）
+- **⭐「人类验证不可让渡」可信度公式**：黑洞稿"still has to implement and verify each approximation"——**主动标注 AI 局限**成为 OpenAI 故事线的新信任策略（对照 9/15 Fyxer 的技术透明 SFT+LoRA）
+- **⭐发现通道总结**：9 月靠 sitemap 补 RSS 盲区已达 **四次**（two-blind-brothers 9/13 → 事故枢纽页 9/14 → wildfires 9/15 → 三篇 researcher/story 9/16），其中 9/16 首次发现**体裁性系统性盲区**
+
+### 四账号适配预判（三篇研究者故事）
+
+- 量子学派：**「AI 帮人类把不可能变成可能」**——从"发现新算法提速 1000 倍"谈科学方法论的范式转移；「训练一个不存在的计划：把南极骑行写成系统论」
+- 差评：「一个天文学家让 Codex 找算法，黑洞模拟提速 1000 倍」；或「有人要一个人骑车去南极点，教练是 ChatGPT」；或「以前挖土找抗生素要五六年，现在几小时——因为把 DNA 当代码」
+- 机器之心：**研究者工作流的 AI 重构**（agent skill 自动发现坐标变换/算法；wet lab + 计算生物学的人机分工；"实验室公共大脑"作为组织记忆系统）
+- 棱镜：**「AI 故事线的转向：从企业 ROI 到个人意义与科学前沿」**——巨头的叙事正从"效率"迁移到"发现"与"人的境遇"（叙事演变的社会学观察）
+
+### 组件库状态
+
+- **新增约 27 组件（第六十六节）**，总量 **963+ → 990+**（63 组件节 + 6 状态节）
+- 重点关注清单：① 明日（9/17）cron：复核 9/16 全天（是否有新 /index/ 图文；`detecting-wildfires-early` 是否入 feed）② **sitemap「不在 RSS 清单」逐条清点常态化**（禁止归类打包；每条打开判体裁/新旧）③ **Risk Report 逾期第 16 天**（8/31 承诺；Anthropic 本轮恢复但确认未发）④ Anthropic 恢复后窗口核对已完成（9/1-9/16 news、9/10-9/16 research 均无新）⑤ 事故枢纽页滚动追加 ⑥ Habitat Part 2（多租户可靠性/读优化/Cosmos DB）⑦ RubyGems 案后续核查 ⑧ 9 月文章总量统计口径修正（RSS 非全集，需以 sitemap 全路径为准）⑨ 搜狗空结果页第 17 日观察 ⑩ DevDay 2026 页面后续观察
