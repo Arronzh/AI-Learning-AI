@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 17 日（周四检查：🔥 **9/16「五连发」单日爆发**——同日铺开五个维度：研究报告 #2（`unlocking-new-ways-of-working`）+ 企业 ROI 教程（`how-to-connect-ai-usage-to-business-value`）+ 广告平台化（`reimagining-advertising-with-ai`）+ 老年公益/教育（`helping-older-adults-use-ai-in-everyday-life`）+ **🔥 失准披露框架（`model-misalignment-reporting-framework`）**；其中 **3 篇在昨检前数小时已发布却未入 feed**（feed 滞后延续）；🔥🔥 **「模型失准披露框架」确立全新治理文体**——框架 + 三轨道（Ready/Minor/Slow Track）+ 时限 + SAG 升级链 + **独立披露子域 `alignment.openai.com`（非 /index/）**，昨日事故枢纽页预告的「soon」标准正式兑现；「不在 RSS 清单」14 条**逐条 triage 完成且清单未增长**；约 30 组件入库，组件库 990+ → 1020+（第六十七节）；Anthropic 可达无新（/news 9/1、/research 9/10 之后无新），Risk Report 逾期第 17 天仍未发；四账号正文仍不可达第 130 天，搜狗空壳页连续第 18 日）
+> 最后更新：2026 年 9 月 18 日（周五检查：📈 **9/17「无新」判定修正**——feed 滞后第十一次同类，9/17 实际双发（🔥 **「Astra for Law」法律垂直产品线**：GPT-6 Astra + 2.3 亿 URL 法律检索索引 + Vals AI 基准 54.0% vs 38.7% + 26 合作插件 + Trusted Access/ZDR；**Cooley GO Public 客户故事 #18**：「speed to quality」+ agentic harness）；🔥🔥 **Anthropic 恢复后大发现：三条此前漏掉的条目/路径盲区**——① 9/17 **LSVP 生命科学验证计划**（「可信访问」第二支柱，Standard/High-risk 双授权）② 9/17 **前沿实验室「内部测速」度量文**（**新发现 `/institute/` 路径**：三项度量 + R&D Automation Index，Claude「leads」26%）③ 9/10 **Threat Intelligence 报告**（**新发现 `/threat-intelligence-report-*` 路径**：七类危害 + IOC）；约 30 组件入库，组件库 1020+ → 1050+（第六十八节）；`alignment.openai.com` 最新仍 9/6；Risk Report 逾期第 18 天仍未发；四账号正文仍不可达第 131 天，搜狗空壳页连续第 19 日）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 计数权威 + **sitemap 全路径 lastmod 交叉核对（可发现 RSS 与 /index/ 均未收录的页面）+「不在 RSS 清单」逐条 triage（禁止归类打包，逐条打开判体裁/新旧）+ 独立子域探测（`alignment.openai.com` 等非 openai.com/index 路径）**）
-> 数据源限制：Web Search MCP 仍不可用（第 130 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 130 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 双页 9/17 可达**（news 464KB/research 314KB 体积稳定，9/11-9/17 无新）；**可靠通道：openai.com/sitemap.xml/page/ + 独立子域（全路径 lastmod 交叉核对——⚠️ 已证实 RSS 存在「体裁性系统盲区」：科研主题同发「science 页（入 RSS）+ story 页（不入 RSS）」两个版本，RSS 是发布类型子集，不可单独作为文章总量分母）；⚠️ 注意 lastmod 亦含批量 re-render 噪声（如 9/15 17:58、9/16 09:30-10:44、9/17 09:26-12:32 等业务/客户页同秒区间更新），lastmod ≠ 发布日期**
+> 数据源限制：Web Search MCP 仍不可用（第 131 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 131 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 9/18 可达且**（news 464KB/research 314KB 体积稳定），⚠️ **但本轮发现此前漏掉的 3 条：9/17 LSVP + 9/17 `/institute/` 测速度量文 + 9/10 `/threat-intelligence-report-*`**——**Anthropic 监控须扩面至 `/news` 列表逐条 + `/institute/` + `/threat-intelligence-report-*` 等新路径**；**可靠通道：openai.com/sitemap.xml/page/ + 独立子域（全路径 lastmod 交叉核对——⚠️ 已证实 RSS 存在「体裁性系统盲区」：科研主题同发「science 页（入 RSS）+ story 页（不入 RSS）」两个版本，RSS 是发布类型子集，不可单独作为文章总量分母）；⚠️ 注意 lastmod 亦含批量 re-render 噪声（如 9/15 17:58、9/16 09:30-10:44、9/17 09:26-12:32 等业务/客户页同秒区间更新），lastmod ≠ 发布日期**
 
 ---
 
@@ -5290,3 +5290,101 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增约 30 组件（第六十七节）**，总量 **990+ → 1020+**（64 组件节 + 6 状态节）
 - 重点关注清单：① 明日（9/18）cron：复核 9/17 全天（是否有新 /index/ 图文；`detecting-wildfires-early` 是否入 feed）② **`alignment.openai.com` 独立子域纳入常规监控**（新增通知 + 六份报告全文）③ **Risk Report 逾期第 17 天**（8/31 承诺）④ 六份 misalignment 报告全文精读（下轮）⑤ 事故枢纽页滚动追加（"soon" 已兑现为框架，结项）⑥ Habitat Part 2（多租户可靠性/读优化/Cosmos DB）⑦ 9 月文章总量口径（RSS 非全集）⑧ 搜狗空结果页第 18 日观察 ⑨ DevDay 2026 页面后续 ⑩ 「不在 RSS 清单」triage 已收敛（14 条已全部归类），下轮监控新增即可
+
+---
+
+## 六十八、9/18（周五）检查：9/17「无新」判定修正——feed 滞后第十一次同类，9/17 实际双发（**Astra for Law 法律垂直产品线** + **Cooley 客户故事 #18**）；🔥 Anthropic 恢复后大发现——**三条路径盲区**（/institute/「内部测速」新体裁 + 9/10 Threat Intelligence 报告 + 9/17 LSVP 生命科学验证计划）；约 30 组件入库（1020+ → 1050+）
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 第 131 天不可达；搜狗空结果页持续（连续第 19 日） |
+| OpenAI RSS | ✅ 最新条目 = **9/17 双发**（`astra-for-law` 00:00 GMT + `cooley-gopublic` 12:00 GMT）；**1208 items（较昨 +2）**；⚠️ **`detecting-wildfires-early`（9/15）发布满 4 天仍未入 feed**；9/17 截至 21:00「无新」判定**被推翻**；9/18 截至 21:00 无新（低置信） |
+| OpenAI sitemap | ✅ 可达；EN `/index/` 182 条；**「不在 RSS 清单」= 14 条（未增长）**；9/18 lastmod 全为**业务/合作伙伴页批量 re-render**（`business/partners/*` 09:31-10:46Z 同批）+ `release-notes`(12:55Z)/`form/*`/`student-collective`/`hugging-face-incident-and-misalignment`/`trust-and-transparency` 等，**无新图文** |
+| Anthropic /news + /research | ✅ 可达（news 464KB、research 314KB）；🔥 **新发现 3 条此前未入库条目**（见下），**两条路径盲区 + 一条列表盲区**；**Risk Report（8/31 承诺）逾期第 18 天，仍未发布** |
+| 🔥 `alignment.openai.com` | ✅ 可达；「Research and Releases」最新仍 **9/6**（无新通知） |
+| Web Search MCP | ❌ 第 131 天（SSE「Invalid content type」） |
+| aliyun_web_parser | ❌ SSE Non-200（连续不可用） |
+
+### 今日新增认知
+
+**1. 📈 9/17 判定修正：feed 滞后第十一次同类——9/17 实际双发**
+- 昨日（9/17 21:00）记录「9/17 无新」；今日复查 RSS 发现 **2 篇 9/17 发布却当时未入 feed**：`astra-for-law`（pubDate 9/17 00:00 GMT = 北京 08:00）与 `cooley-gopublic`（pubDate 9/17 12:00 GMT = 北京 20:00）
+- **教训延续**：当日 RSS 结果 ≠ 当日真实发布量（hour-level 滞后），「低置信」标注 + 次日复核仍是最高价值铁律
+- **9 月累计修正**：9/1-9/17 = **40 篇 / 12 发布日**（9/16 ×5 + 9/17 ×2 + 前段 33）
+
+**2. 🔥 新文体：Astra for Law = 「垂直行业产品线」正式推出（9/17）**
+- 从「模型」到「产品线」：**GPT-6 Astra + 法律检索索引 + 法律分析/写作指令**三层组合；API 名 `gpt-6-astra-law`，模型选择器显示 **「GPT-6 Astra Law」**——**垂直命名体系**（对照 GPT-6 Astra 工作版）
+- **数据飞轮叙事**：自建法律检索索引 **2.3 亿+ URL**（判例/法条/法规/法院规则/行政裁决，日更）+ 与 **Free Law Project（CourtListener）** 合作覆盖 **99.9%+ 美国判例法**
+- **量化评测锚点**：Vals AI Legal Research Bench 200 题，Astra for Law 正确率 **54.0% vs 38.7%**（仅用 web 搜索的 GPT-6 Astra）= **相对 +40%**；判例发现 **+24%**、正确检索段落 **+54%**
+- **生态/采纳设计**：**26 个合作伙伴插件**（Relativity/Clio/iManage/Intapp/DeepJudge/Thomson Reuters HighQ+CoCounsel）+ **9 个社区插件**（LegalQuants/LECG/Skills.law，47 个自定义 skill）+ **ChatGPT for Word 正式 GA**；**"open and composable…getting more from the ecosystem, not replacing it"**（采纳哲学母题）
+- **信任/合规设计**：**Trusted Access Program**（ZDR on API + ChatGPT Enterprise 默认排除人工审核）+ 与 **Latham & Watkins** 共设信息权限/道德墙/客户指令；**"legal-grade trust and controls"**
+- **forward-deployed 落地案例**：Sullivan & Cromwell（协议分析器+红线）/ Ropes & Gray（尽调溯源）/ **Cooley（GO Public）**；Wachtell Lipton 长期研究合作
+
+**3. 🔥 客户故事 #18：Cooley GO Public（ChatGPT Work，9/17）**
+- **核心主张句：「speed to quality」**——"The point isn't simply to do the same work faster. It's to get to a **strong starting point sooner**"
+- **"agentic harness" + "baked-in know-how"** 术语化：受控工作流（哪些 agent 自动做、哪些律师必须复核）+ 历史分析沉淀（对照 Fyxer「数据来自工作本身」）
+- **"concentrate the human effort"** 主旨：把律师时间导向判断/挑战披露/战略
+- 规模锚点：2025 年 180 笔交易 / $51.5B；"change-averse" 行业 → AI 重估资本业务流程（对照 DXC 全球产业重估系列）
+
+**4. 🔥🔥 Anthropic 恢复后大发现：三条此前漏掉的条目（路径盲区）**
+- **① 9/17 `Introducing the Life Sciences Verification Program`（LSVP）**（/news/）——**"可信访问"第二支柱落地**（对照 Fable 5.1/Mythos 5.1 发布时预告的 CVP+LSVP 双项目）：Mythos/Opus/Sonnet + **更宽松的生物类安全分类器**；**两类授权**（Standard Use 团队/年度续期 vs **High-risk Use 单项目/6 个月续期/移除全部生物阻断**）；三重验证（研究资质/安全标准/伦理监督）；**三种威胁模型**（access compromise / insider threats / **agent misuse**）；**"shared responsibility"** 与 CISO 共设；**cyber 分类器保留**；正与美国政府合作放开 Mythos 高危授权
+- **② 9/17 `Measurements for understanding the pace of AI development inside frontier labs`**（**/institute/ 路径——新发现子目录！**）——**全新文体：前沿实验室「内部测速」透明化**：公开**三项度量**（①AI 承担多少 AI R&D ②agent 行为可监督度 ③算力分配）；**Anthropic R&D Automation Index**（采用 Epoch AI 的 AL0-AL5 量表）：截至 2026-08，Claude **"leads" 26%** 的 AI R&D 工作、**≥90% 达到「AI collaborates」及以上**，尚无完全自主子集；将引入**第三方独立评估者**嵌入内部；与 RSP 风险报告 + **AAIF 政策提案**呼应
+- **③ 9/10 `Detecting and countering misuse of AI: September 2026`**（**/threat-intelligence-report-* 路径——新发现！**）——**Threat Intelligence 报告（定期报告文体）**：覆盖 **2025-12 至 2026-08** 八个月、**七类危害**（网络/影响/监控/诈骗/生物误用/常规武器/蒸馏）；**首次明示"Fable/Mythos 类模型均未被滥用，仅一例蒸馏例外"**；含报告 + **IOC 下载**；引用为 LSVP 的动机来源（"as we've shown in our recent threat report"）
+- **方法论教训**：Anthropic 监控不能只看 `/news` + `/research`——**`/institute/` 与 `/threat-intelligence-report-*` 等新路径**为盲区；下轮起对 `/news` 列表逐条 triage（不能只看 hero 区）
+
+**5. 🔧 sitemap lastmod 噪声延续**：9/18T03:07/00:09Z `cognition-devin-testing-with-astra`/`perplexity-improving-accuracy-with-astra` 重渲染；09:31-10:46Z `business/partners/*` 批量（aws/ntt-data/pwc/endava/ml6/mckinsey/quantiphi/exl-service）→ **lastmod 仍是"发现候选"而非发布信号**
+
+### 今日入库（约 30 组件，第六十八节）
+
+#### A. Introducing Astra for Law（垂直产品线，9/17）
+
+- **⭐「垂直产品线」定义式开场**："a new **foundation** for law firms and legal technology companies to **build AI products and workflows around their expertise**"
+- **⭐三层组合命名法**：GPT-6 Astra + 法律检索索引 + 法律分析/写作指令 = **Astra for Law**
+- **⭐生态先行声明**："API customers including **Harvey and Legora** will be able to build on Astra for Law"（先给平台，再给自用）
+- **⭐数据飞轮量化**：法律索引 **230M+ URLs**，日更；Free Law Project/CourtListener **99.9%+ 美国判例法**
+- **⭐基准即证据**：Vals AI Legal Research Bench 200 题，**54.0% vs 38.7%（+40% 相对）**；判例 +24%；段落 +54%
+- **⭐信任设计三件套**：Trusted Access Program + **ZDR** + ChatGPT Enterprise 默认排除人工审核 + **"ethical walls"** 术语
+- **⭐人名/机构背书矩阵**：Harvey/Legora/Sullivan & Cromwell/Ropes & Gray/Cooley/Latham & Watkins/Wachtell/Thomson Reuters
+- **⭐「生态非替代」采纳哲学**："getting **more from the ecosystem, not replacing it**"（对照 Habitat/广告"不该让企业重建工作方式"）
+- **⭐开放可组合主张**："Our approach is **open and composable**"
+
+#### B. Cooley GO Public 客户故事 #18（9/17）
+
+- **⭐主张金句标题化**：**"speed to quality"**（从"更快"到"更早到强起点"）
+- **⭐术语化工作流**："**agentic harness**" + "**baked-in know-how**" + "controlled workflow"
+- **⭐人机边界设计**：明示"哪些 agent 自动做 / 哪些律师必须复核"
+- **⭐行业重估框架**："**change-averse**" 行业 → AI 重构资本业务流程
+- **⭐规模锚点**：180 笔交易 / $51.5B / 20+ 年创业公司 IPO 首位
+
+#### C. Anthropic LSVP 生命科学验证计划（9/17）
+
+- **⭐「可信访问」第二支柱**：对照 CVP（网络验证）——**双项目架构**补齐
+- **⭐授权分层命名**：**Standard Use**（团队/年度续期）vs **High-risk Use**（单项目/6 个月/移除全部生物阻断）
+- **⭐验证三要素**：研究资质 + 安全标准 + 伦理研究监督
+- **⭐威胁模型命名法**：access compromise / insider threats / **agent misuse**（swarms / long-horizon）
+- **⭐"shared responsibility" 共治主张**：企业自定"何为安全用法"，访问绑定申报用例
+- **⭐边界诚实声明**：cyber 分类器等**其余安全措施保留**；Mythos 高危授权**仍限少数实体**
+
+#### D. Anthropic「前沿实验室内部测速」度量文（9/17，/institute/ 新体裁）
+
+- **⭐"AI 正在构建下一代自己"开场**："AI systems… increasingly being used to **build the next version of themselves**"
+- **⭐三度量清单化**：①AI 承担多少 AI R&D ②agent 行为可监督度 ③算力分配
+- **⭐自建指标体系**：**Anthropic R&D Automation Index** + 采用 **Epoch AI AL0-AL5** 公开量表
+- **⭐自我披露量化**：**"leads" 26%**、**≥90% 「collaborates」及以上**、无完全自主子集（对照"诚实边界"公式）
+- **⭐第三方验证治理**：嵌入独立评估者、比对内部风控权限
+- **⭐政策衔接**：与 RSP 风险报告 + **AAIF（Advanced AI Framework）**提案呼应
+
+#### E. Anthropic Threat Intelligence 报告（9/10，定期报告新体裁）
+
+- **⭐定期报告体裁**：承接 2025-03/08/11 前作（"since our previous threat reports"）
+- **⭐结构化危害分类学**：七类（网络/影响/监控/诈骗/生物误用/常规武器/蒸馏）
+- **⭐边界精确定位**："**None of the misuse cases involved… Fable or Mythos-class models**，except one illicit distillation case"（谨慎的"未波及新模型"声明）
+- **⭐可下载证据**：报告 + **IOC 清单**（可操作）
+- **⭐责任声明收尾**："we have a **responsibility to disclose** malicious misuse of our services"
+
+### 组件库状态
+
+- **新增约 30 组件（第六十八节）**，总量 **1020+ → 1050+**（65 组件节 + 6 状态节）
+- 重点关注清单：① 明日（9/19）cron：复核 9/18 全天（是否有新 /index/ 图文；`detecting-wildfires-early` 是否入 feed）② **Anthropic 监控扩面**：`/news` 列表逐条 triage + `/institute/` + `/threat-intelligence-report-*` 路径纳入常规 ③ **Risk Report 逾期第 18 天**（8/31 承诺）④ LSVP/pace 度量文/threat report 全文精读（下轮）⑤ Astra for Law 生态插件页（`business/plugins/?tab=plugins-legal`）⑥ Habitat Part 2（多租户可靠性/读优化/Cosmos DB）⑦ 9 月文章总量口径（RSS 非全集）⑧ 搜狗空结果页第 19 日观察 ⑨ DevDay 2026 页面后续 ⑩ 「不在 RSS 清单」triage 已收敛（14 条已全部归类）
