@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 18 日（周五检查：📈 **9/17「无新」判定修正**——feed 滞后第十一次同类，9/17 实际双发（🔥 **「Astra for Law」法律垂直产品线**：GPT-6 Astra + 2.3 亿 URL 法律检索索引 + Vals AI 基准 54.0% vs 38.7% + 26 合作插件 + Trusted Access/ZDR；**Cooley GO Public 客户故事 #18**：「speed to quality」+ agentic harness）；🔥🔥 **Anthropic 恢复后大发现：三条此前漏掉的条目/路径盲区**——① 9/17 **LSVP 生命科学验证计划**（「可信访问」第二支柱，Standard/High-risk 双授权）② 9/17 **前沿实验室「内部测速」度量文**（**新发现 `/institute/` 路径**：三项度量 + R&D Automation Index，Claude「leads」26%）③ 9/10 **Threat Intelligence 报告**（**新发现 `/threat-intelligence-report-*` 路径**：七类危害 + IOC）；约 30 组件入库，组件库 1020+ → 1050+（第六十八节）；`alignment.openai.com` 最新仍 9/6；Risk Report 逾期第 18 天仍未发；四账号正文仍不可达第 131 天，搜狗空壳页连续第 19 日）
+> 最后更新：2026 年 9 月 19 日（周六检查：📈 **9/18「无新」判定修正**——feed 滞后第十二次同类，9/18 实际 1 篇（🔥 **「Australian Youth Safety Blueprint」澳大利亚青少年安全蓝图**：**全新「政策蓝图/路线图」体裁**——六支柱 + PDF 下载 + 承接 ChatGPT for Teens 澳洲上线）；🔥 **漏看客户故事 #19「Hex」**（9/16，agentic 数据平台/可视化，「analytical judgment」+ "making everyone a data person" 使命；9/16 实为 **6 连发**非 5）；🔥🔥 **Anthropic 双线新发现**——① 9/18 **「Partnering with Accenture on embedded evaluation」**（**「嵌入式评估」新体裁**：Dario「We Must Pace the Frontier」承诺落地，$1B×5 年，「不减轻问责、但让问责更可验证」）② 9/17 **「How Claude is uplifting biomolecular modeling」**（`/research` 科学工程文：30+ 模型 ~4x 提速 + 「Big」低内存模式单节点 >10,000 tokens + Adaptyv 竞赛 $1M）；约 28 组件入库，组件库 1050+ → 1080+（第六十九节）；`alignment.openai.com` 最新 notices 仍 9/11 RubyGems；Risk Report 逾期第 19 天仍未发；四账号正文仍不可达第 132 天，搜狗空壳页连续第 20 日）
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 计数权威 + **sitemap 全路径 lastmod 交叉核对（可发现 RSS 与 /index/ 均未收录的页面）+「不在 RSS 清单」逐条 triage（禁止归类打包，逐条打开判体裁/新旧）+ 独立子域探测（`alignment.openai.com` 等非 openai.com/index 路径）**）
-> 数据源限制：Web Search MCP 仍不可用（第 131 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 131 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 9/18 可达且**（news 464KB/research 314KB 体积稳定），⚠️ **但本轮发现此前漏掉的 3 条：9/17 LSVP + 9/17 `/institute/` 测速度量文 + 9/10 `/threat-intelligence-report-*`**——**Anthropic 监控须扩面至 `/news` 列表逐条 + `/institute/` + `/threat-intelligence-report-*` 等新路径**；**可靠通道：openai.com/sitemap.xml/page/ + 独立子域（全路径 lastmod 交叉核对——⚠️ 已证实 RSS 存在「体裁性系统盲区」：科研主题同发「science 页（入 RSS）+ story 页（不入 RSS）」两个版本，RSS 是发布类型子集，不可单独作为文章总量分母）；⚠️ 注意 lastmod 亦含批量 re-render 噪声（如 9/15 17:58、9/16 09:30-10:44、9/17 09:26-12:32 等业务/客户页同秒区间更新），lastmod ≠ 发布日期**
+> 数据源限制：Web Search MCP 仍不可用（第 132 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 132 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 9/19 可达**（news 462KB/research 315KB 体积稳定），⚠️ **本轮再发现此前漏掉的 2 条：9/18 Accenture 嵌入式评估（/news）+ 9/17 `/research/` 生物分子建模工程文**——**Anthropic 监控须扩面至 `/news` 列表逐条 + `/research` 列表逐条 + `/institute/` + `/threat-intelligence-report-*` 等新路径**；**可靠通道：openai.com/sitemap.xml/page/ + RSS 计数 + 独立子域（全路径 lastmod 交叉核对——⚠️ 已证实 RSS 存在「体裁性系统盲区」：科研主题同发「science 页（入 RSS）+ story 页（不入 RSS）」两个版本，RSS 是发布类型子集；⚠️ 且 RSS 存在「入 feed 滞后 1-4 天」现象（Hex 9/16 → 9/19 才入 feed），RSS 作总量分母须以「次日复核」修正）；⚠️ 注意 lastmod 亦含批量 re-render 噪声（如 9/17-9/19 `business/partners/*` 同秒区间更新），lastmod ≠ 发布日期**
 
 ---
 
@@ -5388,3 +5388,108 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增约 30 组件（第六十八节）**，总量 **1020+ → 1050+**（65 组件节 + 6 状态节）
 - 重点关注清单：① 明日（9/19）cron：复核 9/18 全天（是否有新 /index/ 图文；`detecting-wildfires-early` 是否入 feed）② **Anthropic 监控扩面**：`/news` 列表逐条 triage + `/institute/` + `/threat-intelligence-report-*` 路径纳入常规 ③ **Risk Report 逾期第 18 天**（8/31 承诺）④ LSVP/pace 度量文/threat report 全文精读（下轮）⑤ Astra for Law 生态插件页（`business/plugins/?tab=plugins-legal`）⑥ Habitat Part 2（多租户可靠性/读优化/Cosmos DB）⑦ 9 月文章总量口径（RSS 非全集）⑧ 搜狗空结果页第 19 日观察 ⑨ DevDay 2026 页面后续 ⑩ 「不在 RSS 清单」triage 已收敛（14 条已全部归类）
+
+---
+
+## 六十九、9/19（周六）检查：📈 9/18「无新」判定修正——feed 滞后第十二次同类，9/18 实际 1 篇（**Australian Youth Safety Blueprint** 政策蓝图新体裁）；🔥 漏看客户故事 #19 **Hex**（9/16，实为 6 连发）；🔥🔥 Anthropic 双新发现——**Accenture 嵌入式评估**（/news，9/18）+ **uplifting biomolecular modeling**（/research，9/17）；约 28 组件入库（1050+ → 1080+）
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 第 132 天不可达；搜狗空结果页持续（连续第 20 日，10,686B/10,572B） |
+| OpenAI RSS | ✅ 最新条目 = **9/18 `australian-youth-safety-blueprint`**（pubDate 12:00 GMT = 北京 20:00）；**1210 items（较昨 +2）**；**+2 = Australian（9/18）+ Hex（9/16）**；昨日「9/18 无新（低置信）」判定**被推翻**；⚠️ `detecting-wildfires-early`（9/15）发布满 **4 天**仍未入 feed |
+| OpenAI sitemap（/page/） | ✅ 可达；528 urls；9/19 lastmod **全为 re-render/业务页噪声**（`cooley-gopublic` 12:29Z、`cognition-devin` 10:12Z、`growing-atv-big-air-tour` 06:15Z、`business/plugins/` 10:17Z、`business/partners/*` 批量）→ **9/19（周六）截至检查无新 /index/ 图文**（周末静默）；⚠️ **`australian-youth-safety-blueprint` 与 `hex-gpt-6-astra` 均不在 /page/ sitemap**（说明 /page/ 对最新文章存在收录滞后，RSS 反而是本轮的先行通道） |
+| Anthropic /news + /research | ✅ 可达（news 462KB、research 315KB）；🔥 **再发现 2 条此前漏看条目**（见下）——**/news 列表 + /research 列表均须逐条 triage** |
+| 🔥 `alignment.openai.com` | ✅ 可达；`/misalignment-reports/` 最新 notice 仍 **9/11 RubyGems**（无新通知）；matters 六份 report 未增 |
+| Web Search MCP | ❌ 第 132 天（SSE「Invalid content type」） |
+| aliyun_web_parser | ❌ SSE Non-200（连续不可用） |
+
+### 今日新增认知
+
+**1. 📈 9/18 判定修正：feed 滞后第十二次同类——9/18 实际 1 篇**
+- 昨日（9/18 21:00）记录「9/18 截至 21:00 无新（低置信）」；今日复查 RSS 发现 **`australian-youth-safety-blueprint`**（pubDate 9/18 12:00 GMT = 北京 20:00）——**昨检前 1 小时已发布，但当时未入 feed**
+- **教训延续**：当日 RSS 结果 ≠ 当日真实发布量；「低置信」标注 + 次日复核铁律再获验证（第十二次）
+
+**2. 🔥 漏看客户故事 #19：Hex（9/16）——此前从未入库，「入 feed 滞后 >2 天」首例**
+- **`hex-gpt-6-astra`（9/16 12:00 GMT）** 昨晚（9/18 21:00）RSS 仍未收录，今日才出现 → **「入 feed 滞后」从此前的「当日/跨小时」扩展到「>2 天」**；**9/16 实际为 6 连发（非 5）**
+- **新体裁：数据可视化/AI 数据平台客户故事**——含 **"analytical judgment"** 概念、"everyone a data person" 使命、**「先可视化再信任」**叙事
+- **9 月累计修正**：9/1-9/18 = **42 篇 / 13 发布日**（9/16 ×6、9/18 ×1，其余同前）
+
+**3. 🔥 新体裁：Australian Youth Safety Blueprint = 「政策蓝图/路线图」（9/18）**
+- **政策文体新形态**：不同于「政策檄文/来信」，这是**可下载的 PDF 路线图**（roadmap/blueprint）+ 六支柱框架
+- **六支柱**：AI 素养 / 年龄适配安保 / 隐私保护式年龄验证 / 现实世界危机支持连接 / 易用家长控制 / （问责）
+- **产品衔接**：承接 8 月 **ChatGPT for Teens 在澳洲上线**（13-17 岁默认体验 + 家长控制 + 18 岁以下安全政策 + 年龄验证）
+- **责任观金句**：**"The responsibility for safety should not fall primarily on young people or their families. Companies must continue to build protections into their products from the outset."**（对照"不该让企业重建工作方式"的采纳哲学，此处是"企业须自建保护"）
+- **国家政策协作母题**：与加州法案（8/31）、Teen Safety、教育线共同构成「青少年安全」内容簇
+
+**4. 🔥 新体裁：Anthropic × Accenture「嵌入式评估」（embedded evaluation，9/18）**
+- **承接 CEO 承诺**：Dario 文章 **"We Must Pace the Frontier"** 中「将评估者嵌入 Anthropic 内部」的承诺**首次落地**——治理文体的「承诺→执行」闭环
+- **合作方**：由 Accenture 的 AI 专业部门 **Faculty** 牵头；内容 = 评估 + 红队 + 对齐评估 + 安保测试
+- **规模锚点**：双方**各至少投入 $1B / 5 年**
+- **新概念定义**："Unlike today's external evaluators, **embedded evaluators will work inside AI companies, with access comparable to an employee's**"——能看模型训练成形、跟进构建/部署决策、直接与员工对话
+- **问责哲学金句**：**"independent embedded evaluators do not reduce our accountability, but help to make it more verifiable. The safety of our models remains our responsibility."**（"诚实边界"公式的又一变体）
+- **自建标准母题（第三次）**：embedded evaluation 无标准、无funding制度 → 自建（Anthropic 直接资助；与 METR 等对话 pilot；长期主张 pooled/government 资金，呼应 **Advanced AI Framework**）
+- **非排他性声明**："Our partnership is **non-exclusive**… other evaluators to be announced in the coming weeks"——**"生态系统评估者 + 共享标准"**主张
+
+**5. 🔥 Anthropic Science 漏看：How Claude is uplifting biomolecular modeling（9/17，/research）**
+- 9/18 检查记录「/research 最新 9/10」，**实际存在 9/17 条目**——**/research 列表逐条 triage 的必要性再次验证**
+- **科学工程效率文**（对照 9/8 Codex 量子实验）：量化主导 —— Claude 在 **<4 周内优化 30+ 开源生物分子模型**，平均 **~4x 提速**（相同输出 ~2x）；**"Big" 低内存模式**让单张 NVIDIA GPU 节点可预测 **>10,000 tokens**（甚至 >70,000 tokens）的系统
+- **技术根因命名**：triangle attention/multiplication 的**三次方成本**（2x 规模 = 8x 时间/内存）
+- **自研 vs 领域标准**：**FlashPairformer** 自定义 kernel，比 NVIDIA cuEquivariance 快 2.7-2.9x（triangle attention）/ 1.7-3.2x（multiplication）
+- **人类基线对照**："It normally takes an experienced team of engineers weeks… Claude, **supervised by two members… with no prior experience in… kernel engineering**"——**"新手监督即可完成专家级工作"**
+- **极限诚实标注**：>31,000-70,000 tokens 预测**失败（collapse）**，"lack of generalization nearly two orders of magnitude beyond training context"
+- **效率跃迁金句**：**两个数量级更少的 GPU 小时**；**~$150** 即可达到此前 $10,000/目标 的水平
+- **开放 + 竞赛**：GitHub 开源全部优化代码；与 **Adaptyv Bio** 合办蛋白质设计竞赛（**$1M Claude credits + $250K Modal + Twist DNA + 5,000+ 设计湿实验验证**）；衔接 **LSVP 公开 beta**
+- **风险提示**：文章明示「30 个模型含蛋白/结构预测/基因组/语言模型」——**生物能力 uplift 主题**，与 LSVP/生物分类器放宽同属「能力—安保」张力叙事
+
+**6. 🔧 sitemap lastmod 噪声（本轮）**：9/19 `cooley-gopublic`/`cognition-devin`/`growing-atv-big-air-tour`/`business/plugins/` 单条 re-render；9/18-9/19 `business/partners/*` 批量（hubspot/quickbooks/kpmg/aws/exl-service 等）→ **lastmod 仍是"发现候选"而非发布信号**；且 **/page/ sitemap 对最新文章收录滞后**（Australian/Hex 均未入）
+
+### 今日入库（约 28 组件，第六十九节）
+
+#### A. Australian Youth Safety Blueprint（政策蓝图新体裁，9/18）
+
+- **⭐「蓝图/路线图 + PDF」体裁**："introducing the Australian Youth Safety Blueprint, **a roadmap**…a practical contribution to the Australian policy landscape"
+- **⭐六支柱框架**：AI literacy → age-appropriate safeguards → privacy-protective age assurance → real-world crisis support → accessible parental controls（+ 问责）
+- **⭐"扩展到机会"开场**："tools that **expand their opportunities to learn, create, and build skills** while protecting their wellbeing"
+- **⭐产品衔接举证**：8 月起 ChatGPT for Teens 澳洲上线（13-17 岁默认体验）
+- **⭐责任归属主张**：**"should not fall primarily on young people or their families"** + "Companies must **build protections into their products from the outset**"
+- **⭐国家机会 + 谦逊收尾**："Australia has an opportunity to **help shape strong, evidence-based standards**" + "committed to learning alongside teens, parents, educators…"
+
+#### B. Hex 客户故事 #19（agentic 数据平台，9/16）
+
+- **⭐对话式人物引言开场**（CTO Caitlin Colgrove）："a really important part of data work is **not just doing the analysis, but also communicating it**"
+- **⭐旧法痛点**："Models have **struggled with data visualization** for a really long time"
+- **⭐能力跃迁金句**："**more complex, interactive, compelling, and beautiful** data artifacts… **actually proud to share**"
+- **⭐技术细节支撑**：能进入底层库 + 完成 geospatial 可视化所需的"crazy transformations"
+- **⭐「analytical judgment」概念命名**："not just getting to an answer, but **understanding whether or not that answer is actually what the user is asking for and what the business needs**"（对照 Fyxer「reply decision」、Hex「answer interception」）
+- **⭐自检式工作流**：用 Astra 反问答案三问（数字合理吗 / 回答了用户问题吗 / 反映业务目标吗）
+- **⭐使命式收尾**："bringing Hex closer to its mission of **making everyone a data person**"
+
+#### C. Anthropic × Accenture 嵌入式评估（/news，9/18）
+
+- **⭐承接 CEO 承诺开场**：呼应 Dario「**We Must Pace the Frontier**」——"the commitment…to **embed evaluators within Anthropic**"
+- **⭐合作方与范围**："led by **Faculty**, Accenture's specialist AI business" → red-teaming + alignment assessments + safeguards testing
+- **⭐规模锚点**：**"each expect to invest at least $1 billion… over the next five years"**
+- **⭐新概念定义**："**embedded evaluators will work inside AI companies, with access comparable to an employee's**"（反向对照 external evaluators）
+- **⭐问责哲学金句**："**do not reduce our accountability, but help to make it more verifiable**" + "safety…remains our responsibility"
+- **⭐诚实边界 + 自建标准**："Embedded evaluation is **new**, and many of the details… **still being worked out**"；无标准、无 funding 制度 → 自建（呼应 Advanced AI Framework 的 pooled/government 资金主张）
+- **⭐非排他性 + 生态主张**："our partnership is **non-exclusive**" + "frontier AI needs an **ecosystem of evaluators operating with shared standards**"
+- **⭐过程透明收尾**："We're sharing these **early efforts** now so people and other AI developers can see our process"
+
+#### D. Anthropic 生物分子建模工程文（/research，9/17）
+
+- **⭐量化能力声明开场**：30+ 模型 / <4 周 / ~4x 平均提速 / 「Big」模式单节点 >10,000 tokens
+- **⭐承接前作 + 资源痛点**：前作 protein design 花 **$10,000/目标（≈2,500 H100 小时）** → 门槛太高，故转向**推理性优化**
+- **⭐对比锚点**：Mythos 5.1 曾加速 7 个模型 2.5x → 本次 30+ 模型 ~4x
+- **⭐技术根因 + 成本量级**：triangle attention/multiplication **三次方成本**（2x→8x，3x→27x）
+- **⭐自研 kernel 对比领域标准**：**FlashPairformer** vs NVIDIA cuEquivariance（2.7-2.9x / 1.7-3.2x）
+- **⭐「新手监督完成专家工作」人类对照**："supervised by two members… **with no prior experience in inference optimization or kernel engineering**"
+- **⭐极限诚实标注**：>70,000 tokens 预测**失败 collapse**，"lack of generalization… two orders of magnitude beyond… training context"
+- **⭐效率跃迁金句**：**两个数量级更少的 GPU 小时**；**~$150** 匹配此前水平
+- **⭐开源 + 竞赛 + 程序衔接**：GitHub 全量开源；Adaptyv Bio 竞赛（$1M credits + $250K compute + Twist DNA + 5,000 设计湿实验）；LSVP 公开 beta；**Further reading 技术深度区**
+
+### 组件库状态
+
+- **新增约 28 组件（第六十九节）**，总量 **1050+ → 1080+**（66 组件节 + 6 状态节）
+- 重点关注清单：① 明日（9/20 周日）cron：复核 9/19 全天（周末静默是否成立；`detecting-wildfires-early` 是否入 feed）② **Anthropic 监控扩面至 `/news` + `/research` 列表逐条 triage（本轮两处漏看均源于只看列表首屏**）+ `/institute/` + `/threat-intelligence-report-*` ③ **Risk Report 逾期第 19 天**（8/31 承诺）④ 生物分子建模文 + Accenture 全文精读 ⑤ Astra for Law 生态插件页（`business/plugins/?tab=plugins-legal`）⑥ Habitat Part 2 ⑦ 9 月文章总量口径（RSS 非全集 + 入 feed 滞后双偏置）⑧ 搜狗空结果页第 20 日观察 ⑨ DevDay 2026 页面后续 ⑩ 新增监控 notion：**/page/ sitemap 对最新文章收录滞后**，RSS 为先行信号
