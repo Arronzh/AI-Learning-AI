@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 19 日（周六检查：📈 **9/18「无新」判定修正**——feed 滞后第十二次同类，9/18 实际 1 篇（🔥 **「Australian Youth Safety Blueprint」澳大利亚青少年安全蓝图**：**全新「政策蓝图/路线图」体裁**——六支柱 + PDF 下载 + 承接 ChatGPT for Teens 澳洲上线）；🔥 **漏看客户故事 #19「Hex」**（9/16，agentic 数据平台/可视化，「analytical judgment」+ "making everyone a data person" 使命；9/16 实为 **6 连发**非 5）；🔥🔥 **Anthropic 双线新发现**——① 9/18 **「Partnering with Accenture on embedded evaluation」**（**「嵌入式评估」新体裁**：Dario「We Must Pace the Frontier」承诺落地，$1B×5 年，「不减轻问责、但让问责更可验证」）② 9/17 **「How Claude is uplifting biomolecular modeling」**（`/research` 科学工程文：30+ 模型 ~4x 提速 + 「Big」低内存模式单节点 >10,000 tokens + Adaptyv 竞赛 $1M）；约 28 组件入库，组件库 1050+ → 1080+（第六十九节）；`alignment.openai.com` 最新 notices 仍 9/11 RubyGems；Risk Report 逾期第 19 天仍未发；四账号正文仍不可达第 132 天，搜狗空壳页连续第 20 日）
+> 最后更新：2026 年 9 月 20 日（周日检查：✅ **9/19 零发布「复核确认」**——周末静默成立（9/19-9/20 双休日零发布，RSS 1210 条持平 + sitemap 全域名零新 /index/）；🔧 **sitemap lastmod「极端噪声日」**——9/19-9/20 超 160 条 re-render 批量（~130 条 `business/plugins/*` 目录刷新 + `disrupting-malicious-uses-of-ai*` 系列 ~11 条 + 多条已知文章），逐条以 **RSS pubDate 交叉核对** 确认**均为既有页面刷新、无一是新发布**（若不核对，单日将误报 >100 条「新文」）；🔥 发现 **Daybreak 产品子站**（6 页集群：`daybreak/` 愿景页 + Defense Network 伙伴计划 + Codex Security 插件页 + Daybreak Access/$1B credits 申请）与 **`/research/verify/`「内容溯源核验」工具页**（上传图片/音频检测 C2PA + SynthID；对应 5/19 provenance 文，非新文）——新增识记「**交互式工具页/产品落地页子站**」体裁（不纳入文章统计）；⚠️ `detecting-wildfires-early`（9/15）仍未入 feed（满 5 天）；Anthropic 双页可达但无新（/news 最新 9/18 Accenture；/research 最新 9/17 biomolecular）；`alignment.openai.com` 最新 notice 仍 9/11 RubyGems，**Risk Report 逾期第 20 天**；9 月累计维持 **42 篇 / 13 发布日**（9/1-9/18）；四账号正文不可达第 133 天，搜狗空壳页连续第 21 日；**无新增组件**，组件库维持 1080+（第七十节））
 > 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 计数权威 + **sitemap 全路径 lastmod 交叉核对（可发现 RSS 与 /index/ 均未收录的页面）+「不在 RSS 清单」逐条 triage（禁止归类打包，逐条打开判体裁/新旧）+ 独立子域探测（`alignment.openai.com` 等非 openai.com/index 路径）**）
-> 数据源限制：Web Search MCP 仍不可用（第 132 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 132 天，搜狗空结果页 10.5-10.7KB 模式持续）；**Anthropic 9/19 可达**（news 462KB/research 315KB 体积稳定），⚠️ **本轮再发现此前漏掉的 2 条：9/18 Accenture 嵌入式评估（/news）+ 9/17 `/research/` 生物分子建模工程文**——**Anthropic 监控须扩面至 `/news` 列表逐条 + `/research` 列表逐条 + `/institute/` + `/threat-intelligence-report-*` 等新路径**；**可靠通道：openai.com/sitemap.xml/page/ + RSS 计数 + 独立子域（全路径 lastmod 交叉核对——⚠️ 已证实 RSS 存在「体裁性系统盲区」：科研主题同发「science 页（入 RSS）+ story 页（不入 RSS）」两个版本，RSS 是发布类型子集；⚠️ 且 RSS 存在「入 feed 滞后 1-4 天」现象（Hex 9/16 → 9/19 才入 feed），RSS 作总量分母须以「次日复核」修正）；⚠️ 注意 lastmod 亦含批量 re-render 噪声（如 9/17-9/19 `business/partners/*` 同秒区间更新），lastmod ≠ 发布日期**
+> 数据源限制：Web Search MCP 仍不可用（第 133 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 133 天，搜狗空结果页 10.6-10.8KB 模式持续，本轮字节微变 10,805B/10,634B）；**Anthropic 9/20 可达**（news 462KB/research 315KB 体积稳定），本轮全量核对**无新**（/news 最新 9/18 Accenture；/research 最新 9/17 biomolecular）——**Anthropic 监控须扩面至 `/news` 列表逐条 + `/research` 列表逐条 + `/institute/` + `/threat-intelligence-report-*` 等新路径**；**可靠通道：openai.com/sitemap.xml/*（全 42 子图逐条 lastmod 核对）+ RSS 计数 + 独立子域（全路径 lastmod 交叉核对——⚠️ 已证实 RSS 存在「体裁性系统盲区」：科研主题同发「science 页（入 RSS）+ story 页（不入 RSS）」两个版本，RSS 是发布类型子集；⚠️ 且 RSS 存在「入 feed 滞后 1-5 天」现象（Hex 9/16 → 9/19 才入 feed；`detecting-wildfires-early` 9/15 至 9/20 仍未见），RSS 作总量分母须以「次日复核」修正）；⚠️ **lastmod ≠ 发布**：除单条 re-render 与 `business/partners/*` 同秒批更新外，9/19-9/20 出现 `business/plugins/*` 全量刷新等**超大批量 re-render**（>160 条），须以 **RSS pubDate/条目新旧交叉核对**后方可判定「新发现」**
 
 ---
 
@@ -5493,3 +5493,56 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **新增约 28 组件（第六十九节）**，总量 **1050+ → 1080+**（66 组件节 + 6 状态节）
 - 重点关注清单：① 明日（9/20 周日）cron：复核 9/19 全天（周末静默是否成立；`detecting-wildfires-early` 是否入 feed）② **Anthropic 监控扩面至 `/news` + `/research` 列表逐条 triage（本轮两处漏看均源于只看列表首屏**）+ `/institute/` + `/threat-intelligence-report-*` ③ **Risk Report 逾期第 19 天**（8/31 承诺）④ 生物分子建模文 + Accenture 全文精读 ⑤ Astra for Law 生态插件页（`business/plugins/?tab=plugins-legal`）⑥ Habitat Part 2 ⑦ 9 月文章总量口径（RSS 非全集 + 入 feed 滞后双偏置）⑧ 搜狗空结果页第 20 日观察 ⑨ DevDay 2026 页面后续 ⑩ 新增监控 notion：**/page/ sitemap 对最新文章收录滞后**，RSS 为先行信号
+
+---
+
+## 七十、9/20（周日）检查：安静日——9/19 零发布「复核确认」✅（周末静默成立）+ 🔧 sitemap lastmod「极端噪声日」（9/19-9/20 >160 条 re-render 批量）+ 🔥 发现 Daybreak 产品子站与「Verify」溯源工具页
+
+### 检查结果（全部无新样本）
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 第 133 天不可达；搜狗空结果页连续第 21 日（字节微变：量子学派/机器之心 10,805B、差评/棱镜 10,634B，前值 10,686/10,572）——仍为「暂无相关官方认证订阅号」空壳页，无任何可抓文本 |
+| OpenAI RSS | 最新仍为 9/18（Australian Youth Safety Blueprint）；**9/19-9/20 周末两日无新发布**；条目数 **1210（与前日持平）**；⚠️ `detecting-wildfires-early`（9/15）仍未入 feed → **满 5 天** |
+| OpenAI sitemap（全 42 子图，共 2392 条 URL） | **9/19-9/20 零新增文章**；仅有 lastmod 批量 re-render（见下认知 2） |
+| Anthropic /news | ✅ 可达（462KB）；最新仍为 9/18（Accenture 嵌入式评估）；9/19 起静默 |
+| Anthropic /research | ✅ 可达（315KB）；最新仍为 9/17（claude-uplifts-biomolecular-modeling）；静默第 3 天 |
+| alignment.openai.com | ✅ 可达；`/misalignment-reports/` 最新 notice 仍 **9/11 RubyGems**（六份 report 未增）；**Risk Report 逾期第 20 天仍未发** |
+| Web Search MCP | ❌ 第 133 天（SSE 协议错误「Invalid content type」）；中文样本中断第 133 天 |
+
+### 今日新增认知
+
+**1. ✅ 9/19（周六）零发布「复核确认」——周末静默成立**
+- 昨日（9/19）记录「9/19 截至 21:00 无新（低置信）」；今日复查 **RSS（1210 条持平）+ sitemap 全域（无 9/19 新 /index/）** = **9/19 全天零发布复核确认**，周末静默模式延续（本周为 9/13 周末静默后的第二个休整窗口）
+- 9/20（周日）截至 21:00 亦无新 → 双休日静默；下一观察窗口 = **9/21（周一）**（周一工作日发布规律）
+
+**2. 🔧 sitemap lastmod「极端噪声日」——9/19-9/20 超 160 条 re-render 批量（本指南历史最大）**
+- 9/19 出现 **~130 条 `business/plugins/*` 批量 re-render**（插件目录全量刷新，含 `codex-security` / `chatgpt-ads-manager` / `courtlistener` / `cognition` 等新插件页）+ `disrupting-malicious-uses-of-ai*` 系列（9/19-9/20 约 11 条）+ 多条已知文章页（`gpt-6-astra` / `apple-is-getting-this-wrong` / `an-alien-mind` / `navier-stokes-solution` / `put-data-to-work` 等）
+- **逐条核验结论**：上述全部为**既有页面 re-render**（对应 RSS pubDate 均早于 9/19，如 tech-and-tariffs=6/1、apple-is-getting-this-wrong=8/3、an-alien-mind=9/6、navier-stokes=9/8、russia-influence=8/25），**无一是新发布**
+- **方法论强化（新增铁律）**：**sitemap lastmod ≥ 今日 ≠ 新文章**。面对批量 re-render，须以 **RSS pubDate / 条目新旧交叉核对** 判定，禁止仅凭 lastmod 直接列「新发现」——否则单日会误报 >100 条「新文」。这与既有「lastmod 单条噪声」「partners 同秒批更新」同源，但**量级提升到百条**，属新失效模式
+
+**3. 🔥 发现 Daybreak 产品子站（6 页集群，lastmod 9/18 20:00-20:07，非新文章）**
+- sitemap 全路径核对（`/page/` 子图）发现 `/daybreak/` 已成**完整产品子站**：
+  - `daybreak/`（愿景/总览页）+ `daybreak/partners/` + `daybreak/partners-new/`（**Daybreak Defense Network** 伙伴计划）+ `daybreak/codex-security-plugin/`（**Codex Security 插件**安装页）+ `daybreak/contact-cyber-sales/`
+  - 配套表单/入口：`/form/enterprise-trusted-access-for-cyber/`、`/form/daybreak-cyber-partner-program/`、`/collective-cyberdefense/application/`（**$1B credits 申请**）
+  - 区域镜像：`/ar/daybreak/*`、`/es-419/daybreak/*`（本地化子站同步）
+- **性质判定**：Daybreak 为 6/22 起既有产品线（Blue/Red 双准入 + 8/10 伙伴计划 + 9/3 $1B 倡议均已在库），本轮 9/18 集群为**站点重构/伙伴页新增**，**非新文章**
+- **可借鉴文案组件（产品页文案）**：
+  - ① **五步 agentic 防御闭环**：`inventory → discovery → dynamic validation → ownership assignment → verified remediation`（循环图，末步「Back to inventory」闭合）——**「闭环而非线性」的流程图叙事**
+  - ② **「SECURITY.md 共享上下文」**："SECURITY.md represents shared system context, **not another step in the loop**"——**主动否定「新增流程步骤」**，强调上下文复用（"later passes can focus on changes… instead of starting over"）
+  - ③ **「Governed by design」**："put that capability in defenders' hands responsibly—with **human judgment, monitoring, safeguards, and community collaboration**"——治理作为设计原则而非补丁
+  - ④ **$1B / 6 个月 subsidized access**："OpenAI is committing **$1 billion in subsidized Daybreak access over six months** to help protect the essential services… we all depend on"——**「最需要的前线防御者优先」公益框架**（枚举：州/地方政府、关键基础设施、社区银行、非营利、开源维护者）
+  - ⑤ **伙伴计划「Connect → Build → Launch」三段式** + 「Two ways to partner」（Product integrations / Managed services）
+
+**4. 🔥 发现 `/research/verify/`「内容溯源核验」工具页（lastmod 9/18 20:02，非新文）**
+- **`/research/verify/`**（"Verify OpenAI-generated content | OpenAI"）= **交互式核验工具页**：上传图片/音频 → 检测是否含 **C2PA Content Credentials 元数据 + SynthID 水印**，报告「检测到 C2PA / 检测到 SynthID / 无支持信号」三态
+- **对应出处**：**5/19 文章「Advancing content provenance for a safer, more transparent AI ecosystem」**（已入库，Content Credentials + SynthID + 验证工具三层溯源的「验证工具」落地页）
+- **性质**：**页面 lastmod 刷新**，非新文；与 Anthropic `claude-text-watermark`（8/14，文本水印）构成**跨公司「AI 内容溯源」对照样本**
+- **新增体裁识记**：**「交互式工具页 / 产品落地页子站」（interactive utility / product landing page）**——可直接使用的产品化页面（verify 核验器、Daybreak 产品页、插件目录页、表单页），lastmod 刷新频繁，**属「产品/落地页」而非内容源，不应纳入文章统计**
+
+**5. 📌 9 月发布节奏观察**：9/17（2 篇）+ 9/18（1 篇）后进入周末静默（9/19-9/20 零发布）；9 月累计维持 **42 篇 / 13 发布日**（9/1-9/18，口径未变）
+
+### 组件库状态
+
+- **无新增组件**（本检查周期无新文章），总量维持 **1080+**（66 组件节 + 6 状态节）
+- 关注清单：① **9/21（周一）** 新一波窗口（周末静默后工作日是否重启）② `detecting-wildfires-early`（9/15）已满 5 天未入 feed——关注是否成为「长期/永不入 feed」体裁 ③ **Risk Report 逾期第 20 天**（8/31 承诺）④ 生物分子建模文 + Accenture 全文精读 ⑤ Astra for Law 插件页（`business/plugins/?tab=plugins-legal`，本轮 plugins 批量刷新已覆盖）⑥ Habitat Part 2（多租户可靠性）⑦ 9 月总量口径（RSS 非全集 = 42 篇 vs sitemap 全域）⑧ 搜狗空结果页第 21 日观察 ⑨ DevDay 2026 页面后续 ⑩ **新增铁律：sitemap lastmod 批量 re-render 识别法（必须 RSS pubDate 交叉核对）**
