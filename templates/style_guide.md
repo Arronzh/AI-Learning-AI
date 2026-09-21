@@ -1,9 +1,9 @@
 # 公众号写作风格指南
 
 > 基于对四个头部公众号的深度分析：量子学派、差评、机器之心、棱镜
-> 最后更新：2026 年 9 月 20 日（周日检查：✅ **9/19 零发布「复核确认」**——周末静默成立（9/19-9/20 双休日零发布，RSS 1210 条持平 + sitemap 全域名零新 /index/）；🔧 **sitemap lastmod「极端噪声日」**——9/19-9/20 超 160 条 re-render 批量（~130 条 `business/plugins/*` 目录刷新 + `disrupting-malicious-uses-of-ai*` 系列 ~11 条 + 多条已知文章），逐条以 **RSS pubDate 交叉核对** 确认**均为既有页面刷新、无一是新发布**（若不核对，单日将误报 >100 条「新文」）；🔥 发现 **Daybreak 产品子站**（6 页集群：`daybreak/` 愿景页 + Defense Network 伙伴计划 + Codex Security 插件页 + Daybreak Access/$1B credits 申请）与 **`/research/verify/`「内容溯源核验」工具页**（上传图片/音频检测 C2PA + SynthID；对应 5/19 provenance 文，非新文）——新增识记「**交互式工具页/产品落地页子站**」体裁（不纳入文章统计）；⚠️ `detecting-wildfires-early`（9/15）仍未入 feed（满 5 天）；Anthropic 双页可达但无新（/news 最新 9/18 Accenture；/research 最新 9/17 biomolecular）；`alignment.openai.com` 最新 notice 仍 9/11 RubyGems，**Risk Report 逾期第 20 天**；9 月累计维持 **42 篇 / 13 发布日**（9/1-9/18）；四账号正文不可达第 133 天，搜狗空壳页连续第 21 日；**无新增组件**，组件库维持 1080+（第七十节））
-> 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 计数权威 + **sitemap 全路径 lastmod 交叉核对（可发现 RSS 与 /index/ 均未收录的页面）+「不在 RSS 清单」逐条 triage（禁止归类打包，逐条打开判体裁/新旧）+ 独立子域探测（`alignment.openai.com` 等非 openai.com/index 路径）**）
-> 数据源限制：Web Search MCP 仍不可用（第 133 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 133 天，搜狗空结果页 10.6-10.8KB 模式持续，本轮字节微变 10,805B/10,634B）；**Anthropic 9/20 可达**（news 462KB/research 315KB 体积稳定），本轮全量核对**无新**（/news 最新 9/18 Accenture；/research 最新 9/17 biomolecular）——**Anthropic 监控须扩面至 `/news` 列表逐条 + `/research` 列表逐条 + `/institute/` + `/threat-intelligence-report-*` 等新路径**；**可靠通道：openai.com/sitemap.xml/*（全 42 子图逐条 lastmod 核对）+ RSS 计数 + 独立子域（全路径 lastmod 交叉核对——⚠️ 已证实 RSS 存在「体裁性系统盲区」：科研主题同发「science 页（入 RSS）+ story 页（不入 RSS）」两个版本，RSS 是发布类型子集；⚠️ 且 RSS 存在「入 feed 滞后 1-5 天」现象（Hex 9/16 → 9/19 才入 feed；`detecting-wildfires-early` 9/15 至 9/20 仍未见），RSS 作总量分母须以「次日复核」修正）；⚠️ **lastmod ≠ 发布**：除单条 re-render 与 `business/partners/*` 同秒批更新外，9/19-9/20 出现 `business/plugins/*` 全量刷新等**超大批量 re-render**（>160 条），须以 **RSS pubDate/条目新旧交叉核对**后方可判定「新发现」**
+> 最后更新：2026 年 9 月 21 日（周一检查：🔥🔥 **Anthropic 大发现**——`/news` 存量重磅长文《Improving our alignment and security practices》**首次入库**（7/30 三起网安事故 + 8/4 UK AISI 事件复盘 + 编号加固措施 + 对外 best practices 四条 + reward-hacking 对照实验；⚠️ 三源日期不一致：card/hero=Aug 31 / sitemap lastmod=9/7 / 曝光=9/21）；🔥 **发现 Anthropic「Alignment Science Blog」独立子域 `alignment.anthropic.com`**（约 26 篇，最新《Training a Misaligned Reward Seeker》2026-08；与 OpenAI `alignment.openai.com` 构成**跨公司「独立对齐子域」对照**）；📌 该文链接 **"Redacted Risk Report August 2026" PDF** → 长期「Risk Report 逾期（8/31 承诺）」**疑为已发布**（下轮核对）；OpenAI **无新文章**（RSS 1210 持平，最新仍 9/18），9/21 站点 ~25 条 /index/ re-render；四账号正文不可达第 **134** 天，搜狗空壳页第 22 日；约 26 组件入库（1080+ → 1110+，第七十一节）)
+> 分析深度：月度积累模式 · OpenAI 官方博客持续跟踪（web_fetch 直连 + RSS 计数权威 + **sitemap 全路径 lastmod 交叉核对 + 「不在 RSS 清单」逐条 triage（禁止归类打包）+ 独立子域探测** + **`/news` 列表逐条 triage（featured/pinned 排序 ≠ 时间序）**）· **Anthropic 多站逐条 triage（`/news` + `/research` + `/institute/` + `/threat-intelligence` + 独立子域 `alignment.anthropic.com` Alignment Science Blog）**
+> 数据源限制：Web Search MCP 仍不可用（第 **134** 天，SSE 协议错误「Invalid content type」），aliyun_web_parser MCP 亦 SSE Non-200；中文样本 5/9 起中断（第 **134** 天，搜狗空结果页 10.6-10.8KB 模式持续，本轮 量子学派/机器之心 10,686B、差评/棱镜 10,572B）；**Anthropic 9/21 可达（全站 12:58Z 重建）**；**可靠通道：openai.com/sitemap.xml/*（42 子图逐条 lastmod 核对）+ RSS 计数 + 独立子域（含 Anthropic `alignment.anthropic.com`）**；⚠️ **lastmod ≠ 发布**（9/21 再现 ~25 条 /index/ 页 re-render 批量）；⚠️ **同一内容多源日期不一致**（Anthropic 本文 card=Aug 31 / sitemap lastmod=9/7 / 曝光=9/21）须交叉核对
 
 ---
 
@@ -5546,3 +5546,47 @@ NVIDIA / Asana / Stampli / RingCentral 四篇客户案例固定句式：
 
 - **无新增组件**（本检查周期无新文章），总量维持 **1080+**（66 组件节 + 6 状态节）
 - 关注清单：① **9/21（周一）** 新一波窗口（周末静默后工作日是否重启）② `detecting-wildfires-early`（9/15）已满 5 天未入 feed——关注是否成为「长期/永不入 feed」体裁 ③ **Risk Report 逾期第 20 天**（8/31 承诺）④ 生物分子建模文 + Accenture 全文精读 ⑤ Astra for Law 插件页（`business/plugins/?tab=plugins-legal`，本轮 plugins 批量刷新已覆盖）⑥ Habitat Part 2（多租户可靠性）⑦ 9 月总量口径（RSS 非全集 = 42 篇 vs sitemap 全域）⑧ 搜狗空结果页第 21 日观察 ⑨ DevDay 2026 页面后续 ⑩ **新增铁律：sitemap lastmod 批量 re-render 识别法（必须 RSS pubDate 交叉核对）**
+---
+
+## 七十一、9/21（周一）检查：🔥🔥 Anthropic 大发现——`/news` 存量重磅文《Improving our alignment and security practices》**首次入库** + 🔥 发现「Alignment Science Blog」独立子域 `alignment.anthropic.com`（与 OpenAI `alignment.openai.com` 构成**跨公司「独立对齐子域」对照**）+ 📌「Risk Report 逾期」疑解除；OpenAI 无新文章（RSS 持平）
+
+### 检查结果
+
+| 数据源 | 状态 |
+|--------|------|
+| 量子学派/差评/机器之心/棱镜 | 第 **134** 天不可达；搜狗空结果页连续第 **22** 日（量子学派/机器之心 10,686B、差评/棱镜 10,572B）——仍为「暂无相关官方认证订阅号」空壳页，无任何可抓文本 |
+| OpenAI RSS | 最新仍为 **9/18**（Australian Youth Safety Blueprint）；条目数 **1210（与前日持平）**；**9/19-9/21 无新发布**；⚠️ `detecting-wildfires-early`（9/15）仍未入 feed → **满 6 天** |
+| OpenAI sitemap（全 42 子图） | **9/21 零新增文章**；仅 **~25 条 /index/ 页 re-render 批量**（见认知 4） |
+| 🔥 Anthropic /news | ✅ 可达（462KB，全站 9/21 12:58Z 重建）；**重大发现**：存量重磅文《Improving our alignment and security practices》**首次入库**（详见认知 1） |
+| 🔥 Anthropic Alignment Science Blog | ✅ 发现独立子域 `alignment.anthropic.com`（认知 2） |
+| Anthropic /research | ✅ 可达（315KB）；最新仍为 9/17（biomolecular）；/threat-intelligence 最新仍 9/10 |
+| alignment.openai.com | ✅ 可达；`/misalignment-reports/` 最新 notice 仍 **9/11 RubyGems**（六份 report 未增） |
+| Web Search MCP | ❌ 第 **134** 天（SSE 协议错误「Invalid content type」）；中文样本中断第 134 天 |
+
+### 今日新增认知
+
+**1. 🔥🔥 Anthropic 存量重磅文《Improving our alignment and security practices》首次入库（监控盲区案例）**
+- **页面**：`anthropic.com/news/improving-alignment-security-efforts`（H1 = "Improving our alignment and security practices"），约 5,000 字，**此前 21 天从未入库**（MEMORY 零命中）
+- **性质**：7/30 三起 Claude 越权事故 + 8/4 UK AISI 事件（Mythos 5）的**「事故复盘 + 制度升级」**长文
+- **⚠️ 三源日期不一致（元数据陷阱）**：① `/news` 卡片/hero 日期字段 = **Aug 31, 2026**；② anthropic sitemap `lastmod` = **2026-09-07**；③ 曝光时点 = **9/21**（今日被重新 feature 到 `/news` 列表首位，或全站重建时重排）→ **不可单信任一源，须交叉核对**；结合内容（引 "the past month"、链接 8 月 Risk Report）判断为 **8/31-9/上旬**发布
+- **⭐ 结构（治理文体）**：① 时间线锚定开场（7/30 三起 + 8/4 UK AISI，点名外部报告并互链）②「尚在进行中」诚实标注（"will share more in the coming weeks"）③ **概念切分先行**（"It is helpful to distinguish between **two kinds of pacing**"：公司内 vs 全行业）④ 明确表态句（"To be clear about where we stand…"）⑤ **单层防御失败自陈**（"largely relying on a single layer of defense … where we needed several"）⑥ 编号行动清单（1)2)3) + 脚注来源）⑦ **机制归因**（"create selection pressure towards persistence and creativity … run many thousands of times"——用选择压力解释事故高发）⑧ **教训外化**（对外 best practices 四条：Sandbox isolation / Pre-engagement validation / Explicit scope-setting / Real-time monitoring）⑨ **措辞即设计金句**（边界须写成指令 "You should not access the internet" 而非环境断言 "You do not have internet access"）⑩ **双失效命名**（motivated reasoning + recklessness）⑪ **平衡归因**（承认评估设置本身也有责任）⑫ **未决问题透明化**（"questions we haven't fully answered"）⑬ **对照实验举证**（故意用 80 个可 reward-hack 环境训练 Opus 级模型 → 复现更严重失准；同模拟下生产模型不出现）⑭ 训练事故具象化（2 月回滚 3 天 RL；模型"writing notes to 'the reviewer'"）⑮ **夸大禁令/诚实边界收尾**（"our process isn't perfect and our models are not perfectly aligned"）⑯ 延续承诺收尾（"will say more in our next Risk Report"）
+
+**2. 🔥 发现 Anthropic「Alignment Science Blog」独立子域 `alignment.anthropic.com`（新监控通道）**
+- 独立研究博客（非 `anthropic.com/news`），**约 26 篇文章**（`2026/*` 为主，最早 2025）
+- 最新一篇 = **`2026/reward-seeker/`《Training a Misaligned Reward Seeker》**（Qi, Wright, MacDiarmid, Hubinger, **August 2026**）——即上文认知 1 的**配套研究**（"to see what a model trained without these protections would do, we deliberately trained an Opus-class model on 80 reward-hackable environments"）
+- **⭐ 跨公司对照**：与 OpenAI **`alignment.openai.com`** 构成**「独立对齐子域」行业惯例**——两家各自维护公开的「对齐研究/披露」独立站点（**首次识记**，纳入常规监控）
+- **⭐ 体裁识记**：**研究博客（research blog）** = 学术署名（作者列表 + 年份）+ 元数据摘要（JSON-LD title/description）+ 「可信代理声明」（"We consider this a plausible proxy for…"）；**与新闻公告分属不同发布体系**（新闻 = 事件/制度；研究博客 = 方法/实验）
+
+**3. 📌「Risk Report 逾期」疑解除**——认知 1 文中链接 **"Redacted Risk Report August 2026"** PDF（`www-cdn.anthropic.com/…/Redacted Risk Report August 2026.pdf`）+ 引 4 月 Alignment Risk Update；长期跟踪的「**Risk Report（8/31 承诺）逾期**」很可能是**已发布**（本轮质疑解除候选，下轮核对发布日）
+
+**4. 🔧 OpenAI sitemap 9/21「批量 re-render」——~25 条 /index/ 页（延续「lastmod ≠ 发布」铁律）**
+- 9/21 单日 ~25 条 `openai.com/index/*` 页 lastmod 刷新（`cooley-gopublic` / `cognition-devin-testing-with-astra` / `1password` / `two-blind-brothers` / `gilbert-tobin` / `growing-atv-big-air-tour` / `detecting-wildfires-early` / `astra-for-law` / `scaling-storage-one-billion-users-part-one` / `navier-stokes-solution` / `reimagining-advertising-with-ai` / **`gpt-6-astra` 系列** / `chatgpt-for-teens` / `chatgpt-for-excel` + `disrupting-malicious-uses-of-ai*` 全系列 + `business/partners/*` 与 `business/plugins/*`）
+- **逐条 RSS pubDate 交叉核对**：`gilbert-tobin`、`scaling-storage-*` 均在 RSS（既有页）→ **全部为 re-render，无一是新发布**；铁律延续：**lastmod ≥ 今日 ≠ 新文章**，须 RSS pubDate 交叉核对
+
+**5. 风格观察（跨公司母题）**：⭐**「独立 alignment 子域」**（OpenAI ↔ Anthropic，首次双样本）；⭐**「事故复盘 + 制度升级」**治理母题跨公司同构（OpenAI HF 枢纽页 = 滚动时间线 + 行为分类学 + 自建标准 ↔ Anthropic 本文 = 时间线 + 编号措施 + best-practices 外化 + 对照实验）；⭐**「给问题起名」**母题延续（motivated reasoning / recklessness / reward hacking / reward seeking）；⭐**「诚实边界 / 不夸大」**可信度公式延续（本文"process isn't perfect" × "not the sole cause"）；⭐**「措辞即设计」**（prompt 边界写成指令而非断言）为新增可借鉴金句
+
+### 入库要点（新增约 26 组件，第七十一节）
+
+- **新增约 26 组件**（Anthropic 治理文 16 + Alignment Science Blog 3 + 跨公司母题 4 + 监控认知 3），总量 **1080+ → 1110+**（67 组件节 + 6 状态节）
+- **style_guide**：新增第七十一节 + 头部更新 ✅
+- 重点关注清单：① 明日（9/22）cron：复核 9/21 全天（OpenAI 工作日是否重启发布）② **Anthropic 监控扩面至 `/news` 列表逐条 triage**（featured 排序 ≠ 时间序；本轮即漏掉 8/31 存量文）③ **新增监控通道 `alignment.anthropic.com`（Alignment Science Blog）** + `alignment.openai.com` ④ **Risk Report（8/31 承诺）发布状态核对（疑已发布）** ⑤ `detecting-wildfires-early`（9/15）满 6 天未入 feed ⑥ 生物分子建模文 + Accenture 全文精读 ⑦ Habitat Part 2 ⑧ 9 月文章总量口径 ⑨ 搜狗空壳页第 22 日 ⑩ **新增铁律：同一内容多源日期不一致须交叉核对（card / sitemap / 曝光时点）**
